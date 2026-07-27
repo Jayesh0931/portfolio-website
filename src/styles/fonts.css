@@ -1,1 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Inter:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Inter:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap');
+
+/* Figma Font Mappings to standard Google Fonts */
+.font-\['Outfit\:Black'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+}
+.font-\['Outfit\:Bold'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
+.font-\['Outfit\:Medium'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+.font-\['Outfit\:Regular'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+}
+.font-\['Inter\:Bold'\] {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+.font-\['Open_Sans\:Italic'\] {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.font-\['Open_Sans\:Bold_Italic'\] {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+}
+.font-\['Open_Sans\:ExtraBold'\] {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}

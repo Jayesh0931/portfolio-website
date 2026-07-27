@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Desktop from "@/imports/Desktop6/index";
+import AllyraStoryPage from "./AllyraStoryPage";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
@@ -7,23 +8,19 @@ import imgEllipse8 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea6194
 import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 
 const DESIGN_W = 1440;
-const DESIGN_H = 10600;
+const DESIGN_H = 10440;
 
 function getScaleAndLeft(vw: number) {
-  if (vw >= 1440) {
-    // Lock scale at 1 to preserve crisp font sizes and layout hierarchy,
-    // and center the 1440px design area to create balanced margins.
-    const scale = 1;
-    const left = (vw - 1440) / 2;
-    return { scale, left };
-  } else if (vw >= 768) {
-    // Proportially scale down to fit smaller viewports without overflow (all the way to mobile threshold)
-    const scale = vw / 1440;
-    const left = 0;
-    return { scale, left };
+  if (vw >= 768) {
+    // Cap the maximum scaling width at 1728px to prevent 
+    // the layout from becoming absurdly huge on larger displays.
+    const clampedVw = Math.min(vw, 1728);
+    const scale = clampedVw / 1440;
+    const left = (vw - clampedVw) / 2;
+    return { scale, left, clampedVw };
   } else {
     // Mobile view logic
-    return { scale: 1, left: 0 };
+    return { scale: 1, left: 0, clampedVw: vw };
   }
 }
 
@@ -388,7 +385,7 @@ function CraftExpandOverlay() {
 
   const { left: canvasLeft } = getScaleAndLeft(vw);
   const vhD        = vh / scale;  // viewport height in design-space px
-  const vwD        = vw / scale;  // viewport width  in design-space px
+  const vwD        = vw / scale;  // real viewport width in design-space px
 
   const SECT_TOP  = 6820;
   const SECT_H    = 800;
@@ -398,7 +395,7 @@ function CraftExpandOverlay() {
   const entryStart = SECT_TOP * scale - vh;
   const entryEnd   = entryStart + SECT_H * scale * 0.7;
   const entryProg  = Math.max(0, Math.min(1, (scrollY - entryStart) / (entryEnd - entryStart)));
-  const e          = entryProg ** 2 * (3 - 2 * entryProg); // smoothstep
+  const eEntry     = entryProg ** 2 * (3 - 2 * entryProg); // smoothstep
 
   // Phase 2 — Sticky + internal gallery scroll
   const galleryOverflow = Math.max(0, GALLERY_H - vhD); // design-px of gallery beyond viewport
@@ -409,21 +406,36 @@ function CraftExpandOverlay() {
     : 1;
   const galleryOffset   = internalProg * galleryOverflow; // design-px gallery has scrolled up
 
-  // Phase 3 — Exit: element returns to a fixed canvas position and naturally scrolls off top
-  const exitProg    = Math.max(0, Math.min(1, (scrollY - internalEnd) / vh));
-  const exitOffsetD = exitProg * vhD;
+  // Phase 3 — Exit: element shrinks back to original size and locks onto canvas to scroll away naturally
+  const exitProg    = Math.max(0, Math.min(1, (scrollY - internalEnd) / (vh * 0.8)));
+  const eExit       = exitProg ** 2 * (3 - 2 * exitProg); // smoothstep
+  
+  // The combined expansion factor: goes 0 -> 1 during entry, stays 1 during sticky, goes 1 -> 0 during exit.
+  const e = eEntry - eExit;
 
   if (entryProg === 0 || exitProg >= 1) return null;
 
   // Geometry (all in design-space px):
-  // left:   80 → -canvasLeft/scale  (starts at screen x=0)
-  // width:  1280 → vwD              (full viewport width)
-  // height: SECT_H → vhD            (full viewport height)
-  // top:    slides from natural canvas pos → sticky at viewport-top → exits off top
   const curLeft   = 80 + (-canvasLeft / scale - 80) * e;
   const curWidth  = 1280 + (vwD - 1280) * e;
   const curHeight = SECT_H + (vhD - SECT_H) * e;
-  const curTop    = SECT_TOP * (1 - e) + (scrollY / scale) * e - exitOffsetD;
+  
+  // During entry, it blends from SECT_TOP to the sticky viewport top (scrollY / scale).
+  // During exit, we translate it upwards dynamically (internalEnd / scale - exitProg * vhD)
+  // to give it the same premium floating/glide exit effect as the Recommendations section.
+  const curTop = exitProg > 0 
+    ? (internalEnd / scale) - (exitProg * vhD) 
+    : SECT_TOP * (1 - eEntry) + (scrollY / scale) * eEntry;
+
+  let posType: "absolute" | "fixed" = "absolute";
+  let finalTop = curTop * scale + 25 * scale;
+  let finalLeft = curLeft * scale + canvasLeft;
+
+  if (eEntry === 1 && exitProg === 0) {
+    posType = "fixed";
+    finalTop = 0;
+    finalLeft = 0;
+  }
 
   const craft: React.CSSProperties = {
     fontFamily: "'Outfit', sans-serif", fontWeight: 900,
@@ -433,8 +445,10 @@ function CraftExpandOverlay() {
 
   return (
     <div style={{
-      position: "absolute",
-      top: curTop, left: curLeft, width: curWidth, height: curHeight,
+      position: posType,
+      top: `${finalTop}px`, left: `${finalLeft}px`, width: `${curWidth}px`, height: `${curHeight}px`,
+      transformOrigin: "top left",
+      transform: `scale(${scale})`,
       background: "#FFFDFA", border: "1px solid #7b7a77",
       overflow: "hidden", display: "flex", zIndex: 10,
     }}>
@@ -1079,10 +1093,10 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
   return (
     <div style={{
       position: "fixed",
-      top: 25 * scale + 8 * scale,
-      left,
-      width: DESIGN_W,
-      height: 40,
+      top: `${(25 + 8) * scale}px`,
+      left: `${left}px`,
+      width: `${DESIGN_W}px`,
+      height: "40px",
       transformOrigin: "top left",
       transform: `scale(${scale})`,
       pointerEvents: "none",
@@ -1138,6 +1152,30 @@ export default function App() {
   const { scale, left } = useLayout();
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [showCursor, setShowCursor] = useState(false);
+
+  useEffect(() => {
+    if (vw < 768 || currentPath !== "/") return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
+
+      if (closestStoryCard) {
+        setShowCursor(true);
+        setCursorPos({ x: e.clientX, y: e.clientY });
+      } else {
+        setShowCursor(false);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [vw, currentPath]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1148,7 +1186,32 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    const onPopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  useEffect(() => {
+    const onNavigateToPath = (e: Event) => {
+      const path = (e as CustomEvent<string>).detail;
+      window.history.pushState({}, "", path);
+      setCurrentPath(path);
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener("navigate-to-path", onNavigateToPath);
+    return () => window.removeEventListener("navigate-to-path", onNavigateToPath);
+  }, []);
+
+  useEffect(() => {
     const handleScrollBg = () => {
+      // Only trigger dark background transition on home page
+      if (window.location.pathname !== "/") {
+        document.body.style.backgroundColor = "#FFFDFA";
+        return;
+      }
+      
       const vhD = window.innerHeight / scale;
       const scrollY_D = window.scrollY / scale;
       // Trigger background transition when Focus starts to enter, and keep it dark for all subsequent sections below it
@@ -1160,7 +1223,7 @@ export default function App() {
     window.addEventListener("scroll", handleScrollBg, { passive: true });
     handleScrollBg();
     return () => window.removeEventListener("scroll", handleScrollBg);
-  }, [scale]);
+  }, [scale, currentPath]);
 
   useEffect(() => {
     const onScrollToY = (e: Event) => scrollToY((e as CustomEvent<number>).detail);
@@ -1183,27 +1246,77 @@ export default function App() {
     );
   }
 
+  if (currentPath === "/allyra-story") {
+    return (
+      <>
+        <style>{marqueeStyles}</style>
+        <AllyraStoryPage 
+          scale={scale} 
+          left={left} 
+          onBack={() => {
+            window.history.pushState({}, "", "/");
+            setCurrentPath("/");
+            window.scrollTo(0, 0);
+          }} 
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <style>{marqueeStyles}</style>
+      <style>{`
+        [data-custom-cursor="read-story"],
+        [data-custom-cursor="read-story"] * {
+          cursor: none !important;
+        }
+      `}</style>
       <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
       {/* Outer shell: true scrollable height accounts for scaling + offset space */}
-      <div style={{ width: "100%", height: (DESIGN_H + 25) * scale, overflow: "hidden", position: "relative" }}>
+      <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
         {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
         <div style={{
-          width: DESIGN_W, height: DESIGN_H,
-          position: "absolute", top: 25 * scale, left,
+          width: `${DESIGN_W}px`, height: `${DESIGN_H}px`,
+          position: "absolute", top: `${25 * scale}px`, left: `${left}px`,
           transformOrigin: "top left",
           transform: `scale(${scale})`,
         }}>
           <Desktop />
           <MarqueeFrame5 />
-          <CraftExpandOverlay />
           <StoriesScrollOverlay />
           {/* BentoCard clicks now handled inside index.tsx via scroll-to-y custom event */}
         </div>
+        <CraftExpandOverlay />
         <RecommendationsScrollOverlay />
       </div>
+
+      {showCursor && (
+        <div
+          style={{
+            position: "fixed",
+            left: cursorPos.x,
+            top: cursorPos.y,
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "#190b00",
+            color: "#FFFDFA",
+            padding: "8px 16px",
+            borderRadius: "30px",
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 700,
+            fontSize: "12px",
+            letterSpacing: "0.5px",
+            pointerEvents: "none",
+            zIndex: 999999,
+            boxShadow: "0 8px 24px rgba(25, 11, 0, 0.25)",
+            border: "1px solid rgba(255, 253, 250, 0.15)",
+            whiteSpace: "nowrap",
+            transition: "transform 0.08s ease-out",
+          }}
+        >
+          Read Story
+        </div>
+      )}
     </>
   );
 }
@@ -1229,9 +1342,9 @@ function RecommendationsScrollOverlay() {
     };
   }, [scale]);
 
-  const { left: canvasLeft } = getScaleAndLeft(vw);
-  const vhD        = vh / scale;  // viewport height in design-space px
-  const vwD        = vw / scale;  // viewport width  in design-space px
+  const { left: canvasLeft, clampedVw } = getScaleAndLeft(vw);
+  const vhD        = vh / scale;
+  const vwD        = clampedVw / scale;
 
   const SECT_TOP  = 8020;
   const SECT_H    = 824; // 100px (header) + 680px (card) + 44px (indicator spacing)
@@ -1244,7 +1357,9 @@ function RecommendationsScrollOverlay() {
   const entryEnd   = (SECT_TOP - stickyTop) * scale;
 
   // Phase 2 — Sticky Pinning
-  const stickyDuration = 800 * scale; // screen pixels of scroll (approx 2-3 scroll strokes for stability)
+  // Increased sticky duration to 1000 to slow down the testimonial transitions 
+  // and perfectly absorb the empty gap before the NextSection footer at 9840.
+  const stickyDuration = 1000 * scale; // screen pixels of scroll
   const internalEnd    = entryEnd + stickyDuration;
   const stickyProg     = Math.max(0, Math.min(1, (scrollY - entryEnd) / stickyDuration));
 
@@ -1271,9 +1386,9 @@ function RecommendationsScrollOverlay() {
 
   const containerStyle: React.CSSProperties = {
     position: posType,
-    top: topValue,
-    left: canvasLeft + 80 * scale,
-    width: 1280,
+    top: `${topValue}px`,
+    left: `${canvasLeft + 80 * scale}px`,
+    width: "1280px",
     transformOrigin: "top left",
     transform: `scale(${scale})`,
     zIndex: 99,
@@ -1413,8 +1528,7 @@ function RecommendationsScrollOverlay() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        paddingLeft: 220,
-        paddingRight: 80,
+        alignItems: "center",
         boxSizing: "border-box",
       }}>
         {/* Testimonials Container Stack */}
@@ -1546,38 +1660,38 @@ function RecommendationsScrollOverlay() {
             );
           })}
         </div>
-      </div>
 
-      {/* Progress bar / dot navigation (outside and below the card) */}
-      <div style={{ position: "absolute", top: 820, left: 0, right: 0, display: "flex", gap: 20, alignItems: "center", width: "100%" }}>
-        {[p0, p1, p2].map((progress, i) => (
-          <div
-            key={i}
-            onClick={() => handleDotClick(i)}
-            style={{
-              height: 4,
-              borderRadius: 2,
-              cursor: "pointer",
-              transition: "all 0.1s ease",
-              background: "#e5ddd4",
-              flex: i === (p < 0.33 ? 0 : p < 0.66 ? 1 : 2) ? 3.5 : 1,
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            {/* Real-time filling indicator */}
+        {/* Progress bar / dot navigation (anchored inside the bottom of the card) */}
+        <div style={{ position: "absolute", bottom: 40, left: 240, right: 240, display: "flex", gap: 20, alignItems: "center" }}>
+          {[p0, p1, p2].map((progress, i) => (
             <div
+              key={i}
+              onClick={() => handleDotClick(i)}
               style={{
-                position: "absolute",
-                top: 0, left: 0, bottom: 0,
-                width: `${progress}%`,
-                background: "#EE6C13",
+                height: 4,
                 borderRadius: 2,
-                transition: "width 0.1s linear",
+                cursor: "pointer",
+                transition: "all 0.1s ease",
+                background: "#e5ddd4",
+                flex: i === (p < 0.33 ? 0 : p < 0.66 ? 1 : 2) ? 3.5 : 1,
+                position: "relative",
+                overflow: "hidden",
               }}
-            />
-          </div>
-        ))}
+            >
+              {/* Real-time filling indicator */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0, left: 0, bottom: 0,
+                  width: `${progress}%`,
+                  background: "#EE6C13",
+                  borderRadius: 2,
+                  transition: "width 0.1s linear",
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,50 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+/* Global Premium Hover Card styles (for single box cards like BentoCards) */
+.premium-hover-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Individual card hover */
+.premium-hover-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 40px rgba(25, 11, 0, 0.08), 0 0 25px rgba(238, 108, 19, 0.2) !important;
+  border-color: #190b00 !important;
+}
+
+.premium-hover-card:hover div[aria-hidden] {
+  border-color: #190b00 !important;
+}
+
+/* Premium Hover Row (for unified multi-panel story card boxes) */
+.premium-hover-row {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.premium-hover-row:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 12px 40px rgba(25, 11, 0, 0.08), 0 0 25px rgba(238, 108, 19, 0.2) !important;
+}
+
+/* Highlight all internal card outlines when hovering the row */
+.premium-hover-row:hover div[aria-hidden] {
+  border-color: #190b00 !important;
+}
+
+.premium-hover-row:hover div[aria-hidden] * {
+  border-color: #190b00 !important;
+}
+
+/* Automatically transition borders of card elements */
+div[aria-hidden] {
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+
+

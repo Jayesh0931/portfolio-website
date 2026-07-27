@@ -1,0 +1,114 @@
+/* Portfolio Custom styles & animations */
+
+@theme {
+  --font-outfit: 'Outfit', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+:root {
+  --color-bg-light: #FFFDFA;
+  --color-bg-dark: #190b00;
+  --color-accent-orange: #EE6C13;
+  --color-text-muted: #77695d;
+  --color-border-gray: #7b7a77;
+  --color-bg-tag: #e5ddd4;
+}
+
+/* Base resets & styles */
+body {
+  background-color: var(--color-bg-light);
+  color: var(--color-bg-dark);
+  font-family: var(--font-outfit);
+  overflow-x: hidden;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.dark-mode {
+  background-color: var(--color-bg-dark);
+  color: var(--color-bg-light);
+}
+
+/* Custom Text Stroke for Outlined Text */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-border-gray);
+}
+
+body.dark-mode .text-outline {
+  -webkit-text-stroke: 1.5px rgba(255, 253, 250, 0.3);
+}
+
+.text-outline-dark {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-bg-dark);
+}
+
+body.dark-mode .text-outline-dark {
+  -webkit-text-stroke: 2px var(--color-bg-light);
+}
+
+/* Custom animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-fast {
+  display: flex;
+  width: max-content;
+  animation: marquee 15s linear infinite;
+}
+
+/* Glassmorphism Navigation capsule */
+.glass-nav {
+  background-color: rgba(255, 253, 250, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border-gray);
+  box-shadow: 0 4px 20px rgba(25, 11, 0, 0.05);
+}
+
+/* Bento grid cards */
+.bento-card {
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-gray);
+  border-radius: 12px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(25, 11, 0, 0.1);
+  border-color: var(--color-bg-dark);
+}
+
+.bento-card.border-accent:hover {
+  border-color: var(--color-accent-orange);
+}
+
+/* Custom testimonial speech bubble triangle */
+.bubble-arrow {
+  position: absolute;
+  top: 24px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--color-bg-tag);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .text-outline {
+    -webkit-text-stroke: 1px var(--color-border-gray);
+  }
+}

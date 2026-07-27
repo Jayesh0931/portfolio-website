@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import svgPaths from "./svg-rk1gtf9dz9";
 import imgEllipse5 from "./49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
+import Footer from "../../components/Footer";
 import imgEllipse6 from "./a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "./ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import imgEllipse8 from "./9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
@@ -110,22 +111,25 @@ const triggerScroll = (y: number) => {
   window.dispatchEvent(new CustomEvent("scroll-to-y", { detail: y }));
 };
 
+const triggerNavigate = (path: string) => {
+  window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: path }));
+};
+
 function BentoCard({
   top, left, width, height,
-  bgColor, borderColor = "#7b7a77", hoverBorderColor = "#190b00",
-  onClick, children
+  bgColor, borderColor = "#7b7a77",
+  onClick, children, isStoryCard
 }: {
   top: number; left: number; width: number; height: number;
   bgColor: string; borderColor?: string; hoverBorderColor?: string;
   onClick?: () => void; children: React.ReactNode;
+  isStoryCard?: boolean;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
+      data-custom-cursor={isStoryCard ? "read-story" : undefined}
+      className="premium-hover-card"
       style={{
         position: "absolute",
         top, left, width, height,
@@ -133,10 +137,6 @@ function BentoCard({
         borderRadius: 10,
         border: `1px solid ${borderColor}`,
         cursor: "pointer",
-        transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
-        transform: isHovered ? "translateY(-2px)" : "none",
-        boxShadow: isHovered ? "0 6px 20px rgba(25, 11, 0, 0.12)" : "none",
-        borderColor: isHovered ? hoverBorderColor : borderColor,
         overflow: "hidden",
       }}
     >
@@ -188,7 +188,7 @@ function Group7() {
       </div>
       {/* ── allyra.ai card ── */}
       {/* ── allyra.ai card ── */}
-      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScroll(2077)}>
+      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScroll(2077)} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 20, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ CURRENT ]</p>
@@ -212,7 +212,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── VousVous card ── */}
-      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)}>
+      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 03 ]</p>
@@ -245,7 +245,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── tulah card ── */}
-      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)}>
+      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 02 ]</p>
@@ -263,7 +263,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── joonify card ── */}
-      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)}>
+      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#190b00", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 04 ]</p>
@@ -462,8 +462,10 @@ function Frame27() {
 
 function Frame22() {
   return (
-    <div className="bg-[#FFFDFA] h-full relative shrink-0 w-[316px]">
-      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none" />
+    <div 
+      className="bg-[#FFFDFA] h-full relative shrink-0 w-[316px]" 
+    >
+      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none transition-colors duration-300" />
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] py-[20px] relative size-full">
           <Frame21 />
@@ -489,9 +491,9 @@ function Frame() {
 function Frame19() {
   return (
     <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full">
+        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           <Frame />
         </div>
       </div>
@@ -535,13 +537,13 @@ function Frame26() {
 
 function Frame32() {
   return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
-      <div className="flex items-center justify-center relative shrink-0 size-[9px]">
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 text-[#77695d] group-hover:text-[#190b00] transition-colors duration-300">
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-current text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
+      <div className="flex items-center justify-center relative shrink-0 size-[9px] transition-transform duration-300 group-hover:translate-x-1">
         <div className="-rotate-90 -scale-y-100 flex-none">
           <div className="relative size-[9px]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 9">
-              <path d={svgPaths.p3e256a00} fill="var(--fill-0, #77695D)" id="Vector" />
+              <path d={svgPaths.p3e256a00} fill="currentColor" id="Vector" />
             </svg>
           </div>
         </div>
@@ -553,7 +555,7 @@ function Frame32() {
 function Frame18() {
   return (
     <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[11px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame26 />
       <Frame32 />
     </div>
@@ -571,7 +573,11 @@ function Frame20() {
 
 function Frame23() {
   return (
-    <div className="content-stretch flex h-[690px] items-center relative shrink-0 w-full">
+    <div 
+      data-custom-cursor="read-story"
+      onClick={() => triggerNavigate("/allyra-story")}
+      className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
+    >
       <Frame22 />
       <Frame20 />
     </div>
@@ -715,9 +721,9 @@ function Frame1() {
 function Frame47() {
   return (
     <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full">
+        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           <Frame1 />
         </div>
       </div>
@@ -761,13 +767,13 @@ function Frame49() {
 
 function Frame53() {
   return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
-      <div className="flex items-center justify-center relative shrink-0 size-[9px]">
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 text-[#77695d] group-hover:text-[#190b00] transition-colors duration-300">
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-current text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
+      <div className="flex items-center justify-center relative shrink-0 size-[9px] transition-transform duration-300 group-hover:translate-x-1">
         <div className="-rotate-90 -scale-y-100 flex-none">
           <div className="relative size-[9px]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 9">
-              <path d={svgPaths.p3e256a00} fill="var(--fill-0, #77695D)" id="Vector" />
+              <path d={svgPaths.p3e256a00} fill="currentColor" id="Vector" />
             </svg>
           </div>
         </div>
@@ -779,7 +785,7 @@ function Frame53() {
 function Frame48() {
   return (
     <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame49 />
       <Frame53 />
     </div>
@@ -797,7 +803,10 @@ function Frame46() {
 
 function Frame42() {
   return (
-    <div className="content-stretch flex h-[690px] items-center relative shrink-0 w-full">
+    <div 
+      data-custom-cursor="read-story"
+      className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
+    >
       <Frame33 />
       <Frame46 />
     </div>
@@ -914,8 +923,11 @@ function Frame59() {
 
 function Frame55() {
   return (
-    <div className="bg-[#FFFDFA] h-full relative shrink-0 w-[316px]">
-      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none" />
+    <div 
+      data-custom-cursor="read-story" 
+      className="group bg-[#FFFDFA] h-full relative shrink-0 w-[316px] cursor-pointer transition-all duration-300 hover:bg-[#ffffff] hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(25,11,0,0.08)]"
+    >
+      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none group-hover:border-[#190b00] transition-colors duration-300" />
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] py-[20px] relative size-full">
           <Frame56 />
@@ -941,9 +953,9 @@ function Frame2() {
 function Frame65() {
   return (
     <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full">
+        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           <Frame2 />
         </div>
       </div>
@@ -987,13 +999,13 @@ function Frame67() {
 
 function Frame71() {
   return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
-      <div className="flex items-center justify-center relative shrink-0 size-[9px]">
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 text-[#77695d] group-hover:text-[#190b00] transition-colors duration-300">
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-current text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
+      <div className="flex items-center justify-center relative shrink-0 size-[9px] transition-transform duration-300 group-hover:translate-x-1">
         <div className="-rotate-90 -scale-y-100 flex-none">
           <div className="relative size-[9px]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 9">
-              <path d={svgPaths.p3e256a00} fill="var(--fill-0, #77695D)" id="Vector" />
+              <path d={svgPaths.p3e256a00} fill="currentColor" id="Vector" />
             </svg>
           </div>
         </div>
@@ -1005,7 +1017,7 @@ function Frame71() {
 function Frame66() {
   return (
     <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame67 />
       <Frame71 />
     </div>
@@ -1023,7 +1035,10 @@ function Frame64() {
 
 function Frame54() {
   return (
-    <div className="content-stretch flex h-[690px] items-center relative shrink-0 w-full">
+    <div 
+      data-custom-cursor="read-story"
+      className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
+    >
       <Frame55 />
       <Frame64 />
     </div>
@@ -1140,8 +1155,11 @@ function Frame77() {
 
 function Frame73() {
   return (
-    <div className="bg-[#FFFDFA] h-full relative shrink-0 w-[316px]">
-      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none" />
+    <div 
+      data-custom-cursor="read-story" 
+      className="group bg-[#FFFDFA] h-full relative shrink-0 w-[316px] cursor-pointer transition-all duration-300 hover:bg-[#ffffff] hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(25,11,0,0.08)]"
+    >
+      <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none group-hover:border-[#190b00] transition-colors duration-300" />
       <div className="flex flex-col justify-center size-full">
         <div className="content-stretch flex flex-col items-start justify-between pl-[20px] py-[20px] relative size-full">
           <Frame74 />
@@ -1167,9 +1185,9 @@ function Frame3() {
 function Frame83() {
   return (
     <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full">
+        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
           <Frame3 />
         </div>
       </div>
@@ -1213,13 +1231,13 @@ function Frame85() {
 
 function Frame89() {
   return (
-    <div className="content-stretch flex gap-[8px] items-center relative shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
-      <div className="flex items-center justify-center relative shrink-0 size-[9px]">
+    <div className="content-stretch flex gap-[8px] items-center relative shrink-0 text-[#77695d] group-hover:text-[#190b00] transition-colors duration-300">
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-current text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Read More</p>
+      <div className="flex items-center justify-center relative shrink-0 size-[9px] transition-transform duration-300 group-hover:translate-x-1">
         <div className="-rotate-90 -scale-y-100 flex-none">
           <div className="relative size-[9px]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 9">
-              <path d={svgPaths.p3e256a00} fill="var(--fill-0, #77695D)" id="Vector" />
+              <path d={svgPaths.p3e256a00} fill="currentColor" id="Vector" />
             </svg>
           </div>
         </div>
@@ -1231,7 +1249,7 @@ function Frame89() {
 function Frame84() {
   return (
     <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none" />
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame85 />
       <Frame89 />
     </div>
@@ -1249,7 +1267,10 @@ function Frame82() {
 
 function Frame72() {
   return (
-    <div className="content-stretch flex h-[690px] items-center relative shrink-0 w-full">
+    <div 
+      data-custom-cursor="read-story"
+      className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
+    >
       <Frame73 />
       <Frame82 />
     </div>
@@ -1918,165 +1939,6 @@ function ContactButton({
   );
 }
 
-function NextSection() {
-  const mailIcon = "M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 4.238l-7.928 5.663a.5.5 0 0 1-.572 0L3.072 7.238A.5.5 0 0 1 3 7.038V19h18V7.038a.5.5 0 0 1-.928-.2zM5 5v1.83l7 5 7-5V5H5z";
-  const linkedinIcon = "M20 22h-3.9v-6.0c0-1.5-0.5-2.5-1.9-2.5c-1.1 0-1.7 0.7-2.0 1.4c-0.1 0.3-0.1 0.7-0.1 1.1v6h-3.9c0 0 0.1-10.9 0-12h3.9v1.7c0.5-0.8 1.4-1.9 3.5-1.9c2.6 0 4.5 1.7 4.5 5.3V22z M5.3 8.2c-1.3 0-2.2-0.9-2.2-2.1c0-1.2 0.9-2.1 2.2-2.1c1.3 0 2.2 0.9 2.2 2.1C7.5 7.3 6.6 8.2 5.3 8.2z M3.4 22h3.8V10H3.4V22z";
-  const resumeIcon = "M19 22H5a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3zm-7-14H6v2h6V8zm0 4H6v2h6v-2zm5-8H6v2h11V4z";
-
-  return (
-    <div style={{
-      position: "absolute",
-      left: 80,
-      top: 9840,
-      width: 1280,
-      height: 560,
-      background: "#FFFDFA",
-      border: "1px solid #7b7a77",
-      display: "flex",
-      boxSizing: "border-box",
-    }}>
-      {/* ── Left Column (960px) ── */}
-      <div style={{
-        width: 960,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        borderRight: "1px solid #7b7a77",
-        boxSizing: "border-box",
-      }}>
-        {/* Top Header Area (280px) */}
-        <div style={{
-          height: 280,
-          padding: "45px 60px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          borderBottom: "1px solid #7b7a77",
-          boxSizing: "border-box",
-        }}>
-          <p style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 700,
-            fontSize: 12,
-            color: "#77695d",
-            letterSpacing: "0.6px",
-            textTransform: "uppercase",
-            margin: "0 0 10px 0",
-          }}>
-            [ S-006 ]
-          </p>
-          <h2 style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 900,
-            fontSize: 145,
-            lineHeight: 0.9,
-            color: "#190b00",
-            margin: 0,
-            letterSpacing: "-4px",
-            textTransform: "uppercase",
-          }}>
-            NEXT <span style={{ color: "#EE6C13" }}>?</span>
-          </h2>
-        </div>
-
-        {/* Bottom Body Area (280px) */}
-        <div style={{
-          height: 280,
-          padding: "45px 60px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          boxSizing: "border-box",
-        }}>
-          <p style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 400,
-            fontSize: 18,
-            color: "#77695d",
-            lineHeight: 1.5,
-            maxWidth: 680,
-            margin: 0,
-          }}>
-            That's my story so far. If you're building thoughtful AI products—or simply want to talk design—I'd love to hear from you.
-          </p>
-
-          {/* Action Buttons Row */}
-          <div style={{ display: "flex", gap: 20 }}>
-            <ContactButton
-              label="EMAIL"
-              iconPath={mailIcon}
-              onClick={() => window.location.href = "mailto:jayeshsoni@example.com"}
-            />
-            <ContactButton
-              label="LINKEDIN"
-              iconPath={linkedinIcon}
-              onClick={() => window.open("https://linkedin.com/in/", "_blank")}
-            />
-            <ContactButton
-              label="RESUME"
-              iconPath={resumeIcon}
-              onClick={() => window.open("/Jayesh_Soni_Resume.html", "_blank")}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* ── Right Column (320px) ── */}
-      <div style={{
-        width: 320,
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "50px 30px",
-        boxSizing: "border-box",
-      }}>
-        {/* White container with high-fidelity vector placeholder illustration matching mockup */}
-        <div style={{
-          width: 250,
-          height: 250,
-          borderRadius: 12,
-          border: "1px solid #7b7a77",
-          background: "#ffffff",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxSizing: "border-box",
-        }}>
-          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-            {/* 4-pointed Sparkle/Star in top-left */}
-            <path d="M45 25 C45 33, 45 33, 53 33 C45 33, 45 33, 45 41 C45 33, 45 33, 37 33 C45 33, 45 33, 45 25 Z" fill="#e5ddd4" />
-            {/* Overlapping Mountains (Hill icons) */}
-            <path d="M25 95 L60 45 L95 95 Z" fill="#FFFDFA" stroke="#e5ddd4" strokeWidth="2" />
-            <path d="M55 95 L80 60 L105 95 Z" fill="#e5ddd4" opacity="0.6" />
-          </svg>
-        </div>
-        <div style={{ width: 250, textAlign: "left" }}>
-          <h3 style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 700,
-            fontSize: 24,
-            color: "#190b00",
-            margin: "20px 0 0 0",
-          }}>
-            Jayesh Soni
-          </h3>
-          <p style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 400,
-            fontSize: 14,
-            color: "#77695d",
-            margin: "4px 0 0 0",
-          }}>
-            Product Lead & AI Product Designer
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Desktop() {
   return (
     <div className="bg-transparent relative size-full" data-name="Desktop - 6">
@@ -2085,16 +1947,7 @@ export default function Desktop() {
       <Frame43 />
       <Group11 />
       <Frame99 />
-      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%+90.5px)] w-[1099px]" style={{ top: 6820, height: 800 }}>
-        <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
-      </div>
-      <Frame102 />
-      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%-550px)] w-[180px]" style={{ top: 6820, height: 800 }}>
-        <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
-      </div>
-      <Frame108 />
-      <Group13 />
-      <NextSection />
+      <Footer style={{ position: "absolute", left: 80, top: 9840 }} />
     </div>
   );
 }

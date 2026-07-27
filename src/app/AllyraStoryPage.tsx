@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import imgEvolutionComposite from "@/imports/allyra_evolution_composite.png";
-import videoOpportunity from "@/imports/Opportunity Video.mov";
-import videoD1 from "@/imports/D1.mov";
-import videoD2 from "@/imports/D2.mov";
-import videoD3 from "@/imports/D3.mov";
-import videoD4 from "@/imports/D4.mov";
+import videoOpportunity from "@/imports/Opportunity Video.mp4";
+import videoD1 from "@/imports/D1.mp4";
+import videoD2 from "@/imports/D2.mp4";
+import videoD3 from "@/imports/D3.mp4";
+import videoD4 from "@/imports/D4.mp4";
 import imgAllyraStoryHero from "@/imports/allyra_story_hero.png";
 import imgAllyraLogo from "@/imports/allyra_logo.png";
 import imgHiring from "@/imports/allyra_hiring_kanban.jpg";
@@ -20,8 +20,8 @@ import imgE1 from "@/imports/E1.png";
 import imgE2 from "@/imports/E2.png";
 import imgE3_1 from "@/imports/E3.1.png";
 import imgE3_2 from "@/imports/E3.2.png";
-import videoE4 from "@/imports/E4.mov";
-import videoE5 from "@/imports/E5.mov";
+import videoE4 from "@/imports/E4.mp4";
+import videoE5 from "@/imports/E5.mp4";
 
 interface AllyraStoryPageProps {
   scale?: number;

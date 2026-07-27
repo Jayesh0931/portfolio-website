@@ -46,5 +46,18 @@ div[aria-hidden] {
   transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
+/* Shimmer Skeleton Loader */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #e5ddd4 25%, #eee7df 50%, #e5ddd4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+
 
 

@@ -34,6 +34,7 @@ const CANVAS_H = 14464; // Total height of absolute canvas from node coordinates
 
 function ViewportVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -59,19 +60,26 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
   }, []);
 
   return (
-    <video
-      ref={videoRef}
-      src={src}
-      loop
-      muted
-      playsInline
-      className={className}
-    />
+    <div className="relative size-full overflow-hidden">
+      {!isLoaded && (
+        <div className="absolute inset-0 skeleton-shimmer z-10" />
+      )}
+      <video
+        ref={videoRef}
+        src={src}
+        loop
+        muted
+        playsInline
+        onLoadedData={() => setIsLoaded(true)}
+        className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
   );
 }
 
 function AutoSlideshow({ images, interval = 5000 }: { images: string[]; interval?: number }) {
   const [index, setIndex] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -80,18 +88,47 @@ function AutoSlideshow({ images, interval = 5000 }: { images: string[]; interval
     return () => clearInterval(timer);
   }, [images, interval]);
 
+  const hasAnyLoaded = Object.values(loadedImages).some(Boolean);
+
   return (
     <div className="relative size-full flex items-center justify-center">
+      {!hasAnyLoaded && (
+        <div className="absolute inset-0 skeleton-shimmer z-20" />
+      )}
       {images.map((img, i) => (
         <img
           key={img}
           alt={`Slideshow image ${i + 1}`}
-          className={`absolute block max-w-full max-h-full object-contain ${
-            i === index ? "opacity-100 z-10" : "opacity-0 z-0"
+          onLoad={() => setLoadedImages((prev) => ({ ...prev, [img]: true }))}
+          className={`absolute block max-w-full max-h-full object-contain transition-opacity duration-500 ${
+            i === index && loadedImages[img] ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
           src={img}
         />
       ))}
+    </div>
+  );
+}
+
+function ShimmerImage({ src, alt, className, style }: {
+  src: string;
+  alt: string;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="relative overflow-hidden size-full" style={style}>
+      {!isLoaded && (
+        <div className="absolute inset-0 skeleton-shimmer z-10" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      />
     </div>
   );
 }
@@ -334,7 +371,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
         
         {/* Main Hero composite image */}
         <div className="-translate-x-1/2 absolute border border-solid border-white h-[800px] left-1/2 rounded-[10px] top-[1158px] w-[1280px]" data-node-id="1:57" data-name="allyra-story-hero 1">
-          <img alt="Allyra Story Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgAllyraStoryHero} />
+          <ShimmerImage alt="Allyra Story Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgAllyraStoryHero} />
         </div>
 
         {/* ─── THE CHALLENGE SECTION ─── */}
@@ -964,7 +1001,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               </div>
             </div>
             <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center" data-node-id="1:221" data-name="Frame">
-              <img alt="Portal Dashboard screen" className="max-w-full max-h-full object-contain" src={imgE1} />
+              <ShimmerImage alt="Portal Dashboard screen" className="max-w-full max-h-full object-contain" src={imgE1} />
             </div>
           </div>
 
@@ -985,7 +1022,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               </div>
             </div>
             <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center" data-node-id="1:228" data-name="Frame">
-              <img alt="Governance screen" className="max-w-full max-h-full object-contain" src={imgE2} />
+              <ShimmerImage alt="Governance screen" className="max-w-full max-h-full object-contain" src={imgE2} />
             </div>
           </div>
 

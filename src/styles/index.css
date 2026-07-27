@@ -58,6 +58,37 @@ div[aria-hidden] {
   animation: shimmer 1.5s infinite linear;
 }
 
+/* Global Content Protection (Scoped under .protection-enabled) */
+body.protection-enabled {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Make image dragging impossible */
+body.protection-enabled img, 
+body.protection-enabled video {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* Disable content in print dialogs / PDF saves */
+@media print {
+  body.protection-enabled {
+    display: none !important;
+  }
+}
+
+/* Page blur when window focus is lost (e.g. native screenshot snippets) */
+.protection-blur-overlay {
+  filter: blur(90px) grayscale(100%) !important;
+  opacity: 0.02 !important;
+  transition: filter 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
+}
+
+
 
 
 

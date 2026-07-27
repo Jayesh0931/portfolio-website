@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
+import { usePageProtection } from "@/hooks/usePageProtection";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
@@ -1149,6 +1150,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
 }
 
 export default function App() {
+  const isBlurred = usePageProtection();
   const { scale, left } = useLayout();
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -1239,7 +1241,7 @@ export default function App() {
 
   if (vw < 768) {
     return (
-      <div style={{ width: "100%", background: "#ffffff", minHeight: "100vh" }}>
+      <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", background: "#ffffff", minHeight: "100vh" }}>
         <style>{marqueeStyles}</style>
         <MobileView />
       </div>
@@ -1248,7 +1250,7 @@ export default function App() {
 
   if (currentPath === "/allyra-story") {
     return (
-      <>
+      <div className={isBlurred ? "protection-blur-overlay" : ""}>
         <style>{marqueeStyles}</style>
         <AllyraStoryPage 
           scale={scale} 
@@ -1259,12 +1261,12 @@ export default function App() {
             window.scrollTo(0, 0);
           }} 
         />
-      </>
+      </div>
     );
   }
 
   return (
-    <>
+    <div className={isBlurred ? "protection-blur-overlay" : ""}>
       <style>{marqueeStyles}</style>
       <style>{`
         [data-custom-cursor="read-story"],
@@ -1317,7 +1319,7 @@ export default function App() {
           Read Story
         </div>
       )}
-    </>
+    </div>
   );
 }
 

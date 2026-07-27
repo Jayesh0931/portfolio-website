@@ -5,6 +5,8 @@ import Footer from "../../components/Footer";
 import imgEllipse6 from "./a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "./ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import imgEllipse8 from "./9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
+import imgAllyraCoverSmall from "../allyra_cover_small.png";
+import imgAllyraCoverBig from "../allyra_cover_big.png";
 
 function Group() {
   return (
@@ -189,23 +191,42 @@ function Group7() {
       {/* ── allyra.ai card ── */}
       {/* ── allyra.ai card ── */}
       <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScroll(2077)} isStoryCard>
-        <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 20, boxSizing: "border-box" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ CURRENT ]</p>
-            <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
+        <div style={{ position: "relative", width: "100%", height: "100%", padding: 20, boxSizing: "border-box", overflow: "hidden" }}>
+          {/* Header */}
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 2 }}>
+            <div style={{ display: "flex", gap: 12 }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 1 ]</p>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ PRESENT ]</p>
             </div>
-          </div>
-          <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 12 }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#FFFDFA", margin: 0 }}>allyra.ai</p>
-            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", maxWidth: 300, lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>I shape the moments where people decide whether to trust intelligent systems.</p>
-            </div>
-            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>VIEW STORY</p>
+            <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
               <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
                 <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d={svgPaths.p3e256a00} fill="#77695D" /></svg>
               </div>
+            </div>
+          </div>
+
+          {/* Right Mockup Image */}
+          <img 
+            src={imgAllyraCoverSmall} 
+            alt="Allyra Mockup"
+            style={{
+              position: "absolute",
+              right: 0,
+              bottom: 0,
+              width: "290px",
+              height: "auto",
+              objectFit: "contain",
+              display: "block",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Bottom Left Content */}
+          <div style={{ position: "absolute", left: 20, bottom: 20, display: "flex", flexDirection: "column", gap: 12, maxWidth: 200, zIndex: 2 }}>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#FFFDFA", margin: 0 }}>allyra.ai</p>
+            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
+              <p style={{ margin: 0 }}>Scaling AI from individual agents to enterprise-grade workflows.</p>
             </div>
           </div>
         </div>
@@ -490,12 +511,14 @@ function Frame() {
 
 function Frame19() {
   return (
-    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-          <Frame />
-        </div>
+    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full overflow-hidden">
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300 z-10" />
+      <div className="size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+        <img 
+          src={imgAllyraCoverBig} 
+          alt="Allyra Cover" 
+          className="size-full object-cover display-block pointer-events-none" 
+        />
       </div>
     </div>
   );

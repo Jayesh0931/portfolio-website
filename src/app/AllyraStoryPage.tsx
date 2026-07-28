@@ -59,8 +59,16 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
     };
   }, []);
 
+  const handleClick = () => {
+    window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
+  };
+
   return (
-    <div className="relative size-full overflow-hidden">
+    <div 
+      onClick={handleClick}
+      data-custom-cursor="full-screen"
+      className="relative size-full overflow-hidden cursor-pointer"
+    >
       {!isLoaded && (
         <div className="absolute inset-0 skeleton-shimmer z-10" />
       )}
@@ -133,12 +141,68 @@ function ShimmerImage({ src, alt, className, style }: {
   );
 }
 
+interface DynamicBgBandProps {
+  top: number;
+  height: number;
+  scale: number;
+  darkBgColor?: string;
+  lightBgColor?: string;
+  onViewChange?: (isInView: boolean) => void;
+}
+
+function DynamicBgBand({ 
+  top, 
+  height, 
+  scale, 
+  darkBgColor = "#190b00", 
+  lightBgColor = "#FFFDFA",
+  onViewChange
+}: DynamicBgBandProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsDark(entry.isIntersecting);
+        if (onViewChange) {
+          onViewChange(entry.isIntersecting);
+        }
+      },
+      {
+        rootMargin: "0px 0px -25% 0px", // triggers when 25% from viewport bottom
+        threshold: 0.05,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [onViewChange]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: "absolute",
+        left: 0,
+        width: "100%",
+        top: `${top * scale}px`,
+        height: `${height * scale}px`,
+        transition: "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        backgroundColor: isDark ? darkBgColor : lightBgColor,
+      }}
+    />
+  );
+}
+
 export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraStoryPageProps) {
-  const headerCircleRef = useRef<HTMLImageElement>(null);
-  const decisionsCircleRef = useRef<HTMLImageElement>(null);
-  const impactCircleRef = useRef<HTMLImageElement>(null);
   const keyDecisionsRef = useRef<HTMLDivElement>(null);
   const [isDecisionsInView, setIsDecisionsInView] = useState(false);
+  const [isChallengeInView, setIsChallengeInView] = useState(false);
+  const [isOneThingInView, setIsOneThingInView] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -146,33 +210,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsDecisionsInView(entry.isIntersecting);
-      },
-      {
-        rootMargin: "0px 0px -15% 0px",
-        threshold: 0.05,
-      }
-    );
-    if (keyDecisionsRef.current) {
-      observer.observe(keyDecisionsRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
-      const rotation = window.scrollY * 0.15;
-      if (headerCircleRef.current) {
-        headerCircleRef.current.style.transform = `rotate(${rotation}deg)`;
-      }
-      if (decisionsCircleRef.current) {
-        decisionsCircleRef.current.style.transform = `rotate(${rotation}deg)`;
-      }
-      if (impactCircleRef.current) {
-        impactCircleRef.current.style.transform = `rotate(${rotation}deg)`;
-      }
       setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -232,49 +270,34 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
             </div>
             <div className="relative shrink-0 size-[31.5px] z-[1]" data-node-id="1:25">
-              <img ref={headerCircleRef} alt="" className="absolute block inset-0 max-w-none size-full" height="31.5" src={imgEllipse5} width="31.5" />
+              <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="31.5" src={imgEllipse5} width="31.5" />
             </div>
           </div>
         </div>
 
         {/* ─── FULL VIEWPORT BACKGROUND BANDS (Stretch end-to-end on all display widths) ─── */}
         {/* Background band for Challenge */}
-        <div 
-          style={{
-            position: "absolute",
-            left: 0,
-            width: "100%",
-            top: `${1028 * scale}px`,
-            height: `${1725 * scale}px`,
-            backgroundColor: "#190b00"
-          }} 
-          data-node-id="1:20" 
+        <DynamicBgBand 
+          top={1028} 
+          height={1725} 
+          scale={scale} 
+          onViewChange={setIsChallengeInView}
         />
         
         {/* Dynamic Background band for Key Product Decisions */}
-        <div 
-          style={{
-            position: "absolute",
-            left: 0,
-            width: "100%",
-            top: `${6130 * scale}px`,
-            height: `${3234 * scale}px`,
-          }}
-          className={`transition-colors duration-700 ease-in-out ${isDecisionsInView ? "bg-[#190b00]" : "bg-[#FFFDFA]"}`}
-          data-node-id="1:19-decisions" 
+        <DynamicBgBand 
+          top={6130} 
+          height={3234} 
+          scale={scale} 
+          onViewChange={setIsDecisionsInView}
         />
         
         {/* Background band for One Thing I Learned and Footer CTA */}
-        <div 
-          style={{
-            position: "absolute",
-            left: 0,
-            width: "100%",
-            top: `${13804 * scale}px`,
-            height: `${660 * scale}px`,
-            backgroundColor: "#190b00"
-          }} 
-          data-node-id="1:19" 
+        <DynamicBgBand 
+          top={13804} 
+          height={660} 
+          scale={scale} 
+          onViewChange={setIsOneThingInView}
         />
 
       {/* ─── SCALED INNER CANVAS ─── */}
@@ -376,7 +399,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
 
         {/* ─── THE CHALLENGE SECTION ─── */}
         <div className="absolute left-[80px] top-[2143px] w-[1280px] h-[600px]" data-node-id="1:50">
-          <div className="[word-break:break-word] absolute font-outfit font-normal font-normal leading-[1.6] left-[0px] text-[#ccc] text-[24px] top-[100px] w-[1106px]" data-node-id="1:51">
+          <div className={`[word-break:break-word] absolute font-outfit font-normal font-normal leading-[1.6] left-[0px] text-[24px] top-[100px] w-[1106px] transition-colors duration-700 ${isChallengeInView ? "text-[#ccc]" : "text-[#77695d]"}`} data-node-id="1:51">
             <p className="leading-[normal] mb-0 whitespace-pre-wrap">In late 2024, the AI industry was obsessed with models.</p>
             <p className="leading-[normal] mb-0 whitespace-pre-wrap">{`The real challenge wasn't access to AI.`}</p>
             <p className="leading-[normal] mb-0 whitespace-pre-wrap">​</p>
@@ -392,11 +415,11 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
             <p className="leading-[normal] mb-0 whitespace-pre-wrap">{`The people who understood business problems often couldn't build AI solutions themselves.`}</p>
             <p className="leading-[normal] whitespace-pre-wrap">That gap became the opportunity.</p>
           </div>
-          <p className="[word-break:break-word] absolute font-outfit font-bold font-bold leading-[normal] left-[0px] text-[#ccc] text-[50px] top-[0px] tracking-[5px] whitespace-nowrap" data-node-id="1:52">
+          <p className={`[word-break:break-word] absolute font-outfit font-bold font-bold leading-[normal] left-[0px] text-[50px] top-[0px] tracking-[5px] whitespace-nowrap transition-colors duration-700 ${isChallengeInView ? "text-[#fffdfa]" : "text-[#190b00]"}`} data-node-id="1:52">
             THE CHALLENGE
           </p>
           {/* Horizontal separator line */}
-          <div className="absolute left-0 top-[72px] w-[1030px] h-[1px] bg-[rgba(255,253,250,0.15)]" data-node-id="1:53" />
+          <div className={`absolute left-0 top-[72px] w-[1030px] h-[1px] transition-colors duration-700 ${isChallengeInView ? "bg-[rgba(255,253,250,0.15)]" : "bg-[#7b7a77]/30"}`} data-node-id="1:53" />
         </div>
 
         {/* ─── THE OPPORTUNITY SECTION ─── */}
@@ -411,10 +434,10 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
           </div>
           <div className="content-stretch flex items-center relative shrink-0 w-full -mt-[1px]" data-node-id="1:63">
             <div className="bg-white border border-[#7b7a77] border-solid flex-[1_0_0] h-[800px] min-w-px relative p-[30px] flex flex-col justify-end" data-node-id="1:64">
-              <div style={{ width: "838px", height: "520px", borderRadius: "12px", overflow: "hidden", border: "1.5px solid #e5ddd4", margin: "0 auto" }}>
+              <div style={{ width: "838px", aspectRatio: "1797/1080", borderRadius: "12px", overflow: "hidden", border: "1.5px solid #e5ddd4", margin: "0 auto" }}>
                 <ViewportVideo 
                   src={videoOpportunity} 
-                  className="w-full h-full object-cover bg-black" 
+                  className="w-full h-full object-contain bg-black" 
                 />
               </div>
             </div>
@@ -447,7 +470,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
                   <div className="absolute block inset-0 rounded-full bg-[#EE6C13]" />
                 </div>
                 <div className="relative shrink-0 size-[25.2px] z-[1]" data-node-id="1:76">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full" src={imgEllipse7} />
+                  <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse7} />
                 </div>
               </div>
             </div>
@@ -523,7 +546,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
                       <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
                     </div>
                     <div className="relative shrink-0 size-[138.6px] z-[1]" data-node-id="1:263">
-                      <img ref={impactCircleRef} alt="" className="absolute block inset-0 max-w-none size-full rounded-full" src={imgEllipse6} />
+                      <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse6} />
                     </div>
                   </div>
                 </div>
@@ -628,9 +651,8 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
                         </div>
                         <div className="relative shrink-0 size-[47.772px] z-[1]" data-node-id="1:96">
                           <img 
-                            ref={decisionsCircleRef} 
                             alt="" 
-                            className={`absolute block inset-0 max-w-none size-full rounded-full transition-all duration-700 ${isDecisionsInView ? "invert" : "invert-0"}`} 
+                            className={`absolute block inset-0 max-w-none size-full rounded-full transition-all duration-700 rotating-vector ${isDecisionsInView ? "invert" : "invert-0"}`} 
                             src={imgEllipse5} 
                           />
                         </div>
@@ -1100,31 +1122,31 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
 
         {/* ─── ONE THING I LEARNED SECTION ─── */}
         <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[13924px] w-[1280px] z-[2]" data-node-id="1:299">
-          <p className="[word-break:break-word] font-outfit font-bold leading-[normal] relative shrink-0 text-[#fffdfa] text-[50px] tracking-[5px] w-[1030px] margin-0" data-node-id="1:300">
-            <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: "#190b00", paintOrder: "stroke fill" }}>ONE THING</span>
+          <p className={`[word-break:break-word] font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`} data-node-id="1:300">
+            <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
             <span className="leading-[normal]">{` I LEARNED`}</span>
           </p>
           <div className="flex items-center justify-center relative shrink-0" data-node-id="1:301">
             <div className="flex-none rotate-180">
               <div className="h-0 relative w-[1030px]">
-                <div className="absolute inset-[-1px_0_0_0] h-[1px] bg-[rgba(255,253,250,0.15)] w-full" />
+                <div className={`absolute inset-[-1px_0_0_0] h-[1px] w-full transition-colors duration-700 ${isOneThingInView ? "bg-[rgba(255,253,250,0.15)]" : "bg-[#7b7a77]/30"}`} />
               </div>
             </div>
           </div>
-          <div className="[word-break:break-word] font-outfit font-normal font-normal leading-[1.6] relative shrink-0 text-[#7b7b7b] text-[24px] w-[1030px]" data-node-id="1:302">
+          <div className={`[word-break:break-word] font-outfit font-normal font-normal leading-[1.6] relative shrink-0 text-[24px] w-[1030px] transition-colors duration-700 ${isOneThingInView ? "text-[#7b7b7b]" : "text-[#77695d]"}`} data-node-id="1:302">
             <p className="leading-[normal] mb-0">I started this journey believing the challenge was making AI easier to build. Eventually realized the challenge was making AI easier to trust.</p>
             <p className="leading-[normal] mb-0">​</p>
             <p className="leading-[normal] mb-0">Every major product decision, from training and orchestration, to governance and human review came from the same realization:</p>
-            <p className="font-outfit font-bold font-bold leading-[normal] mb-0 text-[#fffdfa]">{`/ People don't want AI / People want reliable outcomes.`}</p>
+            <p className={`font-outfit font-bold font-bold leading-[normal] mb-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>{`/ People don't want AI / People want reliable outcomes.`}</p>
             <p className="leading-[normal] mb-0">​</p>
             <p className="leading-[normal] mb-0">{`The future isn't autonomous AI.`}</p>
             <p className="leading-[normal] mb-0">​</p>
             <p className="font-outfit font-bold font-bold text-[30px] leading-tight">
-              <span className="leading-[normal] text-[#fffdfa]">{`It's well-designed collaboration between `}</span>
+              <span className={`leading-[normal] transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>{`It's well-designed collaboration between `}</span>
               <span className="leading-[normal] text-[#ee6c13]">humans</span>
-              <span className="leading-[normal] text-[#fffdfa]">{` and `}</span>
+              <span className={`leading-[normal] transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>{` and `}</span>
               <span className="leading-[normal] text-[#ee6c13]">AI</span>
-              <span className="leading-[normal] text-[#fffdfa]">{`.`}</span>
+              <span className={`leading-[normal] transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>{`.`}</span>
             </p>
           </div>
         </div>

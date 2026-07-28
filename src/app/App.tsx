@@ -472,7 +472,7 @@ function CraftExpandOverlay() {
               </svg>
             </div>
             <div style={{ position: "relative", flexShrink: 0, width: 79, height: 79, zIndex: 1 }}>
-              <img alt="" style={{ position: "absolute", display: "block", inset: 0, width: "100%", height: "100%" }} src={imgEllipse8} />
+              <img alt="" className="rotating-vector" style={{ position: "absolute", display: "block", inset: 0, width: "100%", height: "100%" }} src={imgEllipse8} />
             </div>
           </div>
         </div>
@@ -563,7 +563,7 @@ function MarqueeUnit() {
           </svg>
         </div>
         <div className="relative shrink-0 size-[90px] z-[1]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full" src={imgEllipse5} />
+          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse5} />
         </div>
       </div>
       <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
@@ -577,7 +577,7 @@ function MarqueeUnit() {
           </svg>
         </div>
         <div className="relative shrink-0 size-[90px] z-[1]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full" src={imgEllipse5} />
+          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse5} />
         </div>
       </div>
     </div>
@@ -817,7 +817,7 @@ function MobileView() {
         <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
           <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
             <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "#190b00", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-              <img src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img className="rotating-vector" src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
           <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "#e5ddd4", border: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "-25px", zIndex: 1 }} />
@@ -851,7 +851,7 @@ function MobileView() {
           </div>
           <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
-              <img src={imgEllipse6} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img className="rotating-vector" src={imgEllipse6} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>
@@ -886,7 +886,7 @@ function MobileView() {
           </div>
           <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#190b00", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
-              <img src={imgEllipse5} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img className="rotating-vector" src={imgEllipse5} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>
@@ -1052,7 +1052,7 @@ function MobileView() {
         {/* Visual box matching desktop Frame101 style but for mobile */}
         <div style={{ background: "#190b00", padding: "32px 20px", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px", position: "relative" }}>
           <div style={{ width: "90px", height: "90px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-            <img src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img className="rotating-vector" src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "18px", color: "#ffffff", letterSpacing: "1px" }}>JAYESH SONI</span>
         </div>
@@ -1157,16 +1157,28 @@ export default function App() {
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [showCursor, setShowCursor] = useState(false);
+  const [cursorText, setCursorText] = useState("Read Story");
+  const [fullScreenVideoSrc, setFullScreenVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    if (vw < 768 || currentPath !== "/") return;
+    if (vw < 768) return;
+    if (fullScreenVideoSrc) {
+      setShowCursor(false);
+      return;
+    }
 
     const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+      const closestFullScreen = target?.closest?.('[data-custom-cursor="full-screen"]');
       const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
 
-      if (closestStoryCard) {
+      if (closestFullScreen) {
         setShowCursor(true);
+        setCursorText("Full Screen");
+        setCursorPos({ x: e.clientX, y: e.clientY });
+      } else if (closestStoryCard && currentPath === "/") {
+        setShowCursor(true);
+        setCursorText("Read Story");
         setCursorPos({ x: e.clientX, y: e.clientY });
       } else {
         setShowCursor(false);
@@ -1177,7 +1189,18 @@ export default function App() {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [vw, currentPath]);
+  }, [vw, currentPath, fullScreenVideoSrc]);
+
+  useEffect(() => {
+    const handleOpenFullScreen = (e: Event) => {
+      const customEvent = e as CustomEvent<{ src: string }>;
+      setFullScreenVideoSrc(customEvent.detail.src);
+    };
+    window.addEventListener("open-full-screen-video", handleOpenFullScreen);
+    return () => {
+      window.removeEventListener("open-full-screen-video", handleOpenFullScreen);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -1186,6 +1209,19 @@ export default function App() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleScrollRotation = () => {
+      const rotation = window.scrollY * 0.15;
+      const elements = document.querySelectorAll(".rotating-vector");
+      elements.forEach((el) => {
+        (el as HTMLElement).style.transform = `rotate(${rotation}deg)`;
+      });
+    };
+    window.addEventListener("scroll", handleScrollRotation, { passive: true });
+    handleScrollRotation();
+    return () => window.removeEventListener("scroll", handleScrollRotation);
+  }, [currentPath]);
 
   useEffect(() => {
     const onPopState = () => {
@@ -1248,20 +1284,40 @@ export default function App() {
     );
   }
 
+  let content = null;
   if (currentPath === "/allyra-story") {
-    return (
-      <div className={isBlurred ? "protection-blur-overlay" : ""}>
-        <style>{marqueeStyles}</style>
-        <AllyraStoryPage 
-          scale={scale} 
-          left={left} 
-          onBack={() => {
-            window.history.pushState({}, "", "/");
-            setCurrentPath("/");
-            window.scrollTo(0, 0);
-          }} 
-        />
-      </div>
+    content = (
+      <AllyraStoryPage 
+        scale={scale} 
+        left={left} 
+        onBack={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+          window.scrollTo(0, 0);
+        }} 
+      />
+    );
+  } else {
+    content = (
+      <>
+        <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
+        {/* Outer shell: true scrollable height accounts for scaling + offset space */}
+        <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
+          {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
+          <div style={{
+            width: `${DESIGN_W}px`, height: `${DESIGN_H}px`,
+            position: "absolute", top: `${25 * scale}px`, left: `${left}px`,
+            transformOrigin: "top left",
+            transform: `scale(${scale})`,
+          }}>
+            <Desktop />
+            <MarqueeFrame5 />
+            <StoriesScrollOverlay />
+          </div>
+          <CraftExpandOverlay />
+          <RecommendationsScrollOverlay />
+        </div>
+      </>
     );
   }
 
@@ -1273,25 +1329,13 @@ export default function App() {
         [data-custom-cursor="read-story"] * {
           cursor: none !important;
         }
+        [data-custom-cursor="full-screen"],
+        [data-custom-cursor="full-screen"] * {
+          cursor: none !important;
+        }
       `}</style>
-      <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
-      {/* Outer shell: true scrollable height accounts for scaling + offset space */}
-      <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
-        {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
-        <div style={{
-          width: `${DESIGN_W}px`, height: `${DESIGN_H}px`,
-          position: "absolute", top: `${25 * scale}px`, left: `${left}px`,
-          transformOrigin: "top left",
-          transform: `scale(${scale})`,
-        }}>
-          <Desktop />
-          <MarqueeFrame5 />
-          <StoriesScrollOverlay />
-          {/* BentoCard clicks now handled inside index.tsx via scroll-to-y custom event */}
-        </div>
-        <CraftExpandOverlay />
-        <RecommendationsScrollOverlay />
-      </div>
+      
+      {content}
 
       {showCursor && (
         <div
@@ -1316,7 +1360,57 @@ export default function App() {
             transition: "transform 0.08s ease-out",
           }}
         >
-          Read Story
+          {cursorText}
+        </div>
+      )}
+
+      {fullScreenVideoSrc && (
+        <div 
+          onClick={() => setFullScreenVideoSrc(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(25, 11, 0, 0.98)",
+            zIndex: 9999999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "zoom-out", // Indicates that clicking closes the modal
+          }}
+        >
+          {/* Top-Right Close Button styled like the BACK button */}
+          <div 
+            onClick={(e) => {
+              e.stopPropagation(); // Avoid double trigger, though both do the same
+              setFullScreenVideoSrc(null);
+            }}
+            style={{ cursor: "pointer", transition: "all 0.2s", pointerEvents: "auto" }}
+            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center right-[80px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
+          >
+            <div className="flex h-[11px] items-center justify-center relative shrink-0 w-[11px]">
+              <svg className="size-full" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3L12 12M12 3L3 12" className="stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <p className="[word-break:break-word] font-outfit font-black leading-[normal] relative shrink-0 text-[#190b00] group-hover:text-[#fffdfa] text-[14px] tracking-[0.56px] uppercase whitespace-nowrap transition-colors duration-200">
+              Close
+            </p>
+          </div>
+
+          <video 
+            src={fullScreenVideoSrc}
+            autoPlay
+            controls
+            playsInline
+            onClick={(e) => e.stopPropagation()} // Stop click bubbling up to backdrop
+            style={{
+              maxWidth: "90%",
+              maxHeight: "85%",
+              boxShadow: "0 24px 64px rgba(0, 0, 0, 0.5)",
+              borderRadius: "8px",
+              cursor: "default", // Video retains standard controls pointer
+            }}
+          />
         </div>
       )}
     </div>
@@ -1468,8 +1562,9 @@ function RecommendationsScrollOverlay() {
 
   // Dotted circle logo orbit calculation
   const angle = p * 2 * Math.PI; // p is stickyProg
-  const orangeX = 35 + 20 * Math.sin(angle) - 16;
-  const orangeY = 50 - 20 * Math.cos(angle) - 16;
+  const orbitRadius = 12; // Reduced to keep within 70px width boundary
+  const orangeX = 35 + orbitRadius * Math.sin(angle) - 14;
+  const orangeY = 50 - orbitRadius * Math.cos(angle) - 14;
 
   return (
     <div style={containerStyle}>
@@ -1482,25 +1577,30 @@ function RecommendationsScrollOverlay() {
         position: "relative",
       }}>
         {/* Left Logo Column (width 70px) - Orbiting circle logo */}
-        <div style={{ width: 70, height: "100%", position: "relative", flexShrink: 0 }}>
+        <div style={{ width: 70, height: "100%", position: "relative", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
           {/* Dotted circle outline centered at (35, 50) */}
           <div style={{
-            width: 32, height: 32,
-            borderRadius: "50%",
-            border: "1.5px dashed #190b00",
+            width: 25.2, height: 25.2,
             position: "absolute",
-            left: 35 - 16,
-            top: 50 - 16,
-          }} />
+            left: 35 - 12.6,
+            top: 50 - 12.6,
+          }}>
+            <img 
+              alt="" 
+              className="w-full h-full object-contain rotating-vector" 
+              src={imgEllipse7} 
+            />
+          </div>
           {/* Solid orange circle orbiting (35, 50) */}
           <div style={{
-            width: 32, height: 32,
+            width: 28, height: 28,
             borderRadius: "50%",
             background: "#EE6C13",
             position: "absolute",
             left: orangeX,
             top: orangeY,
             transition: "left 0.05s ease-out, top 0.05s ease-out",
+            zIndex: 2,
           }} />
         </div>
 

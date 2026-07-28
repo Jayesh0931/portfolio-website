@@ -198,7 +198,7 @@ export default function Footer({ style }: FooterProps) {
         {/* Profile Image container adjusting automatically to original aspect ratio */}
         <div style={{
           width: 250,
-          aspectRatio: "2/3",
+          aspectRatio: "4/5",
           border: "1px solid #7b7a77",
           boxSizing: "border-box",
           position: "relative",
@@ -214,7 +214,7 @@ export default function Footer({ style }: FooterProps) {
             style={{
               width: "100%",
               height: "100%",
-              objectFit: "cover",
+              objectFit: "contain",
               display: "block",
               opacity: isProfileLoaded ? 1 : 0,
               transition: "opacity 0.5s ease-out",

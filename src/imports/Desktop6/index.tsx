@@ -29,7 +29,7 @@ function Frame6() {
         </svg>
       </div>
       <div className="relative shrink-0 size-[90px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="90" src={imgEllipse5} width="90" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="90" src={imgEllipse5} width="90" />
       </div>
     </div>
   );
@@ -330,7 +330,7 @@ function Frame7() {
         </svg>
       </div>
       <div className="relative shrink-0 size-[228px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="228" src={imgEllipse6} width="228" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="228" src={imgEllipse6} width="228" />
       </div>
     </div>
   );
@@ -1321,7 +1321,7 @@ function Frame91() {
         </svg>
       </div>
       <div className="relative shrink-0 size-[25.2px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="25.2" src={imgEllipse7} width="25.2" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
       </div>
     </div>
   );
@@ -1472,7 +1472,7 @@ function Frame100() {
         </svg>
       </div>
       <div className="relative shrink-0 size-[25.2px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="25.2" src={imgEllipse7} width="25.2" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
       </div>
     </div>
   );
@@ -1671,7 +1671,7 @@ function Frame110() {
         </svg>
       </div>
       <div className="relative shrink-0 size-[79px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full" height="79" src={imgEllipse8} width="79" />
+        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="79" src={imgEllipse8} width="79" />
       </div>
     </div>
   );
@@ -1791,11 +1791,19 @@ function RecommendationsSection() {
         position: "relative",
       }}>
         {/* Left Logo Column (width 70px) */}
-        <div style={{ width: 70, height: "100%", position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          {/* Dotted circle outline */}
-          <div style={{ width: 32, height: 32, borderRadius: "50%", border: "1.5px dashed #190b00", position: "absolute", top: 22 }} />
-          {/* Solid orange circle */}
-          <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#EE6C13", position: "absolute", top: 42 }} />
+        <div style={{ width: 70, height: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+            <div className="content-stretch flex isolate items-center justify-center relative shrink-0">
+              <div className="mr-[-11px] relative shrink-0 size-[28px] z-[2]">
+                <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
+                  <circle cx="14" cy="14" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="14" />
+                </svg>
+              </div>
+              <div className="relative shrink-0 size-[25.2px] z-[1]">
+                <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Vertical divider */}

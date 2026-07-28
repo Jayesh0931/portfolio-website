@@ -1,7 +1,7 @@
 
-  # Replicate Website from Figma
+  # Jayesh Soni: Product Lead &amp; AI Product Designer
 
-  This is a code bundle for Replicate Website from Figma. The original project is available at https://www.figma.com/design/xeyU6bnzdv6BKFxUhIKFPj/Replicate-Website-from-Figma.
+  This is the official portfolio website for Jayesh Soni, representing his work in product leadership and AI design.
 
   ## Running the code
 

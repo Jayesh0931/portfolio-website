@@ -6,6 +6,7 @@ import videoD2 from "@/imports/D2.mp4";
 import videoD3 from "@/imports/D3.mp4";
 import videoD4 from "@/imports/D4.mp4";
 import imgAllyraStoryHero from "@/imports/allyra_story_hero.png";
+import imgWIDAllyra from "@/imports/WID-allyra.png";
 import imgAllyraLogo from "@/imports/allyra_logo.png";
 import imgHiring from "@/imports/allyra_hiring_kanban.jpg";
 import imgPortal from "@/imports/allyra_portal_dashboard.jpg";
@@ -476,43 +477,13 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               <p className="leading-[normal] text-[#7b7b7b]">Across the project I helped translate emerging AI capabilities into products people could actually use.</p>
             </div>
             
-            {/* Horizontal Diagram matching Figma node 7:5 */}
-            <div className="absolute left-[101px] top-[380px] w-[1019px] h-[280px] pointer-events-none" data-node-id="7:5">
-              <div className="relative w-full h-full">
-                {/* Dashed circular arc on the left */}
-                <div className="absolute left-[130px] top-[10px] w-[260px] h-[260px] rounded-full border-2 border-dashed border-[#7b7a77]" />
-                
-                {/* Dashed circle labels */}
-                <div className="absolute left-[0px] top-[126px] font-outfit font-normal text-[18px] text-[#7b7b7b] whitespace-nowrap">
-                  Business Needs
-                </div>
-                <div className="absolute left-[200px] top-[-25px] font-outfit font-normal text-[18px] text-[#7b7b7b] whitespace-nowrap">
-                  Market Trends
-                </div>
-                <div className="absolute left-[200px] top-[280px] font-outfit font-normal text-[18px] text-[#7b7b7b] whitespace-nowrap">
-                  AI Capabilities
-                </div>
-
-                {/* Orange Circle overlapping in the middle */}
-                <div className="absolute left-[310px] top-[10px] w-[260px] h-[260px] rounded-full bg-[#EE6C13] flex items-center justify-center border-2 border-solid border-[#EE6C13] shadow-md z-[2]">
-                  <p className="font-outfit font-bold text-[24px] text-white tracking-[1px] text-center px-4 leading-tight">
-                    Product Decisions
-                  </p>
-                </div>
-
-                {/* Connecting line to the right */}
-                <div className="absolute left-[570px] top-[139px] w-[170px] h-[2px] border-t-2 border-dashed border-[#7b7a77]" />
-                
-                {/* Diamond icon */}
-                <div className="absolute left-[740px] top-[130px] w-[20px] h-[20px] bg-[#7b7a77] rotate-45" />
-
-                {/* User Experience label on the right */}
-                <div className="absolute left-[780px] top-[120px] flex items-center">
-                  <p className="font-outfit font-black text-[30px] text-[#EE6C13] tracking-[2.4px] uppercase whitespace-nowrap">
-                    USER EXPERIENCE
-                  </p>
-                </div>
-              </div>
+            {/* Graphic Asset Image */}
+            <div className="absolute left-[60px] top-[260px] w-[1090px] h-[460px] flex items-center justify-center pointer-events-none">
+              <img 
+                src={imgWIDAllyra} 
+                alt="What I Drove Diagram" 
+                className="max-w-[700px] max-h-[340px] w-auto h-auto object-contain display-block"
+              />
             </div>
           </div>
         </div>

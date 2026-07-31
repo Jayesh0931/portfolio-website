@@ -482,7 +482,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               <img 
                 src={imgWIDAllyra} 
                 alt="What I Drove Diagram" 
-                className="max-w-[1020px] max-h-[420px] w-auto h-auto object-contain display-block"
+                className="max-w-[860px] max-h-[370px] w-auto h-auto object-contain display-block"
               />
             </div>
           </div>

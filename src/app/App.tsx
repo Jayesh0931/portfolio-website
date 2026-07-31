@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
+import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
@@ -9,7 +10,7 @@ import imgEllipse8 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea6194
 import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 
 const DESIGN_W = 1440;
-const DESIGN_H = 10440;
+const DESIGN_H = 11220;
 
 function getScaleAndLeft(vw: number) {
   if (vw >= 768) {
@@ -158,7 +159,7 @@ const bentoCards = [
   { top: 707, left: 580,  width: 370, height: 200, scrollY: 3389, theme: "light" }, // tulah   → Story 02
   { top: 707, left: 970,  width: 370, height: 200, scrollY: 4949, theme: "orange" }, // joonify → Story 04
   { top: 327, left: 1100, width: 240, height: 220, scrollY: 4169, theme: "light" }, // VousVous→ Story 03
-  { top: 567, left: 1100, width: 240, height: 120, scrollY: 5843, theme: "light" }, // Stanford→ Focus
+  { top: 567, left: 1100, width: 240, height: 120, scrollY: 6623, theme: "light" }, // Stanford→ Focus
 ];
 
 function CardHoverOverlays() {
@@ -388,7 +389,7 @@ function CraftExpandOverlay() {
   const vhD        = vh / scale;  // viewport height in design-space px
   const vwD        = vw / scale;  // real viewport width in design-space px
 
-  const SECT_TOP  = 6820;
+  const SECT_TOP  = 7600;
   const SECT_H    = 800;
   const GALLERY_H = 1440; // total gallery content height in design-space px
 
@@ -710,10 +711,10 @@ function MobileView() {
           gap: "12px",
           cursor: "pointer"
         }} onClick={() => document.getElementById("m-story-1")?.scrollIntoView({ behavior: "smooth" })}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>[ CURRENT ]</span>
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>[ STORY 1 ] [ PRESENT ]</span>
           <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "24px", margin: 0 }}>allyra.ai</h3>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "14px", color: "#7b7b7b", lineHeight: "1.4", margin: 0 }}>
-            Designing an AI copilot for enterprise software teams.
+            Scaling AI from individual agents to enterprise-grade workflows.
           </p>
           <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase", marginTop: "4px" }}>
             View Story ↙
@@ -731,10 +732,10 @@ function MobileView() {
           gap: "10px",
           cursor: "pointer"
         }} onClick={() => document.getElementById("m-story-3")?.scrollIntoView({ behavior: "smooth" })}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ STORY 03 ]</span>
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ STORY 04 ]</span>
           <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#190b00", margin: 0 }}>VousVous</h3>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "12px", color: "#7b7b7b", lineHeight: "1.3", margin: 0 }}>
-            I shape the moments where people decide whether to trust intelligent systems.
+            Designing trustworthy AI interactions for modern relationships.
           </p>
         </div>
 
@@ -749,33 +750,33 @@ function MobileView() {
           gap: "10px",
           cursor: "pointer"
         }} onClick={() => document.getElementById("m-story-2")?.scrollIntoView({ behavior: "smooth" })}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ STORY 02 ]</span>
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ STORY 03 ]</span>
           <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#190b00", margin: 0 }}>tulah</h3>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "12px", color: "#7b7b7b", lineHeight: "1.3", margin: 0 }}>
-            I shape the moments where people decide whether to trust intelligent systems.
+            Simplifying wellness operations through thoughtful workflow design.
           </p>
         </div>
 
-        {/* joonify (1 col) */}
+        {/* Campaign OS (1 col) */}
         <div style={{
           background: "#EE6C13",
           border: "1px solid #7b7a77",
           borderRadius: "10px",
           padding: "16px",
-          color: "#190b00",
+          color: "#FFFDFA",
           display: "flex",
           flexDirection: "column",
           gap: "10px",
           cursor: "pointer"
         }} onClick={() => document.getElementById("m-story-4")?.scrollIntoView({ behavior: "smooth" })}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#190b00" }}>[ STORY 04 ]</span>
-          <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#190b00", margin: 0 }}>joonify</h3>
-          <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "12px", color: "#190b00", lineHeight: "1.3", margin: 0 }}>
-            I shape the moments where people decide whether to trust intelligent systems.
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#FFFDFA" }}>[ STORY 02 ]</span>
+          <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#FFFDFA", margin: 0 }}>Campaign OS</h3>
+          <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "12px", color: "#FFFDFA", lineHeight: "1.3", margin: 0 }}>
+            Reimagining campaign planning, execution and optimization through AI-native workflows.
           </p>
         </div>
 
-        {/* Stanford (1 col) */}
+        {/* Joonify (1 col) */}
         <div style={{
           background: "#e5ddd4",
           border: "1px solid #7b7a77",
@@ -785,8 +786,8 @@ function MobileView() {
           flexDirection: "column",
           gap: "10px"
         }}>
-          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ WORK ]</span>
-          <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#190b00", margin: 0 }}>Stanford</h3>
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#77695d" }}>[ STORY 05 ]</span>
+          <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#190b00", margin: 0 }}>Joonify</h3>
         </div>
       </div>
 
@@ -856,12 +857,47 @@ function MobileView() {
           </div>
         </div>
 
-        {/* Story 2 */}
+        {/* Story 2: Campaign OS */}
         <div id="m-story-2" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
               <span>[ STORY 02 ]</span>
-              <span>[ 2024-25 ]</span>
+              <span>[ 2026 ]</span>
+            </div>
+            <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>Campaign OS</h3>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
+              AI-native operating system that brings campaign planning, execution, monitoring and optimization into one connected workflow.
+            </p>
+            <div style={{ borderTop: "1px dashed #7b7a77", paddingTop: "12px" }}>
+              <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "12px", color: "#77695d", textTransform: "uppercase" }}>Key Insight</span>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "14px", color: "#77695d", lineHeight: "1.4", marginTop: "4px", margin: 0 }}>
+                Marketing teams don't need more AI tools. They need AI that understands the entire campaign lifecycle and knows when to assist, collaborate or simply stay out of the way.
+              </p>
+            </div>
+            <div style={{ borderTop: "1px dashed #7b7a77", paddingTop: "12px" }}>
+              <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "12px", color: "#77695d", textTransform: "uppercase" }}>Contribution</span>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "14px", color: "#77695d", lineHeight: "1.4", marginTop: "4px", margin: 0 }}>
+                Product Strategy, AI Experience Design, Workflow Design, Information Architecture, Interaction Design, Dashboard UX, Design Systems
+              </p>
+            </div>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase" }}>
+              <span>Read Story</span>
+              <span>↙</span>
+            </div>
+          </div>
+          <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
+              <img className="rotating-vector" src={imgEllipse5} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Story 3: tulah */}
+        <div id="m-story-3" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
+          <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
+              <span>[ STORY 03 ]</span>
+              <span>[ 2025 ]</span>
             </div>
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>tulah</h3>
             <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
@@ -891,12 +927,12 @@ function MobileView() {
           </div>
         </div>
 
-        {/* Story 3 */}
-        <div id="m-story-3" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
+        {/* Story 4: VousVous */}
+        <div id="m-story-4" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
-              <span>[ STORY 03 ]</span>
-              <span>[ 2024-25 ]</span>
+              <span>[ STORY 04 ]</span>
+              <span>[ 2025 ]</span>
             </div>
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>VousVous</h3>
             <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
@@ -928,14 +964,14 @@ function MobileView() {
           </div>
         </div>
 
-        {/* Story 4 */}
-        <div id="m-story-4" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
+        {/* Story 5: Joonify */}
+        <div id="m-story-5" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
-              <span>[ STORY 04 ]</span>
-              <span>[ 2022-23 ]</span>
+              <span>[ STORY 05 ]</span>
+              <span>[ 2022 ]</span>
             </div>
-            <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>joonify</h3>
+            <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>Joonify</h3>
             <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
               Learning and assessment platform helping parents better understand how children learn and grow.
             </p>
@@ -948,7 +984,7 @@ function MobileView() {
             <div style={{ borderTop: "1px dashed #7b7a77", paddingTop: "12px" }}>
               <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "12px", color: "#77695d", textTransform: "uppercase" }}>Contribution</span>
               <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "14px", color: "#77695d", lineHeight: "1.4", marginTop: "4px", margin: 0 }}>
-                Product Design, User Experience Design, Assessment Experience Design, Interaction Design
+                UX Research, Interface Design, User Testing, Prototyping
               </p>
             </div>
             <div style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase" }}>
@@ -965,8 +1001,6 @@ function MobileView() {
           </div>
         </div>
       </div>
-
-      {/* Focus Header */}
       <div style={{ padding: "16px 20px", background: "#FFFDFA", borderTop: "1px solid #7b7a77", borderBottom: "1px solid #7b7a77", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "24px", color: "#190b00", textTransform: "uppercase" }}>FOCUS</span>
         <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d" }}>[ s-003 ]</span>
@@ -1122,9 +1156,15 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
         </div>
       </div>
 
-      {/* Craft - scrolls to 6820 */}
+      {/* Craft */}
       <div style={{ position: "absolute", left: 1135, top: 0 }}>
-        <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(6820)}>
+        <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => {
+          const el = document.getElementById("focus-section-block");
+          if (el) {
+            const top = window.scrollY + el.getBoundingClientRect().top - 20;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
+        }}>
           <span style={textStyle}>
             Craft
             <svg width="11" height="11" viewBox="0 0 11 11.3137" fill="none">
@@ -1170,11 +1210,16 @@ export default function App() {
     const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       const closestFullScreen = target?.closest?.('[data-custom-cursor="full-screen"]');
+      const closestHeroStory = target?.closest?.('[data-custom-cursor="hero-story"]');
       const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
 
       if (closestFullScreen) {
         setShowCursor(true);
         setCursorText("Full Screen");
+        setCursorPos({ x: e.clientX, y: e.clientY });
+      } else if (closestHeroStory && currentPath === "/") {
+        setShowCursor(true);
+        setCursorText("Go To Story");
         setCursorPos({ x: e.clientX, y: e.clientY });
       } else if (closestStoryCard && currentPath === "/") {
         setShowCursor(true);
@@ -1250,13 +1295,11 @@ export default function App() {
         return;
       }
       
-      const vhD = window.innerHeight / scale;
-      const scrollY_D = window.scrollY / scale;
-      // Trigger background transition when Focus starts to enter, and keep it dark for all subsequent sections below it
-      const isFocusInView = scrollY_D >= (5843 - vhD * 0.7);
+      const focusEl = document.getElementById("focus-section-block");
+      const isFocusInView = focusEl ? focusEl.getBoundingClientRect().top <= window.innerHeight * 0.7 : false;
 
       document.body.style.transition = "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      document.body.style.backgroundColor = isFocusInView ? "#190b00" : "#ffffff";
+      document.body.style.backgroundColor = isFocusInView ? "#190b00" : "#FFFDFA";
     };
     window.addEventListener("scroll", handleScrollBg, { passive: true });
     handleScrollBg();
@@ -1267,6 +1310,19 @@ export default function App() {
     const onScrollToY = (e: Event) => scrollToY((e as CustomEvent<number>).detail);
     window.addEventListener("scroll-to-y", onScrollToY);
     return () => window.removeEventListener("scroll-to-y", onScrollToY);
+  }, []);
+
+  useEffect(() => {
+    const onScrollToId = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail;
+      const el = document.getElementById(id);
+      if (el) {
+        const top = window.scrollY + el.getBoundingClientRect().top - 20;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    };
+    window.addEventListener("scroll-to-id", onScrollToId);
+    return () => window.removeEventListener("scroll-to-id", onScrollToId);
   }, []);
 
   useEffect(() => {
@@ -1288,6 +1344,18 @@ export default function App() {
   if (currentPath === "/allyra-story") {
     content = (
       <AllyraStoryPage 
+        scale={scale} 
+        left={left} 
+        onBack={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+          window.scrollTo(0, 0);
+        }} 
+      />
+    );
+  } else if (currentPath === "/campaign-os-story") {
+    content = (
+      <CampaignOSStoryPage 
         scale={scale} 
         left={left} 
         onBack={() => {
@@ -1326,9 +1394,9 @@ export default function App() {
       <style>{marqueeStyles}</style>
       <style>{`
         [data-custom-cursor="read-story"],
-        [data-custom-cursor="read-story"] * {
-          cursor: none !important;
-        }
+        [data-custom-cursor="read-story"] *,
+        [data-custom-cursor="hero-story"],
+        [data-custom-cursor="hero-story"] *,
         [data-custom-cursor="full-screen"],
         [data-custom-cursor="full-screen"] * {
           cursor: none !important;
@@ -1442,10 +1510,10 @@ function RecommendationsScrollOverlay() {
   const vhD        = vh / scale;
   const vwD        = clampedVw / scale;
 
-  const SECT_TOP  = 8020;
+  const SECT_TOP  = 8800;
   const SECT_H    = 824; // 100px (header) + 680px (card) + 44px (indicator spacing)
 
-  // Spacing calculation for center alignment
+  // Spacing calculation for exact vertical centering in viewport
   const stickyTop = Math.max(0, (vhD - 780) / 2);
 
   // Phase 1 — Entry
@@ -1454,7 +1522,7 @@ function RecommendationsScrollOverlay() {
 
   // Phase 2 — Sticky Pinning
   // Increased sticky duration to 1000 to slow down the testimonial transitions 
-  // and perfectly absorb the empty gap before the NextSection footer at 9840.
+  // and perfectly absorb the empty gap before the NextSection footer at 10620.
   const stickyDuration = 1000 * scale; // screen pixels of scroll
   const internalEnd    = entryEnd + stickyDuration;
   const stickyProg     = Math.max(0, Math.min(1, (scrollY - entryEnd) / stickyDuration));
@@ -1471,13 +1539,13 @@ function RecommendationsScrollOverlay() {
 
   if (scrollY < entryEnd) {
     posType = "absolute";
-    topValue = (SECT_TOP * scale) + 25 * scale;
+    topValue = SECT_TOP * scale;
   } else if (scrollY <= internalEnd) {
     posType = "fixed";
-    topValue = (stickyTop + 25) * scale;
+    topValue = stickyTop * scale;
   } else {
     posType = "absolute";
-    topValue = ((SECT_TOP + stickyDuration / scale - exitOffsetD) * scale) + 25 * scale;
+    topValue = (SECT_TOP + stickyDuration / scale - exitOffsetD) * scale;
   }
 
   const containerStyle: React.CSSProperties = {

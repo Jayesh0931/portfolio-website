@@ -7,10 +7,12 @@ import imgEllipse7 from "./ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import imgEllipse8 from "./9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
 import imgAllyraCoverSmall from "../allyra_cover_small.png";
 import imgAllyraCoverBig from "../allyra_cover_big.png";
+import imgCosCoverSmall from "../cos_cover_small.png";
+import imgCosCoverLarge from "../cos_cover_large.png";
 
 function Group() {
   return (
-    <div style={{ position: "absolute", top: 6944, height: 788, left: 305, width: 96 }} data-name="Group">
+    <div style={{ position: "absolute", top: 7724, height: 788, left: 305, width: 96 }} data-name="Group">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 96 787.594">
         <g id="Group">
           <g id="Vector" />
@@ -113,6 +115,10 @@ const triggerScroll = (y: number) => {
   window.dispatchEvent(new CustomEvent("scroll-to-y", { detail: y }));
 };
 
+const triggerScrollToId = (id: string) => {
+  window.dispatchEvent(new CustomEvent("scroll-to-id", { detail: id }));
+};
+
 const triggerNavigate = (path: string) => {
   window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: path }));
 };
@@ -130,7 +136,7 @@ function BentoCard({
   return (
     <div
       onClick={onClick}
-      data-custom-cursor={isStoryCard ? "read-story" : undefined}
+      data-custom-cursor={isStoryCard ? "hero-story" : undefined}
       className="premium-hover-card"
       style={{
         position: "absolute",
@@ -190,7 +196,7 @@ function Group7() {
       </div>
       {/* ── allyra.ai card ── */}
       {/* ── allyra.ai card ── */}
-      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScroll(2077)} isStoryCard>
+      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScrollToId("story-01-block")} isStoryCard>
         <div style={{ position: "relative", width: "100%", height: "100%", padding: 20, boxSizing: "border-box", overflow: "hidden" }}>
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 2 }}>
@@ -232,11 +238,11 @@ function Group7() {
         </div>
       </BentoCard>
 
-      {/* ── VousVous card ── */}
-      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
+      {/* ── VousVous card (Story 04) ── */}
+      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-04-block")} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 03 ]</p>
+            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 04 ] [ 2025 ]</p>
             <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
             </div>
@@ -244,32 +250,32 @@ function Group7() {
           <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>VousVous</p>
             <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>I shape the moments where people decide whether to trust intelligent systems.</p>
+              <p style={{ margin: 0 }}>Designing trustworthy AI interactions for modern relationships.</p>
             </div>
           </div>
         </div>
       </BentoCard>
 
-      {/* ── Stanford card ── */}
-      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)}>
+      {/* ── Joonify card (Story 05) ── */}
+      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-05-block")} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Work ]</p>
+            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 05 ] [ 2022 ]</p>
             <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
             </div>
           </div>
           <div style={{ marginTop: "auto" }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>Stanford</p>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>Joonify</p>
           </div>
         </div>
       </BentoCard>
 
-      {/* ── tulah card ── */}
-      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
+      {/* ── tulah card (Story 03) ── */}
+      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-03-block")} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 02 ]</p>
+            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 03 ] [ 2025 ]</p>
             <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
             </div>
@@ -277,27 +283,78 @@ function Group7() {
           <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
             <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>tulah</p>
             <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>I shape the moments where people decide whether to trust intelligent systems.</p>
+              <p style={{ margin: 0 }}>Simplifying wellness operations through thoughtful workflow design.</p>
             </div>
           </div>
         </div>
       </BentoCard>
 
-      {/* ── joonify card ── */}
-      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScroll(2077)} isStoryCard>
-        <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#190b00", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ Story 04 ]</p>
-            <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#190b00" /></svg>
+      {/* ── Campaign OS card (Story 02) ── */}
+      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-02-block")} isStoryCard>
+        <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
+          
+          {/* Right MacBook Mockup Image (Positioned flush on right half) */}
+          <img 
+            src={imgCosCoverSmall} 
+            alt="Campaign OS Mockup"
+            style={{
+              position: "absolute",
+              right: "-5px",
+              top: "-2px",
+              width: "235px",
+              height: "102%",
+              objectFit: "cover",
+              objectPosition: "left top",
+              display: "block",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Title overlapping edge of screen */}
+          <p style={{
+            position: "absolute",
+            left: 20,
+            top: 20,
+            fontFamily: "Outfit, sans-serif",
+            fontWeight: 700,
+            fontSize: 30,
+            color: "#FFFDFA",
+            margin: 0,
+            lineHeight: 1,
+            zIndex: 5,
+            whiteSpace: "nowrap",
+            letterSpacing: "-0.5px"
+          }}>
+            CampaignOS
+          </p>
+
+          {/* Subtitle Description */}
+          <div style={{
+            position: "absolute",
+            left: 20,
+            top: 62,
+            width: 165,
+            fontFamily: "Outfit, sans-serif",
+            fontWeight: 400,
+            fontSize: 13,
+            color: "#FFFDFA",
+            lineHeight: "1.35",
+            zIndex: 5,
+            opacity: 0.95
+          }}>
+            <p style={{ margin: 0 }}>Reimagining campaign planning, execution & optimization with AI-native workflows.</p>
+          </div>
+
+          {/* Bottom Left Tags */}
+          <div style={{ position: "absolute", left: 20, bottom: 16, zIndex: 5, display: "flex", flexDirection: "column", gap: 4 }}>
+            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#FFFDFA", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 02 ]</p>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#FFFDFA", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ 2026 ]</p>
+              <span style={{ color: "#FFFDFA", fontSize: 14, fontWeight: "bold", lineHeight: 1 }}>↙</span>
             </div>
           </div>
-          <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>joonify</p>
-            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#190b00", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>I shape the moments where people decide whether to trust intelligent systems.</p>
-            </div>
-          </div>
+
         </div>
       </BentoCard>
     </div>
@@ -597,6 +654,7 @@ function Frame20() {
 function Frame23() {
   return (
     <div 
+      id="story-01-block"
       data-custom-cursor="read-story"
       onClick={() => triggerNavigate("/allyra-story")}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
@@ -607,11 +665,120 @@ function Frame23() {
   );
 }
 
+function StoryCampaignOS() {
+  return (
+    <div 
+      id="story-02-block"
+      data-custom-cursor="read-story"
+      onClick={() => triggerNavigate("/campaign-os-story")}
+      className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
+    >
+      {/* Left Sidebar */}
+      <div className="bg-[#FFFDFA] h-full relative shrink-0 w-[316px]">
+        <div aria-hidden className="absolute border-[#7b7a77] border-b border-l border-solid border-t inset-0 pointer-events-none" />
+        <div className="flex flex-col justify-center size-full">
+          <div className="content-stretch flex flex-col items-start justify-between pl-[20px] py-[20px] relative size-full">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[40px] items-start leading-[normal] relative shrink-0 w-[273px]">
+              <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
+                <p className="relative shrink-0">[ story 02 ]</p>
+                <p className="relative shrink-0">[ 2026 ]</p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full">
+                <p className="font-['Outfit:Bold',sans-serif] font-bold relative shrink-0 text-[#190b00] text-[30px] w-full">Campaign OS</p>
+                <p className="font-['Outfit:Regular',sans-serif] font-normal relative shrink-0 text-[#77695d] text-[18px] w-full">
+                  AI-native operating system that brings campaign planning, execution, monitoring and optimization into one connected workflow.
+                </p>
+              </div>
+            </div>
+
+            <div className="content-stretch flex flex-col gap-[40px] items-start leading-[0] relative shrink-0">
+              <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
+                <div className="col-1 content-stretch flex flex-col gap-[10px] items-start ml-0 mt-0 relative row-1 w-[296px]">
+                  <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+                    <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#77695d] text-[18px] w-full">Key Insight</p>
+                    <div className="flex items-center justify-center relative shrink-0 w-full">
+                      <div className="flex-none rotate-180 w-full">
+                        <div className="h-0 relative w-full">
+                          <div className="absolute inset-[-1px_0_0_0]">
+                            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 296 1">
+                              <line id="Line 4" stroke="var(--stroke-0, #7B7A77)" x2="296" y1="0.5" y2="0.5" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#190b00] text-[16px] w-[276px]">
+                    {`Marketing teams don't need more AI tools. They need AI that understands the entire campaign lifecycle and knows when to assist, collaborate or simply stay out of the way.`}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid-cols-[max-content] grid-rows-[max-content] inline-grid place-items-start relative shrink-0">
+                <div className="col-1 content-stretch flex flex-col gap-[10px] items-start ml-0 mt-0 relative row-1 w-[296px]">
+                  <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full">
+                    <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#77695d] text-[18px] w-full">Contibution</p>
+                    <div className="flex items-center justify-center relative shrink-0 w-full">
+                      <div className="flex-none rotate-180 w-full">
+                        <div className="h-0 relative w-full">
+                          <div className="absolute inset-[-1px_0_0_0]">
+                            <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 296 1">
+                              <line id="Line 4" stroke="var(--stroke-0, #7B7A77)" x2="296" y1="0.5" y2="0.5" />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#190b00] text-[16px] w-[276px]">
+                    Product Strategy, AI Experience Design, Workflow Design, Information Architecture, Interaction Design, Dashboard UX, Design Systems
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Main Visual Area */}
+      <div className="content-stretch flex flex-[1_0_0] flex-col h-full items-center justify-center min-w-px relative">
+        <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full overflow-hidden">
+          <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300 z-10" />
+          <div className="flex flex-row items-center justify-center size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+            <img 
+              src={imgCosCoverLarge} 
+              alt="Campaign OS Cover Large" 
+              className="size-full object-cover display-block pointer-events-none" 
+            />
+          </div>
+        </div>
+
+        {/* Bottom Banner inside Right Visual */}
+        <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px] z-20">
+          <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
+          <div className="content-stretch flex flex-[1_0_0] gap-[8px] items-center min-w-px relative">
+            <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">AI WORKFLOWS</p>
+            </div>
+            <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">MARKETING OS</p>
+            </div>
+            <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">HUMAN-AI INTERACTION</p>
+            </div>
+          </div>
+          <Frame32 />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Frame44() {
   return (
     <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
-      <p className="relative shrink-0">[ story 02 ]</p>
-      <p className="relative shrink-0">[ 2024-25 ]</p>
+      <p className="relative shrink-0">[ story 03 ]</p>
+      <p className="relative shrink-0">[ 2025 ]</p>
     </div>
   );
 }
@@ -827,6 +994,7 @@ function Frame46() {
 function Frame42() {
   return (
     <div 
+      id="story-03-block"
       data-custom-cursor="read-story"
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
@@ -839,8 +1007,8 @@ function Frame42() {
 function Frame57() {
   return (
     <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
-      <p className="relative shrink-0">[ story 03 ]</p>
-      <p className="relative shrink-0">[ 2024-25 ]</p>
+      <p className="relative shrink-0">[ story 04 ]</p>
+      <p className="relative shrink-0">[ 2025 ]</p>
     </div>
   );
 }
@@ -1059,6 +1227,7 @@ function Frame64() {
 function Frame54() {
   return (
     <div 
+      id="story-04-block"
       data-custom-cursor="read-story"
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
@@ -1071,8 +1240,8 @@ function Frame54() {
 function Frame75() {
   return (
     <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
-      <p className="relative shrink-0">[ story 04 ]</p>
-      <p className="relative shrink-0">[ 2022-23 ]</p>
+      <p className="relative shrink-0">[ story 05 ]</p>
+      <p className="relative shrink-0">[ 2022 ]</p>
     </div>
   );
 }
@@ -1291,6 +1460,7 @@ function Frame82() {
 function Frame72() {
   return (
     <div 
+      id="story-05-block"
       data-custom-cursor="read-story"
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
@@ -1305,6 +1475,7 @@ function Frame43() {
     <div className="absolute content-stretch flex flex-col gap-[90px] items-start left-[80px] top-[2077px] w-[1280px]">
       <Group8 />
       <Frame23 />
+      <StoryCampaignOS />
       <Frame42 />
       <Frame54 />
       <Frame72 />
@@ -1329,7 +1500,7 @@ function Frame91() {
 
 function Frame90() {
   return (
-    <div className="absolute content-stretch flex flex-col items-center justify-center left-[80px] px-[10px] py-[30px] top-[6532px] w-[70px]">
+    <div className="absolute content-stretch flex flex-col items-center justify-center left-[80px] px-[10px] py-[30px] top-[7312px] w-[70px]">
       <div aria-hidden className="absolute border-[#7b7a77] border-solid border-t inset-0 pointer-events-none" />
       <Frame91 />
     </div>
@@ -1430,7 +1601,7 @@ function Frame97() {
 
 function Frame92() {
   return (
-    <div style={{ position: "absolute", top: 5947, left: 150, width: 1212, height: 580, display: "flex", gap: "1px", alignItems: "center" }}>
+    <div style={{ position: "absolute", top: 6727, left: 150, width: 1212, height: 580, display: "flex", gap: "1px", alignItems: "center" }}>
       <Frame93 />
       <Frame95 />
       <Frame97 />
@@ -1440,19 +1611,19 @@ function Frame92() {
 
 function Group11() {
   return (
-    <div className="absolute contents" style={{ top: 5843, left: 80, width: 1280, height: 780 }}>
-      <div className="absolute bg-[#FFFDFA]" style={{ left: 80, width: 70, top: 5843, height: 780 }}>
+    <div className="absolute contents" style={{ top: 6623, left: 80, width: 1280, height: 780 }}>
+      <div id="focus-section-block" className="absolute bg-[#FFFDFA]" style={{ left: 80, width: 70, top: 6623, height: 780 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="absolute bg-[#FFFDFA]" style={{ left: 151, width: 1209, top: 5843, height: 780 }}>
+      <div className="absolute bg-[#FFFDFA]" style={{ left: 151, width: 1209, top: 6623, height: 780 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="absolute flex items-center justify-center" style={{ top: 6446, left: 107, width: 15, height: 59, containerType: "size" }}>
+      <div className="absolute flex items-center justify-center" style={{ top: 7226, left: 107, width: 15, height: 59, containerType: "size" }}>
         <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
           <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">[ s-003 ]</p>
         </div>
       </div>
-      <div className="absolute flex items-center justify-center" style={{ top: 5884, left: 97, width: 38, height: 134, containerType: "size" }}>
+      <div className="absolute flex items-center justify-center" style={{ top: 6664, left: 97, width: 38, height: 134, containerType: "size" }}>
         <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
           <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative text-[#190b00] text-[30px] text-right w-full">FOCUS</p>
         </div>
@@ -1616,7 +1787,7 @@ function Frame103() {
 
 function Frame102() {
   return (
-    <div className="absolute h-[800px] left-[261px] overflow-x-clip overflow-y-auto top-[6820px] w-[1099px]">
+    <div className="absolute h-[800px] left-[261px] overflow-x-clip overflow-y-auto top-[7600px] w-[1099px]">
       <Frame103 />
     </div>
   );
@@ -1635,7 +1806,7 @@ function Frame109() {
 
 function Frame108() {
   return (
-    <div className="absolute h-[800px] left-[80px] top-[6820px] w-[180px] flex flex-col">
+    <div className="absolute h-[800px] left-[80px] top-[7600px] w-[180px] flex flex-col">
       {/* Top Box: 2 Circles */}
       <div className="h-[148px] w-full flex items-center justify-center relative border-b border-[#7b7a77] border-solid">
         <div className="rotate-180 scale-75">
@@ -1679,11 +1850,11 @@ function Frame110() {
 
 function Group13() {
   return (
-    <div className="-translate-x-1/2 absolute contents left-[calc(50%-550px)] top-[6820px]">
-      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%-550px)] w-[180px]" style={{ top: 6820, height: 148 }}>
+    <div className="-translate-x-1/2 absolute contents left-[calc(50%-550px)] top-[7600px]">
+      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%-550px)] w-[180px]" style={{ top: 7600, height: 148 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="-translate-x-1/2 absolute flex items-center justify-center left-[calc(50%-549px)]" style={{ top: 6942 }}>
+      <div className="-translate-x-1/2 absolute flex items-center justify-center left-[calc(50%-549px)]" style={{ top: 7722 }}>
         <div className="flex-none rotate-180">
           <Frame110 />
         </div>
@@ -1781,7 +1952,7 @@ function RecommendationsSection() {
   const t = testimonials[active];
 
   return (
-    <div className="absolute left-[80px] top-[8020px] w-[1280px]">
+    <div id="recommendations-section-block" className="absolute left-[80px] top-[8800px] w-[1280px]">
       {/* ── Section Header Bar ── */}
       <div style={{
         width: "100%", height: 100,
@@ -1821,7 +1992,6 @@ function RecommendationsSection() {
         </p>
       </div>
 
-      {/* ── Content Card ── */}
       {/* ── Content Card ── */}
       <div style={{
         width: "100%",
@@ -1978,7 +2148,7 @@ export default function Desktop() {
       <Frame43 />
       <Group11 />
       <Frame99 />
-      <Footer style={{ position: "absolute", left: 80, top: 9840 }} />
+      <Footer style={{ position: "absolute", left: 80, top: 10620 }} />
     </div>
   );
 }

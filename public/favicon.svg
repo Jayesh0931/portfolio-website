@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Solid Orange Circle -->
+  <circle cx="38" cy="50" r="30" fill="#EE6C13" />
+  <!-- Dashed Outline Circle -->
+  <circle cx="62" cy="50" r="27" fill="none" stroke="#190b00" stroke-width="3.5" stroke-dasharray="5 4" />
+</svg>

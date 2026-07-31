@@ -381,38 +381,38 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
           </div>
 
           {/* ── 4. WHAT I DROVE SECTION (Top 4026px - 200px gap after Opportunity ends at 3826px) ── */}
-          <div className="absolute left-[80px] top-[4026px] w-[1280px] h-[780px]">
-            <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[780px] left-0 w-[70px]">
+          <div className="absolute left-[80px] top-[4026px] w-[1280px] h-[840px]">
+            <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[840px] left-0 w-[70px]">
               <div className="absolute flex items-center justify-center left-[10px] top-[135px] w-[50px]">
                 <div style={{ transform: "rotate(-90deg)", transformOrigin: "center", whiteSpace: "nowrap" }}>
                   <p className="font-outfit font-normal text-[#190b00] text-[30px] tracking-[1.2px]">WHAT I DROVE</p>
                 </div>
               </div>
-              <div className="absolute flex items-center justify-center left-[10px] top-[588px] w-[50px]">
+              <div className="absolute flex items-center justify-center left-[10px] top-[648px] w-[50px]">
                 <div style={{ transform: "rotate(-90deg)", transformOrigin: "center", whiteSpace: "nowrap" }}>
                   <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase">[ CONTRIBUTION ]</p>
                 </div>
               </div>
-              <div className="absolute border-[#7b7a77] border-solid border-t content-stretch flex flex-col items-center justify-center left-0 px-[10px] py-[30px] top-[692px] w-[70px]">
+              <div className="absolute border-[#7b7a77] border-solid border-t content-stretch flex flex-col items-center justify-center left-0 px-[10px] py-[30px] top-[752px] w-[70px]">
                 <div className="content-stretch flex items-center justify-center relative shrink-0">
                   <BrandVector theme="dark" width={42} height={28} />
                 </div>
               </div>
             </div>
-            <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[780px] left-[69px] w-[1211px]">
-              <div className="absolute font-outfit font-normal leading-[1.5] left-[60px] text-[22px] text-[#77695d] top-[60px] w-[1090px]">
-                <p className="mb-4">I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimization. My work included:</p>
+            <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[840px] left-[69px] w-[1211px]">
+              <div className="absolute font-outfit font-normal leading-[1.5] left-[60px] text-[22px] text-[#77695d] top-[45px] w-[1090px]">
+                <p className="mb-3">I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimization. My work included:</p>
                 <p className="font-outfit font-bold text-[#190b00] text-[22px] leading-[1.4] mb-0">
                   Product Strategy / Information Architecture / End-to-end user experience / AI interaction patterns Dashboard and analytics experience / Campaign planning workflows / Design System foundations High-Fidelity Prototypes / Interaction Design
                 </p>
               </div>
 
               {/* Graphic Asset Image */}
-              <div className="absolute left-[60px] top-[260px] w-[1090px] h-[460px] flex items-center justify-center pointer-events-none">
+              <div className="absolute left-[60px] top-[305px] w-[1090px] h-[480px] flex items-center justify-center pointer-events-none">
                 <img 
                   src={imgWIDCampaignOS} 
                   alt="What I Drove Diagram" 
-                  className="max-w-[860px] max-h-[370px] w-auto h-auto object-contain display-block"
+                  className="max-w-[780px] max-h-[350px] w-auto h-auto object-contain display-block"
                 />
               </div>
             </div>

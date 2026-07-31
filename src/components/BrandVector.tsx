@@ -6,7 +6,6 @@ interface BrandVectorProps {
   style?: React.CSSProperties;
   width?: number | string;
   height?: number | string;
-  animate?: boolean;
 }
 
 export default function BrandVector({
@@ -15,10 +14,8 @@ export default function BrandVector({
   style,
   width = 150,
   height = "auto",
-  animate = true,
 }: BrandVectorProps) {
   const strokeColor = theme === "light" ? "#FFFDFA" : "#190B00";
-  const animClass = animate ? "spin-dashed-circle" : "";
 
   return (
     <svg
@@ -35,29 +32,22 @@ export default function BrandVector({
         ...style,
       }}
     >
-      <style>{`
-        @keyframes spinDashedCircle {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-        .spin-dashed-circle {
-          transform-origin: 69.3004px 77.0004px;
-          animation: spinDashedCircle 14s linear infinite;
-        }
-      `}</style>
+      {/* 1. Dashed Circle Group (Only this group has class "rotating-vector" to rotate on page scroll) */}
+      <g
+        className="rotating-vector"
+        style={{ transformOrigin: "69.3004px 77.0004px" }}
+      >
+        <circle
+          cx="69.3004"
+          cy="77.0004"
+          r="63.9102"
+          stroke={strokeColor}
+          strokeWidth="10.78"
+          strokeDasharray="18.48 18.48"
+        />
+      </g>
 
-      {/* 1. Dashed Circle (Rotates around its center 69.3004, 77.0004) */}
-      <circle
-        cx="69.3004"
-        cy="77.0004"
-        r="63.9102"
-        stroke={strokeColor}
-        strokeWidth="10.78"
-        strokeDasharray="18.48 18.48"
-        className={animClass}
-      />
-
-      {/* 2. Solid Orange Circle (STATIC - does NOT rotate!) */}
+      {/* 2. Solid Orange Circle (STATIC - does NOT rotate on scroll!) */}
       <circle
         cx="154.001"
         cy="77.0003"

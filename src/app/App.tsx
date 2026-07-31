@@ -771,12 +771,7 @@ function MobileView() {
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: "16px", padding: "20px", background: "#FFFDFA", borderBottom: "1px solid #7b7a77" }}>
         <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
-          <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
-            <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: "#190b00", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-              <img className="rotating-vector" src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
-          </div>
-          <div style={{ width: "60px", height: "60px", borderRadius: "50%", background: "#e5ddd4", border: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center", marginLeft: "-25px", zIndex: 1 }} />
+          <BrandVector theme="dark" width={90} height={60} />
         </div>
         <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "16px", color: "#190b00" }}>SELECTED WORK DETAILS</span>
       </div>
@@ -1034,9 +1029,7 @@ function MobileView() {
 
         {/* Visual box matching desktop Frame101 style but for mobile */}
         <div style={{ background: "#190b00", padding: "32px 20px", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px", position: "relative" }}>
-          <div style={{ width: "90px", height: "90px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-            <img className="rotating-vector" src={imgEllipse8} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          </div>
+          <BrandVector theme="light" width={120} height={80} />
           <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "18px", color: "#ffffff", letterSpacing: "1px" }}>JAYESH SONI</span>
         </div>
       </div>

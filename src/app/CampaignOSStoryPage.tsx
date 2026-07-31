@@ -10,7 +10,7 @@ import imgE1 from "@/imports/E1.png";
 import imgE2 from "@/imports/E2.png";
 import imgE3_1 from "@/imports/E3.1.png";
 import imgE3_2 from "@/imports/E3.2.png";
-import imgAllyraStoryHero from "@/imports/allyra_story_hero.png";
+import imgCosStoryHero from "@/imports/cos-story-hero.png";
 import imgCampaignOSLogo from "@/imports/campaignos_logo.png";
 import imgWIDCampaignOS from "@/imports/WID-campaignos.png";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
@@ -306,10 +306,14 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
           </div>
 
-          {/* ── Violet Glow & Main Hero Composite Image (Top 1176px - 100px inside Dark BG 1 at 1076px) ── */}
-          <div className="absolute bg-[#c0f] blur-[100px] h-[676px] left-[124px] top-[1238px] w-[1192px] opacity-35" />
-          <div className="-translate-x-1/2 absolute border border-solid border-white h-[800px] left-1/2 rounded-[10px] top-[1176px] w-[1280px] overflow-hidden shadow-2xl">
-            <ShimmerImage alt="Campaign OS Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgAllyraStoryHero} />
+          {/* ── Multi-color (Green, Purple & Blue) Glow & Main Hero Composite Image ── */}
+          <div className="absolute left-[124px] top-[1238px] w-[1192px] h-[676px] pointer-events-none z-[1]">
+            <div className="absolute left-[2%] top-[10%] w-[45%] h-[75%] bg-[#10b981] blur-[110px] opacity-45 rounded-full" />
+            <div className="absolute left-[28%] top-[5%] w-[45%] h-[80%] bg-[#a855f7] blur-[110px] opacity-50 rounded-full" />
+            <div className="absolute right-[2%] top-[10%] w-[45%] h-[75%] bg-[#3b82f6] blur-[110px] opacity-45 rounded-full" />
+          </div>
+          <div className="-translate-x-1/2 absolute border border-solid border-white/40 h-[800px] left-1/2 rounded-[10px] top-[1176px] w-[1280px] overflow-hidden shadow-[0_20px_80px_rgba(168,85,247,0.3)] z-[2]">
+            <ShimmerImage alt="Campaign OS Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgCosStoryHero} />
           </div>
 
           {/* ── 2. THE CHALLENGE SECTION (Top 2176px inside Dark BG 1) ── */}

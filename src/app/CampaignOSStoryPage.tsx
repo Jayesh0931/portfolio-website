@@ -306,14 +306,35 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
           </div>
 
-          {/* ── Multi-color (Green, Purple & Blue) Glow & Main Hero Composite Image ── */}
-          <div className="absolute left-[124px] top-[1238px] w-[1192px] h-[676px] pointer-events-none z-[1]">
-            <div className="absolute left-[2%] top-[10%] w-[45%] h-[75%] bg-[#10b981] blur-[110px] opacity-45 rounded-full" />
-            <div className="absolute left-[28%] top-[5%] w-[45%] h-[80%] bg-[#a855f7] blur-[110px] opacity-50 rounded-full" />
-            <div className="absolute right-[2%] top-[10%] w-[45%] h-[75%] bg-[#3b82f6] blur-[110px] opacity-45 rounded-full" />
-          </div>
-          <div className="-translate-x-1/2 absolute border border-solid border-white/40 h-[800px] left-1/2 rounded-[10px] top-[1176px] w-[1280px] overflow-hidden shadow-[0_20px_80px_rgba(168,85,247,0.3)] z-[2]">
-            <ShimmerImage alt="Campaign OS Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgCosStoryHero} />
+          {/* ── Vibrant Green, Purple & Blue Ambient Glow & Main Hero Composite Image ── */}
+          <div 
+            style={{
+              position: "absolute",
+              left: "60px",
+              top: "1200px",
+              width: "1320px",
+              height: "750px",
+              background: "linear-gradient(110deg, #10b981 0%, #a855f7 50%, #3b82f6 100%)",
+              filter: "blur(95px)",
+              opacity: 0.85,
+              borderRadius: "80px",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
+          />
+          <div 
+            className="-translate-x-1/2 absolute left-1/2 overflow-hidden"
+            style={{
+              top: "1176px",
+              width: "1280px",
+              height: "800px",
+              borderRadius: "12px",
+              border: "1px solid rgba(255, 255, 255, 0.45)",
+              boxShadow: "-40px 0 90px rgba(16, 185, 129, 0.45), 0 0 100px rgba(168, 85, 247, 0.5), 40px 0 90px rgba(59, 130, 246, 0.45)",
+              zIndex: 2,
+            }}
+          >
+            <ShimmerImage alt="Campaign OS Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgCosStoryHero} />
           </div>
 
           {/* ── 2. THE CHALLENGE SECTION (Top 2176px inside Dark BG 1) ── */}

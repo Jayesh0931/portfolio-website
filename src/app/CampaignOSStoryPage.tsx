@@ -122,6 +122,7 @@ function DynamicBgBand({
       ([entry]) => {
         setIsDark(entry.isIntersecting);
         if (onViewChange) onViewChange(entry.isIntersecting);
+        window.dispatchEvent(new CustomEvent("page-theme-change", { detail: { isDark: entry.isIntersecting } }));
       },
       { rootMargin: "0px 0px -25% 0px", threshold: 0.05 }
     );

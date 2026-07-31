@@ -3,6 +3,7 @@ import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import { usePageProtection } from "@/hooks/usePageProtection";
+import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
@@ -1190,6 +1191,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
 }
 
 export default function App() {
+  useDynamicFavicon();
   const isBlurred = usePageProtection();
   const { scale, left } = useLayout();
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));

@@ -171,6 +171,7 @@ function DynamicBgBand({
         if (onViewChange) {
           onViewChange(entry.isIntersecting);
         }
+        window.dispatchEvent(new CustomEvent("page-theme-change", { detail: { isDark: entry.isIntersecting } }));
       },
       {
         rootMargin: "0px 0px -25% 0px", // triggers when 25% from viewport bottom

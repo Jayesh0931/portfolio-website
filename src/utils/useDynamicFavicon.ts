@@ -5,17 +5,17 @@ export function updateFavicon(forceLightStroke?: boolean) {
 
   const prefersDark = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
   const useLightStroke = forceLightStroke !== undefined ? forceLightStroke : prefersDark;
-  const strokeColor = useLightStroke ? "#FFFDFA" : "#190b00";
+  const strokeColor = useLightStroke ? "#FFFDFA" : "#190B00";
 
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  const svg = `<svg width="231" height="154" viewBox="0 0 231 154" fill="none" xmlns="http://www.w3.org/2000/svg">
   <style>
     .dashed { stroke: ${strokeColor}; }
     @media (prefers-color-scheme: dark) {
       .dashed { stroke: #FFFDFA !important; }
     }
   </style>
-  <circle cx="38" cy="50" r="30" fill="#EE6C13" />
-  <circle class="dashed" cx="62" cy="50" r="27" fill="none" stroke-width="4.5" stroke-dasharray="6 4" />
+  <circle class="dashed" cx="69.3004" cy="77.0004" r="63.9102" transform="rotate(-180 69.3004 77.0004)" stroke-width="10.78" stroke-dasharray="18.48 18.48"/>
+  <circle cx="154.001" cy="77.0003" r="77.0002" transform="rotate(-180 154.001 77.0003)" fill="#EE6C13"/>
 </svg>`;
 
   const encodedSvg = `data:image/svg+xml,${encodeURIComponent(svg)}`;
@@ -33,7 +33,6 @@ export function updateFavicon(forceLightStroke?: boolean) {
 
 export function useDynamicFavicon() {
   useEffect(() => {
-    // Initial calculation respecting OS/Browser dark mode
     updateFavicon();
 
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -47,8 +46,6 @@ export function useDynamicFavicon() {
       const customEv = e as CustomEvent<{ isDark: boolean }>;
       if (customEv.detail && typeof customEv.detail.isDark === "boolean") {
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        // If system is dark, always keep light stroke for browser tab visibility.
-        // Otherwise, match the section theme.
         updateFavicon(prefersDark ? true : customEv.detail.isDark);
       }
     };

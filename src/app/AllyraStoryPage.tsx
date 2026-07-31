@@ -15,6 +15,7 @@ import imgTeamNetwork from "@/imports/allyra_team_network.jpg";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
+import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import imgE1 from "@/imports/E1.png";
 import imgE2 from "@/imports/E2.png";
@@ -264,15 +265,10 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
           {/* Nav Overlapping Circles on Top Right with Pill-shaped BG */}
           <div 
             style={{ pointerEvents: "auto" }}
-            className="absolute bg-[#fffdfa] rounded-[110px] flex isolate items-center left-[1302px] top-[33px] w-[58px] h-[40px] p-[2.5px] z-10 shadow-sm" 
+            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1302px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm" 
             data-node-id="1:23"
           >
-            <div className="mr-[-14px] relative shrink-0 size-[35px] z-[2]" data-node-id="1:24">
-              <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-            </div>
-            <div className="relative shrink-0 size-[31.5px] z-[1]" data-node-id="1:25">
-              <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="31.5" src={imgEllipse5} width="31.5" />
-            </div>
+            <BrandVector theme="dark" width={48} height={32} />
           </div>
         </div>
 
@@ -466,13 +462,8 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               </div>
             </div>
             <div className="absolute border-[#7b7a77] border-solid border-t content-stretch flex flex-col items-center justify-center left-0 px-[10px] py-[30px] top-[692px] w-[70px]" data-node-id="1:73">
-              <div className="content-stretch flex isolate items-center justify-center relative shrink-0" data-node-id="1:74">
-                <div className="mr-[-11px] relative shrink-0 size-[28px] z-[2]" data-node-id="1:75">
-                  <div className="absolute block inset-0 rounded-full bg-[#EE6C13]" />
-                </div>
-                <div className="relative shrink-0 size-[25.2px] z-[1]" data-node-id="1:76">
-                  <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse7} />
-                </div>
+              <div className="content-stretch flex items-center justify-center relative shrink-0" data-node-id="1:74">
+                <BrandVector theme="dark" width={42} height={28} />
               </div>
             </div>
           </div>
@@ -542,14 +533,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
               </div>
               <div className="flex items-center justify-center relative shrink-0" data-node-id="1:261">
                 <div className="flex-none rotate-180">
-                  <div className="content-stretch flex isolate items-center relative">
-                    <div className="mr-[-61.6px] relative shrink-0 size-[154px] z-[2]" data-node-id="1:262">
-                      <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-                    </div>
-                    <div className="relative shrink-0 size-[138.6px] z-[1]" data-node-id="1:263">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse6} />
-                    </div>
-                  </div>
+                  <BrandVector theme="dark" width={231} height={154} />
                 </div>
               </div>
             </div>
@@ -646,17 +630,8 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
                 <div className={`border-l border-solid content-stretch flex flex-col h-[134px] items-center justify-center px-[10px] py-[30px] relative w-[100px] transition-colors duration-700 ${isDecisionsInView ? "border-[#7b7a77]/40" : "border-[#7b7a77]"}`}>
                   <div className="flex h-[80px] items-center justify-center relative shrink-0 w-[53.08px]" data-node-id="1:94">
                     <div className="flex-none rotate-90">
-                      <div className="content-stretch flex isolate items-center justify-center relative">
-                        <div className="mr-[-20.853px] relative shrink-0 size-[53.08px] z-[2]" data-node-id="1:95">
-                          <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-                        </div>
-                        <div className="relative shrink-0 size-[47.772px] z-[1]" data-node-id="1:96">
-                          <img 
-                            alt="" 
-                            className={`absolute block inset-0 max-w-none size-full rounded-full transition-all duration-700 rotating-vector ${isDecisionsInView ? "invert" : "invert-0"}`} 
-                            src={imgEllipse5} 
-                          />
-                        </div>
+                      <div className="content-stretch flex items-center justify-center relative">
+                        <BrandVector theme={isDecisionsInView ? "light" : "dark"} width={75} height={50} />
                       </div>
                     </div>
                   </div>

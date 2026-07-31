@@ -16,6 +16,7 @@ import imgWIDCampaignOS from "@/imports/WID-campaignos.png";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
+import BrandVector from "@/components/BrandVector";
 import imgProfile from "@/imports/Profile Image Full Size.png";
 import Footer from "@/components/Footer";
 
@@ -214,14 +215,9 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
           {/* Nav Overlapping Circles on Top Right */}
           <div
             style={{ pointerEvents: "auto" }}
-            className="absolute bg-[#fffdfa] rounded-[110px] flex isolate items-center left-[1302px] top-[33px] w-[58px] h-[40px] p-[2.5px] z-10 shadow-sm"
+            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1302px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm"
           >
-            <div className="mr-[-14px] relative shrink-0 size-[35px] z-[2]">
-              <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-            </div>
-            <div className="relative shrink-0 size-[31.5px] z-[1]">
-              <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="31.5" src={imgEllipse5} width="31.5" />
-            </div>
+            <BrandVector theme="dark" width={48} height={32} />
           </div>
         </div>
 
@@ -373,13 +369,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
               </div>
               <div className="absolute border-[#7b7a77] border-solid border-t content-stretch flex flex-col items-center justify-center left-0 px-[10px] py-[30px] top-[692px] w-[70px]">
-                <div className="content-stretch flex isolate items-center justify-center relative shrink-0">
-                  <div className="mr-[-11px] relative shrink-0 size-[28px] z-[2]">
-                    <div className="absolute block inset-0 rounded-full bg-[#EE6C13]" />
-                  </div>
-                  <div className="relative shrink-0 size-[25.2px] z-[1]">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse7} />
-                  </div>
+                <div className="content-stretch flex items-center justify-center relative shrink-0">
+                  <BrandVector theme="dark" width={42} height={28} />
                 </div>
               </div>
             </div>
@@ -417,14 +408,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
                 <div className="flex items-center justify-center relative shrink-0">
                   <div className="flex-none rotate-180">
-                    <div className="content-stretch flex isolate items-center relative">
-                      <div className="mr-[-61.6px] relative shrink-0 size-[154px] z-[2]">
-                        <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-                      </div>
-                      <div className="relative shrink-0 size-[138.6px] z-[1]">
-                        <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse6} />
-                      </div>
-                    </div>
+                    <BrandVector theme="dark" width={231} height={154} />
                   </div>
                 </div>
               </div>
@@ -517,14 +501,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
               </div>
               <div className="flex items-center justify-center relative shrink-0">
                 <div className="flex-none rotate-180">
-                  <div className="content-stretch flex isolate items-center relative">
-                    <div className="mr-[-61.6px] relative shrink-0 size-[154px] z-[2]">
-                      <div className="absolute block inset-0 max-w-none size-full rounded-full bg-[#EE6C13]" />
-                    </div>
-                    <div className="relative shrink-0 size-[138.6px] z-[1]">
-                      <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse6} />
-                    </div>
-                  </div>
+                  <BrandVector theme="dark" width={231} height={154} />
                 </div>
               </div>
             </div>

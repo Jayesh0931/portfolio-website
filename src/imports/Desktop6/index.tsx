@@ -9,6 +9,7 @@ import imgAllyraCoverSmall from "../allyra_cover_small.png";
 import imgAllyraCoverBig from "../allyra_cover_big.png";
 import imgCosCoverSmall from "../cos_cover_small.png";
 import imgCosCoverLarge from "../cos_cover_large.png";
+import BrandVector from "../../components/BrandVector";
 
 function Group() {
   return (
@@ -24,15 +25,8 @@ function Group() {
 
 function Frame6() {
   return (
-    <div className="content-stretch flex isolate items-center relative shrink-0">
-      <div className="mr-[-40px] relative shrink-0 size-[100px] z-[2]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="50" />
-        </svg>
-      </div>
-      <div className="relative shrink-0 size-[90px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="90" src={imgEllipse5} width="90" />
-      </div>
+    <div className="content-stretch flex items-center relative shrink-0">
+      <BrandVector theme="dark" width={150} height={100} />
     </div>
   );
 }
@@ -380,15 +374,8 @@ function Frame15() {
 
 function Frame7() {
   return (
-    <div className="content-stretch flex isolate items-center relative">
-      <div className="mr-[-101.333px] relative shrink-0 size-[253.333px] z-[2]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 253.333 253.333">
-          <circle cx="126.667" cy="126.667" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="126.667" />
-        </svg>
-      </div>
-      <div className="relative shrink-0 size-[228px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="228" src={imgEllipse6} width="228" />
-      </div>
+    <div className="content-stretch flex items-center relative">
+      <BrandVector theme="dark" width={270} height={180} />
     </div>
   );
 }
@@ -1485,15 +1472,8 @@ function Frame43() {
 
 function Frame91() {
   return (
-    <div className="content-stretch flex isolate items-center justify-center relative shrink-0">
-      <div className="mr-[-11px] relative shrink-0 size-[28px] z-[2]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
-          <circle cx="14" cy="14" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="14" />
-        </svg>
-      </div>
-      <div className="relative shrink-0 size-[25.2px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
-      </div>
+    <div className="content-stretch flex items-center justify-center relative shrink-0">
+      <BrandVector theme="dark" width={42} height={28} />
     </div>
   );
 }
@@ -1636,15 +1616,8 @@ function Group11() {
 
 function Frame100() {
   return (
-    <div className="col-1 content-stretch flex isolate items-center ml-[14px] mt-[48px] relative row-1">
-      <div className="mr-[-11.2px] relative shrink-0 size-[28px] z-[2]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
-          <circle cx="14" cy="14" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="14" />
-        </svg>
-      </div>
-      <div className="relative shrink-0 size-[25.2px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
-      </div>
+    <div className="col-1 content-stretch flex items-center ml-[14px] mt-[48px] relative row-1">
+      <BrandVector theme="dark" width={42} height={28} />
     </div>
   );
 }
@@ -1835,15 +1808,8 @@ function Frame108() {
 
 function Frame110() {
   return (
-    <div className="content-stretch flex isolate items-center relative">
-      <div className="mr-[-35px] relative shrink-0 size-[88px] z-[2]">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 87.9999 87.9999">
-          <circle cx="43.9999" cy="43.9999" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="43.9999" />
-        </svg>
-      </div>
-      <div className="relative shrink-0 size-[79px] z-[1]">
-        <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="79" src={imgEllipse8} width="79" />
-      </div>
+    <div className="content-stretch flex items-center relative">
+      <BrandVector theme="dark" width={132} height={88} />
     </div>
   );
 }
@@ -1964,15 +1930,8 @@ function RecommendationsSection() {
         {/* Left Logo Column (width 70px) */}
         <div style={{ width: 70, height: "100%", position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
-            <div className="content-stretch flex isolate items-center justify-center relative shrink-0">
-              <div className="mr-[-11px] relative shrink-0 size-[28px] z-[2]">
-                <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 28 28">
-                  <circle cx="14" cy="14" fill="var(--fill-0, #EE6C13)" id="Ellipse 4" r="14" />
-                </svg>
-              </div>
-              <div className="relative shrink-0 size-[25.2px] z-[1]">
-                <img alt="" className="absolute block inset-0 max-w-none size-full rotating-vector" height="25.2" src={imgEllipse7} width="25.2" />
-              </div>
+            <div className="content-stretch flex items-center justify-center relative shrink-0">
+              <BrandVector theme="dark" width={42} height={28} />
             </div>
           </div>
         </div>

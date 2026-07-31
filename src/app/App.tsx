@@ -4,6 +4,7 @@ import AllyraStoryPage from "./AllyraStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
+import BrandVector from "@/components/BrandVector";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
@@ -330,34 +331,8 @@ function StoriesScrollOverlay() {
           display  : "flex",
           alignItems: "center",
         }}>
-          {/* rotate-180 wrapper matches original Frame7 wrapper */}
           <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center", position: "relative" }}>
-            {/* Orange circle — clockwise */}
-            <div style={{
-              width       : 253.333,
-              height      : 253.333,
-              borderRadius: "50%",
-              background  : "#EE6C13",
-              marginRight : -101.333,
-              position    : "relative",
-              zIndex      : 2,
-              flexShrink  : 0,
-              transform   : `rotate(${cw}deg)`,
-            }} />
-            {/* Portrait circle — anticlockwise */}
-            <div style={{
-              width       : 228,
-              height      : 228,
-              borderRadius: "50%",
-              overflow    : "hidden",
-              position    : "relative",
-              zIndex      : 1,
-              flexShrink  : 0,
-              transform   : `rotate(${ccw}deg)`,
-            }}>
-              <img alt="" src={imgEllipse6}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-            </div>
+            <BrandVector theme="dark" width={270} height={180} style={{ transform: `rotate(${cw}deg)` }} />
           </div>
         </div>
       </div>
@@ -468,14 +443,7 @@ function CraftExpandOverlay() {
           position: "relative", flexShrink: 0,
         }}>
           <div style={{ display: "flex", alignItems: "center", position: "relative", transform: "rotate(180deg) scale(0.75)" }}>
-            <div style={{ marginRight: -35, position: "relative", flexShrink: 0, width: 88, height: 88, zIndex: 2 }}>
-              <svg style={{ position: "absolute", display: "block", inset: 0, width: "100%", height: "100%" }} fill="none" viewBox="0 0 88 88">
-                <circle cx="44" cy="44" fill="#EE6C13" r="44" />
-              </svg>
-            </div>
-            <div style={{ position: "relative", flexShrink: 0, width: 79, height: 79, zIndex: 1 }}>
-              <img alt="" className="rotating-vector" style={{ position: "absolute", display: "block", inset: 0, width: "100%", height: "100%" }} src={imgEllipse8} />
-            </div>
+            <BrandVector theme="dark" width={132} height={88} />
           </div>
         </div>
 
@@ -558,29 +526,15 @@ function MarqueeUnit() {
         style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}>
         JAYESH
       </p>
-      <div className="content-stretch flex isolate items-center relative shrink-0">
-        <div className="mr-[-40px] relative shrink-0 size-[100px] z-[2]">
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" fill="#EE6C13" r="50" />
-          </svg>
-        </div>
-        <div className="relative shrink-0 size-[90px] z-[1]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse5} />
-        </div>
+      <div className="content-stretch flex items-center relative shrink-0">
+        <BrandVector theme="dark" width={150} height={100} />
       </div>
       <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
         style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900, color: "#FFFDFA", WebkitTextStroke: "1.5px #190b00", paintOrder: "stroke fill" }}>
         DESIGNING AI BEHAVIOR
       </p>
-      <div className="content-stretch flex isolate items-center relative shrink-0">
-        <div className="mr-[-40px] relative shrink-0 size-[100px] z-[2]">
-          <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" fill="#EE6C13" r="50" />
-          </svg>
-        </div>
-        <div className="relative shrink-0 size-[90px] z-[1]">
-          <img alt="" className="absolute block inset-0 max-w-none size-full rounded-full rotating-vector" src={imgEllipse5} />
-        </div>
+      <div className="content-stretch flex items-center relative shrink-0">
+        <BrandVector theme="dark" width={150} height={100} />
       </div>
     </div>
   );
@@ -852,9 +806,7 @@ function MobileView() {
             </div>
           </div>
           <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
-              <img className="rotating-vector" src={imgEllipse6} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
+            <BrandVector theme="dark" width={180} height={120} />
           </div>
         </div>
 
@@ -887,9 +839,7 @@ function MobileView() {
             </div>
           </div>
           <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#EE6C13", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
-              <img className="rotating-vector" src={imgEllipse5} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
+            <BrandVector theme="dark" width={180} height={120} />
           </div>
         </div>
 
@@ -922,9 +872,7 @@ function MobileView() {
             </div>
           </div>
           <div style={{ background: "#e5ddd4", height: "200px", borderTop: "1px solid #7b7a77", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ width: "120px", height: "120px", borderRadius: "50%", background: "#190b00", display: "flex", alignItems: "center", overflow: "hidden", margin: "auto" }}>
-              <img className="rotating-vector" src={imgEllipse5} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </div>
+            <BrandVector theme="dark" width={180} height={120} />
           </div>
         </div>
 

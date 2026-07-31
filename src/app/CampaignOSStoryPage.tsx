@@ -440,17 +440,17 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
 
             {/* Sub-Header Text Bar */}
-            <div className="bg-[#fffdfa] border-x border-[#7b7a77] border-solid content-stretch flex items-center px-[40px] pt-[30px] pb-[10px] relative shrink-0 w-full -mt-[1px]">
+            <div className="bg-[#fffdfa] border-x border-[#7b7a77] border-solid content-stretch flex items-center px-[40px] pt-[30px] pb-[20px] relative shrink-0 w-full -mt-[1px]">
               <p className="font-outfit font-normal text-[#77695d] text-[24px] leading-[1.5] margin-0">
                 This pilot explored how AI could move beyond content generation to become an active collaborator throughout the entire campaign lifecycle.
               </p>
             </div>
 
             {/* 2x2 Grid Section with Remix Icons */}
-            <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] border-solid content-stretch flex flex-col h-[640px] relative shrink-0 w-full -mt-[1px]">
+            <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] border-t border-[#7b7a77]/30 border-solid content-stretch flex flex-col h-[640px] relative shrink-0 w-full -mt-[1px]">
               <div className="grid grid-cols-2 grid-rows-2 size-full">
                 {/* Card 1: Connected Workflows */}
-                <div className="border-[#7b7a77] border-b border-r border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77]/30 border-b border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-route-line" />
@@ -463,7 +463,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
 
                 {/* Card 2: Conversational Analytics */}
-                <div className="border-[#7b7a77] border-b border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77]/30 border-b border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-chat-smile-ai-line" />
@@ -476,7 +476,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
 
                 {/* Card 3: Living Insights */}
-                <div className="border-[#7b7a77] border-r border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77]/30 border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-sparkling-fill" />

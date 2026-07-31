@@ -2,16 +2,15 @@
   <style>
     .dashed-circle {
       stroke: #190b00;
-      transition: stroke 0.3s ease;
     }
     @media (prefers-color-scheme: dark) {
       .dashed-circle {
-        stroke: #FFFDFA;
+        stroke: #FFFDFA !important;
       }
     }
   </style>
   <!-- Solid Orange Circle -->
   <circle cx="38" cy="50" r="30" fill="#EE6C13" />
   <!-- Dashed Outline Circle -->
-  <circle class="dashed-circle" cx="62" cy="50" r="27" fill="none" stroke-width="4" stroke-dasharray="6 4" />
+  <circle class="dashed-circle" cx="62" cy="50" r="27" fill="none" stroke-width="4.5" stroke-dasharray="6 4" />
 </svg>

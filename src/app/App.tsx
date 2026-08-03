@@ -1038,6 +1038,27 @@ function MobileView() {
 }
 
 function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: number; hasScrolled: boolean }) {
+  const [scrollY, setScrollY] = useState(0);
+  const [craftTop, setCraftTop] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+      const craftEl = document.getElementById("focus-section-block");
+      if (craftEl) {
+        setCraftTop(craftEl.getBoundingClientRect().top);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Stories section starts at 2077*scale. Arrow points UP (rotate 180deg) when scrolled past stories section header
+  const storiesPassed = scrollY > (2077 + 400) * scale;
+  // Craft section arrow points UP (rotate 180deg) when craft section top is at or above viewport top
+  const craftPassed = craftTop !== null ? craftTop <= 100 : scrollY > 6000 * scale;
+
   const capsuleStyle = (isCta: boolean): React.CSSProperties => ({
     background: "#FFFDFA",
     height: 40,
@@ -1091,7 +1112,16 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
         <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(2077)}>
           <span style={textStyle}>
             Stories
-            <svg width="11" height="11" viewBox="0 0 11 11.3137" fill="none">
+            <svg 
+              width="11" 
+              height="11" 
+              viewBox="0 0 11 11.3137" 
+              fill="none"
+              style={{
+                transform: storiesPassed ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.3s ease",
+              }}
+            >
               <path d={svgPaths.p20be5a00} fill="#77695D" />
             </svg>
           </span>
@@ -1105,11 +1135,22 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
           if (el) {
             const top = window.scrollY + el.getBoundingClientRect().top - 20;
             window.scrollTo({ top, behavior: "smooth" });
+          } else {
+            scrollToY(6820);
           }
         }}>
           <span style={textStyle}>
             Craft
-            <svg width="11" height="11" viewBox="0 0 11 11.3137" fill="none">
+            <svg 
+              width="11" 
+              height="11" 
+              viewBox="0 0 11 11.3137" 
+              fill="none"
+              style={{
+                transform: craftPassed ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.3s ease",
+              }}
+            >
               <path d={svgPaths.p20be5a00} fill="#77695D" />
             </svg>
           </span>

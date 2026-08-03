@@ -374,7 +374,19 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                   <p className="font-outfit font-bold text-[#190b00] mb-0">AI becomes part of the workflow—not an external tool users constantly switch to.</p>
                 </div>
               </div>
-              <div style={{ width: "100%", aspectRatio: "1440/936", borderRadius: "12px", overflow: "hidden", border: "1.5px solid #7b7a77", background: "#e5ddd4" }}>
+              <div 
+                style={{ 
+                  width: "100%", 
+                  aspectRatio: "1440/936", 
+                  borderRadius: "24px", 
+                  overflow: "hidden", 
+                  border: "5px solid rgba(123, 122, 119, 0.35)", 
+                  backgroundColor: "rgba(255, 253, 250, 0.85)", 
+                  backdropFilter: "blur(16px)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  boxShadow: "0 24px 60px rgba(25, 11, 0, 0.14), 0 6px 20px rgba(0, 0, 0, 0.08)",
+                }}
+              >
                 <ViewportVideo src={videoCosOpportunity} className="w-full h-full object-contain" />
               </div>
             </div>

@@ -384,7 +384,7 @@ function Frame16() {
   return (
     <div className="col-1 h-[381px] ml-[995px] mt-px overflow-clip relative row-1 w-[285px]">
       <div className="-translate-y-1/2 absolute flex items-center justify-center left-[59px] top-[calc(50%-0.17px)]">
-        <div className="flex-none rotate-180">
+        <div className="flex-none">
           <Frame7 />
         </div>
       </div>

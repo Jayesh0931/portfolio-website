@@ -24,10 +24,11 @@ interface CampaignOSStoryPageProps {
   scale?: number;
   left?: number;
   onBack: () => void;
+  onNextStory?: () => void;
 }
 
 const CANVAS_W = 1440;
-const CANVAS_H = 8274;
+const CANVAS_H = 8384;
 
 function ViewportVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -148,7 +149,7 @@ function DynamicBgBand({
   );
 }
 
-export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: CampaignOSStoryPageProps) {
+export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNextStory }: CampaignOSStoryPageProps) {
   const [isChallengeInView, setIsChallengeInView] = useState(false);
   const [isOneThingInView, setIsOneThingInView] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -179,7 +180,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
     }}>
       {/* ── Dynamic Background Bands ── */}
       <DynamicBgBand top={1076} height={1680} scale={scale} onViewChange={setIsChallengeInView} />
-      <DynamicBgBand top={7624} height={650} scale={scale} onViewChange={setIsOneThingInView} />
+      <DynamicBgBand top={7634} height={750} scale={scale} onViewChange={setIsOneThingInView} />
 
       {/* ── Canvas Scroll Spacer ── */}
       <div style={{ height: `${CANVAS_H * scale}px`, width: "100%", position: "relative" }}>
@@ -432,7 +433,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                   </p>
                 </div>
                 <div className="flex items-center justify-center relative shrink-0">
-                  <div className="flex-none rotate-180">
+                  <div className="flex-none">
                     <BrandVector theme="dark" width={231} height={154} />
                   </div>
                 </div>
@@ -440,17 +441,17 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
 
             {/* Sub-Header Text Bar */}
-            <div className="bg-[#fffdfa] border-x border-[#7b7a77] border-solid content-stretch flex items-center px-[40px] pt-[30px] pb-[20px] relative shrink-0 w-full -mt-[1px]">
+            <div className="bg-[#fffdfa] border-x border-[#7b7a77] border-solid content-stretch flex items-center px-[40px] pt-[30px] pb-[10px] relative shrink-0 w-full -mt-[1px]">
               <p className="font-outfit font-normal text-[#77695d] text-[24px] leading-[1.5] margin-0">
                 This pilot explored how AI could move beyond content generation to become an active collaborator throughout the entire campaign lifecycle.
               </p>
             </div>
 
             {/* 2x2 Grid Section with Remix Icons */}
-            <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] border-t border-[#7b7a77]/30 border-solid content-stretch flex flex-col h-[640px] relative shrink-0 w-full -mt-[1px]">
+            <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] border-solid content-stretch flex flex-col h-[640px] relative shrink-0 w-full -mt-[1px]">
               <div className="grid grid-cols-2 grid-rows-2 size-full">
                 {/* Card 1: Connected Workflows */}
-                <div className="border-[#7b7a77]/30 border-b border-r border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77] border-b border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-route-line" />
@@ -463,7 +464,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
 
                 {/* Card 2: Conversational Analytics */}
-                <div className="border-[#7b7a77]/30 border-b border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77] border-b border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-chat-smile-ai-line" />
@@ -476,7 +477,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </div>
 
                 {/* Card 3: Living Insights */}
-                <div className="border-[#7b7a77]/30 border-r border-solid flex flex-col justify-between p-[40px]">
+                <div className="border-[#7b7a77] border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
                     <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
                       <i className="ri-sparkling-fill" />
@@ -504,8 +505,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
           </div>
 
-          {/* ── 6. CRAFTING THE EXPERIENCE (Top 6056px - 200px gap after Validation ends at 5856px) ── */}
-          <div className="absolute left-[80px] top-[6056px] w-[1280px]">
+          {/* ── 6. CRAFTING THE EXPERIENCE (Top 6166px - 200px gap after Validation ends at 5966px) ── */}
+          <div className="absolute left-[80px] top-[6166px] w-[1280px]">
             {/* Header Titles & Vector Graphic */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex flex-col">
@@ -525,7 +526,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
                 </p>
               </div>
               <div className="flex items-center justify-center relative shrink-0">
-                <div className="flex-none rotate-180">
+                <div className="flex-none">
                   <BrandVector theme="dark" width={231} height={154} />
                 </div>
               </div>
@@ -576,8 +577,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
             </div>
           </div>
 
-          {/* ─── 7. ONE THING I LEARNED SECTION (Top 7624px - 100px inside Dark BG 2 at 7524px) ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[7624px] w-[1280px] z-[2]">
+          {/* ─── 7. ONE THING I LEARNED SECTION (Top 7734px - 100px inside Dark BG 2 at 7634px) ─── */}
+          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[7734px] w-[1280px] z-[2]">
             <p className={`font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>
               <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
               <span>{` I LEARNED`}</span>
@@ -630,6 +631,39 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack }: Cam
           transformOrigin: "center center",
         }}>
           <Footer />
+        </div>
+      </div>
+
+      {/* ─── NEXT STORY BOTTOM STRIP (80px light bg strip after footer) ─── */}
+      <div style={{
+        height: 80,
+        width: "100%",
+        backgroundColor: "#FFFDFA",
+        borderTop: "1px solid #7b7a77",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        zIndex: 10,
+      }}>
+        <div
+          onClick={() => {
+            if (onNextStory) {
+              onNextStory();
+            } else {
+              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/allyra-story" }));
+              window.scrollTo(0, 0);
+            }
+          }}
+          style={{ cursor: "pointer", pointerEvents: "auto" }}
+          className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] bg-[#fffdfa] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[24px] rounded-[110px] shadow-sm transition-all duration-200 group"
+        >
+          <span className="font-outfit font-black text-[#190b00] group-hover:text-[#fffdfa] text-[14px] tracking-[0.56px] uppercase whitespace-nowrap transition-colors duration-200">
+            Go to Next Story
+          </span>
+          <svg className="size-[14px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2.5L10.5 7.5L5 12.5" className="stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </div>
 

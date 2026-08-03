@@ -325,14 +325,14 @@ function StoriesScrollOverlay() {
       }}>
         <div style={{
           position : "absolute",
-          left     : 59,
+          left     : 15,
           top      : "50%",
           transform: "translateY(-50%)",
           display  : "flex",
           alignItems: "center",
         }}>
-          <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center", position: "relative" }}>
-            <BrandVector theme="dark" width={270} height={180} style={{ transform: `rotate(${cw}deg)` }} />
+          <div style={{ display: "flex", alignItems: "center", position: "relative" }}>
+            <BrandVector theme="dark" width={270} height={180} />
           </div>
         </div>
       </div>
@@ -442,7 +442,7 @@ function CraftExpandOverlay() {
           justifyContent: "center", borderBottom: "1px solid #7b7a77",
           position: "relative", flexShrink: 0,
         }}>
-          <div style={{ display: "flex", alignItems: "center", position: "relative", transform: "rotate(180deg) scale(0.75)" }}>
+          <div style={{ display: "flex", alignItems: "center", position: "relative", transform: "scale(0.75)" }}>
             <BrandVector theme="dark" width={132} height={88} />
           </div>
         </div>
@@ -1294,6 +1294,11 @@ export default function App() {
           setCurrentPath("/");
           window.scrollTo(0, 0);
         }} 
+        onNextStory={() => {
+          window.history.pushState({}, "", "/campaign-os-story");
+          setCurrentPath("/campaign-os-story");
+          window.scrollTo(0, 0);
+        }}
       />
     );
   } else if (currentPath === "/campaign-os-story") {
@@ -1306,6 +1311,11 @@ export default function App() {
           setCurrentPath("/");
           window.scrollTo(0, 0);
         }} 
+        onNextStory={() => {
+          window.history.pushState({}, "", "/allyra-story");
+          setCurrentPath("/allyra-story");
+          window.scrollTo(0, 0);
+        }}
       />
     );
   } else {
@@ -1571,12 +1581,6 @@ function RecommendationsScrollOverlay() {
     window.scrollTo({ top: targetScroll + 25 * scale, behavior: "smooth" });
   };
 
-  // Dotted circle logo orbit calculation
-  const angle = p * 2 * Math.PI; // p is stickyProg
-  const orbitRadius = 12; // Reduced to keep within 70px width boundary
-  const orangeX = 35 + orbitRadius * Math.sin(angle) - 14;
-  const orangeY = 50 - orbitRadius * Math.cos(angle) - 14;
-
   return (
     <div style={containerStyle}>
       {/* ── Section Header Bar ── */}
@@ -1587,32 +1591,9 @@ function RecommendationsScrollOverlay() {
         display: "flex", alignItems: "center",
         position: "relative",
       }}>
-        {/* Left Logo Column (width 70px) - Orbiting circle logo */}
+        {/* Left Logo Column (width 70px) */}
         <div style={{ width: 70, height: "100%", position: "relative", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          {/* Dotted circle outline centered at (35, 50) */}
-          <div style={{
-            width: 25.2, height: 25.2,
-            position: "absolute",
-            left: 35 - 12.6,
-            top: 50 - 12.6,
-          }}>
-            <img 
-              alt="" 
-              className="w-full h-full object-contain rotating-vector" 
-              src={imgEllipse7} 
-            />
-          </div>
-          {/* Solid orange circle orbiting (35, 50) */}
-          <div style={{
-            width: 28, height: 28,
-            borderRadius: "50%",
-            background: "#EE6C13",
-            position: "absolute",
-            left: orangeX,
-            top: orangeY,
-            transition: "left 0.05s ease-out, top 0.05s ease-out",
-            zIndex: 2,
-          }} />
+          <BrandVector theme="dark" width={42} height={28} />
         </div>
 
         {/* Vertical divider */}

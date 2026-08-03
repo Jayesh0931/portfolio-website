@@ -29,6 +29,7 @@ interface AllyraStoryPageProps {
   scale?: number;
   left?: number;
   onBack: () => void;
+  onNextStory?: () => void;
 }
 
 const CANVAS_W = 1440;
@@ -201,7 +202,7 @@ function DynamicBgBand({
   );
 }
 
-export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraStoryPageProps) {
+export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextStory }: AllyraStoryPageProps) {
   const keyDecisionsRef = useRef<HTMLDivElement>(null);
   const [isDecisionsInView, setIsDecisionsInView] = useState(false);
   const [isChallengeInView, setIsChallengeInView] = useState(false);
@@ -501,7 +502,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
                 </p>
               </div>
               <div className="flex items-center justify-center relative shrink-0" data-node-id="1:261">
-                <div className="flex-none rotate-180">
+                <div className="flex-none">
                   <BrandVector theme="dark" width={231} height={154} />
                 </div>
               </div>
@@ -595,10 +596,10 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
         <div ref={keyDecisionsRef} className="absolute content-stretch flex flex-col gap-[60px] items-start left-[80px] top-[6181px] w-[1284px] z-[2]" data-node-id="1:91">
           <div className={`border border-solid content-stretch flex gap-[30px] items-center relative shrink-0 w-full transition-all duration-700 ease-in-out ${isDecisionsInView ? "bg-black border-[#7b7a77]/40 shadow-2xl" : "bg-[#fffdfa] border-[#7b7a77]"}`} data-node-id="1:92">
             <div className="flex items-center justify-center relative shrink-0" data-node-id="1:93">
-              <div className="flex-none rotate-180">
+              <div className="flex-none">
                 <div className={`border-l border-solid content-stretch flex flex-col h-[134px] items-center justify-center px-[10px] py-[30px] relative w-[100px] transition-colors duration-700 ${isDecisionsInView ? "border-[#7b7a77]/40" : "border-[#7b7a77]"}`}>
                   <div className="flex h-[80px] items-center justify-center relative shrink-0 w-[53.08px]" data-node-id="1:94">
-                    <div className="flex-none rotate-90">
+                    <div className="flex-none">
                       <div className="content-stretch flex items-center justify-center relative">
                         <BrandVector theme={isDecisionsInView ? "light" : "dark"} width={75} height={50} />
                       </div>
@@ -1116,6 +1117,39 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack }: AllyraS
           transformOrigin: "center center",
         }}>
           <Footer />
+        </div>
+      </div>
+
+      {/* ─── NEXT STORY BOTTOM STRIP (80px light bg strip after footer) ─── */}
+      <div style={{
+        height: 80,
+        width: "100%",
+        backgroundColor: "#FFFDFA",
+        borderTop: "1px solid #7b7a77",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        zIndex: 10,
+      }}>
+        <div
+          onClick={() => {
+            if (onNextStory) {
+              onNextStory();
+            } else {
+              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/campaign-os-story" }));
+              window.scrollTo(0, 0);
+            }
+          }}
+          style={{ cursor: "pointer", pointerEvents: "auto" }}
+          className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] bg-[#fffdfa] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[24px] rounded-[110px] shadow-sm transition-all duration-200 group"
+        >
+          <span className="font-outfit font-black text-[#190b00] group-hover:text-[#fffdfa] text-[14px] tracking-[0.56px] uppercase whitespace-nowrap transition-colors duration-200">
+            Go to Next Story
+          </span>
+          <svg className="size-[14px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 2.5L10.5 7.5L5 12.5" className="stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
       </div>
 

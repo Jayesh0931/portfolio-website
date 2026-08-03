@@ -251,7 +251,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           <div 
             onClick={onBack}
             style={{ cursor: "pointer", transition: "all 0.2s", pointerEvents: "auto" }}
-            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[80px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
+            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[98px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
             data-node-id="1:26"
           >
             <div className="flex h-[11px] items-center justify-center relative shrink-0 w-[11px]" data-node-id="1:27">

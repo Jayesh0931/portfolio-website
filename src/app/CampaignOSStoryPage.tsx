@@ -201,7 +201,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
           <div
             onClick={onBack}
             style={{ pointerEvents: "auto" }}
-            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[80px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group cursor-pointer"
+            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[98px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group cursor-pointer"
           >
             <div className="flex h-[11px] items-center justify-center relative shrink-0 w-[11px]">
               <svg className="size-full" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">

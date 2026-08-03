@@ -1101,7 +1101,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
       zIndex: 9999,
     }}>
       {/* Jayesh Soni - scrolls to top */}
-      <div style={{ position: "absolute", left: 80, top: 0 }}>
+      <div style={{ position: "absolute", left: 98, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(false)} onClick={() => scrollToY(0)}>
           <span style={textStyle}>Jayesh Soni</span>
         </div>

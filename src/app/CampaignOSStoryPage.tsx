@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import videoCosOpportunity from "@/imports/cos-opportunity.mov";
+import videoCosOpportunity from "@/imports/cos-opportunity.mp4";
 import videoOpportunity from "@/imports/Opportunity Video.mp4";
 import videoD1 from "@/imports/D1.mp4";
 import videoD2 from "@/imports/D2.mp4";

@@ -387,7 +387,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                   boxShadow: "0 24px 60px rgba(25, 11, 0, 0.14), 0 6px 20px rgba(0, 0, 0, 0.08)",
                 }}
               >
-                <ViewportVideo src={videoCosOpportunity} className="w-full h-full object-contain" />
+                <ViewportVideo src={videoCosOpportunity} className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

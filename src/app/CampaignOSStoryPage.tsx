@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import videoCosOpportunity from "@/imports/cos-opportunity.mov";
 import videoOpportunity from "@/imports/Opportunity Video.mp4";
 import videoD1 from "@/imports/D1.mp4";
 import videoD2 from "@/imports/D2.mp4";
@@ -28,7 +29,7 @@ interface CampaignOSStoryPageProps {
 }
 
 const CANVAS_W = 1440;
-const CANVAS_H = 8384;
+const CANVAS_H = 8600;
 
 function ViewportVideo({ src, className }: { src: string; className?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -180,7 +181,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
     }}>
       {/* ── Dynamic Background Bands ── */}
       <DynamicBgBand top={1076} height={1680} scale={scale} onViewChange={setIsChallengeInView} />
-      <DynamicBgBand top={7634} height={750} scale={scale} onViewChange={setIsOneThingInView} />
+      <DynamicBgBand top={7847} height={750} scale={scale} onViewChange={setIsOneThingInView} />
 
       {/* ── Canvas Scroll Spacer ── */}
       <div style={{ height: `${CANVAS_H * scale}px`, width: "100%", position: "relative" }}>
@@ -355,7 +356,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             <div className={`absolute left-0 top-[72px] w-[1030px] h-[1px] transition-colors duration-700 ${isChallengeInView ? "bg-[rgba(255,253,250,0.15)]" : "bg-[#7b7a77]/30"}`} />
           </div>
 
-          {/* ── 3. THE OPPORTUNITY SECTION (Top 2956px - 200px gap after Dark BG 1 ends at 2756px) ── */}
+          {/* ── 3. THE OPPORTUNITY SECTION (Top 2956px) ── */}
           <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[2956px] w-[1280px]">
             <div className="content-stretch flex items-center relative shrink-0 w-full">
               <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-center pl-[30px] pr-[90px] py-[16px] relative shrink-0">
@@ -365,24 +366,22 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
               </div>
               <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             </div>
-            <div className="content-stretch flex items-center relative shrink-0 w-full -mt-[1px]">
-              <div className="bg-white border border-[#7b7a77] border-solid flex-[1_0_0] h-[800px] min-w-px relative p-[30px] flex flex-col justify-end">
-                <div style={{ width: "838px", aspectRatio: "1797/1080", borderRadius: "12px", overflow: "hidden", border: "1.5px solid #e5ddd4", margin: "0 auto" }}>
-                  <ViewportVideo src={videoD1} className="w-full h-full object-contain bg-black" />
-                </div>
-              </div>
-              <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid top-[30px] content-stretch flex items-center justify-center left-[30px] p-[30px] w-[1220px]">
-                <div className="flex-[1_0_0] font-outfit font-normal leading-[1.5] text-[#190b00] text-[24px]">
+            <div className="content-stretch flex flex-col gap-[24px] relative shrink-0 w-full -mt-[1px] bg-white border border-[#7b7a77] border-solid p-[30px]">
+              <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid p-[30px] w-full">
+                <div className="font-outfit font-normal leading-[1.5] text-[#190b00] text-[24px]">
                   <p className="mb-4">Instead of asking marketers to learn increasingly complex advertising platforms, what if they could simply focus on outcomes?</p>
                   <p className="mb-1">The platform translates business goals into campaign structures, understands marketing context from day one and continuously helps improve campaign performance.</p>
                   <p className="font-outfit font-bold text-[#190b00] mb-0">AI becomes part of the workflow—not an external tool users constantly switch to.</p>
                 </div>
               </div>
+              <div style={{ width: "100%", aspectRatio: "1440/936", borderRadius: "12px", overflow: "hidden", border: "1.5px solid #7b7a77", background: "#e5ddd4" }}>
+                <ViewportVideo src={videoCosOpportunity} className="w-full h-full object-contain" />
+              </div>
             </div>
           </div>
 
-          {/* ── 4. WHAT I DROVE SECTION (Top 4026px - 200px gap after Opportunity ends at 3826px) ── */}
-          <div className="absolute left-[80px] top-[4026px] w-[1280px] h-[840px]">
+          {/* ── 4. WHAT I DROVE SECTION (Top 4293px - 200px gap after Opportunity ends at 4093px) ── */}
+          <div className="absolute left-[80px] top-[4293px] w-[1280px] h-[840px]">
             <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[840px] left-0 w-[70px]">
               <div className="absolute flex items-center justify-center left-[10px] top-[135px] w-[50px]">
                 <div style={{ transform: "rotate(-90deg)", transformOrigin: "center", whiteSpace: "nowrap" }}>
@@ -419,8 +418,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             </div>
           </div>
 
-          {/* ── 5. VALIDATION SECTION (Top 5006px - 200px gap after What I Drove ends at 4806px) ── */}
-          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5006px] w-[1280px] z-[2]">
+          {/* ── 5. VALIDATION SECTION (Top 5333px - 200px gap after What I Drove ends at 5133px) ── */}
+          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5333px] w-[1280px] z-[2]">
             {/* Header Box */}
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start p-[40px] relative shrink-0 w-full">
               <div className="content-stretch flex items-center justify-between relative shrink-0 w-full">
@@ -505,8 +504,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             </div>
           </div>
 
-          {/* ── 6. CRAFTING THE EXPERIENCE (Top 6166px - 200px gap after Validation ends at 5966px) ── */}
-          <div className="absolute left-[80px] top-[6166px] w-[1280px]">
+          {/* ── 6. CRAFTING THE EXPERIENCE (Top 6493px - 200px gap after Validation ends at 6293px) ── */}
+          <div className="absolute left-[80px] top-[6493px] w-[1280px]">
             {/* Header Titles & Vector Graphic */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex flex-col">
@@ -577,8 +576,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             </div>
           </div>
 
-          {/* ─── 7. ONE THING I LEARNED SECTION (Top 7734px - 100px inside Dark BG 2 at 7634px) ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[7734px] w-[1280px] z-[2]">
+          {/* ─── 7. ONE THING I LEARNED SECTION (Top 7947px - 100px inside Dark BG 2 at 7847px) ─── */}
+          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[7947px] w-[1280px] z-[2]">
             <p className={`font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>
               <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
               <span>{` I LEARNED`}</span>

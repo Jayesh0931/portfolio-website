@@ -220,13 +220,16 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
   };
 
   return (
-    <div style={{
-      width: "100%",
-      minHeight: "100vh",
-      position: "relative",
-      background: "#FFFDFA",
-      overflowX: "hidden",
-    }}>
+    <article 
+      role="article"
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        position: "relative",
+        background: "#FFFDFA",
+        overflowX: "hidden",
+      }}
+    >
       {/* Absolute Canvas Scroll Spacer */}
       <div style={{ height: `${CANVAS_H * scale}px`, width: "100%", position: "relative" }}>
         {/* Sticky Header Wrapper (placed outside the scaled inner canvas) */}
@@ -244,6 +247,8 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           {/* Back pill-shaped button */}
           <div 
             onClick={onBack}
+            role="button"
+            aria-label="Back to Homepage"
             style={{ cursor: "pointer", transition: "all 0.2s", pointerEvents: "auto" }}
             className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[90px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
             data-node-id="1:26"
@@ -1119,6 +1124,6 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
       <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
-    </div>
+    </article>
   );
 }

@@ -1,0 +1,12 @@
+/* TEAM */
+  Product Lead & AI Product Designer: Jayesh Soni
+  Site: https://jayeshsoni.com
+  Twitter: @jayeshsoni_
+  LinkedIn: https://www.linkedin.com/in/jayeshsoni09/
+  GitHub: https://github.com/Jayesh0931
+
+/* SITE */
+  Last update: 2026-08-06
+  Language: English
+  Do Type: HTML5, React, TypeScript, Vite, Tailwind CSS
+  Standards: Schema.org JSON-LD, OpenGraph, GEO / LLMS.txt Spec, ARIA 1.2

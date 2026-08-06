@@ -4,6 +4,7 @@ import AllyraStoryPage from "./AllyraStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
+import { useSEOManager } from "@/hooks/useSEOManager";
 import BrandVector from "@/components/BrandVector";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
@@ -1159,6 +1160,8 @@ export default function App() {
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));
   const [hasScrolled, setHasScrolled] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
+  
+  useSEOManager(currentPath);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [showCursor, setShowCursor] = useState(false);
   const [cursorText, setCursorText] = useState("Read Story");
@@ -1341,8 +1344,10 @@ export default function App() {
     );
   } else {
     content = (
-      <>
-        <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
+      <main role="main">
+        <header role="banner">
+          <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
+        </header>
         {/* Outer shell: true scrollable height accounts for scaling + offset space */}
         <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
           {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
@@ -1359,7 +1364,7 @@ export default function App() {
           <CraftExpandOverlay />
           <RecommendationsScrollOverlay />
         </div>
-      </>
+      </main>
     );
   }
 

@@ -245,13 +245,16 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
   };
 
   return (
-    <div style={{
-      width: "100%",
-      minHeight: "100vh",
-      position: "relative",
-      background: "#FFFDFA",
-      overflowX: "hidden",
-    }}>
+    <article 
+      role="article"
+      style={{
+        width: "100%",
+        minHeight: "100vh",
+        position: "relative",
+        background: "#FFFDFA",
+        overflowX: "hidden",
+      }}
+    >
       {/* ── Dynamic Background Bands ── */}
       <DynamicBgBand top={1076} height={1680} scale={scale} onViewChange={setIsChallengeInView} />
       <DynamicBgBand top={7847} height={820} scale={scale} onViewChange={setIsOneThingInView} />
@@ -274,6 +277,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
           {/* Back Pill Button */}
           <div
             onClick={onBack}
+            role="button"
+            aria-label="Back to Homepage"
             style={{ pointerEvents: "auto" }}
             className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[90px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group cursor-pointer"
           >
@@ -751,6 +756,6 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
       <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
-    </div>
+    </article>
   );
 }

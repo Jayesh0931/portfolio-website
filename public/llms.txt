@@ -1,0 +1,33 @@
+# Jayesh Soni - Portfolio & AI Product Engineering Directory
+
+> Product Lead & AI Product Designer specializing in Enterprise AI Workforce systems, Human-AI Collaboration, and Interaction Architecture.
+
+## Executive Summary
+Jayesh Soni designs the moments where people decide whether to trust intelligent systems. His work spans scaling AI from individual agents to enterprise-grade workflows, designing trustworthy AI interactions, and crafting autonomous monitoring systems.
+
+- **Website**: https://jayeshsoni.com
+- **Role**: Product Lead & AI Product Designer
+- **Specialization**: Enterprise AI Workforce, Generative Workflows, Human-AI Collaboration, Interaction Design
+
+## Key Case Studies & Projects
+
+- [Allyra.ai Story](https://jayeshsoni.com/allyra-story): Scaling AI from individual agents to enterprise-grade workflows. Features agent orchestra orchestration, governance, and enterprise deployment.
+- [Campaign OS Story](https://jayeshsoni.com/campaign-os-story): Designing an autonomous marketing & campaign operating system. Features connected workflows, conversational analytics, and calm monitoring.
+- [tulah](https://jayeshsoni.com/#story-03-block): Simplifying wellness operations through thoughtful workflow design.
+- [VousVous](https://jayeshsoni.com/#story-04-block): Designing trustworthy AI interactions for modern relationships.
+- [Joonify](https://jayeshsoni.com/#story-05-block): Early-stage AI product design and talent discovery platforms.
+
+## Core Design & Product Principles
+
+1. **Reliable Outcomes over Autonomous Hype**: People don't want autonomous AI for its own sake; people want reliable outcomes built on well-designed collaboration between humans and AI.
+2. **Progressive Disclosure**: Reducing cognitive load through contextual side panels, progressive disclosure, and calm monitoring.
+3. **Conversational Analytics**: Transforming static analytics dashboards into dynamic, conversational AI interactions.
+4. **Calm Monitoring**: Surfacing autonomous monitoring alerts only when human intervention is genuinely needed.
+
+## Contact & Links
+
+- Website: https://jayeshsoni.com
+- LinkedIn: https://www.linkedin.com/in/jayeshsoni09/
+- X / Twitter: https://x.com/jayeshsoni_
+- GitHub: https://github.com/Jayesh0931
+- Full LLM Context: https://jayeshsoni.com/llms-full.txt

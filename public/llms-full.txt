@@ -1,0 +1,58 @@
+# Jayesh Soni — Full Extended Portfolio & Case Study Knowledge Graph
+
+> Comprehensive knowledge graph for AI search engines, RAG systems, and LLMs indexing https://jayeshsoni.com.
+
+## About Jayesh Soni
+Jayesh Soni is a Product Lead and AI Product Designer based in 2026. He shapes how intelligent systems interact with humans, turning complex multi-agent architectures into intuitive, trust-inspiring software products.
+
+### Professional Focus Areas
+- **Enterprise AI Workforce**: Orchestrating multi-agent collaboration across complex business operations.
+- **Human-AI Collaboration**: Crafting interaction patterns where humans maintain control, oversight, and trust while AI executes repetitive or analytical tasks.
+- **Interaction Architecture**: Utilizing progressive disclosure, contextual side panels, motion design, and calm monitoring to eliminate cognitive overload.
+- **Product Leadership**: Guiding product vision, driving validation metrics, and building scalable software systems.
+
+---
+
+## Detailed Case Study 1: Allyra.ai
+- **URL**: https://jayeshsoni.com/allyra-story
+- **Title**: Scaling AI from Individual Agents to Enterprise-Grade Workflows
+- **Summary**: Allyra.ai solves the fundamental challenge of moving enterprise AI beyond single point-solution chatbots into unified, multi-agent workflows.
+
+### Key Milestones & Contributions
+- **Agent Governance & Portal Dashboard**: Created centralized control centers for monitoring agent activities, compliance, and enterprise data permissions.
+- **Workflow Composite Engine**: Designed drag-and-drop and natural language workflow builders for enterprise teams to chain AI agents together.
+- **Outcome Validation**: Proven reduction in operational friction for enterprise deployment, establishing human-in-the-loop auditability.
+
+---
+
+## Detailed Case Study 2: Campaign OS
+- **URL**: https://jayeshsoni.com/campaign-os-story
+- **Title**: Autonomous Campaign Operating System & Conversational Analytics
+- **Summary**: Campaign OS transforms marketing campaign management from disconnected tools into an active AI collaborator throughout the campaign lifecycle.
+
+### Key Features & Innovation Highlights
+- **Connected Workflows**: Unified campaign planning, execution, and optimization into a single continuous canvas.
+- **Conversational Analytics**: Converted static performance charts into interactive AI conversations that explain the "why" behind campaign performance metrics.
+- **Living Insights**: Reusable, modular AI insight blocks that can be remixed, expanded, or shared across marketing teams.
+- **Calm Monitoring**: Autonomous background monitoring that only alerts marketers when human decision-making is strictly required.
+
+---
+
+## Additional Selected Works
+
+### 1. tulah (2025)
+- **Concept**: Streamlining wellness operations and clinical workflow management through human-centered software.
+
+### 2. VousVous (2025)
+- **Concept**: Interaction design for AI-assisted relational tools and trustworthy digital communication.
+
+### 3. Joonify (2022)
+- **Concept**: Early-stage talent assessment and AI-powered evaluation platforms.
+
+---
+
+## Metadata & Social Entity Mapping
+- **Official Website**: https://jayeshsoni.com
+- **LinkedIn**: https://www.linkedin.com/in/jayeshsoni09/
+- **X / Twitter**: https://x.com/jayeshsoni_
+- **GitHub**: https://github.com/Jayesh0931

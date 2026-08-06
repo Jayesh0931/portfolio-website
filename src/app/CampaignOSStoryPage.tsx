@@ -1,25 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import videoCosOpportunity from "@/imports/cos-opportunity.mp4";
-import videoOpportunity from "@/imports/Opportunity Video.mp4";
-import videoD1 from "@/imports/D1.mp4";
-import videoD2 from "@/imports/D2.mp4";
-import videoD3 from "@/imports/D3.mp4";
-import videoD4 from "@/imports/D4.mp4";
-import videoE4 from "@/imports/E4.mp4";
-import videoE5 from "@/imports/E5.mp4";
-import imgE1 from "@/imports/E1.png";
-import imgE2 from "@/imports/E2.png";
-import imgE3_1 from "@/imports/E3.1.png";
-import imgE3_2 from "@/imports/E3.2.png";
+import videoCosCraft1 from "@/imports/cos-craft-1.mp4";
+import videoCosCraft2 from "@/imports/cos-craft-2.mp4";
+import videoCosCraft4 from "@/imports/cos-craft-4.mp4";
+import videoCosCraft3 from "@/imports/cos-craft-3.mp4";
+import videoCosCraft5 from "@/imports/cos-craft-5.mp4";
 import imgCosStoryHero from "@/imports/cos-story-hero.png";
 import imgCampaignOSLogo from "@/imports/campaignos_logo.png";
 import imgWIDCampaignOS from "@/imports/WID-campaignos.png";
-import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
-import imgEllipse6 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
-import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import BrandVector from "@/components/BrandVector";
-import imgProfile from "@/imports/Profile Image Full Size.png";
 import Footer from "@/components/Footer";
+import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 interface CampaignOSStoryPageProps {
   scale?: number;
@@ -74,6 +66,87 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
         onLoadedData={() => setIsLoaded(true)}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
       />
+    </div>
+  );
+}
+
+function CraftVideo({ 
+  src, 
+  className, 
+  description, 
+  muted = true, 
+  playbackRate = 1 
+}: { 
+  src: string; 
+  className?: string; 
+  description?: string; 
+  muted?: boolean;
+  playbackRate?: number;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current && playbackRate !== 1) {
+      videoRef.current.playbackRate = playbackRate;
+    }
+  }, [playbackRate, isLoaded]);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    const video = videoRef.current;
+    if (video) {
+      video.playbackRate = playbackRate;
+      video.play().catch(() => {});
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+    }
+  };
+
+  const handleClick = () => {
+    window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
+  };
+
+  return (
+    <div
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      data-custom-cursor="full-screen"
+      className="relative size-full overflow-hidden cursor-pointer group"
+    >
+      {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-10" />}
+      <video
+        ref={videoRef}
+        src={src}
+        loop
+        muted={muted}
+        playsInline
+        onLoadedData={() => setIsLoaded(true)}
+        className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+      />
+      {/* Dark gradient overlay & 1-2 line description (fades out completely when hover-playing) */}
+      <div 
+        className={`absolute inset-x-0 bottom-0 p-6 pt-24 pointer-events-none z-20 flex items-end transition-opacity duration-300 ease-in-out ${
+          isHovered ? "opacity-0" : "opacity-100"
+        }`}
+        style={{
+          background: "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%)",
+        }}
+      >
+        {description && (
+          <p className="font-outfit font-semibold text-[#FFFDFA] text-[17px] leading-[1.4] m-0 drop-shadow-md tracking-[0.2px]">
+            {description}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -181,7 +254,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
     }}>
       {/* ── Dynamic Background Bands ── */}
       <DynamicBgBand top={1076} height={1680} scale={scale} onViewChange={setIsChallengeInView} />
-      <DynamicBgBand top={7847} height={750} scale={scale} onViewChange={setIsOneThingInView} />
+      <DynamicBgBand top={7847} height={820} scale={scale} onViewChange={setIsOneThingInView} />
 
       {/* ── Canvas Scroll Spacer ── */}
       <div style={{ height: `${CANVAS_H * scale}px`, width: "100%", position: "relative" }}>
@@ -202,7 +275,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
           <div
             onClick={onBack}
             style={{ pointerEvents: "auto" }}
-            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[98px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group cursor-pointer"
+            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[90px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group cursor-pointer"
           >
             <div className="flex h-[11px] items-center justify-center relative shrink-0 w-[11px]">
               <svg className="size-full" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +290,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
           {/* Nav Overlapping Circles on Top Right */}
           <div
             style={{ pointerEvents: "auto" }}
-            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1302px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm"
+            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1292px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm"
           >
             <BrandVector theme="dark" width={48} height={32} />
           </div>
@@ -548,23 +621,37 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
               {/* Left Column (Total Height: 180 + 24 + 340 + 24 + 500 = 1068px) */}
               <div className="flex flex-col gap-6">
                 {/* L1: Text Callout Box */}
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid p-[24px] h-[180px] flex flex-col justify-center">
-                  <p className="font-outfit font-normal text-[#77695d] text-[16px] leading-[1.4] mb-2">
-                    Beyond the primary workflows, the product relied heavily on interaction design to make AI feel responsive without becoming overwhelming.
-                  </p>
-                  <p className="font-outfit font-normal text-[#77695d] text-[16px] leading-[1.4] margin-0">
-                    <span className="font-outfit font-bold text-[#190b00]">Motion / Progressive Disclosure / Contextual Side Panels / Conversational Transitions</span> were designed to reduce cognitive load while maintaining transparency.
+                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid p-[24px] h-[180px] flex flex-col justify-between">
+                  <div className="flex flex-col gap-1.5">
+                    <p className="font-outfit font-normal text-[#77695d] text-[15px] leading-[1.35] margin-0">
+                      Beyond the primary workflows, the product relied heavily on interaction design to make AI feel responsive without becoming overwhelming.
+                    </p>
+                    <p className="font-outfit font-normal text-[#77695d] text-[15px] leading-[1.35] margin-0">
+                      <span className="font-outfit font-bold text-[#190b00]">Motion / Progressive Disclosure / Contextual Side Panels / Conversational Transitions</span> were designed to reduce cognitive load while maintaining transparency.
+                    </p>
+                  </div>
+                  <p className="font-outfit italic font-medium text-[#EE6C13] text-[14px] leading-[normal] margin-0">
+                    Hover to preview interactions.
                   </p>
                 </div>
 
                 {/* L2: Middle Horizontal Video Card */}
                 <div className="w-full h-[340px] border border-[#7b7a77] bg-[#e5ddd4] overflow-hidden">
-                  <ViewportVideo src={videoOpportunity} className="size-full object-cover" />
+                  <CraftVideo 
+                    src={videoCosCraft1} 
+                    className="size-full object-cover" 
+                    description="Contextual prompt suggestions guiding campaign strategy and multi-step AI execution."
+                  />
                 </div>
 
                 {/* L3: Bottom Large Square Video Card */}
                 <div className="w-full h-[500px] border border-[#7b7a77] bg-[#e5ddd4] overflow-hidden">
-                  <ViewportVideo src={videoD3} className="size-full object-cover" />
+                  <CraftVideo 
+                    src={videoCosCraft3} 
+                    className="size-full object-cover" 
+                    description="Interactive workspace canvas for exploring, remixing, and refining AI campaign assets."
+                    muted={false}
+                  />
                 </div>
               </div>
 
@@ -572,17 +659,30 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
               <div className="flex flex-col gap-6">
                 {/* R1: Top Tall Portrait Video Card */}
                 <div className="w-full h-[480px] border border-[#7b7a77] bg-[#e5ddd4] overflow-hidden">
-                  <ViewportVideo src={videoD1} className="size-full object-cover" />
+                  <CraftVideo 
+                    src={videoCosCraft2} 
+                    className="size-full object-cover" 
+                    description="Real-time multi-channel campaign deployment with live performance telemetry."
+                  />
                 </div>
 
                 {/* R2: Middle Horizontal Video Card */}
                 <div className="w-full h-[270px] border border-[#7b7a77] bg-[#e5ddd4] overflow-hidden">
-                  <ViewportVideo src={videoD2} className="size-full object-cover" />
+                  <CraftVideo 
+                    src={videoCosCraft4} 
+                    className="size-full object-cover" 
+                    description="Conversational analytics interface turning complex data dashboards into actionable narrative insights."
+                  />
                 </div>
 
                 {/* R3: Bottom Horizontal Video Card */}
                 <div className="w-full h-[270px] border border-[#7b7a77] bg-[#e5ddd4] overflow-hidden">
-                  <ViewportVideo src={videoD4} className="size-full object-cover" />
+                  <CraftVideo 
+                    src={videoCosCraft5} 
+                    className="size-full object-cover" 
+                    description="Autonomous monitoring and intelligent audience segmentation with human-in-the-loop controls."
+                    playbackRate={1.25}
+                  />
                 </div>
               </div>
             </div>
@@ -636,6 +736,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
         backgroundColor: "#190b00",
         position: "relative",
         zIndex: 10,
+        marginTop: "-2px",
       }}>
         <div style={{
           transform: `scale(${scale})`,
@@ -645,51 +746,11 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
         </div>
       </div>
 
-      {/* ─── NEXT STORY BOTTOM STRIP (80px light bg strip after footer) ─── */}
-      <div style={{
-        height: 80,
-        width: "100%",
-        backgroundColor: "#FFFDFA",
-        borderTop: "1px solid #7b7a77",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        zIndex: 10,
-      }}>
-        <div
-          onClick={() => {
-            if (onNextStory) {
-              onNextStory();
-            } else {
-              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/allyra-story" }));
-              window.scrollTo(0, 0);
-            }
-          }}
-          style={{ cursor: "pointer", pointerEvents: "auto" }}
-          className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] bg-[#fffdfa] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[24px] rounded-[110px] shadow-sm transition-all duration-200 group"
-        >
-          <span className="font-outfit font-black text-[#190b00] group-hover:text-[#fffdfa] text-[14px] tracking-[0.56px] uppercase whitespace-nowrap transition-colors duration-200">
-            Go to Next Story
-          </span>
-          <svg className="size-[14px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 2.5L10.5 7.5L5 12.5" className="stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      </div>
+      {/* ─── NEXT STORY BOTTOM STRIP ─── */}
+      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/allyra-story" />
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-        className={`fixed bottom-8 right-8 z-[999] size-[50px] rounded-full bg-[#fffdfa] text-[#190b00] border border-[#7b7a77] shadow-xl flex items-center justify-center transition-all duration-300 hover:bg-[#ee6c13] hover:text-white hover:border-[#ee6c13] hover:scale-110 active:scale-95 ${
-          showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <svg className="size-6 stroke-current" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 19V5M5 12l7-7 7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+      <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
     </div>
   );
 }

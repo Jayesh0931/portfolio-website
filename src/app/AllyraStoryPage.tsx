@@ -8,14 +8,6 @@ import videoD4 from "@/imports/D4.mp4";
 import imgAllyraStoryHero from "@/imports/allyra_story_hero.png";
 import imgWIDAllyra from "@/imports/WID-allyra.png";
 import imgAllyraLogo from "@/imports/allyra_logo.png";
-import imgHiring from "@/imports/allyra_hiring_kanban.jpg";
-import imgPortal from "@/imports/allyra_portal_dashboard.jpg";
-import imgAgentCreation from "@/imports/allyra_agent_creation.jpg";
-import imgTrainingInterface from "@/imports/allyra_training_interface.jpg";
-import imgTeamNetwork from "@/imports/allyra_team_network.jpg";
-import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
-import imgEllipse6 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
-import imgEllipse7 from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import imgE1 from "@/imports/E1.png";
@@ -24,6 +16,8 @@ import imgE3_1 from "@/imports/E3.1.png";
 import imgE3_2 from "@/imports/E3.2.png";
 import videoE4 from "@/imports/E4.mp4";
 import videoE5 from "@/imports/E5.mp4";
+import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 interface AllyraStoryPageProps {
   scale?: number;
@@ -251,7 +245,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           <div 
             onClick={onBack}
             style={{ cursor: "pointer", transition: "all 0.2s", pointerEvents: "auto" }}
-            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[98px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
+            className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[8px] h-[40px] items-center justify-center left-[90px] px-[16px] py-[6px] rounded-[110px] top-[33px] z-10 shadow-sm transition-all duration-200 group" 
             data-node-id="1:26"
           >
             <div className="flex h-[11px] items-center justify-center relative shrink-0 w-[11px]" data-node-id="1:27">
@@ -267,7 +261,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           {/* Nav Overlapping Circles on Top Right with Pill-shaped BG */}
           <div 
             style={{ pointerEvents: "auto" }}
-            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1302px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm" 
+            className="absolute bg-[#fffdfa] rounded-[110px] flex items-center justify-center left-[1292px] top-[33px] w-[58px] h-[40px] z-10 shadow-sm" 
             data-node-id="1:23"
           >
             <BrandVector theme="dark" width={48} height={32} />
@@ -294,7 +288,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         {/* Background band for One Thing I Learned and Footer CTA */}
         <DynamicBgBand 
           top={13804} 
-          height={660} 
+          height={720} 
           scale={scale} 
           onViewChange={setIsOneThingInView}
         />
@@ -1098,7 +1092,6 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         </div>
 
       </div>
-
       </div>
 
       {/* ─── NEXT ? / FOOTER CARD (Centered in 100vh) ─── */}
@@ -1111,6 +1104,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         backgroundColor: "#190b00",
         position: "relative",
         zIndex: 10,
+        marginTop: "-2px",
       }}>
         <div style={{
           transform: `scale(${scale})`,
@@ -1120,51 +1114,11 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         </div>
       </div>
 
-      {/* ─── NEXT STORY BOTTOM STRIP (80px light bg strip after footer) ─── */}
-      <div style={{
-        height: 80,
-        width: "100%",
-        backgroundColor: "#FFFDFA",
-        borderTop: "1px solid #7b7a77",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-        zIndex: 10,
-      }}>
-        <div
-          onClick={() => {
-            if (onNextStory) {
-              onNextStory();
-            } else {
-              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/campaign-os-story" }));
-              window.scrollTo(0, 0);
-            }
-          }}
-          style={{ cursor: "pointer", pointerEvents: "auto" }}
-          className="hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] bg-[#fffdfa] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[24px] rounded-[110px] shadow-sm transition-all duration-200 group"
-        >
-          <span className="font-outfit font-black text-[#190b00] group-hover:text-[#fffdfa] text-[14px] tracking-[0.56px] uppercase whitespace-nowrap transition-colors duration-200">
-            Go to Next Story
-          </span>
-          <svg className="size-[14px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 2.5L10.5 7.5L5 12.5" className="stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
-      </div>
+      {/* ─── NEXT STORY BOTTOM STRIP ─── */}
+      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" />
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-        className={`fixed bottom-8 right-8 z-[999] size-[50px] rounded-full bg-[#fffdfa] text-[#190b00] border border-[#7b7a77] shadow-xl flex items-center justify-center transition-all duration-300 hover:bg-[#ee6c13] hover:text-white hover:border-[#ee6c13] hover:scale-110 active:scale-95 ${
-          showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <svg className="size-6 stroke-current" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 19V5M5 12l7-7 7 7" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
+      <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
     </div>
   );
 }

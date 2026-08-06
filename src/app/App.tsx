@@ -157,9 +157,9 @@ const navItems = [
 //   Story 02 h=690+90 → Story 03 at 4169
 //   Story 03 h=690+90 → Story 04 at 4949
 const bentoCards = [
-  { top: 327, left: 580,  width: 500, height: 360, scrollY: 2609, theme: "dark"  }, // allyra  → Story 01
+  { top: 327, left: 580,  width: 500, height: 360, path: "/allyra-story", scrollY: 2609, theme: "dark"  }, // allyra  → Story 01
   { top: 707, left: 580,  width: 370, height: 200, scrollY: 3389, theme: "light" }, // tulah   → Story 02
-  { top: 707, left: 970,  width: 370, height: 200, scrollY: 4949, theme: "orange" }, // joonify → Story 04
+  { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 4949, theme: "orange" }, // Campaign OS → Story 02
   { top: 327, left: 1100, width: 240, height: 220, scrollY: 4169, theme: "light" }, // VousVous→ Story 03
   { top: 567, left: 1100, width: 240, height: 120, scrollY: 6623, theme: "light" }, // Stanford→ Focus
 ];
@@ -167,12 +167,18 @@ const bentoCards = [
 function CardHoverOverlays() {
   return (
     <>
-      {bentoCards.map(({ top, left, width, height, scrollY, theme }, i) => (
+      {bentoCards.map(({ top, left, width, height, path, scrollY, theme }, i) => (
         <div
           key={i}
           className={`card-overlay card-overlay-${theme}`}
           style={{ top, left, width, height }}
-          onClick={() => scrollToY(scrollY)}
+          onClick={() => {
+            if (path) {
+              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: path }));
+            } else {
+              scrollToY(scrollY);
+            }
+          }}
         />
       ))}
     </>
@@ -209,33 +215,7 @@ function BentoArrowLinks() {
   );
 }
 
-function NavHoverOverlay() {
-  return (
-    <>
-      {navItems.map(({ left, label, icon, scrollY }) => (
-        <div
-          key={label}
-          className="nav-pill"
-          data-nav={label.toLowerCase()}
-          style={{ left }}
-          onClick={() => scrollToY(scrollY)}
-        >
-          <span>{label}</span>
-          {icon === "down" && (
-            <svg width="11" height="11" viewBox="0 0 11 11.3137" fill="none">
-              <path d={svgPaths.p20be5a00} />
-            </svg>
-          )}
-          {icon === "diagonal" && (
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-              <path d={svgPaths.p18019200} />
-            </svg>
-          )}
-        </div>
-      ))}
-    </>
-  );
-}
+
 
 
 
@@ -1101,14 +1081,14 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
       zIndex: 9999,
     }}>
       {/* Jayesh Soni - scrolls to top */}
-      <div style={{ position: "absolute", left: 98, top: 0 }}>
+      <div style={{ position: "absolute", left: 90, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(false)} onClick={() => scrollToY(0)}>
           <span style={textStyle}>Jayesh Soni</span>
         </div>
       </div>
 
       {/* Stories - scrolls to 2077 */}
-      <div style={{ position: "absolute", left: 1010, top: 0 }}>
+      <div style={{ position: "absolute", left: 998, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(2077)}>
           <span style={textStyle}>
             Stories
@@ -1129,7 +1109,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
       </div>
 
       {/* Craft */}
-      <div style={{ position: "absolute", left: 1135, top: 0 }}>
+      <div style={{ position: "absolute", left: 1123, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => {
           const el = document.getElementById("focus-section-block");
           if (el) {
@@ -1158,7 +1138,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
       </div>
 
       {/* About - scrolls to 1127 */}
-      <div style={{ position: "absolute", left: 1250, top: 0 }}>
+      <div style={{ position: "absolute", left: 1238, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(1127)}>
           <span style={textStyle}>
             About
@@ -1325,7 +1305,7 @@ export default function App() {
   }
 
   let content = null;
-  if (currentPath === "/allyra-story") {
+  if (currentPath.startsWith("/allyra-story")) {
     content = (
       <AllyraStoryPage 
         scale={scale} 
@@ -1342,7 +1322,7 @@ export default function App() {
         }}
       />
     );
-  } else if (currentPath === "/campaign-os-story") {
+  } else if (currentPath.startsWith("/campaign-os-story")) {
     content = (
       <CampaignOSStoryPage 
         scale={scale} 

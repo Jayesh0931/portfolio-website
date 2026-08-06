@@ -190,7 +190,7 @@ function Group7() {
       </div>
       {/* ── allyra.ai card ── */}
       {/* ── allyra.ai card ── */}
-      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerScrollToId("story-01-block")} isStoryCard>
+      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerNavigate("/allyra-story")} isStoryCard>
         <div style={{ position: "relative", width: "100%", height: "100%", padding: 20, boxSizing: "border-box", overflow: "hidden" }}>
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 2 }}>
@@ -284,7 +284,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Campaign OS card (Story 02) ── */}
-      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-02-block")} isStoryCard>
+      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/campaign-os-story")} isStoryCard>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           
           {/* Right MacBook Mockup Image (Positioned flush on right half) */}

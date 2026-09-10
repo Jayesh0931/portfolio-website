@@ -531,7 +531,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
                 <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full" data-node-id="1:275">
                   <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:276">
                     <p className="font-outfit font-bold font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0" data-node-id="1:277">
-                      20+
+                      10+
                     </p>
                     <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0" data-node-id="1:278">
                       Enterprise Use Allyra
@@ -1120,7 +1120,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
       </div>
 
       {/* ─── NEXT STORY BOTTOM STRIP ─── */}
-      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" />
+      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/tulah-story" />
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
       <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />

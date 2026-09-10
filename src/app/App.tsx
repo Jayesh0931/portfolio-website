@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
+import TulahStoryPage from "./TulahStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
+import MobileHomepage from "./components/mobile/MobileHomepage";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
 import { useSEOManager } from "@/hooks/useSEOManager";
+import { useAutoScroll, triggerAutoScroll } from "@/hooks/useAutoScroll";
 import BrandVector from "@/components/BrandVector";
 import imgEllipse5 from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipse6 from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
@@ -159,9 +162,9 @@ const navItems = [
 //   Story 03 h=690+90 → Story 04 at 4949
 const bentoCards = [
   { top: 327, left: 580,  width: 500, height: 360, path: "/allyra-story", scrollY: 2609, theme: "dark"  }, // allyra  → Story 01
-  { top: 707, left: 580,  width: 370, height: 200, scrollY: 3389, theme: "light" }, // tulah   → Story 02
-  { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 4949, theme: "orange" }, // Campaign OS → Story 02
-  { top: 327, left: 1100, width: 240, height: 220, scrollY: 4169, theme: "light" }, // VousVous→ Story 03
+  { top: 707, left: 580,  width: 370, height: 200, path: "/tulah-story", scrollY: 3389, theme: "light" }, // tulah   → Story 02
+  { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 4949, theme: "orange" }, // Campaign OS → Story 03
+  { top: 327, left: 1100, width: 240, height: 220, scrollY: 4169, theme: "light" }, // VousVous→ Story 04
   { top: 567, left: 1100, width: 240, height: 120, scrollY: 6623, theme: "light" }, // Stanford→ Focus
 ];
 
@@ -621,7 +624,10 @@ function MobileView() {
             </span>
           ))}
         </div>
-        <div style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase", marginTop: "4px" }}>
+        <div 
+          onClick={(e) => triggerAutoScroll(e)}
+          style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase", marginTop: "4px", cursor: "pointer" }}
+        >
           <span>Scroll to explore</span>
           <span>↙</span>
         </div>
@@ -1155,6 +1161,7 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
 
 export default function App() {
   useDynamicFavicon();
+  useAutoScroll();
   const isBlurred = usePageProtection();
   const { scale, left } = useLayout();
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));
@@ -1299,10 +1306,68 @@ export default function App() {
   }, []);
 
   if (vw < 768) {
+    if (currentPath.startsWith("/allyra-story")) {
+      return (
+        <AllyraStoryPage 
+          scale={1} 
+          left={0} 
+          onBack={() => {
+            window.history.pushState({}, "", "/");
+            setCurrentPath("/");
+            window.scrollTo(0, 0);
+          }} 
+          onNextStory={() => {
+            window.history.pushState({}, "", "/tulah-story");
+            setCurrentPath("/tulah-story");
+            window.scrollTo(0, 0);
+          }}
+        />
+      );
+    } else if (currentPath.startsWith("/tulah-story")) {
+      return (
+        <TulahStoryPage 
+          scale={1} 
+          left={0} 
+          onBack={() => {
+            window.history.pushState({}, "", "/");
+            setCurrentPath("/");
+            window.scrollTo(0, 0);
+          }} 
+          onNextStory={() => {
+            window.history.pushState({}, "", "/campaign-os-story");
+            setCurrentPath("/campaign-os-story");
+            window.scrollTo(0, 0);
+          }}
+        />
+      );
+    } else if (currentPath.startsWith("/campaign-os-story")) {
+      return (
+        <CampaignOSStoryPage 
+          scale={1} 
+          left={0} 
+          onBack={() => {
+            window.history.pushState({}, "", "/");
+            setCurrentPath("/");
+            window.scrollTo(0, 0);
+          }} 
+          onNextStory={() => {
+            window.history.pushState({}, "", "/allyra-story");
+            setCurrentPath("/allyra-story");
+            window.scrollTo(0, 0);
+          }}
+        />
+      );
+    }
+
     return (
-      <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", background: "#ffffff", minHeight: "100vh" }}>
-        <style>{marqueeStyles}</style>
-        <MobileView />
+      <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", minHeight: "100vh" }}>
+        <MobileHomepage 
+          onNavigatePath={(path) => {
+            window.history.pushState({}, "", path);
+            setCurrentPath(path);
+            window.scrollTo(0, 0);
+          }} 
+        />
       </div>
     );
   }
@@ -1311,6 +1376,23 @@ export default function App() {
   if (currentPath.startsWith("/allyra-story")) {
     content = (
       <AllyraStoryPage 
+        scale={scale} 
+        left={left} 
+        onBack={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+          window.scrollTo(0, 0);
+        }} 
+        onNextStory={() => {
+          window.history.pushState({}, "", "/tulah-story");
+          setCurrentPath("/tulah-story");
+          window.scrollTo(0, 0);
+        }}
+      />
+    );
+  } else if (currentPath.startsWith("/tulah-story")) {
+    content = (
+      <TulahStoryPage 
         scale={scale} 
         left={left} 
         onBack={() => {

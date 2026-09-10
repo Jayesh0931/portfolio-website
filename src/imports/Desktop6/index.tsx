@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { triggerAutoScroll } from "@/hooks/useAutoScroll";
 import svgPaths from "./svg-rk1gtf9dz9";
 import imgEllipse5 from "./49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import Footer from "../../components/Footer";
@@ -9,6 +10,8 @@ import imgAllyraCoverSmall from "../allyra_cover_small.png";
 import imgAllyraCoverBig from "../allyra_cover_big.png";
 import imgCosCoverSmall from "../cos_cover_small.png";
 import imgCosCoverLarge from "../cos_cover_large.png";
+import imgTulahSmallThumb from "../tulah_small_thumb.png";
+import imgTulahLargeThumb from "../tulah_large_thumb.png";
 import BrandVector from "../../components/BrandVector";
 
 function Group() {
@@ -90,10 +93,13 @@ function Frame12() {
 
 function Frame8() {
   return (
-    <div className="absolute content-stretch flex gap-[8px] items-center left-[110px] top-[882px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-pre">{`SCROLL TO  EXPLORE`}</p>
+    <div 
+      className="absolute content-stretch flex gap-[8px] items-center left-[110px] top-[882px] cursor-pointer group transition-opacity duration-200 hover:opacity-75"
+      onClick={(e) => triggerAutoScroll(e)}
+    >
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-pre transition-colors duration-200 group-hover:text-[#190b00]">{`SCROLL TO  EXPLORE`}</p>
       <div className="flex items-center justify-center relative shrink-0">
-        <div className="-scale-y-100 flex-none">
+        <div className="-scale-y-100 flex-none transition-transform duration-200 group-hover:translate-y-[2px]">
           <div className="relative size-[9px]" data-name="Vector">
             <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 9 9">
               <path d={svgPaths.p3e256a00} fill="var(--fill-0, #77695D)" id="Vector" />
@@ -266,19 +272,51 @@ function Group7() {
       </BentoCard>
 
       {/* ── tulah card (Story 03) ── */}
-      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-03-block")} isStoryCard>
-        <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 03 ] [ 2025 ]</p>
-            <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
+      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/tulah-story")} isStoryCard>
+        <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
+          
+          {/* Background Mockup Image (Shifted down so top edge of laptop sits below text) */}
+          <img 
+            src={imgTulahSmallThumb} 
+            alt="tulah story mockup"
+            style={{
+              position: "absolute",
+              right: "-5px",
+              bottom: "-35px",
+              width: "380px",
+              height: "auto",
+              objectFit: "contain",
+              display: "block",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Foreground Text Layer */}
+          <div style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", padding: "14px 16px", boxSizing: "border-box" }}>
+            
+            {/* Top Header Row */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>
+                [ STORY 03 ] [ 2025 ]
+              </p>
+              <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d={svgPaths.p18019200} fill="#77695D" />
+                </svg>
+              </div>
             </div>
-          </div>
-          <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>tulah</p>
-            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>Simplifying wellness operations through thoughtful workflow design.</p>
+
+            {/* Title & Subtitle on Top Left Clear Space */}
+            <div style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 4, maxWidth: "230px" }}>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 28, color: "#190b00", margin: 0, lineHeight: 1 }}>
+                tulah
+              </p>
+              <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 13, color: "#7b7b7b", lineHeight: "1.35" }}>
+                <p style={{ margin: 0 }}>Simplifying wellness operations through thoughtful workflow design.</p>
+              </div>
             </div>
+
           </div>
         </div>
       </BentoCard>
@@ -897,12 +935,14 @@ function Frame1() {
 
 function Frame47() {
   return (
-    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-          <Frame1 />
-        </div>
+    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full overflow-hidden">
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300 z-10" />
+      <div className="size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+        <img 
+          src={imgTulahLargeThumb} 
+          alt="tulah story cover" 
+          className="size-full object-cover display-block pointer-events-none" 
+        />
       </div>
     </div>
   );
@@ -983,6 +1023,7 @@ function Frame42() {
     <div 
       id="story-03-block"
       data-custom-cursor="read-story"
+      onClick={() => triggerNavigate("/tulah-story")}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame33 />

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import imgTulahStoryHero from "@/imports/tulah-story-hero.png";
-import imgTulahLogo from "@/imports/tulah_logo.png";
-import imgTulahCraft1 from "@/imports/tulah_craft_1.jpg";
+import imgTulahStoryHero from "@/imports/tulah-story-hero.webp";
+import imgTulahLogo from "@/imports/tulah_logo.webp";
+import imgTulahCraft1 from "@/imports/tulah_craft_1.webp";
 import videoTulahOpportunity from "@/imports/tulah_opportunity.mp4";
 import videoTulahD1 from "@/imports/tulah_D1.mp4";
 import videoTulahD2 from "@/imports/tulah_D2.mp4";
 import videoTulahD3 from "@/imports/tulah_D3.mp4";
 import videoTulahD4 from "@/imports/tulah_D4.mp4";
-import imgWIDTulah from "@/imports/WID-tulah.png";
+import imgWIDTulah from "@/imports/WID-tulah.webp";
 import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
@@ -21,7 +21,7 @@ interface TulahStoryPageProps {
 }
 
 const CANVAS_W = 1440;
-const CANVAS_H = 13854;
+const CANVAS_H = 14044;
 
 function ViewportVideo({ 
   src, 
@@ -264,14 +264,14 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
         />
         
         <DynamicBgBand 
-          top={6130} 
+          top={6320} 
           height={3234} 
           scale={scale} 
           onViewChange={setIsDecisionsInView}
         />
         
         <DynamicBgBand 
-          top={13194} 
+          top={13384} 
           height={720} 
           scale={scale} 
           onViewChange={setIsOneThingInView}
@@ -290,7 +290,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
         }} className="font-outfit select-none">
           
           {/* Background grid line */}
-          <div className="absolute h-[787.594px] left-[21.18%] right-[72.15%] top-[6940.67px]">
+          <div className="absolute h-[787.594px] left-[21.18%] right-[72.15%] top-[7130.67px]">
             <div className="absolute block inset-0 max-w-none size-full border-l border-dashed border-[#7b7a77] opacity-25" />
           </div>
 
@@ -458,7 +458,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           </div>
 
           {/* ─── WHAT I DROVE SECTION (Contribution Diagram layout) ─── */}
-          <div className="absolute left-[80px] top-[4041px] w-[1280px] h-[714px]">
+          <div className="absolute left-[80px] top-[4231px] w-[1280px] h-[714px]">
             <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[714px] left-0 w-[70px]">
               <div className="absolute flex items-center justify-center left-[10px] top-[115px] w-[50px]">
                 <div style={{ transform: "rotate(-90deg)", transformOrigin: "center", whiteSpace: "nowrap" }}>
@@ -494,7 +494,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           </div>
 
           {/* ─── FOUNDATION SECTION (Impact / Metric Grid layout) ─── */}
-          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5021px] w-[1280px] z-[2]">
+          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5211px] w-[1280px] z-[2]">
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start p-[30px] relative shrink-0 w-full overflow-hidden">
               <div className="content-stretch flex gap-[30px] items-center relative shrink-0 w-full justify-between">
                 <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start relative shrink-0">
@@ -594,8 +594,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── KEY PRODUCT DECISIONS SECTION (Starts at top-[6181px]) ─── */}
-          <div ref={keyDecisionsRef} className="absolute content-stretch flex flex-col gap-[60px] items-start left-[80px] top-[6181px] w-[1284px] z-[2]">
+          {/* ─── KEY PRODUCT DECISIONS SECTION (Starts at top-[6371px]) ─── */}
+          <div ref={keyDecisionsRef} className="absolute content-stretch flex flex-col gap-[60px] items-start left-[80px] top-[6371px] w-[1284px] z-[2]">
             <div className={`border border-solid content-stretch flex gap-[30px] items-center relative shrink-0 w-full transition-all duration-700 ease-in-out ${isDecisionsInView ? "bg-black border-[#7b7a77]/40 shadow-2xl" : "bg-[#fffdfa] border-[#7b7a77]"}`}>
               <div className="flex items-center justify-center relative shrink-0">
                 <div className="flex-none">
@@ -870,8 +870,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── EVIDENCE GRID PORTFOLIO (Starts top-[9514px] inside light container) ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[100px] items-start left-[80px] top-[9514px] w-[1280px] z-[2]">
+          {/* ─── EVIDENCE GRID PORTFOLIO (Starts top-[9704px] inside light container) ─── */}
+          <div className="absolute content-stretch flex flex-col gap-[100px] items-start left-[80px] top-[9704px] w-[1280px] z-[2]">
             <div className="[word-break:break-word] flex flex-col font-outfit font-black justify-center leading-[0] relative shrink-0 text-[#190b00] text-[140px] tracking-[5.6px] whitespace-nowrap margin-0">
               <p className="leading-[140px] margin-0">EVIDENCE</p>
             </div>
@@ -955,7 +955,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           </div>
 
           {/* ─── ONE THING I LEARNED SECTION ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[13314px] w-[1280px] z-[2]">
+          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[13504px] w-[1280px] z-[2]">
             <p className={`font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>
               <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
               <span>{` I LEARNED`}</span>

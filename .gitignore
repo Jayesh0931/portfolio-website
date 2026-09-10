@@ -5,4 +5,6 @@ dist/
 *.bak
 .agents/
 *.mov
+backup/
+*not used*/
 

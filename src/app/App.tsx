@@ -1496,6 +1496,7 @@ export default function App() {
       {fullScreenVideoSrc && (
         <div 
           onClick={() => setFullScreenVideoSrc(null)}
+          className={isBlurred ? "protection-blur-overlay" : ""}
           style={{
             position: "fixed",
             inset: 0,
@@ -1530,6 +1531,9 @@ export default function App() {
             src={fullScreenVideoSrc}
             autoPlay
             controls
+            controlsList="nodownload nofullscreen noremoteplayback"
+            disablePictureInPicture
+            onContextMenu={(e) => e.preventDefault()}
             playsInline
             onClick={(e) => e.stopPropagation()} // Stop click bubbling up to backdrop
             style={{

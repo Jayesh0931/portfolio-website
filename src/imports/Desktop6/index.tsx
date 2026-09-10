@@ -6,12 +6,12 @@ import Footer from "../../components/Footer";
 import imgEllipse6 from "./a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipse7 from "./ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";
 import imgEllipse8 from "./9ff71da8485c02d3fd081a21e1d07fea61940bec.png";
-import imgAllyraCoverSmall from "../allyra_cover_small.png";
-import imgAllyraCoverBig from "../allyra_cover_big.png";
-import imgCosCoverSmall from "../cos_cover_small.png";
-import imgCosCoverLarge from "../cos_cover_large.png";
-import imgTulahSmallThumb from "../tulah_small_thumb.png";
-import imgTulahLargeThumb from "../tulah_large_thumb.png";
+import imgAllyraCoverSmall from "../allyra_cover_small.webp";
+import imgAllyraCoverBig from "../allyra_cover_big.webp";
+import imgCosCoverSmall from "../cos_cover_small.webp";
+import imgCosCoverLarge from "../cos_cover_large.webp";
+import imgTulahSmallThumb from "../tulah_small_thumb.webp";
+import imgTulahLargeThumb from "../tulah_large_thumb.webp";
 import BrandVector from "../../components/BrandVector";
 
 function Group() {

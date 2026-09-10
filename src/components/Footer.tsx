@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import profileImg from "@/imports/Profile Image Full Size.png";
+import profileImg from "@/imports/Profile Image Full Size.webp";
 
 interface ContactButtonProps {
   label?: string;

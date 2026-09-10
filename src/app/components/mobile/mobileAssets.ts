@@ -1,30 +1,30 @@
 // HERO / BENTO SECTION THUMBS ("Small Thumbs")
-import imgAllyraCoverSmall from "@/imports/allyra_cover_small.png";
-import imgCosCoverSmall from "@/imports/cos_cover_small.png";
-import imgTulahSmallThumb from "@/imports/tulah_small_thumb.png";
+import imgAllyraCoverSmall from "@/imports/allyra_cover_small.webp";
+import imgCosCoverSmall from "@/imports/cos_cover_small.webp";
+import imgTulahSmallThumb from "@/imports/tulah_small_thumb.webp";
 
 // STORIES SECTION THUMBS ("Large / Big Thumbs")
-import imgAllyraCoverBig from "@/imports/allyra_cover_big.png";
-import imgCosCoverLarge from "@/imports/cos_cover_large.png";
-import imgTulahLargeThumb from "@/imports/tulah_large_thumb.png";
+import imgAllyraCoverBig from "@/imports/allyra_cover_big.webp";
+import imgCosCoverLarge from "@/imports/cos_cover_large.webp";
+import imgTulahLargeThumb from "@/imports/tulah_large_thumb.webp";
 
 // WORK ID CARDS / LOGOS
-import imgAllyraLogo from "@/imports/allyra_logo.png";
-import imgCosLogo from "@/imports/campaignos_logo.png";
-import imgTulahLogo from "@/imports/tulah_logo.png";
-import imgWidAllyra from "@/imports/WID-allyra.png";
-import imgWidCampaignOS from "@/imports/WID-campaignos.png";
-import imgWidTulah from "@/imports/WID-tulah.png";
+import imgAllyraLogo from "@/imports/allyra_logo.webp";
+import imgCosLogo from "@/imports/campaignos_logo.webp";
+import imgTulahLogo from "@/imports/tulah_logo.webp";
+import imgWidAllyra from "@/imports/WID-allyra.webp";
+import imgWidCampaignOS from "@/imports/WID-campaignos.webp";
+import imgWidTulah from "@/imports/WID-tulah.webp";
 
 // CRAFT SECTION IMAGES
-import imgE1 from "@/imports/E1.png";
-import imgE2 from "@/imports/E2.png";
-import imgE31 from "@/imports/E3.1.png";
-import imgE32 from "@/imports/E3.2.png";
-import imgTulahCraft1 from "@/imports/tulah_craft_1.jpg";
+import imgE1 from "@/imports/E1.webp";
+import imgE2 from "@/imports/E2.webp";
+import imgE31 from "@/imports/E3.1.webp";
+import imgE32 from "@/imports/E3.2.webp";
+import imgTulahCraft1 from "@/imports/tulah_craft_1.webp";
 
 // PROFILE & TESTIMONIAL AVATARS
-import imgProfile from "@/imports/Profile Image Full Size.png";
+import imgProfile from "@/imports/Profile Image Full Size.webp";
 import imgEllipseSteve from "@/imports/Desktop6/49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
 import imgEllipseAnkit from "@/imports/Desktop6/a91132eb75454691079ab470b1a18b7a63465b3c.png";
 import imgEllipseAnmol from "@/imports/Desktop6/ea2ebb970c11a33998a35f3c05333c9689a2bb47.png";

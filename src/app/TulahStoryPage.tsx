@@ -21,7 +21,7 @@ interface TulahStoryPageProps {
 }
 
 const CANVAS_W = 1440;
-const CANVAS_H = 14044;
+const CANVAS_H = 10300;
 
 function ViewportVideo({ 
   src, 
@@ -271,7 +271,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
         />
         
         <DynamicBgBand 
-          top={13384} 
+          top={9640} 
           height={720} 
           scale={scale} 
           onViewChange={setIsOneThingInView}
@@ -870,92 +870,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── EVIDENCE GRID PORTFOLIO (Starts top-[9704px] inside light container) ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[100px] items-start left-[80px] top-[9704px] w-[1280px] z-[2]">
-            <div className="[word-break:break-word] flex flex-col font-outfit font-black justify-center leading-[0] relative shrink-0 text-[#190b00] text-[140px] tracking-[5.6px] whitespace-nowrap margin-0">
-              <p className="leading-[140px] margin-0">EVIDENCE</p>
-            </div>
-            
-            {/* Evidence 1 */}
-            <div className="border border-[#7b7a77] border-solid content-stretch flex h-[690px] items-center relative shrink-0 w-[1280px]" style={{ background: "linear-gradient(90deg, #E5DDD4 0%, #FFFDFA 35.9%)" }}>
-              <div className="absolute top-[40px] left-[40px] w-[320px] content-stretch flex flex-col gap-[20px] z-10">
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] min-h-[55px] p-[20px] flex items-center box-border">
-                  <p className="w-full break-words [word-break:break-word] [overflow-wrap:anywhere] font-outfit font-bold leading-[1.3] text-[#77695d] text-[17px] tracking-[1px] uppercase margin-0">
-                    END-TO-END GUEST JOURNEY
-                  </p>
-                </div>
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] h-auto content-stretch flex flex-col p-[20px] box-border">
-                  <div className="w-full break-words [word-break:break-word] font-outfit font-normal leading-[1.6] text-[#77695d] text-[18px]">
-                    <p className="leading-[normal] mb-0">The platform supported the complete wellness journey—from pre-arrival onboarding and multidisciplinary consultations to retreat planning, on-site care, post-retreat reports, and long-term home care.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center">
-                <ShimmerImage alt="End to End Guest Journey Showcase" className="max-w-full max-h-full object-contain rounded-lg border border-[#7b7a77]/30 shadow-md" src={imgTulahStoryHero} />
-              </div>
-            </div>
-
-            {/* Evidence 2 */}
-            <div className="border border-[#7b7a77] border-solid content-stretch flex h-[690px] items-center relative shrink-0 w-[1280px]" style={{ background: "linear-gradient(90deg, #E5DDD4 0%, #FFFDFA 35.9%)" }}>
-              <div className="absolute top-[40px] left-[40px] w-[320px] content-stretch flex flex-col gap-[20px] z-10">
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] min-h-[55px] p-[20px] flex items-center box-border">
-                  <p className="w-full break-words [word-break:break-word] [overflow-wrap:anywhere] font-outfit font-bold leading-[1.3] text-[#77695d] text-[17px] tracking-[1px] uppercase margin-0">
-                    ROLE-BASED OPERATIONS
-                  </p>
-                </div>
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] h-auto content-stretch flex flex-col p-[20px] box-border">
-                  <div className="w-full break-words [word-break:break-word] font-outfit font-normal leading-[1.6] text-[#77695d] text-[18px]">
-                    <p className="leading-[normal] mb-0">Instead of one generic admin system, every operational team received dedicated workspaces aligned to their responsibilities, enabling coordinated execution without unnecessary complexity.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center">
-                <ShimmerImage alt="Role-Based Operations Showcase" className="max-w-full max-h-full object-contain rounded-lg border border-[#7b7a77]/30 shadow-md" src={imgTulahCraft1} />
-              </div>
-            </div>
-
-            {/* Evidence 3 */}
-            <div className="border border-[#7b7a77] border-solid content-stretch flex h-[690px] items-center relative shrink-0 w-[1280px]" style={{ background: "linear-gradient(90deg, #E5DDD4 0%, #FFFDFA 35.9%)" }}>
-              <div className="absolute top-[40px] left-[40px] w-[320px] content-stretch flex flex-col gap-[20px] z-10">
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] min-h-[55px] p-[20px] flex items-center box-border">
-                  <p className="w-full break-words [word-break:break-word] [overflow-wrap:anywhere] font-outfit font-bold leading-[1.3] text-[#77695d] text-[17px] tracking-[1px] uppercase margin-0">
-                    MULTIDISCIPLINARY CARE PLANNING
-                  </p>
-                </div>
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] h-auto content-stretch flex flex-col p-[20px] box-border">
-                  <div className="w-full break-words [word-break:break-word] font-outfit font-normal leading-[1.6] text-[#77695d] text-[18px]">
-                    <p className="leading-[normal] mb-0">Designed structured workflows that enabled Medical, Ayurveda, Nutrition, Fitness, Yoga and Diagnostics teams to collaboratively build one personalized retreat plan for every guest.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center">
-                <ShimmerImage alt="Multidisciplinary Care Planning Showcase" className="max-w-full max-h-full object-contain rounded-lg border border-[#7b7a77]/30 shadow-md" src={imgTulahStoryHero} />
-              </div>
-            </div>
-
-            {/* Evidence 4 */}
-            <div className="border border-[#7b7a77] border-solid content-stretch flex h-[690px] items-center relative shrink-0 w-[1280px]" style={{ background: "linear-gradient(90deg, #E5DDD4 0%, #FFFDFA 35.9%)" }}>
-              <div className="absolute bg-[#ee6c13] blur-[110px] w-[500px] h-[350px] rounded-full pointer-events-none z-0 opacity-[0.22] right-[180px] top-[170px]" />
-              <div className="absolute top-[40px] left-[40px] w-[320px] content-stretch flex flex-col gap-[20px] z-10">
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] min-h-[55px] p-[20px] flex items-center box-border">
-                  <p className="w-full break-words [word-break:break-word] [overflow-wrap:anywhere] font-outfit font-bold leading-[1.3] text-[#77695d] text-[17px] tracking-[1px] uppercase margin-0">
-                    CONTINUOUS CARE EXPERIENCE
-                  </p>
-                </div>
-                <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid w-[320px] h-auto content-stretch flex flex-col p-[20px] box-border">
-                  <div className="w-full break-words [word-break:break-word] font-outfit font-normal leading-[1.6] text-[#77695d] text-[18px]">
-                    <p className="leading-[normal] mb-0">The experience extended beyond the retreat through a companion platform supporting follow-up consultations, routines, nutrition tracking, exercises, medications and habit-building.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="absolute right-[40px] top-[40px] w-[840px] h-[610px] z-10 flex items-center justify-center">
-                <ShimmerImage alt="Continuous Care Experience Showcase" className="max-w-full max-h-full object-contain rounded-lg border border-[#7b7a77]/30 shadow-md" src={imgTulahCraft1} />
-              </div>
-            </div>
-          </div>
-
           {/* ─── ONE THING I LEARNED SECTION ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[13504px] w-[1280px] z-[2]">
+          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[9760px] w-[1280px] z-[2]">
             <p className={`font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>
               <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
               <span>{` I LEARNED`}</span>

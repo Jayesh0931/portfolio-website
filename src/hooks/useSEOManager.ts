@@ -8,7 +8,14 @@ interface SEOConfig {
   image?: string;
 }
 
-const BASE_URL = "https://jayeshsoni.com";
+const getBaseUrl = () => {
+  if (typeof window !== "undefined" && window.location.origin) {
+    return window.location.origin;
+  }
+  return "https://new.jayeshsoni.com";
+};
+
+const BASE_URL = getBaseUrl();
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.png`;
 
 const PERSON_SCHEMA = {

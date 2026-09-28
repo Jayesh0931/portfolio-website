@@ -31,4 +31,5 @@ User-agent: Bingbot
 Allow: /
 
 # Sitemap Location
+Sitemap: https://new.jayeshsoni.com/sitemap.xml
 Sitemap: https://jayeshsoni.com/sitemap.xml

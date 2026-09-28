@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, "../dist");
 
-const BASE_URL = "https://jayeshsoni.com";
+const BASE_URL = process.env.BASE_URL || "https://new.jayeshsoni.com";
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.png`;
 
 const PERSON_SCHEMA = {
@@ -335,7 +335,10 @@ function runPrerender() {
     const storyHtml = generateStoryHtml(baseHtml, story);
     const targetFile = path.join(targetDir, "index.html");
     fs.writeFileSync(targetFile, storyHtml, "utf-8");
-    console.log(`[prerender] Generated static route: /${story.path}/index.html`);
+
+    const cleanHtmlFile = path.join(distDir, `${story.path}.html`);
+    fs.writeFileSync(cleanHtmlFile, storyHtml, "utf-8");
+    console.log(`[prerender] Generated static route: /${story.path}/index.html & /${story.path}.html`);
   }
 
   // 2. Enhance root index.html with fallback semantic HTML

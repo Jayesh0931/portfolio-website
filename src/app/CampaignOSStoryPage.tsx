@@ -12,6 +12,14 @@ import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import MobileCosHero from "./components/mobile/campaignos/MobileCosHero";
+import MobileCosChallenge from "./components/mobile/campaignos/MobileCosChallenge";
+import MobileCosOpportunity from "./components/mobile/campaignos/MobileCosOpportunity";
+import MobileCosWhatIDrove from "./components/mobile/campaignos/MobileCosWhatIDrove";
+import MobileCosValidation from "./components/mobile/campaignos/MobileCosValidation";
+import MobileCosCraft from "./components/mobile/campaignos/MobileCosCraft";
+import MobileCosOneThing from "./components/mobile/campaignos/MobileCosOneThing";
+import { MobileFinale } from "./components/mobile/MobileFinale";
 
 interface CampaignOSStoryPageProps {
   scale?: number;
@@ -228,6 +236,39 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
   const [isOneThingInView, setIsOneThingInView] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isDarkMobile, setIsDarkMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScrollMobileBg = () => {
+      const challengeEl = document.getElementById("mobile-cos-challenge");
+      const oppEl = document.getElementById("mobile-cos-opportunity");
+      const oneThingEl = document.getElementById("mobile-cos-onething");
+
+      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+
+      // Dark in Challenge (before Opportunity), or from One Thing onwards
+      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+      const inOneThing = isPastOneThingStart;
+      const shouldBeDark = inChallenge || inOneThing;
+      setIsDarkMobile(shouldBeDark);
+    };
+
+    window.addEventListener("scroll", handleScrollMobileBg, { passive: true });
+    handleScrollMobileBg();
+    return () => window.removeEventListener("scroll", handleScrollMobileBg);
+  }, [isMobile]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -243,6 +284,25 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (isMobile) {
+    return (
+      <article role="article" className={`mobile-story-container ${isDarkMobile ? "is-dark" : ""}`}>
+        <MobileCosHero onBack={onBack} isDark={isDarkMobile} />
+        <MobileCosChallenge />
+        <MobileCosOpportunity />
+        <MobileCosWhatIDrove />
+        <MobileCosValidation />
+        <MobileCosCraft />
+        <MobileCosOneThing />
+        <MobileFinale isDark={true} />
+        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/tulah-story" isDark={true} />
+
+        {/* Floating Scroll to Top Button */}
+        <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
+      </article>
+    );
+  }
 
   return (
     <article 
@@ -377,7 +437,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
 
           {/* ── Overview Box Pullquote ── */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex items-end justify-center left-[80px] p-[30px] top-[736px] w-[1280px]">
-            <div className="flex-[1_0_0] font-outfit font-normal leading-[1.5] text-[#77695d] text-[24px]">
+            <div className="flex-[1_0_0] font-outfit font-normal italic leading-[1.5] text-[#77695d] text-[24px]">
               <p className="mb-0">Planning, launching, monitoring and improving digital campaigns shouldn't require
                 <span className="font-outfit font-bold text-[#190b00]"> jumping across half a dozen tools.</span> This project explored how AI could become
                 <span className="font-outfit font-bold text-[#190b00]"> an active marketing partner</span> —helping teams move from strategy to execution inside

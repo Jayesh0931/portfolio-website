@@ -1,67 +1,76 @@
 import BrandVector from "@/components/BrandVector";
 
+const focusData = [
+  {
+    num: "01",
+    title: "PRODUCT\nDESIGN",
+    skills: [
+      "UX/UI Design",
+      "Product Strategy",
+      "Information Architecture",
+      "User Research",
+      "Interaction Design",
+    ],
+  },
+  {
+    num: "02",
+    title: "HUMAN–AI\nINTERACTION",
+    skills: [
+      "Agentic UX",
+      "AI Workflows",
+      "Conversational Experiences",
+      "AI Behavior Design",
+      "Enterprise AI Systems",
+    ],
+  },
+  {
+    num: "03",
+    title: "SYSTEMS\n& CRAFT",
+    skills: [
+      "Design Systems",
+      "Prototyping",
+      "Component Libraries",
+      "Motion Design",
+      "Design Operations",
+    ],
+  },
+];
+
 export function MobileFocus() {
   return (
     <section className="mobile-section" id="mobile-focus">
-      <div className="mobile-tab">
-        <div className="mobile-dashdot" />
-        <div className="mobile-label">Focus</div>
-        <div className="num">S–003</div>
-      </div>
+      <div className="mobile-focus-wrap">
+        <div className="mobile-focus-box">
+          <div className="mobile-focus-header">
+            <div className="mobile-focus-header-left">
+              <p className="mobile-focus-tag">[ s-003 ]</p>
+              <h2 className="mobile-focus-title">FOCUS</h2>
+            </div>
+            <div className="mobile-focus-header-right">
+              <BrandVector theme="dark" width={82} height={54} />
+            </div>
+          </div>
 
-      {/* Focus Block 01 */}
-      <div className="mobile-focus-block">
-        <div className="mobile-focus-head">
-          <span className="n">01</span>
-          <span className="t" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>Product Design</span>
-            <BrandVector theme="dark" width={18} height={12} style={{ opacity: 0.7 }} />
-          </span>
+          <div className="mobile-focus-items">
+            {focusData.map((item) => (
+              <div key={item.num} className="mobile-focus-row">
+                <span className="mobile-focus-num">{item.num}</span>
+                <div className="mobile-focus-content">
+                  <h3 className="mobile-focus-item-title">{item.title}</h3>
+                  <div className="mobile-focus-item-list">
+                    {item.skills.map((skill, idx) => (
+                      <span key={idx} className="mobile-focus-skill">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <ul>
-          <li>UX/UI Design</li>
-          <li>Product Strategy</li>
-          <li>Information Architecture</li>
-          <li>User Research</li>
-          <li>Interaction Design</li>
-        </ul>
-      </div>
-
-      {/* Focus Block 02 */}
-      <div className="mobile-focus-block">
-        <div className="mobile-focus-head">
-          <span className="n">02</span>
-          <span className="t" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>Human–AI Interaction</span>
-            <BrandVector theme="dark" width={18} height={12} style={{ opacity: 0.7 }} />
-          </span>
-        </div>
-        <ul>
-          <li>Agentic UX</li>
-          <li>AI Workflows</li>
-          <li>Conversational Experiences</li>
-          <li>AI Behavior Design</li>
-          <li>Enterprise AI Systems</li>
-        </ul>
-      </div>
-
-      {/* Focus Block 03 */}
-      <div className="mobile-focus-block" style={{ marginBottom: 0 }}>
-        <div className="mobile-focus-head">
-          <span className="n">03</span>
-          <span className="t" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span>Systems &amp; Craft</span>
-            <BrandVector theme="dark" width={18} height={12} style={{ opacity: 0.7 }} />
-          </span>
-        </div>
-        <ul>
-          <li>Design Systems</li>
-          <li>Prototyping</li>
-          <li>Component Libraries</li>
-          <li>Motion Design</li>
-          <li>Design Operations</li>
-        </ul>
       </div>
     </section>
   );
 }
+

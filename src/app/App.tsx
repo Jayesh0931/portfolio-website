@@ -3,7 +3,9 @@ import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
 import TulahStoryPage from "./TulahStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
+import VousVousStoryPage from "./VousVousStoryPage";
 import MobileHomepage from "./components/mobile/MobileHomepage";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
 import { useSEOManager } from "@/hooks/useSEOManager";
@@ -164,7 +166,7 @@ const bentoCards = [
   { top: 327, left: 580,  width: 500, height: 360, path: "/allyra-story", scrollY: 2609, theme: "dark"  }, // allyra  → Story 01
   { top: 707, left: 580,  width: 370, height: 200, path: "/tulah-story", scrollY: 3389, theme: "light" }, // tulah   → Story 02
   { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 4949, theme: "orange" }, // Campaign OS → Story 03
-  { top: 327, left: 1100, width: 240, height: 220, scrollY: 4169, theme: "light" }, // VousVous→ Story 04
+  { top: 327, left: 1100, width: 240, height: 220, path: "/vousvous-story", scrollY: 4169, theme: "light" }, // VousVous→ Story 04
   { top: 567, left: 1100, width: 240, height: 120, scrollY: 6623, theme: "light" }, // Stanford→ Focus
 ];
 
@@ -859,7 +861,15 @@ function MobileView() {
         </div>
 
         {/* Story 4: VousVous */}
-        <div id="m-story-4" style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden" }}>
+        <div 
+          id="m-story-4" 
+          onClick={() => {
+            window.history.pushState({}, "", "/vousvous-story");
+            setCurrentPath("/vousvous-story");
+            window.scrollTo(0, 0);
+          }}
+          style={{ border: "1px solid #7b7a77", borderRadius: "12px", background: "#FFFDFA", overflow: "hidden", cursor: "pointer" }}
+        >
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
               <span>[ STORY 04 ]</span>
@@ -1166,6 +1176,7 @@ export default function App() {
   const { scale, left } = useLayout();
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : DESIGN_W));
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
   
   useSEOManager(currentPath);
@@ -1211,19 +1222,20 @@ export default function App() {
   }, [vw, currentPath, fullScreenVideoSrc]);
 
   useEffect(() => {
-    const handleOpenFullScreen = (e: Event) => {
-      const customEvent = e as CustomEvent<{ src: string }>;
-      setFullScreenVideoSrc(customEvent.detail.src);
+    const handleOpenFullScreen = (e: CustomEvent<{ src: string }>) => {
+      setFullScreenVideoSrc(e.detail.src);
     };
-    window.addEventListener("open-full-screen-video", handleOpenFullScreen);
+
+    window.addEventListener("open-full-screen-video", handleOpenFullScreen as EventListener);
     return () => {
-      window.removeEventListener("open-full-screen-video", handleOpenFullScreen);
+      window.removeEventListener("open-full-screen-video", handleOpenFullScreen as EventListener);
     };
   }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 10);
+      setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -1351,6 +1363,23 @@ export default function App() {
             window.scrollTo(0, 0);
           }} 
           onNextStory={() => {
+            window.history.pushState({}, "", "/vousvous-story");
+            setCurrentPath("/vousvous-story");
+            window.scrollTo(0, 0);
+          }}
+        />
+      );
+    } else if (currentPath.startsWith("/vousvous-story")) {
+      return (
+        <VousVousStoryPage 
+          scale={1} 
+          left={0} 
+          onBack={() => {
+            window.history.pushState({}, "", "/");
+            setCurrentPath("/");
+            window.scrollTo(0, 0);
+          }} 
+          onNextStory={() => {
             window.history.pushState({}, "", "/allyra-story");
             setCurrentPath("/allyra-story");
             window.scrollTo(0, 0);
@@ -1418,6 +1447,23 @@ export default function App() {
           window.scrollTo(0, 0);
         }} 
         onNextStory={() => {
+          window.history.pushState({}, "", "/vousvous-story");
+          setCurrentPath("/vousvous-story");
+          window.scrollTo(0, 0);
+        }}
+      />
+    );
+  } else if (currentPath.startsWith("/vousvous-story")) {
+    content = (
+      <VousVousStoryPage 
+        scale={scale} 
+        left={left} 
+        onBack={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+          window.scrollTo(0, 0);
+        }} 
+        onNextStory={() => {
           window.history.pushState({}, "", "/allyra-story");
           setCurrentPath("/allyra-story");
           window.scrollTo(0, 0);
@@ -1465,6 +1511,13 @@ export default function App() {
       `}</style>
       
       {content}
+
+      {currentPath === "/" && (
+        <ScrollToTopButton
+          show={showScrollTop}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        />
+      )}
 
       {showCursor && (
         <div
@@ -1630,7 +1683,7 @@ function RecommendationsScrollOverlay() {
       role: "Software Architect",
       company: "Stanford Medicine",
       quote: `"Jayesh's work was instrumental in the success of a major application for Stanford Medicine's medical school students. He consistently exceeded expectations through his expertise in UI/UX design, rapid execution, effective communication, and collaborative approach."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
     {
       initials: "AM",
@@ -1638,7 +1691,7 @@ function RecommendationsScrollOverlay() {
       role: "Senior Developer",
       company: "Vertisystem",
       quote: `"Jayesh possesses a deep understanding of user-centered design and consistently transforms complex user needs into intuitive, engaging experiences. His strategic thinking, craftsmanship, and collaborative approach make him an exceptional designer."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
     {
       initials: "AG",
@@ -1646,7 +1699,7 @@ function RecommendationsScrollOverlay() {
       role: "General Manager",
       company: "Joonify",
       quote: `"Jayesh consistently delivered high-quality work that exceeded expectations. His creativity, attention to detail, openness to feedback, and commitment to iteration made him an invaluable collaborator throughout our time working together."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
   ];
 
@@ -1844,6 +1897,7 @@ function RecommendationsScrollOverlay() {
                     }} />
                     <p style={{
                       fontFamily: "Outfit, sans-serif", fontWeight: 400,
+                      fontStyle: "italic",
                       fontSize: 18, color: "#190b00",
                       lineHeight: 1.6, margin: 0,
                     }}>

@@ -19,7 +19,7 @@ const PERSON_SCHEMA = {
   "url": `${BASE_URL}/`,
   "image": DEFAULT_IMAGE,
   "sameAs": [
-    "https://www.linkedin.com/in/jayeshsoni09/",
+    "https://www.linkedin.com/in/jayeshsoni31/",
     "https://x.com/jayeshsoni_",
     "https://github.com/Jayesh0931"
   ],
@@ -54,11 +54,25 @@ export function useSEOManager(path: string) {
         path: "/allyra-story",
         type: "article",
       };
+    } else if (path.startsWith("/tulah-story")) {
+      config = {
+        title: "Tulah Clinical Wellness Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+        description: "Case study on Tulah: Streamlining multidisciplinary clinical workflows, patient care coordination, and calm wellness operations.",
+        path: "/tulah-story",
+        type: "article",
+      };
     } else if (path.startsWith("/campaign-os-story")) {
       config = {
         title: "Campaign OS Case Study — Jayesh Soni | Product Lead & AI Product Designer",
         description: "Case study on Campaign OS: Designing an autonomous marketing & campaign operating system with connected workflows, conversational analytics, and calm monitoring.",
         path: "/campaign-os-story",
+        type: "article",
+      };
+    } else if (path.startsWith("/vousvous-story")) {
+      config = {
+        title: "VousVous Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+        description: "Case study on VousVous: Declarative fashion discovery beyond search, multimodal style synthesis, and interactive wardrobe curation.",
+        path: "/vousvous-story",
         type: "article",
       };
     } else {

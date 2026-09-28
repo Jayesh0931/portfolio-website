@@ -44,6 +44,7 @@ export default function BrandVector({
           stroke={strokeColor}
           strokeWidth="10.78"
           strokeDasharray="18.48 18.48"
+          style={{ transition: "stroke 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)" }}
         />
       </g>
 

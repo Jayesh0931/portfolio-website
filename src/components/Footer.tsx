@@ -174,7 +174,7 @@ export default function Footer({ style }: FooterProps) {
                 label="LINKEDIN"
                 iconPath={linkedinIcon}
                 hoverIconPath={externalLinkIcon}
-                onClick={() => window.open("https://linkedin.com/in/jayeshsoni09/", "_blank")}
+                onClick={() => window.open("https://www.linkedin.com/in/jayeshsoni31/", "_blank")}
               />
               <ContactButton
                 label="RESUME"

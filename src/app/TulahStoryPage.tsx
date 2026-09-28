@@ -12,6 +12,14 @@ import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import MobileTulahHero from "./components/mobile/tulah/MobileTulahHero";
+import MobileTulahChallenge from "./components/mobile/tulah/MobileTulahChallenge";
+import MobileTulahOpportunity from "./components/mobile/tulah/MobileTulahOpportunity";
+import MobileTulahWhatIDrove from "./components/mobile/tulah/MobileTulahWhatIDrove";
+import MobileTulahFoundation from "./components/mobile/tulah/MobileTulahFoundation";
+import MobileTulahDecisions from "./components/mobile/tulah/MobileTulahDecisions";
+import MobileTulahOneThing from "./components/mobile/tulah/MobileTulahOneThing";
+import MobileFinale from "./components/mobile/MobileFinale";
 
 interface TulahStoryPageProps {
   scale?: number;
@@ -21,7 +29,7 @@ interface TulahStoryPageProps {
 }
 
 const CANVAS_W = 1440;
-const CANVAS_H = 10300;
+const CANVAS_H = 10500;
 
 function ViewportVideo({ 
   src, 
@@ -186,6 +194,43 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
   const [isChallengeInView, setIsChallengeInView] = useState(false);
   const [isOneThingInView, setIsOneThingInView] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+  const [isDarkMobile, setIsDarkMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScrollMobileBg = () => {
+      const challengeEl = document.getElementById("mobile-tulah-challenge");
+      const oppEl = document.getElementById("mobile-tulah-opportunity");
+      const decisionsEl = document.getElementById("mobile-tulah-decisions");
+
+      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+
+      // Dark in Challenge (before Opportunity), or from Key Decisions onwards
+      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+      const inDecisionsAndBeyond = isPastDecisionsStart;
+      const shouldBeDark = inChallenge || inDecisionsAndBeyond;
+      setIsDarkMobile(shouldBeDark);
+    };
+
+    window.addEventListener("scroll", handleScrollMobileBg, { passive: true });
+    handleScrollMobileBg();
+    return () => window.removeEventListener("scroll", handleScrollMobileBg);
+  }, [isMobile]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -202,6 +247,25 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (isMobile) {
+    return (
+      <article role="article" className={`mobile-story-container ${isDarkMobile ? "is-dark" : ""}`}>
+        <MobileTulahHero onBack={onBack} isDark={isDarkMobile} />
+        <MobileTulahChallenge />
+        <MobileTulahOpportunity />
+        <MobileTulahWhatIDrove />
+        <MobileTulahFoundation />
+        <MobileTulahDecisions isDark={isDarkMobile} />
+        <MobileTulahOneThing />
+        <MobileFinale isDark={true} />
+        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" isDark={true} />
+
+        {/* Floating Scroll to Top Button */}
+        <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
+      </article>
+    );
+  }
 
   return (
     <article 
@@ -258,21 +322,21 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
         {/* ─── DYNAMIC BACKGROUND BANDS ─── */}
         <DynamicBgBand 
           top={1028} 
-          height={1725} 
+          height={1730} 
           scale={scale} 
           onViewChange={setIsChallengeInView}
         />
         
         <DynamicBgBand 
-          top={6320} 
-          height={3234} 
+          top={6400} 
+          height={3350} 
           scale={scale} 
           onViewChange={setIsDecisionsInView}
         />
         
         <DynamicBgBand 
-          top={9640} 
-          height={720} 
+          top={9750} 
+          height={750} 
           scale={scale} 
           onViewChange={setIsOneThingInView}
         />
@@ -290,7 +354,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
         }} className="font-outfit select-none">
           
           {/* Background grid line */}
-          <div className="absolute h-[787.594px] left-[21.18%] right-[72.15%] top-[7130.67px]">
+          <div className="absolute h-[787.594px] left-[21.18%] right-[72.15%] top-[7304.67px]">
             <div className="absolute block inset-0 max-w-none size-full border-l border-dashed border-[#7b7a77] opacity-25" />
           </div>
 
@@ -360,7 +424,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
 
           {/* Overview Box pullquote copy */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex items-end justify-center left-[80px] p-[30px] top-[736px] w-[1280px]">
-            <div className="[word-break:break-word] flex-[1_0_0] font-outfit font-normal leading-[1.5] min-w-px relative text-[#77695d] text-[24px] whitespace-pre-wrap">
+            <div className="[word-break:break-word] flex-[1_0_0] font-outfit font-normal italic leading-[1.5] min-w-px relative text-[#77695d] text-[24px] whitespace-pre-wrap">
               <p className="leading-[normal] mb-0">{`Personalized wellness appears simple to guests, but delivering it requires coordination across consultants, diagnostics, therapies, schedules, and operations.`}</p>
               <p className="leading-[normal] mb-0">​</p>
               <p>
@@ -379,8 +443,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             <ShimmerImage alt="Tulah Hero Dashboard" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgTulahStoryHero} />
           </div>
 
-          {/* ─── THE CHALLENGE SECTION ─── */}
-          <div className="absolute left-[80px] top-[2143px] w-[1280px] h-[600px]">
+          {/* ─── 2. THE CHALLENGE SECTION (Top 2158px - 200px gap after Hero ends at 1958px) ─── */}
+          <div className="absolute left-[80px] top-[2158px] w-[1280px] h-[600px]">
             <div className={`[word-break:break-word] absolute font-outfit font-normal leading-[1.6] left-[0px] text-[24px] top-[100px] w-[1106px] transition-colors duration-700 ${isChallengeInView ? "text-[#ccc]" : "text-[#77695d]"}`}>
               <p className="leading-[normal] mb-0 whitespace-pre-wrap">Delivering personalized wellness wasn't the challenge. Coordinating it was. Every guest journey involved multiple consultants, diagnostics, therapies, nutrition plans, fitness programs, medications, wearable data, and operational teams working together.</p>
               <p className="leading-[normal] mb-0 whitespace-pre-wrap">​</p>
@@ -402,8 +466,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             <div className={`absolute left-0 top-[72px] w-[1030px] h-[1px] transition-colors duration-700 ${isChallengeInView ? "bg-[rgba(255,253,250,0.15)]" : "bg-[#7b7a77]/30"}`} />
           </div>
 
-          {/* ─── THE OPPORTUNITY SECTION ─── */}
-          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[2971px] w-[1280px]">
+          {/* ─── 3. THE OPPORTUNITY SECTION (Top 2958px - 200px gap after Challenge ends at 2758px) ─── */}
+          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[2958px] w-[1280px]">
             <div className="content-stretch flex items-center relative shrink-0 w-full">
               <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-center pl-[30px] pr-[90px] py-[16px] relative shrink-0">
                 <p className="[word-break:break-word] font-outfit font-normal leading-[normal] relative shrink-0 text-[#190b00] text-[26px] tracking-[1px] uppercase whitespace-nowrap">
@@ -457,8 +521,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── WHAT I DROVE SECTION (Contribution Diagram layout) ─── */}
-          <div className="absolute left-[80px] top-[4231px] w-[1280px] h-[714px]">
+          {/* ─── 4. WHAT I DROVE SECTION (Top 4310px - 200px gap after Opportunity ends at ~4110px) ─── */}
+          <div className="absolute left-[80px] top-[4310px] w-[1280px] h-[714px]">
             <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[714px] left-0 w-[70px]">
               <div className="absolute flex items-center justify-center left-[10px] top-[115px] w-[50px]">
                 <div style={{ transform: "rotate(-90deg)", transformOrigin: "center", whiteSpace: "nowrap" }}>
@@ -493,8 +557,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── FOUNDATION SECTION (Impact / Metric Grid layout) ─── */}
-          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5211px] w-[1280px] z-[2]">
+          {/* ─── 5. FOUNDATION SECTION (Top 5224px - 200px gap after What I Drove ends at 5024px) ─── */}
+          <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5224px] w-[1280px] z-[2]">
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start p-[30px] relative shrink-0 w-full overflow-hidden">
               <div className="content-stretch flex gap-[30px] items-center relative shrink-0 w-full justify-between">
                 <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start relative shrink-0">
@@ -594,8 +658,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── KEY PRODUCT DECISIONS SECTION (Starts at top-[6371px]) ─── */}
-          <div ref={keyDecisionsRef} className="absolute content-stretch flex flex-col gap-[60px] items-start left-[80px] top-[6371px] w-[1284px] z-[2]">
+          {/* ─── 6. KEY PRODUCT DECISIONS SECTION (Top 6500px - 200px gap after Foundation ends at ~6300px) ─── */}
+          <div ref={keyDecisionsRef} className="absolute content-stretch flex flex-col gap-[60px] items-start left-[80px] top-[6500px] w-[1284px] z-[2]">
             <div className={`border border-solid content-stretch flex gap-[30px] items-center relative shrink-0 w-full transition-all duration-700 ease-in-out ${isDecisionsInView ? "bg-black border-[#7b7a77]/40 shadow-2xl" : "bg-[#fffdfa] border-[#7b7a77]"}`}>
               <div className="flex items-center justify-center relative shrink-0">
                 <div className="flex-none">
@@ -870,8 +934,8 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
             </div>
           </div>
 
-          {/* ─── ONE THING I LEARNED SECTION ─── */}
-          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[9760px] w-[1280px] z-[2]">
+          {/* ─── 7. ONE THING I LEARNED SECTION (Top 9846px - 200px gap after Decisions ends at 9646px) ─── */}
+          <div className="absolute content-stretch flex flex-col gap-[19px] items-start left-[80px] top-[9846px] w-[1280px] z-[2]">
             <p className={`font-outfit font-bold leading-[normal] relative shrink-0 text-[50px] tracking-[5px] w-[1030px] margin-0 transition-colors duration-700 ${isOneThingInView ? "text-[#fffdfa]" : "text-[#190b00]"}`}>
               <span style={{ WebkitTextStrokeWidth: "2px", WebkitTextStrokeColor: "#7B7A77", color: isOneThingInView ? "#190b00" : "#fffdfa", paintOrder: "stroke fill" }}>ONE THING</span>
               <span>{` I LEARNED`}</span>

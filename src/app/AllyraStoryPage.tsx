@@ -18,6 +18,15 @@ import videoE4 from "@/imports/E4.mp4";
 import videoE5 from "@/imports/E5.mp4";
 import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import MobileAllyraHero from "./components/mobile/allyra/MobileAllyraHero";
+import MobileAllyraChallenge from "./components/mobile/allyra/MobileAllyraChallenge";
+import MobileAllyraOpportunity from "./components/mobile/allyra/MobileAllyraOpportunity";
+import MobileAllyraWhatIDrove from "./components/mobile/allyra/MobileAllyraWhatIDrove";
+import MobileAllyraImpact from "./components/mobile/allyra/MobileAllyraImpact";
+import MobileAllyraDecisions from "./components/mobile/allyra/MobileAllyraDecisions";
+import MobileAllyraEvidence from "./components/mobile/allyra/MobileAllyraEvidence";
+import MobileAllyraOneThing from "./components/mobile/allyra/MobileAllyraOneThing";
+import { MobileFinale } from "./components/mobile/MobileFinale";
 
 interface AllyraStoryPageProps {
   scale?: number;
@@ -219,6 +228,64 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isDarkMobile, setIsDarkMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    const handleScrollMobileBg = () => {
+      const challengeEl = document.getElementById("mobile-allyra-challenge");
+      const oppEl = document.getElementById("mobile-allyra-opportunity");
+      const decisionsEl = document.getElementById("mobile-allyra-decisions");
+      const evidenceEl = document.getElementById("mobile-allyra-evidence");
+      const oneThingEl = document.getElementById("mobile-allyra-onething");
+
+      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastEvidenceStart = evidenceEl ? evidenceEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+      const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+
+      // Dark in Challenge (before Opportunity), or in Decisions (before Evidence), or from One Thing onwards
+      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+      const inDecisions = isPastDecisionsStart && !isPastEvidenceStart;
+      const inOneThing = isPastOneThingStart;
+      const shouldBeDark = inChallenge || inDecisions || inOneThing;
+      setIsDarkMobile(shouldBeDark);
+    };
+
+    window.addEventListener("scroll", handleScrollMobileBg, { passive: true });
+    handleScrollMobileBg();
+    return () => window.removeEventListener("scroll", handleScrollMobileBg);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <article role="article" className={`mobile-story-container ${isDarkMobile ? "is-dark" : ""}`}>
+        <MobileAllyraHero onBack={onBack} isDark={isDarkMobile} />
+        <MobileAllyraChallenge />
+        <MobileAllyraOpportunity />
+        <MobileAllyraWhatIDrove />
+        <MobileAllyraImpact />
+        <MobileAllyraDecisions />
+        <MobileAllyraEvidence />
+        <MobileAllyraOneThing />
+        <MobileFinale isDark={true} />
+        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" isDark={true} />
+
+        {/* Floating Scroll to Top Button */}
+        <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
+      </article>
+    );
+  }
+
   return (
     <article 
       role="article"
@@ -374,7 +441,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
 
         {/* Overview Box pullquote copy */}
         <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex items-end justify-center left-[80px] p-[30px] top-[736px] w-[1280px]" data-node-id="1:54">
-          <div className="[word-break:break-word] flex-[1_0_0] font-outfit font-normal font-normal leading-[1.5] min-w-px relative text-[#77695d] text-[24px] whitespace-pre-wrap" data-node-id="1:55">
+          <div className="[word-break:break-word] flex-[1_0_0] font-outfit font-normal italic leading-[1.5] min-w-px relative text-[#77695d] text-[24px] whitespace-pre-wrap" data-node-id="1:55">
             <p className="leading-[normal] mb-0">{`AI wasn't struggling to generate answers. It was struggling to operate inside real workflows.`}</p>
             <p className="leading-[normal] mb-0">​</p>
             <p>
@@ -887,16 +954,16 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
                         <span className={`[word-break:break-word] font-outfit font-bold leading-[normal] transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`weren't`}</span>
                         <span className="leading-[normal]">{` asking:`}</span>
                       </p>
-                      <p className={`leading-[normal] mb-0 transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I build agents?"`}</p>
+                      <p className={`leading-[normal] mb-0 italic transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I build agents?"`}</p>
                       <p className="leading-[normal] mb-0">​</p>
                       <p className="mb-0">
                         <span className="leading-[normal]">{`They `}</span>
                         <span className={`[word-break:break-word] font-outfit font-bold leading-[normal] transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>were</span>
                         <span className="leading-[normal]">{` asking:`}</span>
                       </p>
-                      <p className={`leading-[normal] mb-0 transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I control them?"`}</p>
-                      <p className={`leading-[normal] mb-0 transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I manage spend?"`}</p>
-                      <p className={`leading-[normal] transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I trust them?"`}</p>
+                      <p className={`leading-[normal] mb-0 italic transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I control them?"`}</p>
+                      <p className={`leading-[normal] mb-0 italic transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I manage spend?"`}</p>
+                      <p className={`leading-[normal] italic transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>{`"How do I trust them?"`}</p>
                     </div>
                   </div>
                 </div>
@@ -1120,7 +1187,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
       </div>
 
       {/* ─── NEXT STORY BOTTOM STRIP ─── */}
-      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/tulah-story" />
+      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" />
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
       <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />

@@ -239,7 +239,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── VousVous card (Story 04) ── */}
-      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-04-block")} isStoryCard>
+      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 04 ] [ 2025 ]</p>
@@ -1257,6 +1257,7 @@ function Frame54() {
     <div 
       id="story-04-block"
       data-custom-cursor="read-story"
+      onClick={() => triggerNavigate("/vousvous-story")}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame55 />
@@ -1936,7 +1937,7 @@ function RecommendationsSection() {
       role: "Software Architect",
       company: "Stanford Medicine",
       quote: `"Jayesh's work was instrumental in the success of a major application for Stanford Medicine's medical school students. He consistently exceeded expectations through his expertise in UI/UX design, rapid execution, effective communication, and collaborative approach."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
     {
       initials: "AM",
@@ -1944,7 +1945,7 @@ function RecommendationsSection() {
       role: "Senior Developer",
       company: "Vertisystem",
       quote: `"Jayesh possesses a deep understanding of user-centered design and consistently transforms complex user needs into intuitive, engaging experiences. His strategic thinking, craftsmanship, and collaborative approach make him an exceptional designer."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
     {
       initials: "AG",
@@ -1952,7 +1953,7 @@ function RecommendationsSection() {
       role: "General Manager",
       company: "Joonify",
       quote: `"Jayesh consistently delivered high-quality work that exceeded expectations. His creativity, attention to detail, openness to feedback, and commitment to iteration made him an invaluable collaborator throughout our time working together."`,
-      linkedin: "https://linkedin.com/in/",
+      linkedin: "https://www.linkedin.com/in/jayeshsoni31/details/recommendations/?detailScreenTabIndex=0",
     },
   ];
 
@@ -2053,6 +2054,7 @@ function RecommendationsSection() {
           }} />
           <p style={{
             fontFamily: "Outfit, sans-serif", fontWeight: 400,
+            fontStyle: "italic",
             fontSize: 18, color: "#190b00",
             lineHeight: 1.6, margin: 0,
           }}>

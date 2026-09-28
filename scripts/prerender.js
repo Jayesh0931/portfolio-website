@@ -6,7 +6,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.resolve(__dirname, "../dist");
 
-const BASE_URL = process.env.BASE_URL || "https://new.jayeshsoni.com";
+const BASE_URL =
+  process.env.BASE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://new.jayeshsoni.com");
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.png`;
 
 const PERSON_SCHEMA = {

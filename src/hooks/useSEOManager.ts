@@ -82,6 +82,13 @@ export function useSEOManager(path: string) {
         path: "/vousvous-story",
         type: "article",
       };
+    } else if (path.startsWith("/about")) {
+      config = {
+        title: "About — Jayesh Soni | Product Lead & AI Product Designer",
+        description: "About Jayesh Soni: Product Lead and AI Product Designer with 7+ years of experience shaping human–AI interaction, enterprise AI systems, and scalable digital products.",
+        path: "/about",
+        type: "profile",
+      };
     } else {
       config = {
         title: "Jayesh Soni: Product Lead & AI Product Designer",

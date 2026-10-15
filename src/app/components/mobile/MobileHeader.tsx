@@ -113,7 +113,10 @@ export function MobileHeader({ onNavigateSection }: MobileHeaderProps) {
               <button 
                 type="button"
                 className="mobile-menu-pill"
-                onClick={() => handleNavClick("mobile-about")}
+                onClick={() => {
+                  setMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/about" }));
+                }}
               >
                 <span className="mobile-menu-pill-text">ABOUT</span>
                 <span className="mobile-menu-pill-icon" aria-hidden="true">

@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
 import TulahStoryPage from "./TulahStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import VousVousStoryPage from "./VousVousStoryPage";
+import AboutPage from "./AboutPage";
 import MobileHomepage from "./components/mobile/MobileHomepage";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { usePageProtection } from "@/hooks/usePageProtection";
@@ -153,7 +154,7 @@ const navItems = [
   { left: 80,   label: "JAYESH SONI", icon: null,       scrollY: 0    },
   { left: 1010, label: "STORIES",     icon: "down",     scrollY: 2138 },
   { left: 1135, label: "CRAFT",       icon: "down",     scrollY: 6820 },
-  { left: 1250, label: "ABOUT",       icon: "diagonal", scrollY: 1127 },
+  { left: 1250, label: "ABOUT",       icon: "diagonal", path: "/about" },
 ];
 
 // Each bento card maps to its corresponding section further down the page.
@@ -1034,7 +1035,7 @@ function MobileView() {
   );
 }
 
-function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: number; hasScrolled: boolean }) {
+function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: number; left: number; hasScrolled: boolean; onAboutClick?: () => void }) {
   const [scrollY, setScrollY] = useState(0);
   const [craftTop, setCraftTop] = useState<number | null>(null);
 
@@ -1154,9 +1155,19 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
         </div>
       </div>
 
-      {/* About - scrolls to 1127 */}
+      {/* About - navigates to /about */}
       <div style={{ position: "absolute", left: 1238, top: 0 }}>
-        <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(1127)}>
+        <div
+          className="sticky-header-capsule"
+          style={capsuleStyle(true)}
+          onClick={() => {
+            if (onAboutClick) {
+              onAboutClick();
+            } else {
+              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/about" }));
+            }
+          }}
+        >
           <span style={textStyle}>
             About
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
@@ -1169,6 +1180,13 @@ function StickyHeader({ scale, left, hasScrolled }: { scale: number; left: numbe
   );
 }
 
+type AboutTransitionPhase =
+  | "idle"
+  | "entering-start"
+  | "entering-active"
+  | "exiting-start"
+  | "exiting-active";
+
 export default function App() {
   useDynamicFavicon();
   useAutoScroll();
@@ -1178,6 +1196,111 @@ export default function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
+  
+  const [aboutTransitionPhase, setAboutTransitionPhase] = useState<AboutTransitionPhase>("idle");
+  const homeScrollYRef = useRef(0);
+  const aboutScrollYRef = useRef(0);
+  const homeContainerRef = useRef<HTMLDivElement | null>(null);
+  const aboutContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const shouldRestoreHomeScrollRef = useRef(false);
+
+  const triggerEnterAbout = () => {
+    if (aboutTransitionPhase !== "idle") return;
+    homeScrollYRef.current = window.scrollY;
+    aboutScrollYRef.current = 0;
+    window.history.pushState({}, "", "/about");
+    setCurrentPath("/about");
+    document.body.style.overflow = "hidden";
+    setAboutTransitionPhase("entering-start");
+  };
+
+  const triggerExitAbout = (fromPopState = false) => {
+    if (aboutTransitionPhase !== "idle") return;
+    aboutScrollYRef.current = window.scrollY;
+    shouldRestoreHomeScrollRef.current = true;
+    if (!fromPopState) {
+      window.history.pushState({}, "", "/");
+    }
+    document.body.style.overflow = "hidden";
+    setAboutTransitionPhase("exiting-start");
+  };
+
+  useEffect(() => {
+    if (aboutTransitionPhase === "entering-start") {
+      let r2: number;
+      const r1 = requestAnimationFrame(() => {
+        r2 = requestAnimationFrame(() => {
+          setAboutTransitionPhase("entering-active");
+        });
+      });
+      return () => {
+        cancelAnimationFrame(r1);
+        if (r2) cancelAnimationFrame(r2);
+      };
+    } else if (aboutTransitionPhase === "entering-active") {
+      const timer = setTimeout(() => {
+        setAboutTransitionPhase("idle");
+        document.body.style.overflow = "";
+        window.scrollTo(0, 0);
+      }, 700);
+      return () => clearTimeout(timer);
+    } else if (aboutTransitionPhase === "exiting-start") {
+      let r2: number;
+      const r1 = requestAnimationFrame(() => {
+        r2 = requestAnimationFrame(() => {
+          setAboutTransitionPhase("exiting-active");
+        });
+      });
+      return () => {
+        cancelAnimationFrame(r1);
+        if (r2) cancelAnimationFrame(r2);
+      };
+    } else if (aboutTransitionPhase === "exiting-active") {
+      const timer = setTimeout(() => {
+        setAboutTransitionPhase("idle");
+        setCurrentPath("/");
+        document.body.style.overflow = "";
+      }, 700);
+      return () => clearTimeout(timer);
+    }
+  }, [aboutTransitionPhase]);
+
+  useLayoutEffect(() => {
+    if (aboutTransitionPhase === "idle" && currentPath === "/" && shouldRestoreHomeScrollRef.current) {
+      shouldRestoreHomeScrollRef.current = false;
+      window.scrollTo(0, homeScrollYRef.current);
+    }
+  }, [aboutTransitionPhase, currentPath]);
+
+  useLayoutEffect(() => {
+    if (homeContainerRef.current) {
+      homeContainerRef.current.scrollTop = homeScrollYRef.current;
+    }
+    if (aboutContainerRef.current) {
+      const targetScroll = (aboutTransitionPhase === "exiting-start" || aboutTransitionPhase === "exiting-active")
+        ? aboutScrollYRef.current
+        : 0;
+      aboutContainerRef.current.scrollTop = targetScroll;
+    }
+  }, [aboutTransitionPhase]);
+
+  const setHomeContainerRef = (el: HTMLDivElement | null) => {
+    homeContainerRef.current = el;
+    if (el) {
+      el.scrollTop = homeScrollYRef.current;
+    }
+  };
+
+  const setAboutContainerRef = (el: HTMLDivElement | null) => {
+    aboutContainerRef.current = el;
+    if (el) {
+      const targetScroll = (aboutTransitionPhase === "exiting-start" || aboutTransitionPhase === "exiting-active")
+        ? aboutScrollYRef.current
+        : 0;
+      el.scrollTop = targetScroll;
+    }
+  };
   
   useSEOManager(currentPath);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -1236,10 +1359,13 @@ export default function App() {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 10);
       setShowScrollTop(window.scrollY > 300);
+      if (currentPath === "/" && aboutTransitionPhase === "idle") {
+        homeScrollYRef.current = window.scrollY;
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [currentPath, aboutTransitionPhase]);
 
   useEffect(() => {
     const handleScrollRotation = () => {
@@ -1256,26 +1382,48 @@ export default function App() {
 
   useEffect(() => {
     const onPopState = () => {
-      setCurrentPath(window.location.pathname);
+      const newPath = window.location.pathname;
+      if (currentPath === "/" && newPath === "/about") {
+        triggerEnterAbout();
+      } else if (currentPath === "/about" && newPath === "/") {
+        triggerExitAbout(true);
+      } else {
+        setCurrentPath(newPath);
+      }
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-  }, []);
+  }, [currentPath, aboutTransitionPhase]);
 
   useEffect(() => {
     const onNavigateToPath = (e: Event) => {
       const path = (e as CustomEvent<string>).detail;
-      window.history.pushState({}, "", path);
-      setCurrentPath(path);
-      window.scrollTo(0, 0);
+      if (path === "/about" && currentPath === "/") {
+        triggerEnterAbout();
+      } else if (path === "/" && currentPath === "/about") {
+        triggerExitAbout();
+      } else {
+        window.history.pushState({}, "", path);
+        setCurrentPath(path);
+        window.scrollTo(0, 0);
+      }
     };
     window.addEventListener("navigate-to-path", onNavigateToPath);
     return () => window.removeEventListener("navigate-to-path", onNavigateToPath);
-  }, []);
+  }, [currentPath, aboutTransitionPhase]);
 
   useEffect(() => {
     const handleScrollBg = () => {
-      // Only trigger dark background transition on home page
+      // Trigger dark background transition on home page and about page
+      const isAbout = currentPath === "/about" || window.location.pathname === "/about" || window.location.pathname.startsWith("/about");
+      if (isAbout) {
+        const triggerEl = document.getElementById("about-dark-trigger");
+        const isDarkInView = triggerEl ? triggerEl.getBoundingClientRect().top <= window.innerHeight * 0.7 : false;
+        document.body.style.transition = "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+        document.body.style.backgroundColor = isDarkInView ? "#190b00" : "#FFFDFA";
+        return;
+      }
+
       if (window.location.pathname !== "/") {
         document.body.style.backgroundColor = "#FFFDFA";
         return;
@@ -1317,86 +1465,140 @@ export default function App() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  if (vw < 768) {
-    if (currentPath.startsWith("/allyra-story")) {
-      return (
-        <AllyraStoryPage 
-          scale={1} 
-          left={0} 
-          onBack={() => {
-            window.history.pushState({}, "", "/");
-            setCurrentPath("/");
-            window.scrollTo(0, 0);
-          }} 
-          onNextStory={() => {
-            window.history.pushState({}, "", "/tulah-story");
-            setCurrentPath("/tulah-story");
-            window.scrollTo(0, 0);
-          }}
-        />
-      );
-    } else if (currentPath.startsWith("/tulah-story")) {
-      return (
-        <TulahStoryPage 
-          scale={1} 
-          left={0} 
-          onBack={() => {
-            window.history.pushState({}, "", "/");
-            setCurrentPath("/");
-            window.scrollTo(0, 0);
-          }} 
-          onNextStory={() => {
-            window.history.pushState({}, "", "/campaign-os-story");
-            setCurrentPath("/campaign-os-story");
-            window.scrollTo(0, 0);
-          }}
-        />
-      );
-    } else if (currentPath.startsWith("/campaign-os-story")) {
-      return (
-        <CampaignOSStoryPage 
-          scale={1} 
-          left={0} 
-          onBack={() => {
-            window.history.pushState({}, "", "/");
-            setCurrentPath("/");
-            window.scrollTo(0, 0);
-          }} 
-          onNextStory={() => {
-            window.history.pushState({}, "", "/vousvous-story");
-            setCurrentPath("/vousvous-story");
-            window.scrollTo(0, 0);
-          }}
-        />
-      );
-    } else if (currentPath.startsWith("/vousvous-story")) {
-      return (
-        <VousVousStoryPage 
-          scale={1} 
-          left={0} 
-          onBack={() => {
-            window.history.pushState({}, "", "/");
-            setCurrentPath("/");
-            window.scrollTo(0, 0);
-          }} 
-          onNextStory={() => {
-            window.history.pushState({}, "", "/allyra-story");
-            setCurrentPath("/allyra-story");
-            window.scrollTo(0, 0);
-          }}
-        />
-      );
+  const handleNavigateFromAbout = (path: string) => {
+    if (path === "/") {
+      triggerExitAbout();
+    } else {
+      window.history.pushState({}, "", path);
+      setCurrentPath(path);
+      window.scrollTo(0, 0);
     }
+  };
 
-    return (
-      <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", minHeight: "100vh" }}>
-        <MobileHomepage 
-          onNavigatePath={(path) => {
+  const desktopHomeView = (
+    <main role="main">
+      <header role="banner">
+        <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} onAboutClick={triggerEnterAbout} />
+      </header>
+      {/* Outer shell: true scrollable height accounts for scaling + offset space */}
+      <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
+        {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
+        <div style={{
+          width: `${DESIGN_W}px`, height: `${DESIGN_H}px`,
+          position: "absolute", top: `${25 * scale}px`, left: `${left}px`,
+          transformOrigin: "top left",
+          transform: `scale(${scale})`,
+        }}>
+          <Desktop />
+          <MarqueeFrame5 />
+          <StoriesScrollOverlay />
+        </div>
+        <CraftExpandOverlay />
+        <RecommendationsScrollOverlay />
+      </div>
+    </main>
+  );
+
+  const mobileHomeView = (
+    <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", minHeight: "100vh" }}>
+      <MobileHomepage 
+        onNavigatePath={(path) => {
+          if (path === "/about") {
+            triggerEnterAbout();
+          } else {
             window.history.pushState({}, "", path);
             setCurrentPath(path);
             window.scrollTo(0, 0);
-          }} 
-        />
+          }
+        }} 
+      />
+    </div>
+  );
+
+  const currentHomeView = vw < 768 ? mobileHomeView : desktopHomeView;
+
+  const isTransitioningAbout = aboutTransitionPhase !== "idle";
+
+  let homeTransform = "translate3d(0, 0, 0)";
+  let aboutTransform = "translate3d(100vw, 0, 0)";
+  let transitionStyle = "none";
+
+  if (aboutTransitionPhase === "entering-start") {
+    homeTransform = "translate3d(0, 0, 0)";
+    aboutTransform = "translate3d(100vw, 0, 0)";
+    transitionStyle = "none";
+  } else if (aboutTransitionPhase === "entering-active") {
+    homeTransform = "translate3d(-100vw, 0, 0)";
+    aboutTransform = "translate3d(0, 0, 0)";
+    transitionStyle = "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)";
+  } else if (aboutTransitionPhase === "exiting-start") {
+    homeTransform = "translate3d(-100vw, 0, 0)";
+    aboutTransform = "translate3d(0, 0, 0)";
+    transitionStyle = "none";
+  } else if (aboutTransitionPhase === "exiting-active") {
+    homeTransform = "translate3d(0, 0, 0)";
+    aboutTransform = "translate3d(100vw, 0, 0)";
+    transitionStyle = "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)";
+  }
+
+  if (isTransitioningAbout) {
+    return (
+      <div className={isBlurred ? "protection-blur-overlay" : ""}>
+        <style>{marqueeStyles}</style>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            overflow: "hidden",
+            zIndex: 99999,
+            pointerEvents: "none",
+          }}
+        >
+          {/* Home Screen (Slide Container) */}
+          <div
+            ref={setHomeContainerRef}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              overflow: "hidden",
+              transform: homeTransform,
+              transition: transitionStyle,
+              willChange: "transform",
+              background: "#FFFDFA",
+              zIndex: 1,
+            }}
+          >
+            {currentHomeView}
+          </div>
+
+          {/* About Screen (Slide Container) */}
+          <div
+            ref={setAboutContainerRef}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              overflow: "hidden",
+              transform: aboutTransform,
+              transition: transitionStyle,
+              willChange: "transform",
+              borderLeft: "1px solid #7b7a77",
+              boxShadow: "-24px 0 60px rgba(25, 11, 0, 0.22)",
+              background: "#FFFDFA",
+              zIndex: 2,
+            }}
+          >
+            <AboutPage navigateTo={handleNavigateFromAbout} disableScrollReset={true} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -1405,8 +1607,8 @@ export default function App() {
   if (currentPath.startsWith("/allyra-story")) {
     content = (
       <AllyraStoryPage 
-        scale={scale} 
-        left={left} 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
         onBack={() => {
           window.history.pushState({}, "", "/");
           setCurrentPath("/");
@@ -1422,8 +1624,8 @@ export default function App() {
   } else if (currentPath.startsWith("/tulah-story")) {
     content = (
       <TulahStoryPage 
-        scale={scale} 
-        left={left} 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
         onBack={() => {
           window.history.pushState({}, "", "/");
           setCurrentPath("/");
@@ -1439,8 +1641,8 @@ export default function App() {
   } else if (currentPath.startsWith("/campaign-os-story")) {
     content = (
       <CampaignOSStoryPage 
-        scale={scale} 
-        left={left} 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
         onBack={() => {
           window.history.pushState({}, "", "/");
           setCurrentPath("/");
@@ -1456,8 +1658,8 @@ export default function App() {
   } else if (currentPath.startsWith("/vousvous-story")) {
     content = (
       <VousVousStoryPage 
-        scale={scale} 
-        left={left} 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
         onBack={() => {
           window.history.pushState({}, "", "/");
           setCurrentPath("/");
@@ -1470,30 +1672,12 @@ export default function App() {
         }}
       />
     );
-  } else {
+  } else if (currentPath === "/about") {
     content = (
-      <main role="main">
-        <header role="banner">
-          <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} />
-        </header>
-        {/* Outer shell: true scrollable height accounts for scaling + offset space */}
-        <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
-          {/* Inner canvas: 1440×9400 Figma design, scaled + centred, shifted down by 25px */}
-          <div style={{
-            width: `${DESIGN_W}px`, height: `${DESIGN_H}px`,
-            position: "absolute", top: `${25 * scale}px`, left: `${left}px`,
-            transformOrigin: "top left",
-            transform: `scale(${scale})`,
-          }}>
-            <Desktop />
-            <MarqueeFrame5 />
-            <StoriesScrollOverlay />
-          </div>
-          <CraftExpandOverlay />
-          <RecommendationsScrollOverlay />
-        </div>
-      </main>
+      <AboutPage navigateTo={handleNavigateFromAbout} />
     );
+  } else {
+    content = currentHomeView;
   }
 
   return (

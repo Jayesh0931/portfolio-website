@@ -12,6 +12,8 @@ import imgCosCoverSmall from "../cos_cover_small.webp";
 import imgCosCoverLarge from "../cos_cover_large.webp";
 import imgTulahSmallThumb from "../tulah_small_thumb.webp";
 import imgTulahLargeThumb from "../tulah_large_thumb.webp";
+import imgVousvousSmallThumb from "../vousvous_small_thumb.webp";
+import imgVousvousLargeThumb from "../vousvous_large_thumbnail.webp";
 import BrandVector from "../../components/BrandVector";
 
 function Group() {
@@ -240,17 +242,48 @@ function Group7() {
 
       {/* ── VousVous card (Story 04) ── */}
       <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard>
-        <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 04 ] [ 2025 ]</p>
-            <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
+        <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
+          {/* Background Mockup Image (Anchored with room above the phone) */}
+          <img 
+            src={imgVousvousSmallThumb} 
+            alt="VousVous Mockup"
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: "-12px",
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              objectPosition: "center bottom",
+              display: "block",
+              pointerEvents: "none",
+              zIndex: 1,
+            }}
+          />
+
+          {/* Foreground Text Layer */}
+          <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", height: "100%", padding: "14px 16px 0", boxSizing: "border-box" }}>
+            {/* Top Header Row */}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
+                [ STORY 04 ] [ 2025 ]
+              </p>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d={svgPaths.p18019200} fill="#77695D" />
+                </svg>
+              </div>
             </div>
-          </div>
-          <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>VousVous</p>
-            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>Designing trustworthy AI interactions for modern relationships.</p>
+
+            {/* Title & Description */}
+            <div style={{ marginTop: 6, display: "flex", flexDirection: "column", gap: 3 }}>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 27, color: "#190b00", margin: 0, lineHeight: 1.05 }}>
+                VousVous
+              </p>
+              <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 12.5, color: "#7b7a77", lineHeight: "1.3", maxWidth: "195px" }}>
+                <p style={{ margin: 0 }}>Designing trustworthy AI interactions for modern relationships.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1171,12 +1204,14 @@ function Frame2() {
 
 function Frame65() {
   return (
-    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-          <Frame2 />
-        </div>
+    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full overflow-hidden">
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300 z-10" />
+      <div className="size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+        <img 
+          src={imgVousvousLargeThumb} 
+          alt="VousVous story cover" 
+          className="size-full object-cover display-block pointer-events-none" 
+        />
       </div>
     </div>
   );
@@ -1235,7 +1270,7 @@ function Frame71() {
 
 function Frame66() {
   return (
-    <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
+    <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px] z-20">
       <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame67 />
       <Frame71 />

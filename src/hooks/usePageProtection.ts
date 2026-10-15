@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // DETACHABLE SETTING: Set to true to enable all screenshot, copy, and download protections.
 // Set to false for development so you can screenshot, record, and inspect.
-const ENABLE_PROTECTION = false;
+const ENABLE_PROTECTION = true;
 
 export function usePageProtection() {
   const [isBlurred, setIsBlurred] = useState(false);

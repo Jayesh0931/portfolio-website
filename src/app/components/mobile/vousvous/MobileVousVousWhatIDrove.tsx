@@ -1,58 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
+import BrandVector from "@/components/BrandVector";
+import imgWIDVousVous from "@/imports/WID-vousvous.webp";
+import { MobileImageLightbox } from "../common/MobileImageLightbox";
 
 export function MobileVousVousWhatIDrove() {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
   return (
-    <section id="mobile-vousvous-wid" className="mobile-story-wid-section">
-      {/* 1. Supertag */}
-      <p className="mobile-story-wid-tag">
-        <span>[ </span>
-        <span className="mobile-story-wid-tag-orange">WHAT I DROVE</span>
-        <span> ]</span>
-      </p>
-
-      {/* 2. Headline */}
-      <h2 className="mobile-story-wid-title">
-        Orchestrating the Multimodal Discovery Architecture
-      </h2>
-
-      {/* 3. Description & Contributions */}
-      <div className="mobile-story-wid-desc">
-        <p className="mb-3 text-[#77695d]">
-          As Product Lead and AI Product Designer, I directed the product definition, interaction architecture, and interface systems:
-        </p>
-        <p className="font-outfit font-bold text-[#190b00] text-[16px] leading-[1.4] m-0">
-          Product Vision & Strategy / Conversational Prompt Interface / Visual Style Synthesis Engine / Dynamic Wardrobe State Management / Interactive Mobile Prototypes
-        </p>
-      </div>
-
-      {/* 4. Circular System Framework Diagram */}
-      <div className="mt-8 p-6 bg-[#fffdfa] border border-[#7b7a77] rounded-[16px] flex flex-col items-center justify-center">
-        <div className="relative w-[260px] h-[260px] flex items-center justify-center">
-          {/* Dashed outer orbit circle */}
-          <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#7b7a77]/50" />
-          
-          {/* Central Orange Focal Badge */}
-          <div className="w-[140px] h-[140px] rounded-full bg-[#EE6C13] text-[#FFFDFA] flex flex-col items-center justify-center text-center p-3 shadow-lg z-10">
-            <span className="font-outfit font-black text-[13px] tracking-[0.5px] uppercase leading-tight">
-              Declarative Wardrobe Engine
-            </span>
+    <section id="mobile-vousvous-whatidrove" className="mobile-story-wid-section">
+      <div className="mobile-story-wid-card">
+        {/* Left Vertical Rail */}
+        <div className="mobile-story-wid-rail">
+          {/* Top Brand Vector Box */}
+          <div className="mobile-story-wid-rail-top">
+            <BrandVector theme="dark" width={34} height={22} />
           </div>
 
-          {/* Orbiting Satellite Labels */}
-          <div className="absolute top-2 bg-[#fffdfa] border border-[#7b7a77] px-2.5 py-1 rounded-full text-[10px] font-inter font-bold text-[#77695d]">
-            Visual AI
+          {/* Vertical Rotated Title: WHAT I DROVE */}
+          <div className="mobile-story-wid-rail-title-wrap">
+            <span className="mobile-story-wid-rail-title">WHAT I DROVE</span>
           </div>
-          <div className="absolute bottom-2 bg-[#fffdfa] border border-[#7b7a77] px-2.5 py-1 rounded-full text-[10px] font-inter font-bold text-[#77695d]">
-            Relational Feedback
-          </div>
-          <div className="absolute left-[-8px] bg-[#fffdfa] border border-[#7b7a77] px-2 py-1 rounded-full text-[10px] font-inter font-bold text-[#77695d]">
-            Mood
-          </div>
-          <div className="absolute right-[-8px] bg-[#fffdfa] border border-[#7b7a77] px-2 py-1 rounded-full text-[10px] font-inter font-bold text-[#77695d]">
-            Fit
+
+          {/* Vertical Rotated Tag: [ CONTRIBUTION ] */}
+          <div className="mobile-story-wid-rail-tag-wrap">
+            <span className="mobile-story-wid-rail-tag">[ CONTRIBUTION ]</span>
           </div>
         </div>
+
+        {/* Right Content Pane */}
+        <div className="mobile-story-wid-content">
+          <p className="mobile-story-wid-p">
+            I led the end-to-end experience for the consumer mobile application, shaping how users discover, personalise, and purchase fashion.
+          </p>
+
+          <p className="mobile-story-wid-roles">
+            / Gesture-first discovery experience / Conversational AI workflows for fashion exploration / The remix interaction for personalisation / Quotation and measurement journeys / Consistent visual language across / Reusable interaction patterns for discovery, saving, and customisation
+          </p>
+
+          {/* Diagram Container with Interactive Lightbox */}
+          <div
+            className="mobile-story-wid-img-wrap is-interactive"
+            onClick={() => setIsLightboxOpen(true)}
+            role="button"
+            tabIndex={0}
+            aria-label="View What I Drove graphic in fullscreen"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setIsLightboxOpen(true);
+              }
+            }}
+          >
+            <img
+              src={imgWIDVousVous}
+              alt="VousVous Interaction System Diagram"
+              className="mobile-story-wid-img"
+            />
+          </div>
+
+          {/* Tap to View Button */}
+          <button
+            type="button"
+            onClick={() => setIsLightboxOpen(true)}
+            className="mobile-story-challenge-view-btn mt-3"
+            aria-label="Tap to view diagram in fullscreen"
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+            <span>Tap to view</span>
+          </button>
+        </div>
       </div>
+
+      {/* Fullscreen Horizontal Lightbox Modal */}
+      <MobileImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        src={imgWIDVousVous}
+        alt="VousVous Interaction System Diagram"
+        type="image"
+      />
     </section>
   );
 }

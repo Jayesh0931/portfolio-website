@@ -6,18 +6,21 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import imgVousvousLogo from "@/imports/vousvous_logo.webp";
 import imgVousvousStoryHero from "@/imports/vousvous-story-hero.webp";
 import imgVousvousOpportunity from "@/imports/vousvous-opportunity.webp";
-import imgOpportunityPhone from "@/imports/vousvous_opportunity_phone.webp";
+import videoVousVousD1 from "@/imports/vousvous_D1.mp4";
+import videoVousVousD2 from "@/imports/vousvous_D2.mp4";
+import videoVousVousD3 from "@/imports/vousvous_D3.mp4";
+import videoVousVousD4 from "@/imports/vousvous_D4.mp4";
 import imgWIDVousVous from "@/imports/WID-vousvous.webp";
 import imgOutcomeQuoteMark from "@/imports/outcome_quote_mark.webp";
-import MobileCosHero from "./components/mobile/vousvous/MobileCosHero";
-import MobileCosChallenge from "./components/mobile/vousvous/MobileCosChallenge";
-import MobileCosOpportunity from "./components/mobile/vousvous/MobileCosOpportunity";
-import MobileCosWhatIDrove from "./components/mobile/vousvous/MobileCosWhatIDrove";
-import MobileCosValidation from "./components/mobile/vousvous/MobileCosValidation";
+import MobileVousVousHero from "./components/mobile/vousvous/MobileVousVousHero";
+import MobileVousVousChallenge from "./components/mobile/vousvous/MobileVousVousChallenge";
+import MobileVousVousOpportunity from "./components/mobile/vousvous/MobileVousVousOpportunity";
+import MobileVousVousWhatIDrove from "./components/mobile/vousvous/MobileVousVousWhatIDrove";
+import MobileVousVousOutcome from "./components/mobile/vousvous/MobileVousVousOutcome";
 import MobileVousVousDecisions from "./components/mobile/vousvous/MobileVousVousDecisions";
 import MobileVousVousExperience from "./components/mobile/vousvous/MobileVousVousExperience";
 import TheExperienceShowcase from "./components/TheExperienceShowcase";
-import MobileCosOneThing from "./components/mobile/vousvous/MobileCosOneThing";
+import MobileVousVousOneThing from "./components/mobile/vousvous/MobileVousVousOneThing";
 import { MobileFinale } from "./components/mobile/MobileFinale";
 
 interface VousVousStoryPageProps {
@@ -30,17 +33,38 @@ interface VousVousStoryPageProps {
 const CANVAS_W = 1440;
 const CANVAS_H = 13600;
 
-function ViewportVideo({ src, className }: { src: string; className?: string }) {
+function ViewportVideo({
+  src,
+  className,
+  playbackRate = 1,
+}: {
+  src: string;
+  className?: string;
+  playbackRate?: number;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current && playbackRate !== 1) {
+      videoRef.current.playbackRate = playbackRate;
+    }
+  }, [playbackRate, isLoaded]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
+    if (playbackRate !== 1) {
+      video.playbackRate = playbackRate;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          if (playbackRate !== 1) {
+            video.playbackRate = playbackRate;
+          }
           video.play().catch(() => {});
         } else {
           video.pause();
@@ -51,7 +75,7 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [playbackRate]);
 
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
@@ -70,7 +94,12 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
         loop
         muted
         playsInline
-        onLoadedData={() => setIsLoaded(true)}
+        onLoadedData={() => {
+          setIsLoaded(true);
+          if (videoRef.current && playbackRate !== 1) {
+            videoRef.current.playbackRate = playbackRate;
+          }
+        }}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
       />
     </div>
@@ -262,9 +291,9 @@ export default function VousVousStoryPage({
     if (!isMobile) return;
 
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-cos-challenge");
-      const oppEl = document.getElementById("mobile-cos-opportunity");
-      const oneThingEl = document.getElementById("mobile-cos-onething");
+      const challengeEl = document.getElementById("mobile-vousvous-challenge");
+      const oppEl = document.getElementById("mobile-vousvous-opportunity");
+      const expEl = document.getElementById("mobile-vousvous-experience");
 
       const isPastChallengeStart = challengeEl
         ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5
@@ -272,13 +301,13 @@ export default function VousVousStoryPage({
       const isPastOpportunityStart = oppEl
         ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5
         : false;
-      const isPastOneThingStart = oneThingEl
-        ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5
+      const isPastExperienceStart = expEl
+        ? expEl.getBoundingClientRect().top <= window.innerHeight * 0.5
         : false;
 
       const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inOneThing = isPastOneThingStart;
-      setIsDarkMobile(inChallenge || inOneThing);
+      const inExperienceAndBelow = isPastExperienceStart;
+      setIsDarkMobile(inChallenge || inExperienceAndBelow);
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });
@@ -305,14 +334,14 @@ export default function VousVousStoryPage({
   if (isMobile) {
     return (
       <article role="article" className={`mobile-story-container ${isDarkMobile ? "is-dark" : ""}`}>
-        <MobileCosHero onBack={onBack} isDark={isDarkMobile} />
-        <MobileCosChallenge />
-        <MobileCosOpportunity />
-        <MobileCosWhatIDrove />
-        <MobileCosValidation />
+        <MobileVousVousHero onBack={onBack} isDark={isDarkMobile} />
+        <MobileVousVousChallenge />
+        <MobileVousVousOpportunity />
+        <MobileVousVousWhatIDrove />
+        <MobileVousVousOutcome />
         <MobileVousVousDecisions />
         <MobileVousVousExperience />
-        <MobileCosOneThing />
+        <MobileVousVousOneThing />
         <MobileFinale isDark={true} />
         <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/allyra-story" isDark={true} />
 
@@ -797,11 +826,10 @@ export default function VousVousStoryPage({
               </div>
 
               {/* Right Mockup Panel */}
-              <div className="bg-[#e5ddd4] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 p-8">
-                <img
-                  src={imgOpportunityPhone}
-                  alt="Decision Mockup"
-                  className="w-[290px] h-[600px] object-contain drop-shadow-md select-none pointer-events-none"
+              <div className="bg-[#e0d7cd] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 overflow-hidden relative">
+                <ViewportVideo
+                  src={videoVousVousD1}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -856,11 +884,10 @@ export default function VousVousStoryPage({
               </div>
 
               {/* Right Mockup Panel */}
-              <div className="bg-[#e5ddd4] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 p-8">
-                <img
-                  src={imgOpportunityPhone}
-                  alt="Decision Mockup"
-                  className="w-[290px] h-[600px] object-contain drop-shadow-md select-none pointer-events-none"
+              <div className="bg-[#e0d7cd] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 overflow-hidden relative">
+                <ViewportVideo
+                  src={videoVousVousD2}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -912,11 +939,11 @@ export default function VousVousStoryPage({
               </div>
 
               {/* Right Mockup Panel */}
-              <div className="bg-[#e5ddd4] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 p-8">
-                <img
-                  src={imgOpportunityPhone}
-                  alt="Decision Mockup"
-                  className="w-[290px] h-[600px] object-contain drop-shadow-md select-none pointer-events-none"
+              <div className="bg-[#e0d7cd] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 overflow-hidden relative">
+                <ViewportVideo
+                  src={videoVousVousD3}
+                  playbackRate={2}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -968,11 +995,11 @@ export default function VousVousStoryPage({
               </div>
 
               {/* Right Mockup Panel */}
-              <div className="bg-[#e5ddd4] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 p-8">
-                <img
-                  src={imgOpportunityPhone}
-                  alt="Decision Mockup"
-                  className="w-[290px] h-[600px] object-contain drop-shadow-md select-none pointer-events-none"
+              <div className="bg-[#e0d7cd] border-t border-r border-b border-[#7b7a77] border-solid w-[690px] h-full -ml-[1px] flex items-center justify-center shrink-0 overflow-hidden relative">
+                <ViewportVideo
+                  src={videoVousVousD4}
+                  playbackRate={2}
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

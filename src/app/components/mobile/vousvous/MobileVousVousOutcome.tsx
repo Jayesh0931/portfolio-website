@@ -20,7 +20,7 @@ export function MobileVousVousOutcome() {
         </div>
       </div>
 
-      {/* 3. Main Content Container (90-degree square corners) */}
+      {/* 3. Main Content Container (90-degree square corners, seamless -mt-[1px] connection) */}
       <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] p-4 -mt-[1px] flex flex-col">
         {/* Intro Narrative */}
         <p className="font-outfit font-normal text-[#77695d] text-[15px] leading-[1.5] mb-5">

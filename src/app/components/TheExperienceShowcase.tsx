@@ -1,11 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
-import imgOpportunityPhone from "@/imports/vousvous_opportunity_phone.webp";
+import imgExp1 from "@/imports/vousvous_expereince_1.webp";
+import imgExp2 from "@/imports/vousvous_expereince_2.webp";
+import imgExp3 from "@/imports/vousvous_expereince_3.webp";
+import imgExp4 from "@/imports/vousvous_expereince_4.webp";
+import imgExp5 from "@/imports/vousvous_expereince_5.webp";
 
 interface StepData {
   id: number;
   num: string;
   title: string;
   subtitle: string;
+  image: string;
 }
 
 const STEPS: StepData[] = [
@@ -14,30 +19,35 @@ const STEPS: StepData[] = [
     num: "01",
     title: "DISCOVER",
     subtitle: "Explore • Swipe",
+    image: imgExp1,
   },
   {
     id: 2,
     num: "02",
     title: "EXPRESS",
     subtitle: "AI Chat",
+    image: imgExp2,
   },
   {
     id: 3,
     num: "03",
     title: "CREATE",
     subtitle: "Generate • Remix",
+    image: imgExp3,
   },
   {
     id: 4,
     num: "04",
     title: "PERSONALISE",
     subtitle: "Try-On",
+    image: imgExp4,
   },
   {
     id: 5,
     num: "05",
     title: "COMPLETE",
     subtitle: "Quote • Purchase",
+    image: imgExp5,
   },
 ];
 
@@ -51,9 +61,9 @@ export function ExperienceBrandMark({
 }) {
   return (
     <svg
-      width="135"
+      width="140"
       height="95"
-      viewBox="0 0 135 95"
+      viewBox="0 0 140 95"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
@@ -69,8 +79,8 @@ export function ExperienceBrandMark({
           cy="48"
           r="36"
           stroke="#FFFDFA"
-          strokeWidth="5"
-          strokeDasharray="7 7"
+          strokeWidth="4.5"
+          strokeDasharray="6 6"
           fill="none"
         />
       </g>
@@ -96,54 +106,54 @@ export function TheExperienceShowcase({
 
   const dashedCircleRef = useRef<SVGGElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const phoneRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Track scroll budget (in canvas pixels)
-  const SCROLL_DISTANCE = 2200;
-  const PIN_OFFSET = 30; // viewport top clearance
+  // Smooth scroll interpolation refs (liquid momentum at 60fps/120fps)
+  const targetProgressRef = useRef<number>(0);
+  const currentProgressRef = useRef<number>(0);
+  const rafIdRef = useRef<number | null>(null);
 
+  // Total scroll budget
+  const SCROLL_DISTANCE = 2400;
+
+  // Stride between card centers: Card width (240px) + Gap (32px) = 272px
+  const CARD_WIDTH = 240;
+  const GAP = 32;
+  const STRIDE = CARD_WIDTH + GAP;
+
+  // 1. Scroll listener: updates targetProgress continuously in real time
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const start = (sectionTop - PIN_OFFSET) * scale;
+      const start = (sectionTop - 30) * scale;
       const end = start + SCROLL_DISTANCE * scale;
 
-      // 1. Rotate the dashed circle on scroll
+      // Rotate dashed circle on scroll
       if (dashedCircleRef.current) {
         dashedCircleRef.current.style.transform = `rotate(${scrollY * 0.25}deg)`;
       }
 
-      // 2. Track pin state and progress
       if (scrollY < start) {
         setPinMode("before");
-        setActiveStep(1);
+        targetProgressRef.current = 0;
         if (progressBarRef.current) {
           progressBarRef.current.style.width = "0%";
         }
       } else if (scrollY >= start && scrollY <= end) {
         setPinMode("pinned");
         const progress = (scrollY - start) / (SCROLL_DISTANCE * scale);
+        // Map 0..1 scroll to 0..4 step progress
+        targetProgressRef.current = Math.min(Math.max(progress * 4, 0), 4);
 
-        // Update bottom progress bar width smoothly in real time
         if (progressBarRef.current) {
           const pct = Math.min(Math.max(progress * 100, 2), 100);
           progressBarRef.current.style.width = `${pct}%`;
         }
-
-        // Active step thresholds
-        if (progress < 0.20) {
-          setActiveStep(1);
-        } else if (progress < 0.40) {
-          setActiveStep(2);
-        } else if (progress < 0.60) {
-          setActiveStep(3);
-        } else if (progress < 0.80) {
-          setActiveStep(4);
-        } else {
-          setActiveStep(5);
-        }
       } else {
         setPinMode("after");
-        setActiveStep(5);
+        targetProgressRef.current = 4;
         if (progressBarRef.current) {
           progressBarRef.current.style.width = "100%";
         }
@@ -155,45 +165,96 @@ export function TheExperienceShowcase({
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scale, sectionTop]);
 
-  // Click on step smoothly scrolls page to that step
+  // 2. Liquid 120fps RAF Render Loop: Eliminates all jerkiness and sudden threshold jumps
+  useEffect(() => {
+    let isRunning = true;
+
+    const renderLoop = () => {
+      if (!isRunning) return;
+
+      // Smooth inertia: lerp current towards target progress
+      const diff = targetProgressRef.current - currentProgressRef.current;
+      if (Math.abs(diff) > 0.0004) {
+        currentProgressRef.current += diff * 0.14;
+      } else {
+        currentProgressRef.current = targetProgressRef.current;
+      }
+
+      const cur = currentProgressRef.current;
+      const shiftX = -cur * STRIDE;
+
+      // 1. Move the entire track smoothly on GPU
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateX(${shiftX}px)`;
+      }
+
+      // 2. Smoothly scale and cross-fade each phone without triggering layout reflow
+      STEPS.forEach((_, i) => {
+        const dist = Math.abs(cur - i);
+        // Scale phone from 1.0 (active center) down to 0.74 (inactive)
+        const phoneScale = Math.max(0.74, 1 - dist * 0.26);
+
+        let opacity = 0.45;
+        let labelOpacity = 0.6;
+
+        if (i < cur) {
+          // Phone moving left into/behind the text panel:
+          // Fade label to 0 to prevent text-on-text clash, soften phone under blur mask
+          const pastFactor = cur - i;
+          opacity = Math.max(0.2, 1 - pastFactor * 0.45);
+          labelOpacity = Math.max(0, 1 - pastFactor * 2.2);
+        } else {
+          // Current active or upcoming phone
+          opacity = Math.max(0.45, 1 - dist * 0.55);
+          labelOpacity = Math.max(0.6, 1 - dist * 0.4);
+        }
+
+        const phoneEl = phoneRefs.current[i];
+        if (phoneEl) {
+          phoneEl.style.transform = `scale(${phoneScale})`;
+          phoneEl.style.opacity = `${opacity}`;
+        }
+
+        const labelEl = labelRefs.current[i];
+        if (labelEl) {
+          labelEl.style.opacity = `${labelOpacity}`;
+          labelEl.style.pointerEvents = labelOpacity < 0.1 ? "none" : "auto";
+        }
+      });
+
+      // 3. Update active step index for click highlights
+      const nearestStep = Math.min(5, Math.max(1, Math.round(cur) + 1));
+      setActiveStep((prev) => (prev !== nearestStep ? nearestStep : prev));
+
+      rafIdRef.current = requestAnimationFrame(renderLoop);
+    };
+
+    rafIdRef.current = requestAnimationFrame(renderLoop);
+    return () => {
+      isRunning = false;
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, [STRIDE]);
+
+  // Click on step smoothly scrolls page directly to that step
   const handleStepClick = (stepId: number) => {
     const stepRatio = (stepId - 1) / 4;
-    const targetScrollY = (sectionTop - PIN_OFFSET) * scale + stepRatio * (SCROLL_DISTANCE * scale);
+    const targetScrollY = (sectionTop - 30) * scale + stepRatio * (SCROLL_DISTANCE * scale);
     window.scrollTo({
       top: targetScrollY,
       behavior: "smooth",
     });
   };
 
-  const getHorizontalShift = (step: number) => {
-    switch (step) {
-      case 1:
-        return 0;
-      case 2:
-        return -130;
-      case 3:
-        return -310;
-      case 4:
-        return -490;
-      case 5:
-        return -670;
-      default:
-        return 0;
-    }
-  };
-
-  const horizontalShift = getHorizontalShift(activeStep);
-
-  // Native hardware-composited positioning: zero-lag, zero jitter!
+  // Viewport-pinned positioning
   const containerStyle: React.CSSProperties =
     pinMode === "pinned"
       ? {
           position: "fixed",
-          top: `${PIN_OFFSET * scale}px`,
-          left: `${left + 80 * scale}px`,
-          width: "1280px",
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
           zIndex: 20,
           pointerEvents: "auto",
         }
@@ -201,143 +262,154 @@ export function TheExperienceShowcase({
       ? {
           position: "absolute",
           top: `${sectionTop * scale}px`,
-          left: `${left + 80 * scale}px`,
-          width: "1280px",
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
+          left: 0,
+          width: "100%",
+          height: "100vh",
           zIndex: 2,
           pointerEvents: "auto",
         }
       : {
           position: "absolute",
           top: `${(sectionTop + SCROLL_DISTANCE) * scale}px`,
-          left: `${left + 80 * scale}px`,
-          width: "1280px",
-          transform: `scale(${scale})`,
-          transformOrigin: "top left",
+          left: 0,
+          width: "100%",
+          height: "100vh",
           zIndex: 2,
           pointerEvents: "auto",
         };
 
   return (
     <>
-      <div style={containerStyle} className="flex flex-col pt-6 select-none">
-        {/* ── 1. HEADER SECTION (Styled for Dark Background #190b00) ── */}
-        <div className="flex flex-col mb-12 w-full">
-          {/* Eyebrow Tag */}
-          <p className="font-inter font-bold text-[12px] tracking-[0.6px] uppercase m-0 mb-4">
-            <span className="text-[#a8a29e]">[ FROM DISCOVERY TO </span>
-            <span className="text-[#EE6C13]">PURCHASE</span>
-            <span className="text-[#a8a29e]"> ]</span>
-          </p>
+      <div style={containerStyle} className="select-none bg-[#190b00] overflow-hidden">
+        {/* Full viewport stage */}
+        <div className="w-full h-full relative overflow-hidden flex items-center">
+          {/* ── 1. LEFT PANEL: Full viewport height (Typography on top, Brand Vector on bottom) ── */}
+          <div className="absolute left-[60px] lg:left-[80px] top-0 h-full w-[420px] lg:w-[460px] z-20 flex flex-col justify-between pt-[105px] pb-10 pointer-events-none">
+            {/* Top Typography Block */}
+            <div className="flex flex-col pointer-events-auto">
+              {/* Eyebrow Tag: Clears the navbar < BACK button cleanly */}
+              <p className="font-inter font-bold text-[12px] tracking-[0.6px] uppercase m-0 mb-4 text-[#a8a29e]">
+                [ FROM DISCOVERY TO <span className="text-[#EE6C13]">PURCHASE</span> ]
+              </p>
 
-          {/* Row 1: THE in White on left, Brand Mark on far right */}
-          <div className="flex items-center justify-between w-full">
-            <h2 className="font-outfit font-black text-[#FFFDFA] text-[130px] leading-[0.9] tracking-[4px] uppercase m-0">
-              THE
-            </h2>
-            <div className="shrink-0 mr-4">
+              {/* Title Row 1: THE (Solid White) */}
+              <h2 className="font-outfit font-black text-[#FFFDFA] text-[66px] lg:text-[76px] leading-[0.88] tracking-[2px] uppercase m-0">
+                THE
+              </h2>
+
+              {/* Title Row 2: EXPERIENCE (Outline typography) */}
+              <h2
+                className="font-outfit font-black text-[66px] lg:text-[76px] leading-[0.88] tracking-[2px] uppercase m-0 whitespace-nowrap"
+                style={{
+                  color: "#190b00",
+                  WebkitTextStrokeWidth: "2px",
+                  WebkitTextStrokeColor: "#7B7A77",
+                  paintOrder: "stroke fill",
+                }}
+              >
+                EXPERIENCE
+              </h2>
+            </div>
+
+            {/* Bottom Brand Mark Block (Rotates smoothly on scroll) */}
+            <div className="shrink-0 pointer-events-auto mt-auto pt-4">
               <ExperienceBrandMark circleRef={dashedCircleRef} />
             </div>
           </div>
 
-          {/* Row 2: EXPERIENCE (Outline Typography styled for dark background) */}
-          <h2
-            className="font-outfit font-black text-[130px] leading-[0.9] tracking-[4px] uppercase m-0 whitespace-nowrap"
+          {/* ── 2. BLUR & GRADIENT OVERLAY (Gently blurs & fades phones as they pass behind the left text) ── */}
+          <div
+            className="pointer-events-none absolute left-0 top-0 h-full w-[500px] lg:w-[540px] z-10"
             style={{
-              color: "#190b00",
-              WebkitTextStrokeWidth: "2.5px",
-              WebkitTextStrokeColor: "#7B7A77",
-              paintOrder: "stroke fill",
+              background:
+                "linear-gradient(to right, rgba(25, 11, 0, 1) 0%, rgba(25, 11, 0, 0.95) 70%, rgba(25, 11, 0, 0) 100%)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              maskImage: "linear-gradient(to right, black 65%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to right, black 65%, transparent 100%)",
             }}
-          >
-            EXPERIENCE
-          </h2>
-        </div>
+          />
 
-        {/* ── 2. INTERACTIVE 5-DEVICE SHOWCASE (HORIZONTALLY SCROLLING TRACK) ── */}
-        <div className="w-full overflow-visible min-h-[760px] relative">
+          {/* ── 3. HORIZONTAL TRACK OF PHONES: First phone starts CENTERED in the right panel ── */}
           <div
             style={{
-              transform: `translateX(${horizontalShift}px)`,
-              transition: "transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)",
-              willChange: "transform",
+              paddingLeft: "calc(50vw + 108px)",
             }}
-            className="flex items-start justify-start gap-7 min-w-[1600px]"
+            className="w-full h-full relative z-0 flex items-center overflow-visible"
           >
-            {STEPS.map((step) => {
-              const isActive = activeStep === step.id;
+            <div
+              ref={trackRef}
+              style={{
+                willChange: "transform",
+              }}
+              className="flex items-end justify-start gap-8 min-w-[1800px] pb-6"
+            >
+              {STEPS.map((step, idx) => {
+                const isActive = activeStep === step.id;
 
-              return (
-                <div
-                  key={step.id}
-                  onClick={() => handleStepClick(step.id)}
-                  className={`flex flex-col cursor-pointer transition-all duration-500 ease-out select-none group ${
-                    isActive
-                      ? "w-[290px] shrink-0 z-10"
-                      : "w-[172px] shrink-0 opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  {/* Step Labels */}
+                return (
                   <div
-                    className={`flex flex-col transition-all duration-500 ${
-                      isActive ? "h-[110px] justify-end pb-3" : "h-[110px] justify-end pb-3 mt-[100px]"
-                    }`}
+                    key={step.id}
+                    onClick={() => handleStepClick(step.id)}
+                    style={{
+                      width: `${CARD_WIDTH}px`,
+                    }}
+                    className="shrink-0 flex flex-col justify-end items-start cursor-pointer select-none group"
                   >
-                    {/* Step Number */}
-                    <span
-                      className={`font-outfit font-bold text-[#EE6C13] transition-all duration-500 leading-none ${
-                        isActive ? "text-[38px] mb-2" : "text-[22px] mb-1.5"
-                      }`}
+                    {/* Step Labels directly above each phone */}
+                    <div
+                      ref={(el) => (labelRefs.current[idx] = el)}
+                      style={{
+                        willChange: "opacity",
+                      }}
+                      className="flex flex-col pb-3 w-full"
                     >
-                      {step.num}
-                    </span>
+                      {/* Step Number */}
+                      <span className="font-outfit font-bold text-[#EE6C13] text-[28px] leading-none mb-1">
+                        {step.num}
+                      </span>
 
-                    {/* Step Title (White) */}
-                    <h3
-                      className={`font-outfit font-black text-[#FFFDFA] uppercase tracking-wide transition-all duration-500 leading-tight m-0 ${
-                        isActive ? "text-[24px]" : "text-[16px]"
-                      }`}
-                    >
-                      {step.title}
-                    </h3>
+                      {/* Step Title (White) */}
+                      <h3 className="font-outfit font-black text-[#FFFDFA] uppercase tracking-wide text-[20px] leading-tight m-0">
+                        {step.title}
+                      </h3>
 
-                    {/* Step Subtitle (Muted Light Gray) */}
-                    <p
-                      className={`font-outfit text-[#a8a29e] font-normal transition-all duration-500 leading-tight m-0 mt-0.5 ${
-                        isActive ? "text-[15px]" : "text-[12px]"
-                      }`}
+                      {/* Step Subtitle (Muted Light Gray) */}
+                      <p className="font-outfit text-[#a8a29e] font-normal text-[12px] leading-tight m-0 mt-0.5">
+                        {step.subtitle}
+                      </p>
+                    </div>
+
+                    {/* iPhone Frame Using vousvous_opportunity_phone.webp */}
+                    <div
+                      ref={(el) => (phoneRefs.current[idx] = el)}
+                      style={{
+                        transformOrigin: "bottom center",
+                        willChange: "transform, opacity",
+                      }}
+                      className="w-full h-[510px] max-h-[58vh] flex items-center justify-center select-none"
                     >
-                      {step.subtitle}
-                    </p>
+                      <img
+                        src={step.image}
+                        alt={`${step.num} ${step.title}`}
+                        className={`w-full h-full object-contain pointer-events-none select-none transition-shadow duration-300 ${
+                          isActive
+                            ? "drop-shadow-[0_24px_50px_rgba(0,0,0,0.9)]"
+                            : "drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
+                        }`}
+                      />
+                    </div>
                   </div>
-
-                  {/* iPhone Frame Using vousvous_opportunity_phone.webp */}
-                  <div
-                    className={`transition-all duration-500 ease-out flex items-center justify-center ${
-                      isActive ? "w-[290px] h-[600px] mt-0" : "w-[172px] h-[356px] mt-0"
-                    }`}
-                  >
-                    <img
-                      src={imgOpportunityPhone}
-                      alt={`${step.num} ${step.title}`}
-                      className={`w-full h-full object-contain pointer-events-none select-none transition-all duration-500 ${
-                        isActive
-                          ? "drop-shadow-[0_20px_45px_rgba(0,0,0,0.7)] scale-100"
-                          : "drop-shadow-md group-hover:scale-[1.02]"
-                      }`}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* ── 3. BOTTOM BRAND ORANGE PROGRESS BAR (Appears ONLY when section is locked in viewport) ── */}
+      {/* ── 4. BOTTOM BRAND ORANGE PROGRESS BAR (Appears ONLY when section is locked in viewport) ── */}
       <div
-        className={`fixed bottom-0 left-0 w-full h-[8px] bg-white/10 z-[9999] transition-opacity duration-300 pointer-events-none ${
+        className={`fixed bottom-0 left-0 w-full h-[6px] bg-white/10 z-[9999] transition-opacity duration-300 pointer-events-none ${
           pinMode === "pinned" ? "opacity-100" : "opacity-0"
         }`}
       >

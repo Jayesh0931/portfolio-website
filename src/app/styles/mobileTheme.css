@@ -4816,6 +4816,32 @@
   margin: 0;
 }
 
+/* ==========================================================================
+   VOUSVOUS MOBILE CASE STUDY STYLES
+   ========================================================================== */
+
+.mobile-vousvous-challenge-glow {
+  position: absolute;
+  inset: -12px;
+  background: linear-gradient(110deg, #68C3E7 0%, #FFB86B 100%);
+  filter: blur(55px);
+  opacity: 0.85;
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mobile-story-experience-section {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
+  padding: 100px 16px 100px 16px;
+  background: #190B00;
+  position: relative;
+  z-index: 2;
+}
+
+
 
 
 

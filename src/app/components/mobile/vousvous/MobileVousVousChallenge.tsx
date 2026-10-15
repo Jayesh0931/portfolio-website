@@ -1,62 +1,107 @@
-import React from "react";
+import React, { useState } from "react";
+import imgVousvousStoryHero from "@/imports/vousvous-story-hero.webp";
+import { MobileImageLightbox } from "../common/MobileImageLightbox";
 
 export function MobileVousVousChallenge() {
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
   return (
     <section id="mobile-vousvous-challenge" className="mobile-story-challenge-section">
-      {/* 1. Hero / Prototype Showcase Frame with Ambient Glow */}
+      {/* 1. Hero Composite Showcase Frame with Soft Cyan & Peach Glow */}
       <div className="mobile-story-challenge-img-container">
-        <div 
-          className="mobile-story-challenge-glow" 
+        <div
+          className="mobile-story-challenge-glow"
           style={{
-            background: "linear-gradient(135deg, rgba(34, 197, 94, 0.45) 0%, rgba(168, 85, 247, 0.45) 50%, rgba(59, 130, 246, 0.45) 100%)",
-            filter: "blur(40px)",
+            background: "linear-gradient(110deg, #68C3E7 0%, #FFB86B 100%)",
+            filter: "blur(60px)",
+            opacity: 0.85,
           }}
+          aria-hidden="true"
         />
-        <div className="mobile-story-challenge-img-frame border border-[#7b7a77]/50 rounded-[16px] overflow-hidden bg-[#190b00]/90 p-4 aspect-[16/10] flex items-center justify-center">
-          <div className="text-center text-[#FFFDFA]">
-            <span className="text-[#EE6C13] text-[28px] mb-2 block">✦</span>
-            <p className="font-outfit font-bold text-[18px] text-[#FFFDFA] m-0">VousVous Discovery Platform</p>
-            <p className="font-outfit text-[13px] text-[#A89F91] mt-1 m-0">Interactive visual exploration & generative wardrobe</p>
-          </div>
+        <div
+          className="mobile-story-challenge-img-frame is-interactive"
+          onClick={() => setIsLightboxOpen(true)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setIsLightboxOpen(true);
+            }
+          }}
+          aria-label="View Vousvous hero graphic in fullscreen"
+          style={{
+            boxShadow: "-20px 0 45px rgba(104, 195, 231, 0.4), 20px 0 45px rgba(255, 184, 107, 0.4)",
+          }}
+        >
+          <img
+            src={imgVousvousStoryHero}
+            alt="Vousvous Story Hero"
+            className="mobile-story-challenge-img"
+          />
         </div>
+
+        {/* 'Tap to view' Button */}
+        <button
+          type="button"
+          onClick={() => setIsLightboxOpen(true)}
+          className="mobile-story-challenge-view-btn"
+          aria-label="Tap to view graphic in fullscreen"
+        >
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+          </svg>
+          <span>Tap to view</span>
+        </button>
       </div>
 
-      {/* 2. Challenge Supertag */}
-      <p className="mobile-story-challenge-tag">
-        <span>[ </span>
-        <span className="mobile-story-challenge-tag-orange">THE CHALLENGE</span>
-        <span> ]</span>
-      </p>
+      {/* Fullscreen Horizontal Lightbox Modal */}
+      <MobileImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        src={imgVousvousStoryHero}
+        alt="Vousvous Story Hero"
+        type="image"
+      />
 
-      {/* 3. Challenge Headline */}
-      <h2 className="mobile-story-challenge-title">
-        Why Traditional Fashion Search Fails Style Expression
-      </h2>
-
-      {/* 4. Challenge Narrative Copy */}
-      <div className="mobile-story-challenge-copy">
-        <p>
-          Modern e-commerce still treats fashion like commodities on a spreadsheet: filters for color, size, and category. But true personal style is declarative, emotional, and relational.
-        </p>
-        <p>
-          People rarely think in keywords like <em>&quot;relaxed fit pleated beige trousers linen&quot;</em>. They think in moods, occasions, aesthetic references, and personal silhouettes.
-        </p>
-        <p>
-          When users are forced into rigid search facets, the discovery process collapses into fatigue rather than inspiration.
-        </p>
+      {/* 2. Section Header: THE CHALLENGE + Divider */}
+      <div className="mobile-story-challenge-header">
+        <h2 className="mobile-story-challenge-title">THE CHALLENGE</h2>
+        <div className="mobile-story-challenge-divider" />
       </div>
 
-      {/* 5. Bullet Highlights */}
-      <div className="mobile-story-challenge-bullets">
-        <div className="mobile-story-challenge-bullet-item">
-          <span className="text-[#EE6C13] font-bold">/ Keyword Friction:</span> Text queries fail to capture aesthetic nuance and intent.
-        </div>
-        <div className="mobile-story-challenge-bullet-item">
-          <span className="text-[#EE6C13] font-bold">/ Decision Fatigue:</span> Endless scrolling through repetitive catalog grids.
-        </div>
-        <div className="mobile-story-challenge-bullet-item">
-          <span className="text-[#EE6C13] font-bold">/ Passive Consumption:</span> Users are constrained to choosing from presets rather than actively shaping looks.
-        </div>
+      {/* 3. Narrative Content */}
+      <div className="mobile-story-challenge-content">
+        <p className="mobile-story-challenge-p">
+          Most fashion platforms assume users know exactly what they&apos;re looking for.
+        </p>
+
+        <p className="mobile-story-challenge-p">
+          In reality, <strong className="font-bold text-[#FFFDFA]">fashion shopping is often exploratory.</strong><br />
+          People discover styles while browsing, save pieces they like, compare options, and gradually refine their preferences.
+        </p>
+
+        <p className="mobile-story-challenge-p">
+          Traditional e-commerce patterns interrupt this process with complex filters, large product grids, and overwhelming choices.
+        </p>
+
+        <p className="mobile-story-challenge-p">
+          The opportunity was to design an experience that felt less like searching a catalogue and more like discovering personal style.
+        </p>
+
+        <p className="mobile-story-challenge-callout font-outfit italic font-bold text-[#FFFDFA]">
+          &quot;Discovery should feel intuitive—not exhausting.&quot;
+        </p>
       </div>
     </section>
   );

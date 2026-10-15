@@ -296,7 +296,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
         <MobileCosCraft />
         <MobileCosOneThing />
         <MobileFinale isDark={true} />
-        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/tulah-story" isDark={true} />
+        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/vousvous-story" isDark={true} />
 
         {/* Floating Scroll to Top Button */}
         <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />

@@ -319,6 +319,82 @@ function generateHomeSemanticHtml(templateHtml) {
   return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
 }
 
+function generateAboutHtml(baseHtml) {
+  let html = baseHtml;
+  const canonicalUrl = `${BASE_URL}/about`;
+  const title = "About — Jayesh Soni | Product Lead & AI Product Designer";
+  const desc = "About Jayesh Soni: Product Lead and AI Product Designer with 7+ years shaping human-AI interaction, enterprise AI systems, and scalable digital products.";
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  html = html.replace(/<link\s+rel="canonical"[\s\S]*?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
+  html = html.replace(/<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${desc}" />`);
+  html = html.replace(/<meta\s+property="og:title"[\s\S]*?>/i, `<meta property="og:title" content="${title}" />`);
+  html = html.replace(/<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${desc}" />`);
+  html = html.replace(/<meta\s+property="og:url"[\s\S]*?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+
+  const semanticBody = `
+    <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 24px;">
+        <a href="/" style="color: #EE6C13; text-decoration: none; font-weight: 600;">← Back to Jayesh Soni Portfolio</a>
+      </nav>
+      
+      <header style="margin-bottom: 40px; border-bottom: 1px solid #7b7a77; padding-bottom: 24px;">
+        <p style="font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #77695d; margin: 0 0 8px 0;">[ ABOUT JAYESH SONI ]</p>
+        <h1 style="font-size: 38px; line-height: 1.2; margin: 0 0 16px 0;">Product Lead & AI Product Designer</h1>
+        <p style="font-size: 20px; color: #190b00; line-height: 1.4;">Designing Intelligent Products where human behaviour, business goals, and AI capabilities work together.</p>
+      </header>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">In A Nutshell</h2>
+        <p style="font-size: 18px; color: #190b00;">Product Lead and AI Product Designer with 7+ years of experience designing enterprise platforms, operational systems, and AI-native products across healthcare, education, wellness, marketplaces, and SaaS ecosystems. My work combines product strategy, systems thinking, and user experience to solve complex operational challenges and build intelligent products that connect user needs, business goals, and AI capabilities.</p>
+      </section>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Selected Impact</h2>
+        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
+          <li>Product Lead for allyra.ai, Pansophic Technologies' Human-AI Interaction platform.</li>
+          <li>Supported 25–30 enterprise client demonstrations resulting in 3 successful client onboardings.</li>
+          <li>Reduced operational workflow overhead by approximately 60–70% for tulah.</li>
+          <li>Delivered operational product experiences for Stanford Medicine.</li>
+          <li>Speaker at TiE Chandigarh on AI and Human-Centred Design.</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">My Focus</h2>
+        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
+          <li><strong>01 Human–AI Interaction & Agentic UX:</strong> Agentic UX, AI Behavior Design, Adaptive Interfaces, Conversational UX, Enterprise AI Systems.</li>
+          <li><strong>02 Product Strategy & Enterprise Platforms:</strong> Product Strategy, Operational Systems, AI Product Management, Workflow Design, Cross-functional Leadership.</li>
+          <li><strong>03 Systems Thinking & Craft:</strong> Design Systems, Vibe UX Framework, Rapid Prototyping, Figma, Information Architecture.</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Experience</h2>
+        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
+          <li><strong>Jan 2025 – Present:</strong> Pansophic Technologies — Product Lead (allyra.ai, tulah, Raxaa.ai, EOMs.ai)</li>
+          <li><strong>Jun 2024 – Dec 2024:</strong> Vrozart Dackson Enterprise — UXD Head (Vibe UX Framework, VousVous)</li>
+          <li><strong>May 2023 – Jun 2024:</strong> Vertisystem (Client: Stanford Medicine) — UI UX Designer</li>
+          <li><strong>Jun 2022 – May 2023:</strong> Joonify — User Interface Designer</li>
+          <li><strong>May 2021 – May 2022:</strong> 5Exceptions Software Solutions — UI UX Designer</li>
+          <li><strong>Oct 2020 – May 2021:</strong> Freelance — UI UX Designer (Robo Inventors)</li>
+          <li><strong>Jun 2019 – Sep 2020:</strong> Tata Consultancy Services — Assistant System Engineer (Apple Production Support)</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Education & Certification</h2>
+        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
+          <li><strong>Bachelor of Engineering (Computer Science)</strong> (2015 – 2019) — Indore Institute of Science and Technology (RGPV University)</li>
+          <li><strong>Google UX Design Professional Certificate</strong> (2023) — Google | Coursera</li>
+        </ul>
+      </section>
+    </main>
+  `;
+
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+}
+
 function runPrerender() {
   const indexHtmlPath = path.join(distDir, "index.html");
   if (!fs.existsSync(indexHtmlPath)) {
@@ -345,7 +421,17 @@ function runPrerender() {
     console.log(`[prerender] Generated static route: /${story.path}/index.html & /${story.path}.html`);
   }
 
-  // 2. Enhance root index.html with fallback semantic HTML
+  // 2. Generate Pre-rendered Page for /about
+  const aboutDir = path.join(distDir, "about");
+  if (!fs.existsSync(aboutDir)) {
+    fs.mkdirSync(aboutDir, { recursive: true });
+  }
+  const aboutHtml = generateAboutHtml(baseHtml);
+  fs.writeFileSync(path.join(aboutDir, "index.html"), aboutHtml, "utf-8");
+  fs.writeFileSync(path.join(distDir, "about.html"), aboutHtml, "utf-8");
+  console.log(`[prerender] Generated static route: /about/index.html & /about.html`);
+
+  // 3. Enhance root index.html with fallback semantic HTML
   const homeHtml = generateHomeSemanticHtml(baseHtml);
   fs.writeFileSync(indexHtmlPath, homeHtml, "utf-8");
   console.log(`[prerender] Enhanced root /index.html with semantic content`);

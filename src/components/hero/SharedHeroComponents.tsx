@@ -3,6 +3,7 @@ import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 import imgAllyraCoverSmall from "@/imports/allyra_cover_small.webp";
 import imgCosCoverSmall from "@/imports/cos_cover_small.webp";
 import imgTulahSmallThumb from "@/imports/tulah_small_thumb.webp";
+import imgVousvousSmallThumb from "@/imports/vousvous_small_thumb.webp";
 import BrandVector from "@/components/BrandVector";
 
 export const triggerScrollToId = (id: string) => {
@@ -299,25 +300,47 @@ export function VousVousHeroCard({
       width={width}
       height={height}
       style={style}
-      bgColor="#FFFFFF"
+      bgColor="#FFFDFA"
       borderColor={isMobile ? "#D6CEBE" : "#7b7a77"}
       hoverBorderColor="#190b00"
       onClick={handleClick}
       isStoryCard
     >
-      <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: isMobile ? "14px 14px 16px" : 16, boxSizing: "border-box" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: isMobile ? 9.5 : 12, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
-            [ STORY 04 ] [ 2025 ]
-          </p>
-          <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
-            <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
+      <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
+        {/* Background Mockup Image (Anchored with room above the phone) */}
+        <img 
+          src={imgVousvousSmallThumb} 
+          alt="VousVous Mockup"
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: "-12px",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            objectPosition: "center bottom",
+            display: "block",
+            pointerEvents: "none",
+            zIndex: 1,
+          }}
+        />
+
+        {/* Foreground Text Layer */}
+        <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", height: "100%", padding: isMobile ? "12px 14px 0" : "14px 16px 0", boxSizing: "border-box" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: isMobile ? 9.5 : 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
+              [ STORY 04 ] [ 2025 ]
+            </p>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
+            </div>
           </div>
-        </div>
-        <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 6 }}>
-          <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: isMobile ? 22 : 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>VousVous</p>
-          <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: isMobile ? 11 : 14, color: "#6B6258", lineHeight: "1.35" }}>
-            <p style={{ margin: 0 }}>Designing trustworthy AI interactions for modern relationships.</p>
+          <div style={{ marginTop: isMobile ? 4 : 6, display: "flex", flexDirection: "column", gap: 3 }}>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: isMobile ? 22 : 27, color: "#190b00", margin: 0, lineHeight: 1.05 }}>VousVous</p>
+            <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: isMobile ? 11 : 12.5, color: "#7b7a77", lineHeight: "1.3", maxWidth: isMobile ? "180px" : "195px" }}>
+              <p style={{ margin: 0 }}>Designing trustworthy AI interactions for modern relationships.</p>
+            </div>
           </div>
         </div>
       </div>

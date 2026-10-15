@@ -4,6 +4,7 @@ import {
   imgAllyraCoverBig,
   imgCosCoverLarge,
   imgTulahLargeThumb,
+  imgVousvousLargeThumb,
   imgE31,
   imgE32
 } from "./mobileAssets";
@@ -73,7 +74,7 @@ const storiesData: StoryItem[] = [
     title: "VousVous",
     subtitle: "AI-powered fashion platform for discovering, creating, and personalizing unique styles.",
     pills: ["FASHION TECH", "AI PERSONALIZATION", "CONSUMER PRODUCTS"],
-    image: imgE31,
+    image: imgVousvousLargeThumb,
     imageAlt: "VousVous cover preview",
     keyInsight: "Personalization becomes meaningful when people can create, not just choose.",
     contribution: "Product Design, Mobile Experience Design, Design System, Interaction Design",

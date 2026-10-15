@@ -1,5 +1,6 @@
 import React from "react";
 import BrandVector from "@/components/BrandVector";
+import imgVousvousLogo from "@/imports/vousvous_logo.webp";
 
 interface MobileVousVousHeroProps {
   onBack: () => void;
@@ -49,39 +50,46 @@ export function MobileVousVousHero({ onBack, isDark = false }: MobileVousVousHer
 
         {/* Hero Brand & Title Block */}
         <div className="mobile-story-title-block">
-          <div className="mobile-story-brand-row">
-            <span className="text-[#EE6C13] text-[22px] leading-none">✦</span>
-            <span className="mobile-story-brand-text">VousVous</span>
-          </div>
-
-          <h1 className="mobile-story-headline">
-            Declarative Fashion Discovery Beyond Search
-          </h1>
-        </div>
-
-        {/* Narrative Paragraphs */}
-        <div className="mobile-story-narrative-block">
-          <p className="mobile-story-paragraph">
-            Personalization becomes meaningful when people can create, not just choose. VousVous is an AI-powered fashion platform designed to move past keyword search into visual declaration and personalized style discovery.
-          </p>
-        </div>
-
-        {/* Metadata Stack: Role & Team Contribution */}
-        <div className="mobile-story-meta-group">
-          <div className="mobile-story-meta-item">
-            <span className="mobile-story-meta-label">Role</span>
-            <span className="mobile-story-role-val">
-              Product Lead & AI Product Designer
+          <div className="mobile-story-brand-row mb-2 flex items-center gap-[12px]">
+            <img
+              src={imgVousvousLogo}
+              alt="Vousvous Logo"
+              className="size-[42px] object-contain shrink-0"
+            />
+            <span className="font-['Alegreya_SC',serif] text-[36px] text-[#190b00] leading-none tracking-[0.5px]">
+              Vousvous
             </span>
           </div>
 
-          <div className="mobile-story-meta-item">
-            <span className="mobile-story-meta-label">Focus Areas</span>
-            <div className="mobile-story-focus-list">
-              <p>Product Strategy</p>
-              <p>AI Interaction Design</p>
-              <p>Mobile Experience Architecture</p>
-              <p>Design System Foundations</p>
+          <h1 className="mobile-story-headline">
+            Designing Fashion Discovery Beyond Search
+          </h1>
+        </div>
+
+        {/* Narrative & Metadata Block */}
+        <div className="mobile-story-narrative-block">
+          <p className="mobile-story-paragraph text-[#77695d]">
+            Fashion discovery has long been driven by filters, endless grids, and keyword searches. With VousVous, we explored a different interaction model—one where users discover, personalize, and{" "}
+            <strong className="font-bold text-[#190b00]">
+              create fashion through gestures and AI-guided conversations instead of traditional browsing.
+            </strong>
+          </p>
+
+          <div className="mobile-story-meta-group">
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">ROLE</span>
+              <span className="mobile-story-role-val">Product Designer</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">SCOPE</span>
+              <div className="mobile-story-focus-list">
+                <p>/ Discovery Experience</p>
+                <p>/ AI Assisted Personalization</p>
+                <p>/ Conversational Commerce</p>
+                <p>/ Interaction Design</p>
+                <p>/ Fashion Marketplace</p>
+              </div>
             </div>
           </div>
         </div>

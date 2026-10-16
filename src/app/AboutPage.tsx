@@ -30,128 +30,182 @@ const CLIENTS = [
 
 const IMPACT_HIGHLIGHTS = [
   {
-    num: "60–70%",
-    label: "Workflow Overhead Reduction",
-    desc: "Led design of operational systems for tulah, significantly reducing clinical and service delivery friction.",
+    num: "allyra.ai",
+    label: "Product Lead",
+    desc: "Product Lead for allyra.ai, an enterprise Human–AI Interaction platform.",
   },
   {
-    num: "25–30",
-    label: "Enterprise Client Demos",
-    desc: "Spearheaded product demos for allyra.ai resulting in 3 successful enterprise client onboardings.",
+    num: "50+",
+    label: "Enterprise Organizations",
+    desc: "Demonstrated allyra to 50+ enterprise organizations, contributing to customer validation and adoption.",
+  },
+  {
+    num: "10+",
+    label: "Active Organizations",
+    desc: "10+ enterprise organizations actively use Allyra across production workflows.",
+  },
+  {
+    num: "60–70%",
+    label: "Workflow Overhead Reduction",
+    desc: "Reduced operational workflow overhead by approximately 60–70% through AI-powered operational systems for tulah.",
+  },
+  {
+    num: "Stanford",
+    label: "Stanford Medicine",
+    desc: "Designed operational product experiences supporting scholarship and course-planning workflows.",
   },
   {
     num: "TiE Talk",
     label: "Keynote Speaker",
-    desc: "Delivered invited talk at TiE Chandigarh on 'AI and Human-Centred Design' and autonomous workflows.",
-  },
-  {
-    num: "Stanford",
-    label: "Leadership Recognition",
-    desc: "Received formal recognition from Stanford Medicine leadership for course-planning and scholarship UX.",
+    desc: "Speaker at TiE Chandigarh on AI and Human-Centred Design.",
   },
 ];
 
 const FOCUS_ITEMS = [
   {
     num: "01",
-    title: "HUMAN–AI INTERACTION & AGENTIC UX",
+    title: "AI & PRODUCT",
     skills: [
+      "Human–AI Interaction",
       "Agentic UX",
+      "AI Product Design",
+      "AI Workflow Design",
+      "Prompt Engineering",
       "AI Behavior Design",
-      "Adaptive Interfaces",
-      "Conversational UX",
-      "Enterprise AI Systems",
     ],
-    desc: "I shape the moments where people decide whether to trust intelligent systems—defining interaction patterns, agentic workflows, and supervisory models for enterprise teams.",
+    desc: "Designing AI products that align human behaviour, business goals, and intelligent agents. Defining interaction patterns, agentic workflows, supervisory models, and prompt-driven experiences for enterprise teams.",
   },
   {
     num: "02",
-    title: "PRODUCT STRATEGY & ENTERPRISE PLATFORMS",
+    title: "PRODUCT & DESIGN",
     skills: [
       "Product Strategy",
-      "Operational Systems",
-      "AI Product Management",
+      "Product Discovery",
+      "Enterprise UX",
       "Workflow Design",
-      "Cross-functional Leadership",
+      "Design Systems",
+      "Interaction Design",
+      "Rapid Prototyping",
+      "Figma",
     ],
-    desc: "Translating complex operational challenges and technical capability into clear product architectures, leading cross-functional teams from discovery through live enterprise releases.",
+    desc: "End-to-end product ownership from discovery and rapid prototyping through validated implementation. Creating scalable design systems, clear platform architectures, and developer handoff workflows.",
   },
   {
     num: "03",
-    title: "SYSTEMS THINKING & CRAFT",
+    title: "AI TOOLS & SYSTEMS",
     skills: [
-      "Design Systems",
-      "Vibe UX Framework",
-      "Rapid Prototyping",
-      "Figma",
-      "Information Architecture",
+      "Figma Make",
+      "Claude Design",
+      "ChatGPT",
+      "Gemini",
+      "Antigravity",
+      "Lovable",
+      "Emergent",
     ],
-    desc: "Co-authoring modern AI UX frameworks, building scalable component libraries, and creating high-fidelity interactive models that accelerate stakeholder alignment and developer handoffs.",
+    desc: "Leveraging cutting-edge AI creation tools and intelligent environments to accelerate concept exploration, multi-agent prototyping, and production-grade software delivery.",
   },
 ];
 
 const EXPERIENCES = [
   {
     period: "JAN 2025 – PRESENT",
-    company: "Pansophic Technologies",
+    company: "PANSOPHIC TECHNOLOGIES",
     role: "Product Lead",
-    subnote: "Promoted into Product Leadership following transition of the core Vrozart team",
+    subnote: "(Promoted into Product Leadership following transition of the core Vrozart team into Pansophic Technologies)",
     summary:
-      "Lead product strategy and experience design across pilot, beta, and live releases for allyra.ai (Human-AI Interaction platform). Defined interaction patterns, agentic workflows, adaptive interfaces, and enterprise AI experiences. Supported 25–30 enterprise client demonstrations resulting in 3 successful client onboardings. Partner with engineering, sales, marketing, and leadership to align product direction and customer feedback. Contributing to early-stage platforms Raxaa.ai and EOMs.ai, shaping core workflows. Led design of operational systems for tulah (Client), reducing workflow overhead by approximately 60–70%.",
-    tags: ["allyra.ai", "Agentic Workflows", "tulah", "Raxaa.ai & EOMs.ai", "Enterprise Demos"],
+      "Led AI product strategy and experience design across pilot, beta, and production releases for Allyra.ai, an enterprise Human–AI Interaction platform. Designed AI interaction patterns, agentic workflows, prompt-driven experiences, and adaptive interfaces. Demonstrated Allyra to 50+ enterprise organizations, contributing to customer discovery, solution validation, and product adoption; 10+ organizations currently use the platform. Designed operational systems for tulah, reducing administrative workflow overhead by approximately 60–70%.",
+    points: [
+      "Led AI product strategy and experience design across pilot, beta, and production releases for Allyra.ai, an enterprise Human–AI Interaction platform.",
+      "Designed AI interaction patterns, agentic workflows, prompt-driven experiences, and adaptive interfaces for AI-native enterprise products.",
+      "Demonstrated Allyra to 50+ enterprise organizations, contributing to customer discovery, solution validation, and product adoption; 10+ organizations currently use the platform.",
+      "Translated customer feedback and product requirements into validated workflows and interaction patterns, supporting product discovery and solution validation.",
+      "Designed operational systems for tulah, reducing administrative workflow overhead by approximately 60–70% through workflow automation and experience redesign.",
+      "Partnered with engineering, sales, marketing, and leadership to align product strategy, customer feedback, and delivery while contributing to early-stage AI platforms including Raxaa.ai and EOMs.ai.",
+    ],
+    tags: ["allyra.ai", "50+ Enterprise Demos", "10+ Active Orgs", "tulah (60–70% Overhead)", "Raxaa.ai & EOMs.ai"],
   },
   {
     period: "JUN 2024 – DEC 2024",
-    company: "Vrozart Dackson Enterprise Pvt. Ltd.",
+    company: "VROZART DACKSON ENTERPRISE PVT. LTD.",
     role: "UXD Head",
-    subnote: "Core Team transitioned to Pansophic Technologies",
+    subnote: "(Core Team transitioned to Pansophic Technologies)",
     summary:
-      "Co-authored the Vibe UX Framework, establishing principles for context-aware and AI-native user experiences. Led UX and interaction design across enterprise SaaS, AI-powered products, and consumer platforms. Directed product experience for Farmland Bazaar, Evosell by Evoluxar, and VousVous across discovery, workflows, and platform architecture. Established scalable design systems and developer handoff workflows across multiple product squads.",
-    tags: ["Vibe UX Framework", "VousVous", "Farmland Bazaar", "Design Systems"],
+      "Co-authored the Vibe UX Framework, establishing principles for context-aware and AI-native user experiences. Led UX and interaction design across enterprise SaaS, AI-powered products, and consumer platforms. Directed product experience for Farmland Bazaar, Evosell by Evoluxar, and VousVous across discovery, workflows, and platform architecture. Established scalable design systems and integrated AI-assisted workflows.",
+    points: [
+      "Co-authored the Vibe UX Framework, establishing principles for context-aware and AI-native user experiences.",
+      "Led UX and interaction design across enterprise SaaS, AI-powered products, and consumer platforms.",
+      "Directed product experience for Farmland Bazaar, Evosell by Evoluxar, and VousVous across discovery, workflows, and platform architecture.",
+      "Established scalable design systems and developer handoff processes across multiple products.",
+      "Integrated AI-assisted workflows for rapid concept exploration, prototyping, and design iteration.",
+    ],
+    tags: ["Vibe UX Framework", "VousVous", "Farmland Bazaar", "Evosell", "Design Systems"],
   },
   {
     period: "MAY 2023 – JUN 2024",
-    company: "Vertisystem (Client: Stanford Medicine)",
+    company: "VERTISYSTEM (Client: Stanford Medicine)",
     role: "UI UX Designer",
     subnote: "Formal recognition received from Stanford Medicine leadership",
     summary:
-      "Delivered end-to-end UX design for Stanford Medicine operational applications supporting scholarship and course-planning workflows. Created high-fidelity prototypes and interaction models that accelerated development and stakeholder alignment. Independently managed product design across distributed teams and complex administrative workflows.",
+      "Partnered with Stanford Medicine stakeholders to simplify complex administrative workflows into scalable digital experiences. Delivered end-to-end UX design for Stanford Medicine operational applications supporting scholarship and course-planning workflows. Created high-fidelity prototypes and interaction models that accelerated development and stakeholder alignment.",
+    points: [
+      "Partnered with Stanford Medicine stakeholders to simplify complex administrative workflows into scalable digital experiences.",
+      "Delivered end-to-end UX design for Stanford Medicine operational applications supporting scholarship and course-planning workflows.",
+      "Created high-fidelity prototypes and interaction models that accelerated development and stakeholder alignment.",
+      "Independently managed product design across distributed teams and complex administrative workflows.",
+      "Received formal recognition from Stanford Medicine leadership for contributions that were instrumental to project success.",
+    ],
     tags: ["Stanford Medicine", "Administrative UX", "Course Planning", "Prototyping"],
   },
   {
     period: "JUN 2022 – MAY 2023",
-    company: "Joonify",
+    company: "JOONIFY",
     role: "User Interface Designer",
     subnote: "Platform trusted by 750+ parents",
     summary:
-      "Designed end-to-end product experiences across web and mobile platforms for parents and children. Created the Talent Discovery Assessment journey, helping deliver personalized learning and growth insights through guided assessments.",
+      "Designed end-to-end product experiences across web and mobile platforms for parents and children. Created the Talent Discovery Assessment journey, helping deliver personalized learning and growth insights through guided assessments. Contributed to a platform trusted by 750+ parents through onboarding, assessment, and learning experiences.",
+    points: [
+      "Designed end-to-end product experiences across web and mobile platforms for parents and children.",
+      "Created the Talent Discovery Assessment journey, helping deliver personalized learning and growth insights through guided assessments.",
+      "Contributed to a platform trusted by 750+ parents through onboarding, assessment, and learning experiences.",
+    ],
     tags: ["Ed-Tech", "Assessment Journey", "Personalized Learning", "Web & Mobile"],
   },
   {
     period: "MAY 2021 – MAY 2022",
-    company: "5Exceptions Software Solutions",
+    company: "5EXCEPTIONS SOFTWARE SOLUTIONS",
     role: "UI UX Designer",
-    subnote: "Cross-domain enterprise & consumer platforms",
+    subnote: "Cross-domain enterprise & emerging technology platforms",
     summary:
-      "Designed digital products across healthcare, fintech, education, utility, and emerging technology domains. Delivered UX and UI solutions for web platforms, mobile applications, enterprise systems, e-commerce products, and HMI interfaces. Built foundational expertise in responsive design systems, interaction design, and developer handoffs.",
-    tags: ["Healthcare & Fintech", "HMI Interfaces", "Design Systems"],
+      "Designed digital products across healthcare, fintech, education, utility, and emerging technology domains. Delivered UX and UI solutions for web platforms, mobile applications, enterprise systems, e-commerce products, and HMI interfaces. Built foundational expertise in responsive design systems, interaction design, and developer handoff workflows.",
+    points: [
+      "Designed digital products across healthcare, fintech, education, utility, and emerging technology domains.",
+      "Delivered UX and UI solutions for web platforms, mobile applications, enterprise systems, e-commerce products, and HMI interfaces.",
+      "Built foundational expertise in responsive design systems, interaction design, and developer handoff workflows.",
+    ],
+    tags: ["Healthcare & Fintech", "HMI Interfaces", "Enterprise Systems", "Design Systems"],
   },
   {
     period: "OCT 2020 – MAY 2021",
-    company: "Freelance",
+    company: "FREELANCE",
     role: "UI UX Designer",
-    subnote: "IoT & smart hardware product launches",
+    subnote: "E-commerce, IoT & connected device launches",
     summary:
-      "Collaborated with Robo Inventors on e-commerce platforms, IoT applications, and smart home product launches. Designed customer-facing experiences across web, mobile, and connected-device ecosystems, gaining early exposure to full product lifecycle thinking.",
-    tags: ["Smart Home & IoT", "E-Commerce", "Product Lifecycle"],
+      "Partnered with Robo Inventors to launch e-commerce, IoT, and smart home products, contributing from UX strategy to production-ready interfaces.",
+    points: [
+      "Partnered with Robo Inventors to launch e-commerce, IoT, and smart home products, contributing from UX strategy to production-ready interfaces.",
+    ],
+    tags: ["Smart Home & IoT", "E-Commerce", "UX Strategy", "Robo Inventors"],
   },
   {
     period: "JUN 2019 – SEP 2020",
-    company: "Tata Consultancy Services",
+    company: "TATA CONSULTANCY SERVICES",
     role: "Assistant System Engineer",
-    subnote: "Apple Production Support (APS) Operations",
+    subnote: "Apple Enterprise Production Systems",
     summary:
-      "Supported Apple Production Support (APS) operations for internal enterprise applications, managing incidents and business-critical workflows. Developed foundational expertise in enterprise systems, large-scale operations, SLA-driven service delivery, and systems thinking.",
+      "Supported Apple's enterprise production systems while building a strong foundation in large-scale operations, incident management, and enterprise software.",
+    points: [
+      "Supported Apple's enterprise production systems while building a strong foundation in large-scale operations, incident management, and enterprise software.",
+    ],
     tags: ["Apple Production Support", "Enterprise Operations", "Systems Thinking"],
   },
 ];
@@ -551,12 +605,12 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                   color: "#190b00",
                 }}
               >
-                Product Lead and AI Product Designer with 7+ years of experience designing enterprise platforms, operational systems, and AI-native products.{" "}
+                Product Lead and AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.{" "}
                 <span style={{ color: "#77695d", fontWeight: 400 }}>
-                  At least, that's the short answer. In reality, I shape the moments where people decide whether to trust intelligent systems—
+                  Experienced in Human–AI Interaction, Agentic UX, AI workflow design, prompt engineering, and product strategy—
                 </span>{" "}
                 <span style={{ color: "#190b00", fontWeight: 800 }}>
-                  connecting human behavior, business goals, and AI capabilities into coherent, scalable products that perform and feel intuitive to use.
+                  with end-to-end ownership from discovery and prototyping through implementation. Designing AI products that align human behaviour, business goals, and intelligent agents.
                 </span>
               </h1>
 
@@ -564,7 +618,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(4, 1fr)",
+                  gridTemplateColumns: "repeat(3, 1fr)",
                   gap: 16,
                   marginBottom: 44,
                 }}
@@ -746,7 +800,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple Production Support operations, I saw firsthand how large-scale enterprise systems handle business-critical workflows under strict SLA constraints.
+                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple's enterprise production systems, I built a strong foundation in large-scale operations, incident management, and mission-critical software.
                 </p>
 
                 <p
@@ -758,7 +812,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  That systems background naturally drew me into product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed talent assessment experiences trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered scholarship and course-planning operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b>, creating high-fidelity interactive models that earned formal recognition from Stanford leadership.
+                  That systems background naturally led to product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed the Talent Discovery Assessment journey helping deliver personalized learning insights trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered end-to-end operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b> supporting scholarship and course-planning workflows, receiving formal recognition from Stanford leadership.
                 </p>
 
                 <p
@@ -770,7 +824,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  As UXD Head at <b style={{ color: "#190b00" }}>Vrozart Dackson</b>, I co-authored the <b style={{ color: "#190b00" }}>Vibe UX Framework</b>—establishing principles for context-aware, AI-native products and directing digital experiences for VousVous and consumer platforms. Following the transition of our core team into <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I stepped into Product Leadership.
+                  As UXD Head at <b style={{ color: "#190b00" }}>Vrozart Dackson</b>, I co-authored the <b style={{ color: "#190b00" }}>Vibe UX Framework</b>—establishing principles for context-aware and AI-native user experiences while directing product experiences for Farmland Bazaar, Evosell by Evoluxar, and VousVous. Following the transition of our core team into <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I stepped into Product Leadership.
                 </p>
 
                 <p
@@ -782,7 +836,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  Today, as Product Lead, I direct product strategy and experience design for <b style={{ color: "#190b00" }}>allyra.ai</b> (Human-AI Interaction platform), early-stage intelligence platforms <b style={{ color: "#190b00" }}>Raxaa.ai</b> and <b style={{ color: "#190b00" }}>EOMs.ai</b>, and operational platforms like <b style={{ color: "#190b00" }}>tulah</b> (reducing workflow overhead by 60–70%). I also speak regularly on AI and Human-Centred Design, including at TiE Chandigarh.
+                  Today, as Product Lead at <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I lead AI product strategy and experience design across pilot, beta, and production releases for <b style={{ color: "#190b00" }}>Allyra.ai</b> (demonstrated to 50+ enterprise orgs, actively used by 10+), design operational systems for <b style={{ color: "#190b00" }}>tulah</b> (reducing administrative workflow overhead by approximately 60–70%), and contribute to early-stage platforms including <b style={{ color: "#190b00" }}>Raxaa.ai</b> and <b style={{ color: "#190b00" }}>EOMs.ai</b>. I also spoke at TiE Chandigarh on AI and Human-Centred Design.
                 </p>
               </div>
             </div>
@@ -1154,19 +1208,47 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
 
                   {/* Right Summary Column */}
                   <div style={{ display: "flex", alignItems: "center" }}>
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 400,
-                        fontSize: 16,
-                        lineHeight: 1.7,
-                        color: isDark ? "#C9C1B7" : "#4A4238",
-                        margin: 0,
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.summary}
-                    </p>
+                    {exp.points && exp.points.length > 0 ? (
+                      <ul
+                        style={{
+                          margin: 0,
+                          paddingLeft: 20,
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 10,
+                        }}
+                      >
+                        {exp.points.map((pt, pIdx) => (
+                          <li
+                            key={pIdx}
+                            style={{
+                              fontFamily: "Outfit, sans-serif",
+                              fontWeight: 400,
+                              fontSize: 15.5,
+                              lineHeight: 1.6,
+                              color: isDark ? "#C9C1B7" : "#4A4238",
+                              transition: "color 0.8s ease",
+                            }}
+                          >
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p
+                        style={{
+                          fontFamily: "Outfit, sans-serif",
+                          fontWeight: 400,
+                          fontSize: 16,
+                          lineHeight: 1.7,
+                          color: isDark ? "#C9C1B7" : "#4A4238",
+                          margin: 0,
+                          transition: "color 0.8s ease",
+                        }}
+                      >
+                        {exp.summary}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -1507,9 +1589,9 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: "0 0 20px 0",
                   }}
                 >
-                  Product Lead &amp; AI Product Designer with 7+ years of experience designing enterprise platforms, operational systems, and AI-native products.{" "}
+                  Product Lead &amp; AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.{" "}
                   <span style={{ color: "#77695d", fontWeight: 400 }}>
-                    In reality, I shape the moments where people decide whether to trust intelligent systems.
+                    Designing AI products that align human behaviour, business goals, and intelligent agents.
                   </span>
                 </h1>
 
@@ -1523,32 +1605,52 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                         borderRadius: 0, // SHARP CORNER
                         padding: "14px 12px",
                         background: "#FFFDFA",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
                       }}
                     >
-                      <span
+                      <div>
+                        <span
+                          style={{
+                            fontFamily: "Outfit, sans-serif",
+                            fontWeight: 900,
+                            fontSize: 20,
+                            lineHeight: 1.1,
+                            color: "#EE6C13",
+                            display: "block",
+                            marginBottom: 4,
+                          }}
+                        >
+                          {item.num}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: "Outfit, sans-serif",
+                            fontWeight: 800,
+                            fontSize: 11,
+                            lineHeight: 1.25,
+                            color: "#190b00",
+                            textTransform: "uppercase",
+                            display: "block",
+                            marginBottom: 4,
+                          }}
+                        >
+                          {item.label}
+                        </span>
+                      </div>
+                      <p
                         style={{
                           fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: 22,
-                          color: "#EE6C13",
-                          display: "block",
-                          marginBottom: 4,
+                          fontWeight: 400,
+                          fontSize: 10.5,
+                          lineHeight: 1.35,
+                          color: "#77695d",
+                          margin: 0,
                         }}
                       >
-                        {item.num}
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 800,
-                          fontSize: 11.5,
-                          color: "#190b00",
-                          textTransform: "uppercase",
-                          display: "block",
-                        }}
-                      >
-                        {item.label}
-                      </span>
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -1656,7 +1758,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple Production Support operations, I saw how large-scale enterprise systems handle business-critical workflows under strict SLA constraints.
+                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple's enterprise production systems, I built a strong foundation in large-scale operations and mission-critical software.
                 </p>
                 <p
                   style={{
@@ -1667,7 +1769,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  That systems background naturally drew me into product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed talent assessment experiences trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered scholarship and course-planning operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b>, creating high-fidelity interactive models that earned formal recognition from Stanford leadership.
+                  That foundation naturally led to product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed the Talent Discovery Assessment journey helping deliver personalized learning insights trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered scholarship and course-planning operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b>, receiving formal recognition from Stanford leadership.
                 </p>
                 <p
                   style={{
@@ -1678,7 +1780,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     margin: 0,
                   }}
                 >
-                  Today, as Product Lead at <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I shape autonomous multi-agent orchestration, agentic UX patterns, and enterprise AI workforce governance for <b style={{ color: "#190b00" }}>allyra.ai</b>, <b style={{ color: "#190b00" }}>Raxaa.ai</b>, and <b style={{ color: "#190b00" }}>tulah</b> (60–70% workflow reduction).
+                  Today, as Product Lead at <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I lead AI product strategy and experience design for <b style={{ color: "#190b00" }}>Allyra.ai</b> (demonstrated to 50+ enterprise orgs, actively used by 10+), design operational systems for <b style={{ color: "#190b00" }}>tulah</b> (reducing administrative workflow overhead by ~60–70%), and contribute to early-stage platforms including <b style={{ color: "#190b00" }}>Raxaa.ai</b> and <b style={{ color: "#190b00" }}>EOMs.ai</b>.
                 </p>
               </div>
 
@@ -1931,18 +2033,45 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                         {exp.subnote}
                       </p>
                     )}
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontSize: 13.5,
-                        lineHeight: 1.55,
-                        color: isDark ? "#C9C1B7" : "#4A4238",
-                        margin: "0 0 12px 0",
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.summary}
-                    </p>
+                    {exp.points && exp.points.length > 0 ? (
+                      <ul
+                        style={{
+                          margin: "0 0 12px 0",
+                          paddingLeft: 18,
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 8,
+                        }}
+                      >
+                        {exp.points.map((pt, pIdx) => (
+                          <li
+                            key={pIdx}
+                            style={{
+                              fontFamily: "Outfit, sans-serif",
+                              fontSize: 13,
+                              lineHeight: 1.5,
+                              color: isDark ? "#C9C1B7" : "#4A4238",
+                              transition: "color 0.8s ease",
+                            }}
+                          >
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p
+                        style={{
+                          fontFamily: "Outfit, sans-serif",
+                          fontSize: 13.5,
+                          lineHeight: 1.55,
+                          color: isDark ? "#C9C1B7" : "#4A4238",
+                          margin: "0 0 12px 0",
+                          transition: "color 0.8s ease",
+                        }}
+                      >
+                        {exp.summary}
+                      </p>
+                    )}
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                       {exp.tags.map((t, idx) => (
                         <span

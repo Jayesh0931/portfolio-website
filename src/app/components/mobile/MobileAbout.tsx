@@ -1,12 +1,15 @@
 import BrandVector from "@/components/BrandVector";
 
 const CLIENTS = [
+  "Pansophic Technologies",
+  "allyra.ai",
+  "Stanford Medicine",
+  "tulah",
   "Tata Consultancy Services",
+  "VousVous",
   "Joonify",
   "Vertisystem",
-  "Stanford",
-  "allyra.ai",
-  "tulah"
+  "5Exceptions",
 ];
 
 export function MobileAbout() {
@@ -40,16 +43,11 @@ export function MobileAbout() {
             {/* Body Paragraphs */}
             <div className="mobile-about-body-text">
             <p>
-              I'm <b>Jayesh Soni</b>, and for the past 7+ years, I've been designing
-              products at the intersection of people, systems, and emerging technologies.
-              From healthcare and education to marketplaces and enterprise AI, my work has
-              evolved into shaping Human–AI interactions, agentic experiences, and adaptive
-              systems that people can understand and trust.
+              I'm <b>Jayesh Soni</b>, Product Lead &amp; AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.
+              Experienced in Human–AI Interaction, Agentic UX, AI workflow design, prompt engineering, and product strategy, with end-to-end ownership from discovery through implementation.
             </p>
             <p>
-              Along the way, I've learned that the hardest product challenges are rarely just
-              technical. They're human. The work I enjoy most is bringing clarity to complexity
-              and creating experiences that people can confidently adopt and rely on.
+              I design AI products that align human behaviour, business goals, and intelligent agents—bringing clarity to complexity and creating adaptive experiences that enterprise teams can confidently adopt and trust.
             </p>
           </div>
 

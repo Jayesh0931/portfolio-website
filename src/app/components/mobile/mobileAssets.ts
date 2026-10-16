@@ -8,6 +8,7 @@ import imgAllyraCoverBig from "@/imports/allyra_cover_big.webp";
 import imgCosCoverLarge from "@/imports/cos_cover_large.webp";
 import imgTulahLargeThumb from "@/imports/tulah_large_thumb.webp";
 import imgVousvousLargeThumb from "@/imports/vousvous_large_thumbnail.webp";
+import imgJoonifyDesktop from "@/imports/joonify_desktop.webp";
 
 // WORK ID CARDS / LOGOS
 import imgAllyraLogo from "@/imports/allyra_logo.webp";
@@ -42,6 +43,7 @@ export {
   imgCosCoverLarge,
   imgTulahLargeThumb,
   imgVousvousLargeThumb,
+  imgJoonifyDesktop,
 
   // Logos & WIDs
   imgAllyraLogo,

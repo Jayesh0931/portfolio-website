@@ -82,6 +82,13 @@ export function useSEOManager(path: string) {
         path: "/vousvous-story",
         type: "article",
       };
+    } else if (path.startsWith("/joonify-story")) {
+      config = {
+        title: "Joonify Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+        description: "Case study on Joonify: Helping parents understand how their children learn, grow, and discover their strengths through early childhood assessments.",
+        path: "/joonify-story",
+        type: "article",
+      };
     } else if (path.startsWith("/about")) {
       config = {
         title: "About — Jayesh Soni | Product Lead & AI Product Designer",

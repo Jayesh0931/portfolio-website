@@ -4,6 +4,7 @@ import AllyraStoryPage from "./AllyraStoryPage";
 import TulahStoryPage from "./TulahStoryPage";
 import CampaignOSStoryPage from "./CampaignOSStoryPage";
 import VousVousStoryPage from "./VousVousStoryPage";
+import JoonifyStoryPage from "./JoonifyStoryPage";
 import AboutPage from "./AboutPage";
 import MobileHomepage from "./components/mobile/MobileHomepage";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
@@ -19,7 +20,7 @@ import imgEllipse8 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea6194
 import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 
 const DESIGN_W = 1440;
-const DESIGN_H = 11220;
+const DESIGN_H = 10020;
 
 function getScaleAndLeft(vw: number) {
   if (vw >= 768) {
@@ -1106,7 +1107,7 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
       </div>
 
       {/* Stories - scrolls to 2077 */}
-      <div style={{ position: "absolute", left: 998, top: 0 }}>
+      <div style={{ position: "absolute", left: 1120, top: 0 }}>
         <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(2077)}>
           <span style={textStyle}>
             Stories
@@ -1117,35 +1118,6 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
               fill="none"
               style={{
                 transform: storiesPassed ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.3s ease",
-              }}
-            >
-              <path d={svgPaths.p20be5a00} fill="#77695D" />
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      {/* Craft */}
-      <div style={{ position: "absolute", left: 1123, top: 0 }}>
-        <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => {
-          const el = document.getElementById("focus-section-block");
-          if (el) {
-            const top = window.scrollY + el.getBoundingClientRect().top - 20;
-            window.scrollTo({ top, behavior: "smooth" });
-          } else {
-            scrollToY(6820);
-          }
-        }}>
-          <span style={textStyle}>
-            Craft
-            <svg 
-              width="11" 
-              height="11" 
-              viewBox="0 0 11 11.3137" 
-              fill="none"
-              style={{
-                transform: craftPassed ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.3s ease",
               }}
             >
@@ -1493,7 +1465,6 @@ export default function App() {
           <MarqueeFrame5 />
           <StoriesScrollOverlay />
         </div>
-        <CraftExpandOverlay />
         <RecommendationsScrollOverlay />
       </div>
     </main>
@@ -1666,6 +1637,23 @@ export default function App() {
           window.scrollTo(0, 0);
         }} 
         onNextStory={() => {
+          window.history.pushState({}, "", "/joonify-story");
+          setCurrentPath("/joonify-story");
+          window.scrollTo(0, 0);
+        }}
+      />
+    );
+  } else if (currentPath.startsWith("/joonify-story")) {
+    content = (
+      <JoonifyStoryPage 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
+        onBack={() => {
+          window.history.pushState({}, "", "/");
+          setCurrentPath("/");
+          window.scrollTo(0, 0);
+        }} 
+        onNextStory={() => {
           window.history.pushState({}, "", "/allyra-story");
           setCurrentPath("/allyra-story");
           window.scrollTo(0, 0);
@@ -1812,7 +1800,7 @@ function RecommendationsScrollOverlay() {
   const vhD        = vh / scale;
   const vwD        = clampedVw / scale;
 
-  const SECT_TOP  = 8800;
+  const SECT_TOP  = 7600;
   const SECT_H    = 824; // 100px (header) + 680px (card) + 44px (indicator spacing)
 
   // Spacing calculation for exact vertical centering in viewport

@@ -116,6 +116,26 @@ const STORIES = [
       "Personalise Before Purchase — Integrating body profile and try-on directly into checkout"
     ],
     oneThing: "Designing for AI isn't about replacing familiar experiences. It's about introducing intelligence only where it removes friction. The strongest moments came from balancing human intuition with AI assistance."
+  },
+  {
+    path: "joonify-story",
+    title: "Joonify Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+    description: "Case study on Joonify: Helping parents understand how their children learn, grow, and discover their strengths through early childhood assessments.",
+    headline: "Helping parents understand how their children learn, grow, and discover their strengths.",
+    role: "Product Designer",
+    scope: "Product Design / User Experience Design / Assessment Experience / Interaction Design / Ed-Tech Platform",
+    overview: "Joonify brought child talent discovery, learning recommendations, and educational planning into one platform—helping parents make more informed decisions about their child's development.",
+    challenge: "Every child has different strengths, interests, and learning needs. Joonify aimed to help parents understand these differences through a talent discovery assessment and connect them with relevant learning resources.",
+    opportunity: "Connect three key parts of a child's learning journey: Understand (child profiling), Discover (talent assessment), and Grow (curated courses and schedules).",
+    whatIDrove: "Talent Discovery Assessment Experience, Learning Scheduler, Course Discovery Hub, Quiz and Exam Flows, Referral System, Design System.",
+    impact: "750+ Parents Guided, 30-Minute Talent Discovery Assessment, 6 Development Dimensions Evaluated.",
+    keyDecisions: [
+      "Understand Before Prescribing — Comprehensive child profiling across cognitive and behavioral traits",
+      "Assessment Without Anxiety — 30-minute engaging, pressure-free talent discovery journey",
+      "Connected Learning Ecosystem — Unifying talent assessment with tailored course recommendations and scheduling",
+      "Actionable Clarity for Parents — Translating developmental data into clear growth roadmaps"
+    ],
+    oneThing: "Joonify was an opportunity to design beyond individual screens—to connect a child's profile, assessment journey, and learning resources into a cohesive product experience."
   }
 ];
 

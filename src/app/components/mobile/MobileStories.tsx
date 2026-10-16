@@ -5,6 +5,7 @@ import {
   imgCosCoverLarge,
   imgTulahLargeThumb,
   imgVousvousLargeThumb,
+  imgJoonifyDesktop,
   imgE31,
   imgE32
 } from "./mobileAssets";
@@ -87,10 +88,11 @@ const storiesData: StoryItem[] = [
     title: "Joonify",
     subtitle: "Learning and assessment platform helping parents better understand how children learn and grow.",
     pills: ["ED-TECH", "LEARNING EXPERIENCE", "CHILD DEVELOPMENT"],
-    image: imgE32,
+    image: imgJoonifyDesktop,
     imageAlt: "Joonify cover preview",
     keyInsight: "When parents understand how children learn, better decisions naturally follow.",
-    contribution: "Product Design, User Experience Design, Assessment Experience Design, Interaction Design"
+    contribution: "Product Design, User Experience Design, Assessment Experience Design, Interaction Design",
+    route: "/joonify-story"
   }
 ];
 

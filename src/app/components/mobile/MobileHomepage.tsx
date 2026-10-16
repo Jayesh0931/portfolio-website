@@ -228,8 +228,6 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
 
         <MobileFocus />
 
-        <MobileCraft isDark={isDarkCanvas} />
-
         <MobileRecommendations isDark={isDarkCanvas} />
 
         <MobileFinale isDark={isDarkCanvas} />

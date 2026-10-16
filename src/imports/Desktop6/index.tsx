@@ -14,6 +14,7 @@ import imgTulahSmallThumb from "../tulah_small_thumb.webp";
 import imgTulahLargeThumb from "../tulah_large_thumb.webp";
 import imgVousvousSmallThumb from "../vousvous_small_thumb.webp";
 import imgVousvousLargeThumb from "../vousvous_large_thumbnail.webp";
+import imgJoonifyDesktop from "../joonify_desktop.webp";
 import BrandVector from "../../components/BrandVector";
 
 function Group() {
@@ -290,7 +291,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Joonify card (Story 05) ── */}
-      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerScrollToId("story-05-block")} isStoryCard>
+      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/joonify-story")} isStoryCard>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 05 ] [ 2022 ]</p>
@@ -1440,12 +1441,14 @@ function Frame3() {
 
 function Frame83() {
   return (
-    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full">
-      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
-      <div className="flex flex-row items-center justify-center size-full">
-        <div className="content-stretch flex items-center justify-center pb-[87px] pl-[241px] pr-[222px] pt-[106px] relative size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
-          <Frame3 />
-        </div>
+    <div className="bg-[#e5ddd4] flex-[1_0_0] min-h-px relative w-full overflow-hidden">
+      <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300 z-10" />
+      <div className="size-full transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+        <img 
+          src={imgJoonifyDesktop} 
+          alt="Joonify story cover" 
+          className="size-full object-cover display-block pointer-events-none" 
+        />
       </div>
     </div>
   );
@@ -1504,7 +1507,7 @@ function Frame89() {
 
 function Frame84() {
   return (
-    <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px]">
+    <div className="-translate-x-1/2 absolute bg-[#FFFDFA] bottom-[10px] content-stretch flex h-[55px] items-center justify-between left-1/2 p-[20px] w-[944px] z-20">
       <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
       <Frame85 />
       <Frame89 />
@@ -1526,6 +1529,7 @@ function Frame72() {
     <div 
       id="story-05-block"
       data-custom-cursor="read-story"
+      onClick={() => triggerNavigate("/joonify-story")}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame73 />
@@ -2185,7 +2189,7 @@ export default function Desktop() {
       <Frame43 />
       <Group11 />
       <Frame99 />
-      <Footer style={{ position: "absolute", left: 80, top: 10620 }} />
+      <Footer style={{ position: "absolute", left: 80, top: 9420 }} />
     </div>
   );
 }

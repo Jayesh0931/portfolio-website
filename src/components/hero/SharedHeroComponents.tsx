@@ -355,7 +355,7 @@ export function JoonifyHeroCard({
   top?: number; left?: number; width?: number | string; height?: number | string;
   style?: React.CSSProperties; onClick?: () => void; isMobile?: boolean;
 }) {
-  const handleClick = onClick ?? (() => triggerScrollToId("story-05-block"));
+  const handleClick = onClick ?? (() => triggerNavigate("/joonify-story"));
   return (
     <BentoCard
       top={top}

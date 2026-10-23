@@ -113,7 +113,7 @@ export default function CreativeLab({
             border: "none",
             borderRadius: 0,
             padding: "54px 16px 64px 16px",
-            marginBottom: 60,
+            marginBottom: 200,
             boxSizing: "border-box",
             overflow: "hidden",
           }}

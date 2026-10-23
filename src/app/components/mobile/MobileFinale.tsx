@@ -128,7 +128,7 @@ export function MobileFinale({ isDark = false, sectionTag = "[ S-006 ]" }: Mobil
         <div className="mobile-finale-buttons">
           {/* EMAIL */}
           <a
-            href="mailto:jayeshsoni0931@gmail.com"
+            href="mailto:jayeshsoni31@gmail.com"
             className="mobile-finale-pill-btn"
             aria-label="Send email to Jayesh Soni"
           >
@@ -166,11 +166,11 @@ export function MobileFinale({ isDark = false, sectionTag = "[ S-006 ]" }: Mobil
           </a>
         </div>
 
-        {/* 5. Profile Identity Card */}
+        {/* 5. Profile Identity Card (Stacked) */}
         <div className="mobile-finale-profile-card">
           <ProfileCard
-            width={130}
-            aspectRatio="130/156"
+            width={180}
+            aspectRatio="4/5"
             imageSrc={imgProfile}
           />
 

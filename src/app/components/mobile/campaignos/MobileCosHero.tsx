@@ -33,7 +33,9 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
           <span>BACK</span>
         </button>
 
-        <BrandVector theme="dark" width={48} height={32} />
+        <div onClick={onBack} style={{ cursor: "pointer" }} role="button" aria-label="Back to home">
+          <BrandVector theme="dark" width={48} height={32} />
+        </div>
       </header>
 
       {/* 2. Unified Boxed Hero Card (Matching Allyra's Bento Box Architecture) */}

@@ -33,7 +33,9 @@ export function MobileJoonifyHero({ onBack, isDark = false }: MobileJoonifyHeroP
           <span>BACK</span>
         </button>
 
-        <BrandVector theme={isDark ? "light" : "dark"} width={48} height={32} />
+        <div onClick={onBack} style={{ cursor: "pointer" }} role="button" aria-label="Back to home">
+          <BrandVector theme={isDark ? "light" : "dark"} width={48} height={32} />
+        </div>
       </header>
 
       {/* 2. Unified Boxed Hero Card */}

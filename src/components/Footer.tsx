@@ -4,6 +4,7 @@ import profileImg from "@/imports/Profile Image Full Size.webp";
 import resumePdf from "@/imports/Jayesh_Soni_Resume_November_2026.pdf";
 import ProfileCard from "@/components/ProfileCard";
 import ElectricBorder from "@/components/ElectricBorder";
+import BrandVector from "@/components/BrandVector";
 
 interface ContactButtonProps {
   label?: string;
@@ -305,7 +306,7 @@ export default function Footer({ style, sectionTag = "[ S-006 ]" }: FooterProps)
                 iconPath={mailIcon}
                 hoverIconPath={copyIcon}
                 onClick={() => {
-                  navigator.clipboard.writeText("jayeshsoni@example.com");
+                  navigator.clipboard.writeText("jayeshsoni31@gmail.com");
                   alert("Email copied to clipboard!");
                 }}
                 circular
@@ -363,25 +364,28 @@ export default function Footer({ style, sectionTag = "[ S-006 ]" }: FooterProps)
       }}>
         {/* Interactive 3D Holographic Profile Card */}
         <ProfileCard width={250} aspectRatio="4/5" imageSrc={profileImg} />
-        <div style={{ width: 250, textAlign: "left" }}>
-          <h3 style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 700,
-            fontSize: 24,
-            color: "#190b00",
-            margin: "20px 0 0 0",
-          }}>
-            Jayesh Soni
-          </h3>
-          <p style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 400,
-            fontSize: 14,
-            color: "#77695d",
-            margin: "4px 0 0 0",
-          }}>
-            Product Lead &amp; AI Product Designer
-          </p>
+        <div style={{ width: 250, display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginTop: 18 }}>
+          <div>
+            <h3 style={{
+              fontFamily: "Outfit, sans-serif",
+              fontWeight: 700,
+              fontSize: 22,
+              color: "#190b00",
+              margin: 0,
+            }}>
+              Jayesh Soni
+            </h3>
+            <p style={{
+              fontFamily: "Outfit, sans-serif",
+              fontWeight: 400,
+              fontSize: 13.5,
+              color: "#77695d",
+              margin: "4px 0 0 0",
+            }}>
+              Product Lead &amp; AI Product Designer
+            </p>
+          </div>
+          <BrandVector theme="dark" width={46} height={31} />
         </div>
       </div>
     </footer>

@@ -733,6 +733,8 @@ function Frame19() {
         <img 
           src={imgAllyraCoverBig} 
           alt="Allyra Cover" 
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover display-block pointer-events-none" 
         />
       </div>
@@ -907,6 +909,8 @@ function StoryCampaignOS() {
             <img 
               src={imgCosCoverLarge} 
               alt="Campaign OS Cover Large" 
+              loading="lazy"
+              decoding="async"
               className="size-full object-cover display-block pointer-events-none" 
             />
           </div>
@@ -1075,6 +1079,8 @@ function Frame47() {
         <img 
           src={imgTulahLargeThumb} 
           alt="tulah story cover" 
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover display-block pointer-events-none" 
         />
       </div>
@@ -1311,6 +1317,8 @@ function Frame65() {
         <img 
           src={imgVousvousLargeThumb} 
           alt="VousVous story cover" 
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover display-block pointer-events-none" 
         />
       </div>
@@ -1547,6 +1555,8 @@ function Frame83() {
         <img 
           src={imgJoonifyDesktop} 
           alt="Joonify story cover" 
+          loading="lazy"
+          decoding="async"
           className="size-full object-cover display-block pointer-events-none" 
         />
       </div>
@@ -1698,7 +1708,8 @@ function Frame93() {
           src="/gifs/focus-product-design.gif"
           alt="Product Design"
           className="w-[44px] h-[44px] object-contain shrink-0"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
         />
         <Frame94 />
       </div>
@@ -1733,7 +1744,8 @@ function Frame95() {
           src="/gifs/focus-human-ai.gif"
           alt="Human–AI Interaction"
           className="w-[44px] h-[44px] object-contain shrink-0"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
         />
         <Frame96 />
       </div>
@@ -1767,7 +1779,8 @@ function Frame97() {
           src="/gifs/focus-systems-craft.gif"
           alt="Systems & Craft"
           className="w-[44px] h-[44px] object-contain shrink-0"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
         />
         <Frame98 />
       </div>

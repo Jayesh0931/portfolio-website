@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Alegreya+SC:ital,wght@0,400;0,700;1,400&display=swap');
+/* Google Fonts moved to index.html <link> to eliminate render-blocking CSS @import waterfall */
 
 /* Typeface Font Mappings */
 .font-\['Alegreya_SC'\] {

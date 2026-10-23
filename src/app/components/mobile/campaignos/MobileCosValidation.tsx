@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, MessageSquareCode, Sparkles, Radar } from "lucide-react";
 import BrandVector from "@/components/BrandVector";
 
 export function MobileCosValidation() {
@@ -29,7 +30,7 @@ export function MobileCosValidation() {
         {/* Item 1: Connected Workflows */}
         <div className="mobile-story-validation-item">
           <div className="mobile-story-validation-icon-wrap">
-            <i className="ri-route-line" aria-hidden="true" />
+            <Route className="size-[28px] text-[#EE6C13]" strokeWidth={1.8} aria-hidden="true" />
           </div>
           <h3 className="mobile-story-validation-item-title">Connected Workflows</h3>
           <p className="mobile-story-validation-item-desc">
@@ -40,7 +41,7 @@ export function MobileCosValidation() {
         {/* Item 2: Conversational Analytics */}
         <div className="mobile-story-validation-item">
           <div className="mobile-story-validation-icon-wrap">
-            <i className="ri-chat-smile-ai-line" aria-hidden="true" />
+            <MessageSquareCode className="size-[28px] text-[#EE6C13]" strokeWidth={1.8} aria-hidden="true" />
           </div>
           <h3 className="mobile-story-validation-item-title">Conversational Analytics</h3>
           <p className="mobile-story-validation-item-desc">
@@ -51,7 +52,7 @@ export function MobileCosValidation() {
         {/* Item 3: Living Insights */}
         <div className="mobile-story-validation-item">
           <div className="mobile-story-validation-icon-wrap">
-            <i className="ri-sparkling-fill" aria-hidden="true" />
+            <Sparkles className="size-[28px] text-[#EE6C13]" strokeWidth={1.8} aria-hidden="true" />
           </div>
           <h3 className="mobile-story-validation-item-title">Living Insights</h3>
           <p className="mobile-story-validation-item-desc">
@@ -62,7 +63,7 @@ export function MobileCosValidation() {
         {/* Item 4: Calm Monitoring */}
         <div className="mobile-story-validation-item">
           <div className="mobile-story-validation-icon-wrap">
-            <i className="ri-radar-line" aria-hidden="true" />
+            <Radar className="size-[28px] text-[#EE6C13]" strokeWidth={1.8} aria-hidden="true" />
           </div>
           <h3 className="mobile-story-validation-item-title">Calm Monitoring</h3>
           <p className="mobile-story-validation-item-desc">

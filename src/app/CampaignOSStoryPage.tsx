@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Route, MessageSquareCode, Sparkles, Radar } from "lucide-react";
 import videoCosOpportunity from "@/imports/cos-opportunity.mp4";
 import videoCosCraft1 from "@/imports/cos-craft-1.mp4";
 import videoCosCraft2 from "@/imports/cos-craft-2.mp4";
@@ -617,8 +618,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                 {/* Card 1: Connected Workflows */}
                 <div className="border-[#7b7a77] border-b border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
-                    <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
-                      <i className="ri-route-line" />
+                    <div className="text-[#EE6C13] flex items-center">
+                      <Route className="size-[48px]" strokeWidth={1.75} />
                     </div>
                     <h3 className="font-outfit font-bold text-[#190b00] text-[28px] margin-0">Connected Workflows</h3>
                     <p className="font-outfit font-normal text-[#77695d] text-[18px] leading-[1.5] margin-0">
@@ -630,8 +631,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                 {/* Card 2: Conversational Analytics */}
                 <div className="border-[#7b7a77] border-b border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
-                    <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
-                      <i className="ri-chat-smile-ai-line" />
+                    <div className="text-[#EE6C13] flex items-center">
+                      <MessageSquareCode className="size-[48px]" strokeWidth={1.75} />
                     </div>
                     <h3 className="font-outfit font-bold text-[#190b00] text-[28px] margin-0">Conversational Analytics</h3>
                     <p className="font-outfit font-normal text-[#77695d] text-[18px] leading-[1.5] margin-0">
@@ -643,8 +644,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                 {/* Card 3: Living Insights */}
                 <div className="border-[#7b7a77] border-r border-solid flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
-                    <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
-                      <i className="ri-sparkling-fill" />
+                    <div className="text-[#EE6C13] flex items-center">
+                      <Sparkles className="size-[48px]" strokeWidth={1.75} />
                     </div>
                     <h3 className="font-outfit font-bold text-[#190b00] text-[28px] margin-0">Living Insights</h3>
                     <p className="font-outfit font-normal text-[#77695d] text-[18px] leading-[1.5] margin-0">
@@ -656,8 +657,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                 {/* Card 4: Calm Monitoring */}
                 <div className="flex flex-col justify-between p-[40px]">
                   <div className="flex flex-col gap-4">
-                    <div className="text-[#EE6C13] text-[48px] leading-[1] flex items-center">
-                      <i className="ri-radar-line" />
+                    <div className="text-[#EE6C13] flex items-center">
+                      <Radar className="size-[48px]" strokeWidth={1.75} />
                     </div>
                     <h3 className="font-outfit font-bold text-[#190b00] text-[28px] margin-0">Calm Monitoring</h3>
                     <p className="font-outfit font-normal text-[#77695d] text-[18px] leading-[1.5] margin-0">

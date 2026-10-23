@@ -103,6 +103,8 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         <img
           src={imageSrc}
           alt="Jayesh Soni Profile - Product Lead & AI Designer"
+          loading="lazy"
+          decoding="async"
           onLoad={() => setIsLoaded(true)}
           style={{
             width: "100%",
@@ -141,149 +143,6 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             transform: "translateZ(18px)",
           }}
         />
-
-        {/* ════════════════════════════════════════════════════════════════
-            METADATA BADGES (Elevated with Parallax Depth translateZ 26px)
-            ════════════════════════════════════════════════════════════════ */}
-
-        {/* Top-Left: [ JAYESH SONI ] */}
-        <div
-          style={{
-            position: "absolute",
-            top: 10,
-            left: 10,
-            pointerEvents: "none",
-            transform: "translateZ(26px)",
-            backgroundColor: "rgba(255, 253, 250, 0.92)",
-            backdropFilter: "blur(6px)",
-            border: "1px solid rgba(123, 122, 119, 0.75)",
-            padding: "3px 7px",
-            boxShadow: "0 2px 6px rgba(25, 11, 0, 0.08)",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 800,
-              fontSize: 10,
-              letterSpacing: "0.8px",
-              color: "#190b00",
-              textTransform: "uppercase",
-              display: "block",
-              lineHeight: 1,
-            }}
-          >
-            [ JAYESH SONI ]
-          </span>
-        </div>
-
-        {/* Top-Right: ● AVAILABLE (with blinking orange dot) */}
-        <div
-          style={{
-            position: "absolute",
-            top: 10,
-            right: 10,
-            pointerEvents: "none",
-            transform: "translateZ(26px)",
-            backgroundColor: "rgba(255, 253, 250, 0.92)",
-            backdropFilter: "blur(6px)",
-            border: "1px solid rgba(123, 122, 119, 0.75)",
-            padding: "3px 7px",
-            display: "flex",
-            alignItems: "center",
-            gap: 5,
-            boxShadow: "0 2px 6px rgba(25, 11, 0, 0.08)",
-          }}
-        >
-          {/* Blinking Orange Dot */}
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: "50%",
-              backgroundColor: "#ea580c",
-              display: "inline-block",
-              boxShadow: "0 0 6px #ea580c",
-              animation: "profileCardBlink 1.4s ease-in-out infinite",
-            }}
-          />
-          <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 800,
-              fontSize: 9.5,
-              letterSpacing: "0.8px",
-              color: "#190b00",
-              textTransform: "uppercase",
-              display: "block",
-              lineHeight: 1,
-            }}
-          >
-            AVAILABLE
-          </span>
-        </div>
-
-        {/* Bottom-Left: 7+ YRS EXP · PRODUCT LEAD */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 10,
-            left: 10,
-            pointerEvents: "none",
-            transform: "translateZ(26px)",
-            backgroundColor: "rgba(255, 253, 250, 0.92)",
-            backdropFilter: "blur(6px)",
-            border: "1px solid rgba(123, 122, 119, 0.75)",
-            padding: "3px 7px",
-            boxShadow: "0 2px 6px rgba(25, 11, 0, 0.08)",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 700,
-              fontSize: 9.5,
-              letterSpacing: "0.5px",
-              color: "#190b00",
-              textTransform: "uppercase",
-              display: "block",
-              lineHeight: 1,
-            }}
-          >
-            7+ YRS EXP · PRODUCT LEAD
-          </span>
-        </div>
-
-        {/* Bottom-Right: INDIA */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 10,
-            right: 10,
-            pointerEvents: "none",
-            transform: "translateZ(26px)",
-            backgroundColor: "rgba(255, 253, 250, 0.92)",
-            backdropFilter: "blur(6px)",
-            border: "1px solid rgba(123, 122, 119, 0.75)",
-            padding: "3px 7px",
-            boxShadow: "0 2px 6px rgba(25, 11, 0, 0.08)",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 800,
-              fontSize: 10,
-              letterSpacing: "1px",
-              color: "#ea580c",
-              textTransform: "uppercase",
-              display: "block",
-              lineHeight: 1,
-            }}
-          >
-            INDIA
-          </span>
-        </div>
 
         {/* Subtle corner registration ticks for brutalist precision */}
         <div

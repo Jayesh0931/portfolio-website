@@ -111,7 +111,7 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
           />
           <JoonifyHeroCard 
             isMobile 
-            onClick={() => onScrollToSection("mobile-stories")} 
+            onClick={() => onNavigatePath("/joonify-story")} 
             style={{ flex: 1, height: 220 }} 
           />
         </motion.div>

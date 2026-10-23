@@ -73,7 +73,7 @@ export const EXPERIENCES: ExperienceItem[] = [
       {
         id: "uxd-head",
         tabLabel: "02 · UXD HEAD (VROZART)",
-        mobileTabLabel: "02 · UXD HEAD (VROZART)",
+        mobileTabLabel: "02 · UXD HEAD",
         shortRole: "UXD Head",
         role: "UXD Head",
         company: "Vrozart Dackson Enterprise Pvt. Ltd.",
@@ -312,7 +312,7 @@ export default function ExperienceTimeline({
           border: "1px solid #7b7a77",
           borderRadius: 0,
           boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-          marginBottom: 60,
+          marginBottom: 200,
           boxSizing: "border-box",
           overflow: "hidden",
           transition: "background-color 0.8s ease, color 0.8s ease",
@@ -489,18 +489,20 @@ export default function ExperienceTimeline({
                 {currentExp.company}
               </h3>
 
-              {/* Sub-Role Switcher Tabs for Mobile: Brutalist Segmented Control */}
+              {/* Sub-Role Switcher Tabs for Mobile: Brutalist Segmented Control (Full Width) */}
               {hasSubRoles && (
                 <div
                   style={{
-                    display: "inline-flex",
+                    display: "flex",
+                    width: "100%",
+                    boxSizing: "border-box",
                     alignItems: "center",
                     padding: 2,
                     backgroundColor: isDark ? "rgba(255, 253, 250, 0.04)" : "#efe8de",
                     border: `1px solid ${isDark ? "#7b7a77" : "#8c8278"}`,
                     gap: 3,
                     margin: "6px 0 12px 0",
-                    flexWrap: "wrap",
+                    overflow: "hidden",
                   }}
                 >
                   {currentExp.subRoles!.map((sub, sIdx) => {
@@ -514,10 +516,13 @@ export default function ExperienceTimeline({
                           setActiveSubRoleIndex(sIdx);
                         }}
                         style={{
+                          flex: "1 1 0px",
+                          minWidth: 0,
                           display: "inline-flex",
                           alignItems: "center",
-                          gap: 6,
-                          padding: "6px 12px",
+                          justifyContent: "center",
+                          gap: 5,
+                          padding: "7px 6px",
                           borderRadius: 0,
                           border: isSubSelected
                             ? "1px solid #EE6C13"
@@ -532,11 +537,12 @@ export default function ExperienceTimeline({
                             : "#5a5047",
                           fontFamily: "Inter, sans-serif",
                           fontWeight: 800,
-                          fontSize: 11,
-                          letterSpacing: "0.4px",
-                          whiteSpace: "nowrap",
+                          fontSize: 10.5,
+                          letterSpacing: "0.2px",
                           cursor: "pointer",
                           transition: "all 0.18s ease",
+                          boxSizing: "border-box",
+                          overflow: "hidden",
                         }}
                       >
                         <span
@@ -544,10 +550,20 @@ export default function ExperienceTimeline({
                             width: 5,
                             height: 5,
                             borderRadius: "50%",
+                            flexShrink: 0,
                             backgroundColor: isSubSelected ? "#FFFDFA" : "#7b7a77",
                           }}
                         />
-                        <span>{sub.mobileTabLabel || sub.tabLabel}</span>
+                        <span
+                          style={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                            lineHeight: 1.2,
+                          }}
+                        >
+                          {sub.mobileTabLabel || sub.tabLabel}
+                        </span>
                       </button>
                     );
                   })}
@@ -1217,11 +1233,13 @@ export default function ExperienceTimeline({
                     {currentExp.company}
                   </h3>
 
-                  {/* Sub-Role Switcher: Architectural Brutalist Segmented Control */}
+                  {/* Sub-Role Switcher: Architectural Brutalist Segmented Control (Full Width) */}
                   {hasSubRoles && (
                     <div
                       style={{
-                        display: "inline-flex",
+                        display: "flex",
+                        width: "100%",
+                        boxSizing: "border-box",
                         alignItems: "center",
                         padding: 3,
                         backgroundColor: isDark ? "rgba(255, 253, 250, 0.04)" : "#efe8de",
@@ -1229,7 +1247,6 @@ export default function ExperienceTimeline({
                         borderRadius: 0,
                         gap: 4,
                         marginBottom: 16,
-                        flexWrap: "wrap",
                       }}
                     >
                       {currentExp.subRoles!.map((sub, sIdx) => {
@@ -1244,10 +1261,13 @@ export default function ExperienceTimeline({
                             }}
                             onMouseEnter={() => playHoverTick()}
                             style={{
+                              flex: "1 1 0px",
+                              minWidth: 0,
                               display: "inline-flex",
                               alignItems: "center",
+                              justifyContent: "center",
                               gap: 8,
-                              padding: "8px 18px",
+                              padding: "9px 18px",
                               borderRadius: 0,
                               border: isSubSelected
                                 ? "1px solid #EE6C13"
@@ -1270,6 +1290,7 @@ export default function ExperienceTimeline({
                               boxShadow: isSubSelected
                                 ? "0 2px 10px rgba(238, 108, 19, 0.35)"
                                 : "none",
+                              boxSizing: "border-box",
                             }}
                           >
                             <span

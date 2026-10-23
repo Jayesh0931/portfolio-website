@@ -1354,7 +1354,7 @@ export default function AboutPage({
             style={{
               position: "sticky",
               top: 0,
-              zIndex: 50,
+              zIndex: 100,
               background: isDark ? "rgba(25, 11, 0, 0.95)" : "rgba(255, 253, 250, 0.95)",
               backdropFilter: "blur(10px)",
               borderBottom: "none",
@@ -1421,6 +1421,10 @@ export default function AboutPage({
               initial={{ y: -36, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              onClick={() => navigateTo("/")}
+              style={{ cursor: "pointer" }}
+              role="button"
+              aria-label="Back to Homepage"
             >
               <BrandVector theme={isDark ? "light" : "dark"} width={60} height={40} />
             </motion.div>
@@ -1430,7 +1434,7 @@ export default function AboutPage({
             {/* Mobile Section 1: In A Nutshell / Overview */}
             <div
               style={{
-                marginBottom: 60,
+                marginBottom: 200,
                 display: "flex",
                 flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
@@ -1587,7 +1591,7 @@ export default function AboutPage({
             {/* Mobile Section 2: The Foundation & Dive Deeper */}
             <div
               style={{
-                marginBottom: 60,
+                marginBottom: 200,
                 display: "flex",
                 flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
@@ -1779,7 +1783,7 @@ export default function AboutPage({
             {/* Mobile Section 5: Academics & Credentials */}
             <div
               style={{
-                marginBottom: 60,
+                marginBottom: 200,
                 display: "flex",
                 flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
@@ -1905,7 +1909,7 @@ export default function AboutPage({
             />
 
             {/* Mobile Gravity Skills Section just above footer */}
-            <div style={{ padding: "0 16px", marginTop: "32px", marginBottom: "32px" }}>
+            <div style={{ padding: "0 16px", marginTop: "0px", marginBottom: "200px" }}>
               <GravitySkillsSection
                 isDark={isDark}
                 contentWidth="100%"

@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useLenis } from "lenis/react";
 import Desktop from "@/imports/Desktop6/index";
-import AllyraStoryPage from "./AllyraStoryPage";
-import TulahStoryPage from "./TulahStoryPage";
-import CampaignOSStoryPage from "./CampaignOSStoryPage";
-import VousVousStoryPage from "./VousVousStoryPage";
-import JoonifyStoryPage from "./JoonifyStoryPage";
-import AboutPage from "./AboutPage";
-import MobileHomepage from "./components/mobile/MobileHomepage";
+
+const AllyraStoryPage = lazy(() => import("./AllyraStoryPage"));
+const TulahStoryPage = lazy(() => import("./TulahStoryPage"));
+const CampaignOSStoryPage = lazy(() => import("./CampaignOSStoryPage"));
+const VousVousStoryPage = lazy(() => import("./VousVousStoryPage"));
+const JoonifyStoryPage = lazy(() => import("./JoonifyStoryPage"));
+const AboutPage = lazy(() => import("./AboutPage"));
+const MobileHomepage = lazy(() => import("./components/mobile/MobileHomepage"));
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SoundToggle from "@/components/SoundToggle";
 import FilmGrain from "@/components/FilmGrain";
@@ -1692,18 +1693,22 @@ export default function App() {
         hideDefaultCursor={false}
       />
 
-      {/* React Bits Gradual Blur - Progressive bokeh backdrop diffusion at top of viewport */}
-      <GradualBlur
-        position="top"
-        target="page"
-        height="76px"
-        strength={2.5}
-        layers={8}
-        curve="bezier"
-        zIndex={40}
-      />
+      {/* React Bits Gradual Blur - Progressive bokeh backdrop diffusion at top of viewport (desktop homepage only, never over mobile headers) */}
+      {vw >= 768 && currentPath === "/" && (
+        <GradualBlur
+          position="top"
+          target="page"
+          height="76px"
+          strength={2.5}
+          layers={8}
+          curve="bezier"
+          zIndex={40}
+        />
+      )}
 
-      {content}
+      <Suspense fallback={<div className="min-h-screen bg-[#fffdfa]" />}>
+        {content}
+      </Suspense>
 
       {/* Floating Tactical Audio Toggle */}
       <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />

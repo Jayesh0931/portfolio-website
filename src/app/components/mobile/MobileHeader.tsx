@@ -166,7 +166,7 @@ export function MobileHeader({ onNavigateSection }: MobileHeaderProps) {
               <div className="mobile-menu-action-pills">
                 {/* EMAIL */}
                 <a 
-                  href="mailto:jayeshsoni0931@gmail.com" 
+                  href="mailto:jayeshsoni31@gmail.com" 
                   className="mobile-menu-action-pill"
                   aria-label="Send email to Jayesh Soni"
                 >

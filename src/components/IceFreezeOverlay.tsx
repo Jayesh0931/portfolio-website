@@ -702,7 +702,7 @@ export default function IceFreezeOverlay() {
             maxWidth: "2800px",
             maxHeight: "2800px",
             transform: "translate(-47%, -51%)",
-            backgroundImage: "url(/ice_crack_overlay.png)",
+            backgroundImage: "url(/ice_crack_overlay.webp)",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",

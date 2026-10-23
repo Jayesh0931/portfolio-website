@@ -16,12 +16,12 @@ const FOUNDATION_METRICS: FoundationMetric[] = [
   {
     number: "6+",
     label: "Wellness Disciplines",
-    desc: "Unified recommendations from Medical, Ayurveda, Nutrition, Fitness, Yoga and Diagnostics into one personalized retreat plan.",
+    desc: "Unified recommendations from Medical, Ayurveda, Nutrition, Fitness, Yoga and Diagnostics into one personalised retreat plan.",
   },
   {
-    number: "~65%",
-    label: "Admin Overhead Reduced",
-    desc: "Digitized planning, scheduling and execution significantly reduced administrative coordination across departments.",
+    number: "End-to-End",
+    label: "Workflow Automation",
+    desc: "Replaced fragmented spreadsheets, paper forms, and manual coordination with connected digital care workflows.",
   },
   {
     number: "500+",
@@ -67,7 +67,7 @@ export function MobileTulahFoundation() {
         <p className="mobile-story-impact-quote-text">
           <span>&ldquo;The platform wasn&apos;t built to manage activities—</span>
           <strong className="mobile-story-impact-quote-orange">
-            it was built to orchestrate personalized care.
+            it was built to orchestrate personalised care.
           </strong>
           <span>&rdquo;</span>
         </p>

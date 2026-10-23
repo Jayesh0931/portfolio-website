@@ -30,7 +30,7 @@ export function MobileCosWhatIDrove() {
         {/* Right Content Pane */}
         <div className="mobile-story-wid-content">
           <p className="mobile-story-wid-p">
-            I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimization. My work included:
+            I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimisation. My work included:
           </p>
 
           <p className="mobile-story-wid-roles">

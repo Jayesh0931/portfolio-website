@@ -277,33 +277,48 @@ export default function JoonifyStoryPage({
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pr-[30px] w-[174px] relative shrink-0 -ml-[1px]">
               <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap mb-0">
-                [ 2022 ]
+                [ 2022–2023 ]
               </p>
             </div>
           </div>
 
           {/* ── Overview Box Metadata & Branding ── */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid left-[80px] top-[249px] w-[1280px] h-[488px]">
-            {/* Left Column: ROLE & SCOPE */}
-            <div className="absolute left-[30px] bottom-[30px] w-[240px] flex flex-col gap-[28px]">
-              <div className="flex flex-col gap-[4px] leading-[normal] w-full">
-                <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full mb-0">
-                  ROLE
+            {/* Left Column: Context Metadata & Scope */}
+            <div className="absolute left-[30px] bottom-[30px] w-[260px] flex flex-col gap-[14px]">
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  COMPANY
                 </p>
-                <p className="font-outfit font-normal text-[#190b00] text-[18px] w-full mb-0">
-                  Product Designer
+                <p className="font-outfit font-normal text-[#190b00] text-[16px] w-full mb-0">
+                  Joonify
                 </p>
               </div>
-              <div className="flex flex-col gap-[4px] w-full">
-                <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full mb-1">
-                  SCOPE
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  ROLE
                 </p>
-                <div className="font-outfit font-normal text-[#190b00] text-[17px] leading-[1.38]">
+                <p className="font-outfit font-normal text-[#190b00] text-[17px] w-full mb-0">
+                  User Interface Designer
+                </p>
+              </div>
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  TIMELINE
+                </p>
+                <p className="font-outfit font-normal text-[#190b00] text-[15px] w-full mb-0">
+                  2022 – 2023
+                </p>
+              </div>
+              <div className="flex flex-col gap-[2px] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-1">
+                  FOCUS
+                </p>
+                <div className="font-outfit font-normal text-[#190b00] text-[15px] leading-[1.3]">
                   <p className="mb-0">/ Early Childhood Ed-Tech</p>
                   <p className="mb-0">/ Assessment Experience</p>
                   <p className="mb-0">/ Child Talent Discovery</p>
-                  <p className="mb-0">/ Learning Management &amp; Scheduling</p>
-                  <p className="mb-0">/ Mobile Experience Design</p>
+                  <p className="mb-0">/ Personalised Learning</p>
                 </div>
               </div>
             </div>
@@ -342,7 +357,7 @@ export default function JoonifyStoryPage({
             </p>
           </div>
 
-          {/* ── Soft Mint & Indigo Ambient Glow & Main Hero Frame ── */}
+          {/* ── Warm Peach & Orange Ambient Glow & Main Hero Frame ── */}
           <div
             style={{
               position: "absolute",
@@ -350,7 +365,7 @@ export default function JoonifyStoryPage({
               top: "1200px",
               width: "1320px",
               height: "750px",
-              background: "linear-gradient(110deg, #73F9C9 0%, #335FE6 100%)",
+              background: "linear-gradient(110deg, #FFA05C 0%, #EE6C13 100%)",
               filter: "blur(95px)",
               opacity: 0.75,
               borderRadius: "80px",
@@ -368,7 +383,7 @@ export default function JoonifyStoryPage({
               border: "1px solid rgba(255, 255, 255, 0.45)",
               backgroundColor: "#1F2231",
               boxShadow:
-                "-40px 0 90px rgba(115, 249, 201, 0.3), 40px 0 90px rgba(51, 95, 230, 0.3)",
+                "-40px 0 90px rgba(255, 160, 92, 0.3), 40px 0 90px rgba(238, 108, 19, 0.3)",
               zIndex: 2,
             }}
           >
@@ -394,7 +409,7 @@ export default function JoonifyStoryPage({
                 Parents struggle to understand what their child needs, while generic tutoring programs treat all children identically.
               </p>
               <p className="leading-[normal] mb-6">
-                Joonify aimed to help parents understand these differences through an intelligent talent discovery assessment and connect them with relevant, personalized learning resources.
+                Joonify aimed to help parents understand these differences through an intelligent talent discovery assessment and connect them with relevant, personalised learning resources.
               </p>
               <p className="font-outfit font-bold leading-[normal] text-[#fffdfa] text-[24px] mb-0">
                 &quot;When parents understand how children learn, better decisions naturally follow.&quot;
@@ -446,7 +461,7 @@ export default function JoonifyStoryPage({
 
                 <div className="mb-[45px]">
                   <p className="font-outfit text-[#190b00] text-[18px] leading-[1.45] mb-0">
-                    <strong className="font-bold">/ Grow</strong> — Explore tailored courses, track progress, and organize personalized learning schedules.
+                    <strong className="font-bold">/ Grow</strong> — Explore tailored courses, track progress, and organise personalised learning schedules.
                   </p>
                 </div>
 
@@ -544,7 +559,7 @@ export default function JoonifyStoryPage({
               <div className="grid grid-cols-2 border-b border-[#7b7a77] pb-[40px] mb-[45px]">
                 {/* Metric 1 */}
                 <div className="flex flex-col pr-[40px]">
-                  <span className="font-outfit font-bold text-[#335FE6] text-[72px] leading-[1]">
+                  <span className="font-outfit font-bold text-[#EE6C13] text-[72px] leading-[1]">
                     750+
                   </span>
                   <h3 className="font-outfit font-medium text-[#190b00] text-[24px] leading-[1.3] mt-3 mb-2">
@@ -557,7 +572,7 @@ export default function JoonifyStoryPage({
 
                 {/* Metric 2 */}
                 <div className="flex flex-col border-l border-[#7b7a77] pl-[40px]">
-                  <span className="font-outfit font-bold text-[#335FE6] text-[72px] leading-[1]">
+                  <span className="font-outfit font-bold text-[#EE6C13] text-[72px] leading-[1]">
                     30 Min
                   </span>
                   <h3 className="font-outfit font-medium text-[#190b00] text-[24px] leading-[1.3] mt-3 mb-2">
@@ -571,18 +586,18 @@ export default function JoonifyStoryPage({
 
               {/* Journey Block */}
               <div className="flex flex-col gap-3 mb-[45px]">
-                <h3 className="font-outfit font-bold text-[#335FE6] text-[48px] leading-[1.2] m-0">
+                <h3 className="font-outfit font-bold text-[#EE6C13] text-[48px] leading-[1.2] m-0">
                   Connected Learning Journey
                 </h3>
                 <p className="font-outfit font-medium text-[24px] leading-[1.4] m-0">
                   <span className="text-[#190b00]">Understand → Discover → </span>
-                  <span className="text-[#335FE6] font-bold">Assess</span>
+                  <span className="text-[#EE6C13] font-bold">Assess</span>
                   <span className="text-[#190b00]"> → Recommend → Schedule</span>
                 </p>
               </div>
 
               {/* Quote Card */}
-              <div className="w-full bg-[#f2ede7] border-l-[5px] border-[#335FE6] px-[36px] py-[30px] flex items-center justify-between gap-8">
+              <div className="w-full bg-[#f2ede7] border-l-[5px] border-[#EE6C13] px-[36px] py-[30px] flex items-center justify-between gap-8">
                 <p className="font-outfit italic text-[#190b00] text-[20px] leading-[1.5] m-0 flex-1">
                   Personalization becomes meaningful when parents can nurture a child&apos;s unique strengths, rather than forcing them into generic academic molds.
                 </p>
@@ -906,7 +921,7 @@ export default function JoonifyStoryPage({
                 >
                   When parents understand how children learn,{" "}
                 </span>
-                <span className="text-[#335FE6]">better decisions naturally follow.</span>
+                <span className="text-[#EE6C13]">better decisions naturally follow.</span>
               </p>
             </div>
           </div>

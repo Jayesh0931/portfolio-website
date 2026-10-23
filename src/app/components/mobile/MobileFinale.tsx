@@ -1,22 +1,123 @@
+import { motion } from "motion/react";
 import BrandVector from "@/components/BrandVector";
 import { imgProfile } from "./mobileAssets";
+import ProfileCard from "@/components/ProfileCard";
+import resumePdf from "@/imports/Jayesh_Soni_Resume_November_2026.pdf";
 
 interface MobileFinaleProps {
   isDark?: boolean;
+  sectionTag?: string;
 }
 
-export function MobileFinale({ isDark = false }: MobileFinaleProps) {
+const mobileFinaleTitleVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.05,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const mobileFinaleCharVariants = {
+  hidden: {
+    y: "115%",
+    opacity: 0,
+  },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.62,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const mobileFinaleQuestionVariants = {
+  hidden: {
+    y: "115%",
+    opacity: 0,
+    scale: 0.5,
+    rotate: -14,
+  },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 170,
+      mass: 0.8,
+      delay: 0.3,
+    },
+  },
+};
+
+export function MobileFinale({ isDark = false, sectionTag = "[ S-006 ]" }: MobileFinaleProps) {
   return (
     <section className={`mobile-finale-section ${isDark ? "is-dark" : ""}`} id="mobile-finale">
       <div className="mobile-finale-content">
         {/* 1. Header Tag */}
-        <p className="mobile-finale-tag">[ S-006 ]</p>
+        <p className="mobile-finale-tag">{sectionTag}</p>
 
-        {/* 2. Giant NEXT ? Title */}
-        <h2 className="mobile-finale-title">
-          <span>NEXT</span>
-          <span className="mobile-finale-question">?</span>
-        </h2>
+        {/* 2. Giant NEXT ? Title with Kinetic Character Mask Reveal */}
+        <motion.h2
+          className="mobile-finale-title"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={mobileFinaleTitleVariants}
+        >
+          <span
+            style={{
+              display: "inline-flex",
+              overflow: "hidden",
+              verticalAlign: "bottom",
+              paddingBottom: "4px",
+              marginBottom: "-4px",
+            }}
+          >
+            {["N", "E", "X", "T"].map((char, index) => (
+              <motion.span
+                key={index}
+                variants={mobileFinaleCharVariants}
+                style={{
+                  display: "inline-block",
+                  willChange: "transform, opacity",
+                }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+
+          <span
+            className="mobile-finale-question"
+            style={{
+              display: "inline-block",
+              overflow: "hidden",
+              verticalAlign: "bottom",
+              padding: "0 16px 6px 16px",
+              margin: "0 -16px -6px -8px",
+            }}
+          >
+            <motion.span
+              variants={mobileFinaleQuestionVariants}
+              style={{
+                display: "inline-block",
+                color: "#EE6C13",
+                transformOrigin: "bottom center",
+                willChange: "transform, opacity",
+                padding: "0 4px",
+              }}
+            >
+              ?
+            </motion.span>
+          </span>
+        </motion.h2>
 
         {/* 3. Subtitle Paragraph */}
         <p className="mobile-finale-desc">
@@ -53,11 +154,10 @@ export function MobileFinale({ isDark = false }: MobileFinaleProps) {
 
           {/* RESUME */}
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={resumePdf}
+            download="Jayesh_Soni_Resume_November_2026.pdf"
             className="mobile-finale-pill-btn"
-            aria-label="Open Jayesh Soni Resume"
+            aria-label="Download Jayesh Soni Resume"
           >
             <svg className="mobile-finale-btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM6 15V17H18V15H6ZM6 7V13H12V7H6ZM14 7V9H18V7H14ZM14 11V13H18V11H14ZM8 9H10V11H8V9Z" />
@@ -68,13 +168,11 @@ export function MobileFinale({ isDark = false }: MobileFinaleProps) {
 
         {/* 5. Profile Identity Card */}
         <div className="mobile-finale-profile-card">
-          <div className="mobile-finale-profile-photo-frame">
-            <img
-              src={imgProfile}
-              alt="Jayesh Soni"
-              loading="lazy"
-            />
-          </div>
+          <ProfileCard
+            width={130}
+            aspectRatio="130/156"
+            imageSrc={imgProfile}
+          />
 
           <div className="mobile-finale-profile-info">
             <div className="mobile-finale-profile-vector-row">

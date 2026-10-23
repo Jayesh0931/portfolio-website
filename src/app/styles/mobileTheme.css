@@ -59,7 +59,7 @@
   padding: 9px 20px;
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 13.5px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   color: #190b00;
   background: transparent;
@@ -70,9 +70,11 @@
   transition: all 0.2s ease;
 }
 
+.mobile-header-pill:hover,
 .mobile-header-pill:active {
-  background: #190b00;
-  color: #fff;
+  background: #EE6C13;
+  color: #FFFDFA;
+  border-color: #EE6C13;
 }
 
 /* Hamburger Button (Staggered right-aligned bars, borderless) */
@@ -182,7 +184,7 @@
 .mobile-menu-tagline {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.4;
   color: #706E6B;
   margin: 14px 0 0 0;
@@ -222,12 +224,15 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.mobile-menu-pill:hover,
 .mobile-menu-pill:active {
   background: #190B00;
   border-color: #190B00;
   transform: scale(0.985);
 }
 
+.mobile-menu-pill:hover .mobile-menu-pill-text,
+.mobile-menu-pill:hover .mobile-menu-pill-icon,
 .mobile-menu-pill:active .mobile-menu-pill-text,
 .mobile-menu-pill:active .mobile-menu-pill-icon {
   color: #FFFDFA;
@@ -372,7 +377,7 @@
 .mobile-menu-action-pill-text {
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 12.5px;
+  font-size: 13px;
   letter-spacing: 0.05em;
   color: #190B00;
   line-height: 1;
@@ -523,8 +528,12 @@
 }
 
 @keyframes mobile-marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 /* 2. Intro Meta Row */
@@ -535,7 +544,7 @@
   padding: 40px 20px 0 20px;
   margin-bottom: 40px;
   font-family: 'Inter', sans-serif;
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #77695d;
@@ -719,7 +728,7 @@
 
 .mobile-card-campaignos .card-meta-bottom {
   font-family: 'Outfit', sans-serif;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: #FFFFFF;
@@ -802,7 +811,7 @@
 
 .mobile-card-tulah .card-desc-tulah {
   font-family: 'Outfit', sans-serif;
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.4;
   color: #6B6258;
 }
@@ -840,7 +849,7 @@
   justify-content: space-between;
   align-items: center;
   font-family: 'Outfit', sans-serif;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #7A7065;
@@ -893,7 +902,7 @@
 
 .mobile-card-joonify .card-meta-stacked {
   font-family: 'Outfit', sans-serif;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #635A50;
@@ -954,7 +963,7 @@
 
 .mobile-tab .num {
   margin-left: auto;
-  font-size: 9.5px;
+  font-size: 10px;
   opacity: 0.5;
 }
 
@@ -1015,7 +1024,7 @@
 .mobile-about-header-text {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.5px;
   color: #77695D;
   text-transform: uppercase;
@@ -1145,7 +1154,7 @@
   margin-bottom: 20px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #77695D;
   text-transform: uppercase;
@@ -1233,7 +1242,7 @@
   padding: 0 20px;
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.45;
   color: #77695D;
   margin-bottom: 36px;
@@ -1315,7 +1324,7 @@
   padding: 5px 12px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   letter-spacing: 0.5px;
   color: #77695D;
   text-transform: uppercase;
@@ -1388,7 +1397,7 @@
 .mobile-story-info-label {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   color: #77695D;
   margin-bottom: 6px;
 }
@@ -1403,7 +1412,7 @@
 .mobile-story-info-text {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.45;
   color: #190B00;
   margin: 0;
@@ -1442,7 +1451,7 @@
 .mobile-focus-tag {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #77695D;
   text-transform: uppercase;
@@ -1486,6 +1495,14 @@
   color: #77695D;
   width: 28px;
   flex-shrink: 0;
+}
+
+.mobile-focus-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .mobile-focus-content {
@@ -1534,7 +1551,7 @@
 .mobile-craft-tag {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #77695D;
   text-transform: uppercase;
@@ -1869,7 +1886,7 @@
 .mobile-rec-tag {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #77695D;
   text-transform: uppercase;
@@ -1989,7 +2006,7 @@
 .mobile-rec-author-role {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 10.5px;
+  font-size: 11px;
   line-height: 1.25;
   letter-spacing: 0.6px;
   color: #77695D;
@@ -2010,7 +2027,7 @@
 .mobile-rec-author-company {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   color: #77695D;
   margin: 0;
 }
@@ -2062,7 +2079,7 @@
   gap: 5px;
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #594D42;
   text-transform: uppercase;
@@ -2136,7 +2153,7 @@
 .mobile-finale-tag {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #77695D;
   text-transform: uppercase;
@@ -2164,7 +2181,7 @@
 .mobile-finale-desc {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.5;
   color: #594D42;
   margin: 0 0 36px 0;
@@ -2288,7 +2305,7 @@
 .mobile-finale-profile-role {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.35;
   color: #77695D;
   margin: 0;
@@ -2308,7 +2325,7 @@
 .mobile-finale-subfooter-left {
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 13.5px;
+  font-size: 14px;
   color: #594D42;
   margin: 0;
 }
@@ -2316,7 +2333,7 @@
 .mobile-finale-subfooter-right {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12px;
   letter-spacing: 0.6px;
   color: #594D42;
   text-transform: uppercase;
@@ -2760,7 +2777,7 @@
   padding: 9px 20px;
   font-family: 'Outfit', sans-serif;
   font-weight: 800;
-  font-size: 13.5px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   color: #190b00;
   background: #FFFDFA;
@@ -2770,9 +2787,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.mobile-story-back-pill:hover,
 .mobile-story-back-pill:active {
   background: #190b00;
-  color: #fff;
+  color: #FFFDFA;
+  border-color: #190b00;
 }
 
 /* Boxed card structure matching media_1789473392431.png */
@@ -3544,6 +3563,12 @@
   white-space: nowrap;
 }
 
+.mobile-story-scale-title {
+  font-size: clamp(24px, 7.2vw, 38px);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
 .mobile-story-impact-brand {
   display: flex;
   align-items: center;
@@ -3592,7 +3617,7 @@
   margin: 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: #7B7B7B;
 }
@@ -3954,7 +3979,7 @@
   margin-bottom: 20px;
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.55;
   color: #77695D;
 }
@@ -3978,7 +4003,7 @@
   margin: 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.4;
   color: #190B00;
 }
@@ -3991,7 +4016,7 @@
   margin-top: 8px;
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
-  font-size: 14.5px;
+  font-size: 15px;
   color: #190B00;
   line-height: 1.5;
 }
@@ -4327,7 +4352,7 @@
   margin: 18px 0 0 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.5;
   color: #8E857B;
 }
@@ -4559,7 +4584,7 @@
   margin: 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 400;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.55;
   color: #77695D;
 }
@@ -4667,7 +4692,7 @@
 
 .mobile-story-craft-intro-hint {
   font-family: 'Outfit', sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   font-style: italic;
   font-weight: 500;
   color: #EE6C13;

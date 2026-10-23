@@ -44,7 +44,7 @@ const DECISIONS: DecisionItem[] = [
     ),
     decision: (
       <>
-        Introduce a <strong className="mobile-story-decision-bold">Training Layer</strong> that allowed subject matter experts to shape behavior.
+        Introduce a <strong className="mobile-story-decision-bold">Training Layer</strong> that allowed subject matter experts to shape behaviour.
       </>
     ),
     result: "Agents evolved from information retrievers into domain-specific assistants.",

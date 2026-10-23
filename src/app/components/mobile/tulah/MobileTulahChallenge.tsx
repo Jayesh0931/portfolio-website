@@ -63,7 +63,7 @@ export function MobileTulahChallenge() {
       {/* 3. Narrative Content */}
       <div className="mobile-story-challenge-content">
         <p className="mobile-story-challenge-p">
-          Delivering personalized wellness wasn&apos;t the challenge. Coordinating it was. Every guest journey involved multiple consultants, diagnostics, therapies, nutrition plans, fitness programs, medications, wearable data, and operational teams working together.
+          Delivering personalised wellness wasn&apos;t the challenge. Coordinating it was. Every guest journey involved multiple consultants, diagnostics, therapies, nutrition plans, fitness programs, medications, wearable data, and operational teams working together.
         </p>
 
         <p className="mobile-story-challenge-p">

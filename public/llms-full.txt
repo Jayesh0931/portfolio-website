@@ -3,56 +3,104 @@
 > Comprehensive knowledge graph for AI search engines, RAG systems, and LLMs indexing https://jayeshsoni.com.
 
 ## About Jayesh Soni
-Jayesh Soni is a Product Lead and AI Product Designer based in 2026. He shapes how intelligent systems interact with humans, turning complex multi-agent architectures into intuitive, trust-inspiring software products.
+Jayesh Soni is a Product Lead and AI Product Designer based in 2026. He shapes how intelligent systems interact with humans, translating complex multi-agent architectures into intuitive, trust-inspiring software products.
 
-### Professional Focus Areas
-- **Enterprise AI Workforce**: Orchestrating multi-agent collaboration across complex business operations.
-- **Human-AI Collaboration**: Crafting interaction patterns where humans maintain control, oversight, and trust while AI executes repetitive or analytical tasks.
-- **Interaction Architecture**: Utilizing progressive disclosure, contextual side panels, motion design, and calm monitoring to eliminate cognitive overload.
-- **Product Leadership**: Guiding product vision, driving validation metrics, and building scalable software systems.
+- **Title**: Product Lead • AI Product Designer
+- **Tagline**: Designing AI products that align human behaviour, business goals, and intelligent agents.
+- **Website**: https://jayeshsoni.com
+- **LinkedIn**: https://www.linkedin.com/in/jayeshsoni31/
+- **Email**: jayeshsoni31@gmail.com
+- **Resume**: https://jayeshsoni.com/resume.pdf
+
+### Selected Impact
+- Drove Allyra.ai’s shift from an agent-building tool to an organisation-ready enterprise AI platform.
+- Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents.
+- Expanded Allyra's reach across 15+ organisations, including Fortune 500 conglomerate pilots, through platform usage and API integrations.
+- Led a team of 3 designers and 2 business analysts; boosted design throughput from ~1 to 2–3 features per designer/week.
+- Designed workflow automation for Tulah, a wellness and hospitality platform, replacing fragmented spreadsheets and forms with connected digital workflows.
+- Delivered operational product experiences for Stanford Medicine, including the Financial Aid app.
+- Speaker at TiE Chandigarh on AI and Human-Centred Design.
+
+---
+
+## Dedicated Page: About Jayesh Soni
+- **URL**: https://jayeshsoni.com/about
+- **Summary**: Career history, product leadership philosophy, impact cards, client engagements, and core skills taxonomy.
+
+### Experience History
+1. **Pansophic Technologies (Jan 2025 – Present)**: Product Lead (Allyra.ai, Tulah, Raxaa.ai, EOMs.ai). Promoted following transition of the core Vrozart team into Pansophic.
+2. **Vrozart Dackson Enterprise Pvt. Ltd. (Jun 2024 – Dec 2024)**: UXD Head (Co-authored Vibe UX Framework, VousVous, Farmland Bazaar, Evosell).
+3. **Vertisystem / Stanford Medicine (May 2023 – Jun 2024)**: UI/UX Designer (Financial Aid app, Course planning, Scholarship administration).
+4. **Joonify (Jun 2022 – May 2023)**: User Interface Designer (Talent Discovery Assessment, 750+ parents).
+5. **5Exceptions Software Solutions (May 2021 – May 2022)**: UI/UX Designer (Healthcare, fintech, edtech, HMI).
+6. **Robo Inventors (Oct 2020 – May 2021)**: UI/UX Designer (Freelance) (E-commerce, IoT, smart-home).
+7. **Tata Consultancy Services (Jun 2019 – Sep 2020)**: Assistant System Engineer (Apple enterprise production support).
 
 ---
 
 ## Detailed Case Study 1: Allyra.ai
 - **URL**: https://jayeshsoni.com/allyra-story
 - **Title**: Scaling AI from Individual Agents to Enterprise-Grade Workflows
+- **Role**: Product Lead • AI Product Designer
+- **Team**: Led 3 designers and 2 business analysts
 - **Summary**: Allyra.ai solves the fundamental challenge of moving enterprise AI beyond single point-solution chatbots into unified, multi-agent workflows.
 
 ### Key Milestones & Contributions
-- **Agent Governance & Portal Dashboard**: Created centralized control centers for monitoring agent activities, compliance, and enterprise data permissions.
-- **Workflow Composite Engine**: Designed drag-and-drop and natural language workflow builders for enterprise teams to chain AI agents together.
-- **Outcome Validation**: Proven reduction in operational friction for enterprise deployment, establishing human-in-the-loop auditability.
+- **Agent Governance & Portal Dashboard**: Centralized control centers for monitoring agent activities, compliance, and enterprise data permissions.
+- **Workflow Composite Engine**: Visual and natural-language workflow builders for enterprise teams to chain AI agents together.
+- **Outcome Validation**: Deployed across 15+ organisations, including Fortune 500 conglomerate pilots, with 19+ specialized AI agents and human-in-the-loop approvals.
 
 ---
 
 ## Detailed Case Study 2: Campaign OS
 - **URL**: https://jayeshsoni.com/campaign-os-story
 - **Title**: Autonomous Campaign Operating System & Conversational Analytics
-- **Summary**: Campaign OS transforms marketing campaign management from disconnected tools into an active AI collaborator throughout the campaign lifecycle.
+- **Role**: Product Lead
+- **Summary**: Campaign OS unifies campaign planning, execution, and optimization into a single collaborative workspace where AI acts as an active marketing partner.
 
-### Key Features & Innovation Highlights
-- **Connected Workflows**: Unified campaign planning, execution, and optimization into a single continuous canvas.
-- **Conversational Analytics**: Converted static performance charts into interactive AI conversations that explain the "why" behind campaign performance metrics.
-- **Living Insights**: Reusable, modular AI insight blocks that can be remixed, expanded, or shared across marketing teams.
-- **Calm Monitoring**: Autonomous background monitoring that only alerts marketers when human decision-making is strictly required.
+### Key Features
+- **Connected Workflows**: Unified campaign lifecycle on a continuous canvas.
+- **Conversational Analytics**: Interactive AI dialogues explaining the "why" behind performance metrics.
+- **Living Insights**: Modular AI insight blocks remixable across marketing teams.
+- **Calm Monitoring**: Autonomous background alerts that surface only when human decision-making is strictly required.
 
 ---
 
-## Additional Selected Works
+## Detailed Case Study 3: Tulah Clinical Wellness
+- **URL**: https://jayeshsoni.com/tulah-story
+- **Title**: Orchestrating Personalised Care Across Complex Clinical Workflows
+- **Role**: Product Lead
+- **Summary**: Connected multidisciplinary care teams, specialists, and guests across an integrated wellness and hospitality platform, replacing manual spreadsheets and fragmented documents with unified digital workflows.
 
-### 1. tulah (2025)
-- **Concept**: Streamlining wellness operations and clinical workflow management through human-centered software.
+---
 
-### 2. VousVous (2025)
-- **Concept**: Interaction design for AI-assisted relational tools and trustworthy digital communication.
+## Detailed Case Study 4: VousVous
+- **URL**: https://jayeshsoni.com/vousvous-story
+- **Title**: Designing Fashion Discovery Beyond Search
+- **Role**: UXD Head (Vrozart Dackson)
+- **Summary**: Declarative fashion exploration through gesture-first discovery (Like · Skip · Explore), conversational style remixing, and personalised co-creation.
 
-### 3. Joonify (2022)
-- **Concept**: Early-stage talent assessment and AI-powered evaluation platforms.
+---
+
+## Detailed Case Study 5: Joonify
+- **URL**: https://jayeshsoni.com/joonify-story
+- **Title**: Child Talent Discovery Assessment & Personalised Learning Journeys
+- **Role**: User Interface Designer
+- **Summary**: Assessment platform serving 750+ parents, evaluating 6 developmental dimensions to create actionable growth roadmaps.
+
+---
+
+## Core Skills Taxonomy
+
+- **AI & Product**: Human–AI Interaction • Agentic AI UX • Conversational AI • LLM-Powered Products • Generative AI (GenAI) • Human-in-the-Loop Design • AI Guardrails • Multi-Agent Workflows • AI Product Strategy
+- **Product**: Product Roadmap & Prioritisation • Product Discovery • 0-to-1 Product Development • Stakeholder Management • Cross-Functional Leadership • Enterprise SaaS • Workflow Automation
+- **Design**: UX Strategy • Interaction Design • User Flows • Wireframing • Information Architecture • Usability Testing • User Research • Accessibility (WCAG) • Design Systems • Rapid Prototyping • Developer Handoff
+- **Tools**: Figma • Figma Make • Jira • Claude • ChatGPT • Gemini • Antigravity • HTML Prototyping
 
 ---
 
 ## Metadata & Social Entity Mapping
 - **Official Website**: https://jayeshsoni.com
-- **LinkedIn**: https://www.linkedin.com/in/jayeshsoni09/
+- **LinkedIn**: https://www.linkedin.com/in/jayeshsoni31/
 - **X / Twitter**: https://x.com/jayeshsoni_
 - **GitHub**: https://github.com/Jayesh0931

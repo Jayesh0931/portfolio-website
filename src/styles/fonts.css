@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&family=Inter:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Alegreya+SC:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Alegreya+SC:ital,wght@0,400;0,700;1,400&display=swap');
 
-/* Figma Font Mappings to standard Google Fonts */
+/* Typeface Font Mappings */
 .font-\['Alegreya_SC'\] {
   font-family: 'Alegreya SC', serif;
 }
@@ -8,9 +8,17 @@
   font-family: 'Outfit', sans-serif;
   font-weight: 900;
 }
+.font-\['Outfit\:ExtraBold'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+}
 .font-\['Outfit\:Bold'\] {
   font-family: 'Outfit', sans-serif;
   font-weight: 700;
+}
+.font-\['Outfit\:SemiBold'\] {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
 }
 .font-\['Outfit\:Medium'\] {
   font-family: 'Outfit', sans-serif;
@@ -24,17 +32,14 @@
   font-family: 'Inter', sans-serif;
   font-weight: 700;
 }
-.font-\['Open_Sans\:Italic'\] {
-  font-family: 'Open Sans', sans-serif;
-  font-style: italic;
+.font-\['Inter\:Regular'\] {
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
 }
-.font-\['Open_Sans\:Bold_Italic'\] {
-  font-family: 'Open Sans', sans-serif;
-  font-style: italic;
-  font-weight: 700;
+.font-\['DM_Mono'\] {
+  font-family: 'DM Mono', monospace;
 }
-.font-\['Open_Sans\:ExtraBold'\] {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 800;
+.font-\['DM_Mono\:Medium'\] {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
 }

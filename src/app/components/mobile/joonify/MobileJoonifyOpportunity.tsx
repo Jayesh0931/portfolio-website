@@ -32,7 +32,7 @@ export function MobileJoonifyOpportunity() {
           </p>
 
           <p className="mobile-story-opportunity-p mb-0">
-            <strong>/ Grow</strong> — Explore tailored courses, track progress, and organize personalized learning schedules.
+            <strong>/ Grow</strong> — Explore tailored courses, track progress, and organise personalised learning schedules.
           </p>
         </div>
 
@@ -83,8 +83,9 @@ export function MobileJoonifyOpportunity() {
       <MobileImageLightbox
         isOpen={isLightboxOpen}
         onClose={() => setIsLightboxOpen(false)}
-        imageSrc={imgJoonifySS6}
-        imageAlt="Joonify Course Discovery Visual"
+        src={imgJoonifySS6}
+        alt="Joonify Course Discovery Visual"
+        type="image"
       />
     </section>
   );

@@ -10,7 +10,7 @@ const BASE_URL =
   process.env.BASE_URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "https://new.jayeshsoni.com");
+    : "https://jayeshsoni.com");
 const DEFAULT_IMAGE = `${BASE_URL}/favicon.png`;
 
 const PERSON_SCHEMA = {
@@ -33,22 +33,27 @@ const PERSON_SCHEMA = {
     "Conversational Analytics",
     "Autonomous Multi-Agent Systems"
   ],
-  "description": "Product Lead and AI Product Designer specializing in Enterprise AI Workforce systems, human-AI collaboration, and interaction design."
+  "description": "Product Lead and AI Product Designer specialising in Enterprise AI Workforce systems, human-AI collaboration, and interaction design."
 };
 
 const STORIES = [
   {
     path: "allyra-story",
-    title: "Allyra.ai Case Study — Jayesh Soni | Product Lead & AI Product Designer",
-    description: "Case study on Allyra.ai: Scaling AI from individual agents to enterprise-grade workflows, agent orchestra governance, and enterprise deployment.",
+    title: "Allyra.ai Case Study — Jayesh Soni | Product Lead",
+    description: "Case study on Allyra.ai: Scaling enterprise AI workforce systems from point-solution bots to multi-agent workflows with human-in-the-loop governance.",
     headline: "Scaling AI from Individual Agents to Enterprise-Grade Workflows",
-    role: "Product Lead & AI Product Designer",
-    scope: "Enterprise AI Workforce / Agent Orchestration / AI Governance / Interaction Architecture / Human-in-the-Loop Validation",
-    overview: "Between 2024 and 2026, I helped shape Allyra from a no-code AI agent creation platform into an enterprise AI workspace capable of creating, training, orchestrating and operationalizing AI workers.",
+    company: "Pansophic Technologies",
+    year: "2024–2026",
+    role: "Product Lead",
+    team: "3 designers and 2 business analysts",
+    scope: "Enterprise AI Workforce / Multi-Agent Orchestration / AI Governance / Interaction Architecture",
+    keywords: "Allyra.ai, Enterprise AI Workforce, Multi-Agent Workflows, Agentic AI UX, Human-in-the-Loop, AI Governance, AI Guardrails",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "Between 2024 and 2026, I led product direction and UX strategy for Allyra.ai, evolving it from an agent-building tool into an organisation-ready enterprise AI platform capable of creating, training, orchestrating, and operationalising AI workers.",
     challenge: "In late 2024, the AI industry was obsessed with models. The real challenge wasn't access to AI. The challenge was turning AI into something businesses could actually use: prompt engineering, knowledge systems, APIs, integrations, and continuous maintenance. The people who understood business problems often couldn't build AI solutions themselves.",
     opportunity: "Instead of standalone prompt boxes and single-turn chatbots, the opportunity was to design an enterprise workspace where teams could compose, test, connect, and govern multi-agent workflows visually.",
-    whatIDrove: "Agent Canvas & Orchestration Architecture, Live Evaluation & Governance Dashboards, Human-in-the-Loop Approval Protocols, Enterprise Multi-Tenant Workspaces.",
-    impact: "70% reduction in agent setup time, high-governance multi-agent orchestration, enterprise deployment across Fortune 500 pilots.",
+    whatIDrove: "Agent Canvas & Orchestration Architecture, Live Evaluation & Governance Dashboards, Human-in-the-Loop Approval Protocols, Enterprise Multi-Tenant Workspaces, Team Leadership of 3 designers and 2 business analysts.",
+    impact: "Expanded reach across 15+ organisations—including a pilot with a leading Indian enterprise group; designed task-focused, human-in-the-loop workflows for 19+ AI agents.",
     keyDecisions: [
       "Role-Based Agent Hierarchies over Monolithic LLMs",
       "Transparent Observability and Telemetry Before Autonomous Execution",
@@ -59,16 +64,21 @@ const STORIES = [
   },
   {
     path: "campaign-os-story",
-    title: "Campaign OS Case Study — Jayesh Soni | Product Lead & AI Product Designer",
-    description: "Case study on Campaign OS: Designing an autonomous marketing & campaign operating system with connected workflows, conversational analytics, and calm monitoring.",
+    title: "Campaign OS Case Study — Jayesh Soni | Product Lead",
+    description: "Case study on Campaign OS: Client project directed at Vrozart Dackson designing an autonomous campaign operating system with conversational analytics and calm monitoring.",
     headline: "Designing an Autonomous Marketing & Campaign Operating System",
+    company: "Vrozart Dackson Enterprise",
+    year: "2025",
     role: "Product Lead",
-    scope: "Product Design / UX Strategy / Interaction Design / Design Systems / AI Experience Design",
-    overview: "Planning, launching, monitoring and improving digital campaigns shouldn't require jumping across half a dozen tools. This project explored how AI could become an active marketing partner—helping teams move from strategy to execution inside one connected workspace.",
-    challenge: "Marketing workflows are fragmented across creative generation, channel deployment, analytics dashboards, and optimization tools. Teams waste hours context-switching and manually copying data between disconnected software.",
+    team: "Enterprise Client Work (NDA)",
+    scope: "Product Direction / UX Strategy / Autonomous Marketing / Conversational Analytics",
+    keywords: "Campaign OS, Autonomous Marketing, Conversational Analytics, Living Insights, Calm Monitoring, Multi-Channel Workflows",
+    ogImage: `${BASE_URL}/assets/cos-story-hero-CDaydGfO.webp`,
+    overview: "Directed product experience for an enterprise campaign operating system while at Vrozart Dackson (anonymised under NDA). The system connects the entire campaign lifecycle into a single collaborative workspace where AI acts as an active marketing partner.",
+    challenge: "Marketing workflows are fragmented across creative generation, channel deployment, analytics dashboards, and optimisation tools. Teams waste hours context-switching and manually copying data between disconnected software.",
     opportunity: "Connect the entire campaign lifecycle into a single collaborative workspace where AI assists across strategy, asset generation, multi-channel deployment, and autonomous performance monitoring.",
     whatIDrove: "Connected Workflows, Conversational Analytics Interface, Living Insights Canvas, Calm Monitoring System with human-in-the-loop controls.",
-    impact: "Autonomous multi-channel monitoring, unified campaign lifecycle execution, conversational analytics turning dashboards into narrative insights.",
+    impact: "Unified campaign planning, execution, and optimisation into a single continuous canvas; conversational analytics turning performance charts into narrative strategic dialogues; calm autonomous background monitoring.",
     keyDecisions: [
       "Connected Workflows over Point Solutions",
       "Conversational Analytics Turning Data into Actionable Strategy",
@@ -79,34 +89,44 @@ const STORIES = [
   },
   {
     path: "tulah-story",
-    title: "Tulah Clinical Wellness Case Study — Jayesh Soni | Product Lead & AI Product Designer",
-    description: "Case study on Tulah: Streamlining multidisciplinary clinical workflows, patient care coordination, and calm wellness operations.",
-    headline: "Orchestrating Personalized Care Across Complex Clinical Workflows",
-    role: "Product Lead & Design Architect",
-    scope: "Clinical Workflows / Patient Care Coordination / Multidisciplinary Systems / Operations",
-    overview: "Delivering personalized wellness wasn't the challenge. Coordinating it was. Every guest journey involved multiple consultants, diagnostics, therapies, nutrition plans, fitness programs, medications, wearable data, and operational teams working together.",
-    challenge: "Care teams worked in silos, recommendations became fragmented, activities were difficult to coordinate, guests struggled to understand what came next, and long-term continuity of care was hard to maintain.",
+    title: "Tulah Wellness Platform Case Study — Jayesh Soni | Product Lead",
+    description: "Case study on Tulah: Designing workflow automation for a wellness platform, replacing fragmented spreadsheets and manual forms with connected digital workflows.",
+    headline: "Orchestrating Personalised Care Across Complex Wellness Workflows",
+    company: "Pansophic Technologies",
+    year: "2025",
+    role: "Product Lead",
+    team: "Cross-functional Product & Operations",
+    scope: "Workflow Automation / Wellness Operations / Journey Coordination",
+    keywords: "Tulah, Wellness Platform, Workflow Automation, Care Coordination, Operations Design, Journey Timeline",
+    ogImage: `${BASE_URL}/assets/tulah-story-hero-D5MXapZP.webp`,
+    overview: "Delivering personalised wellness wasn't the challenge. Coordinating it was. Designed workflow automation for Tulah, a wellness platform, replacing fragmented spreadsheets, documents, forms, and manual communication with connected digital workflows.",
+    challenge: "Care teams worked in silos, recommendations became fragmented across spreadsheets, activities were difficult to coordinate, and long-term continuity of care was hard to maintain.",
     opportunity: "Design a unified operational system that connected specialists, operations teams, and guests through a single, end-to-end care journey.",
-    whatIDrove: "Cross-Specialty Coordination Matrix, Guest Journey Timeline, Clinical Handover Protocols, Unified Wellness Dashboard.",
-    impact: "Unified multidisciplinary care orchestration, coordinated specialist handover, transparent guest timeline visibility.",
+    whatIDrove: "Cross-Specialty Coordination Matrix, Guest Journey Timeline, Operational Handover Protocols, Unified Wellness Dashboard.",
+    impact: "Connected digital workflow automation replacing fragmented spreadsheets, coordinated multidisciplinary care handover, transparent guest timeline visibility.",
     keyDecisions: [
       "Design Around Roles, Not Software Modules",
       "Unified Guest Care Timeline as Single Source of Truth",
-      "Calm Clinical Handover Alerts Without Operational Noise",
+      "Calm Operational Handover Alerts Without Noise",
       "Continuous Care Feedback Loops Between Consultations"
     ],
     oneThing: "The hardest part of designing complex systems isn't creating workflows. It's creating shared understanding."
   },
   {
     path: "vousvous-story",
-    title: "VousVous Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+    title: "VousVous Case Study — Jayesh Soni | UXD Head, Vrozart Dackson",
     description: "Case study on VousVous: Declarative fashion discovery beyond search, multimodal style synthesis, and interactive wardrobe curation.",
     headline: "Designing Fashion Discovery Beyond Search",
-    role: "Product Designer",
-    scope: "Discovery Experience / AI Assisted Personalization / Conversational Commerce / Interaction Design / Fashion Marketplace",
-    overview: "Fashion discovery has long been driven by filters, endless grids, and keyword searches. With VousVous, we explored a different interaction model—one where users discover, personalize, and create fashion through gestures and AI-guided conversations instead of traditional browsing.",
+    company: "Vrozart Dackson Enterprise",
+    year: "2026",
+    role: "UXD Head, Vrozart Dackson",
+    team: "Design & Engineering Team",
+    scope: "Product Direction / Gesture-First Discovery / Multimodal AI Synthesis / Conversational Commerce",
+    keywords: "VousVous, Fashion Discovery, Gesture-First UX, Multimodal AI, Conversational Commerce, Vibe UX Framework",
+    ogImage: `${BASE_URL}/assets/vousvous-story-hero-FHJVyzag.webp`,
+    overview: "Fashion discovery has long been driven by filters, endless grids, and keyword searches. With VousVous, we explored a different interaction model—one where users discover, personalise, and create fashion through gestures and AI-guided conversations instead of traditional browsing.",
     challenge: "Most fashion platforms assume users know exactly what they're looking for. In reality, fashion shopping is exploratory. People discover styles while browsing, save pieces they like, compare options, and gradually refine their preferences. Traditional patterns interrupt this process with complex filters and overwhelming choices.",
-    opportunity: "Discover naturally using simple gestures, express intent conversationally with AI, and personalize before purchasing with AI remixing and try-on.",
+    opportunity: "Discover naturally using simple gestures, express intent conversationally with AI, and personalise before purchasing with AI remixing and try-on.",
     whatIDrove: "Gesture-first discovery experience, Conversational AI workflows for fashion exploration, The remix interaction for personalisation, Quotation and measurement journeys, Consistent visual language, Reusable interaction patterns.",
     impact: "100+ Pilot Users, 3 Core Gestures (Like · Skip · Explore), AI-powered journey (Discover → Create → Remix → Quote → Purchase).",
     keyDecisions: [
@@ -119,11 +139,16 @@ const STORIES = [
   },
   {
     path: "joonify-story",
-    title: "Joonify Case Study — Jayesh Soni | Product Lead & AI Product Designer",
+    title: "Joonify Case Study — Jayesh Soni | User Interface Designer",
     description: "Case study on Joonify: Helping parents understand how their children learn, grow, and discover their strengths through early childhood assessments.",
-    headline: "Helping parents understand how their children learn, grow, and discover their strengths.",
-    role: "Product Designer",
+    headline: "Child Talent Discovery Assessment & Personalised Growth Roadmaps",
+    company: "Joonify",
+    year: "2022–2023",
+    role: "User Interface Designer",
+    team: "Product & EdTech Team",
     scope: "Product Design / User Experience Design / Assessment Experience / Interaction Design / Ed-Tech Platform",
+    keywords: "Joonify, EdTech Design, Talent Discovery, Child Profiling, Assessment Journey, Personalised Learning",
+    ogImage: `${BASE_URL}/assets/joonify_desktop-CoP02MZj.webp`,
     overview: "Joonify brought child talent discovery, learning recommendations, and educational planning into one platform—helping parents make more informed decisions about their child's development.",
     challenge: "Every child has different strengths, interests, and learning needs. Joonify aimed to help parents understand these differences through a talent discovery assessment and connect them with relevant learning resources.",
     opportunity: "Connect three key parts of a child's learning journey: Understand (child profiling), Discover (talent assessment), and Grow (curated courses and schedules).",
@@ -147,10 +172,14 @@ function generateStoryHtml(templateHtml, story) {
   // 1. Update Title
   html = html.replace(/<title>.*?<\/title>/i, `<title>${story.title}</title>`);
 
-  // 2. Update Meta Description
+  // 2. Update Meta Description & Keywords
   html = html.replace(
     /<meta name="description" content=".*?" \/>/i,
     `<meta name="description" content="${story.description}" />`
+  );
+  html = html.replace(
+    /<meta name="keywords" content=".*?" \/>/i,
+    `<meta name="keywords" content="${story.keywords}" />`
   );
 
   // 3. Update Canonical Link
@@ -176,6 +205,10 @@ function generateStoryHtml(templateHtml, story) {
     /<meta property="og:type" content=".*?" id="og-type" \/>/i,
     `<meta property="og:type" content="article" id="og-type" />`
   );
+  html = html.replace(
+    /<meta property="og:image" content=".*?" id="og-image" \/>/i,
+    `<meta property="og:image" content="${story.ogImage}" id="og-image" />`
+  );
 
   // 5. Update Twitter Tags
   html = html.replace(
@@ -185,6 +218,10 @@ function generateStoryHtml(templateHtml, story) {
   html = html.replace(
     /<meta name="twitter:description" content=".*?" id="twitter-description" \/>/i,
     `<meta name="twitter:description" content="${story.description}" id="twitter-description" />`
+  );
+  html = html.replace(
+    /<meta name="twitter:image" content=".*?" id="twitter-image" \/>/i,
+    `<meta name="twitter:image" content="${story.ogImage}" id="twitter-image" />`
   );
 
   // 6. Inject Rich JSON-LD Structured Data Schema
@@ -201,7 +238,7 @@ function generateStoryHtml(templateHtml, story) {
         "description": story.description,
         "author": { "@id": `${BASE_URL}/#person` },
         "publisher": { "@id": `${BASE_URL}/#person` },
-        "inLanguage": "en-US"
+        "inLanguage": "en-GB"
       },
       {
         "@type": "BreadcrumbList",
@@ -223,14 +260,20 @@ function generateStoryHtml(templateHtml, story) {
   // When a real user visits with JavaScript enabled, React's createRoot mounts and replaces it seamlessly.
   const semanticBody = `
     <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
-      <nav aria-label="Breadcrumb" style="margin-bottom: 24px;">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0dbd1; padding-bottom: 16px;">
         <a href="/" style="color: #EE6C13; text-decoration: none; font-weight: 600;">← Back to Jayesh Soni Portfolio</a>
+        <a href="/about" style="color: #190b00; text-decoration: none; font-weight: 600;">About Jayesh Soni →</a>
       </nav>
       
       <header style="margin-bottom: 40px; border-bottom: 1px solid #7b7a77; padding-bottom: 24px;">
         <p style="font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #77695d; margin: 0 0 8px 0;">[ CASE STUDY ]</p>
         <h1 style="font-size: 36px; line-height: 1.2; margin: 0 0 16px 0;">${story.headline}</h1>
-        <p style="font-size: 18px; color: #77695d; margin: 0 0 8px 0;"><strong>Role:</strong> ${story.role}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 15px; color: #77695d; margin: 12px 0 16px 0; padding: 12px 16px; background: #fbf7ee; border-radius: 6px;">
+          <div><strong style="color: #190b00;">Company:</strong> ${story.company}</div>
+          <div><strong style="color: #190b00;">Timeline:</strong> ${story.year}</div>
+          <div><strong style="color: #190b00;">Role:</strong> ${story.role}</div>
+          ${story.team ? `<div><strong style="color: #190b00;">Team / Context:</strong> ${story.team}</div>` : ""}
+        </div>
         <p style="font-size: 15px; color: #77695d; margin: 0;"><strong>Scope:</strong> ${story.scope}</p>
       </header>
 
@@ -255,7 +298,7 @@ function generateStoryHtml(templateHtml, story) {
       </section>
 
       <section style="margin-bottom: 36px;">
-        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Validation & Impact</h2>
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">${story.path === "allyra-story" ? "Scale &amp; Adoption" : (story.path === "tulah-story" ? "Foundation &amp; Care Orchestration" : (story.path === "campaign-os-story" ? "Validation" : "Outcome"))}</h2>
         <p style="font-size: 17px; color: #190b00;">${story.impact}</p>
       </section>
 
@@ -295,7 +338,7 @@ function generateHomeSemanticHtml(templateHtml) {
         "url": `${BASE_URL}/`,
         "name": "Jayesh Soni Portfolio",
         "publisher": { "@id": `${BASE_URL}/#person` },
-        "inLanguage": "en-US"
+        "inLanguage": "en-GB"
       }
     ]
   };
@@ -306,10 +349,15 @@ function generateHomeSemanticHtml(templateHtml) {
 
   const semanticBody = `
     <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
+      <nav aria-label="Main Navigation" style="margin-bottom: 32px; display: flex; gap: 24px; font-size: 15px; font-weight: 700; border-bottom: 1px solid #e0dbd1; padding-bottom: 16px;">
+        <a href="/" style="color: #190b00; text-decoration: none;">HOME</a>
+        <a href="/about" style="color: #EE6C13; text-decoration: none;">ABOUT JAYESH SONI →</a>
+      </nav>
+
       <header style="margin-bottom: 40px;">
-        <h1 style="font-size: 40px; margin: 0 0 12px 0;">Jayesh Soni</h1>
-        <p style="font-size: 22px; color: #77695d; margin: 0;">Product Lead & AI Product Designer</p>
-        <p style="font-size: 16px; color: #77695d; margin-top: 8px;">Specializing in Enterprise AI Workforce systems, human-AI collaboration, and interaction architecture.</p>
+        <h1 style="font-size: 40px; margin: 0 0 8px 0; font-weight: 800; letter-spacing: -0.5px;">Jayesh Soni</h1>
+        <p style="font-size: 22px; color: #77695d; margin: 0; font-weight: 600;">Product Lead • AI Product Designer</p>
+        <p style="font-size: 18px; color: #190b00; margin-top: 12px; max-width: 720px; line-height: 1.5;">Designing AI products that align human behaviour, business goals, and intelligent agents.</p>
       </header>
 
       <section style="margin-bottom: 40px;">
@@ -324,15 +372,22 @@ function generateHomeSemanticHtml(templateHtml) {
             <p style="color: #77695d; margin: 0;">Connected marketing workflows, conversational analytics, and calm autonomous monitoring.</p>
           </li>
           <li style="margin-bottom: 24px; border-bottom: 1px solid #7b7a77; padding-bottom: 16px;">
-            <h3 style="font-size: 22px; margin: 0 0 8px 0;"><a href="/tulah-story" style="color: #190b00; text-decoration: none;">Tulah Clinical Wellness — Orchestrating Personalized Care Across Multidisciplinary Workflows</a></h3>
-            <p style="color: #77695d; margin: 0;">Clinical handover protocols, patient timeline synchronization, and operations design.</p>
+            <h3 style="font-size: 22px; margin: 0 0 8px 0;"><a href="/tulah-story" style="color: #190b00; text-decoration: none;">Tulah Wellness Platform — Orchestrating Personalised Care Across Multidisciplinary Workflows</a></h3>
+            <p style="color: #77695d; margin: 0;">Care handover protocols, guest journey timeline synchronisation, and workflow automation.</p>
           </li>
           <li style="margin-bottom: 24px; border-bottom: 1px solid #7b7a77; padding-bottom: 16px;">
             <h3 style="font-size: 22px; margin: 0 0 8px 0;"><a href="/vousvous-story" style="color: #190b00; text-decoration: none;">VousVous — Designing Fashion Discovery Beyond Search</a></h3>
-            <p style="color: #77695d; margin: 0;">Gesture-first discovery, multimodal style synthesis, and AI-assisted personalized commerce.</p>
+            <p style="color: #77695d; margin: 0;">Gesture-first discovery, multimodal style synthesis, and AI-assisted personalised commerce.</p>
           </li>
         </ul>
       </section>
+
+      <footer style="margin-top: 60px; padding-top: 24px; border-top: 1px solid #7b7a77; font-size: 15px; color: #77695d; display: flex; flex-wrap: wrap; gap: 24px;">
+        <a href="/about" style="color: #EE6C13; font-weight: 700; text-decoration: none;">About Jayesh Soni</a>
+        <a href="https://www.linkedin.com/in/jayeshsoni31/" target="_blank" rel="noopener noreferrer" style="color: #190b00; text-decoration: none;">LinkedIn</a>
+        <a href="mailto:jayeshsoni31@gmail.com" style="color: #190b00; text-decoration: none;">Email</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" style="color: #190b00; text-decoration: none;">Resume (PDF)</a>
+      </footer>
     </main>
   `;
 
@@ -354,8 +409,9 @@ function generateAboutHtml(baseHtml) {
 
   const semanticBody = `
     <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
-      <nav aria-label="Breadcrumb" style="margin-bottom: 24px;">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0dbd1; padding-bottom: 16px;">
         <a href="/" style="color: #EE6C13; text-decoration: none; font-weight: 600;">← Back to Jayesh Soni Portfolio</a>
+        <a href="/about" style="color: #190b00; text-decoration: none; font-weight: 600;">About Jayesh Soni →</a>
       </nav>
       
       <header style="margin-bottom: 40px; border-bottom: 1px solid #7b7a77; padding-bottom: 24px;">
@@ -372,20 +428,23 @@ function generateAboutHtml(baseHtml) {
       <section style="margin-bottom: 36px;">
         <h2 style="font-size: 24px; margin: 0 0 12px 0;">Selected Impact</h2>
         <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
-          <li>Product Lead for allyra.ai, Pansophic Technologies' Human-AI Interaction platform.</li>
-          <li>Supported 25–30 enterprise client demonstrations resulting in 3 successful client onboardings.</li>
-          <li>Reduced operational workflow overhead by approximately 60–70% for tulah.</li>
-          <li>Delivered operational product experiences for Stanford Medicine.</li>
+          <li>Drove Allyra.ai's shift from an agent-building tool to an organisation-ready enterprise AI platform.</li>
+          <li>Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents.</li>
+          <li>Expanded Allyra's reach across 15+ organisations, including a pilot with a leading Indian enterprise group, through platform usage and API integrations.</li>
+          <li>Led a team of 3 designers and 2 business analysts, boosting design throughput from ~1 to 2–3 features per designer per week.</li>
+          <li>Designed workflow automation for Tulah, a wellness platform, replacing fragmented spreadsheets, documents, and manual communication with connected digital workflows.</li>
+          <li>Delivered operational product experiences for Stanford Medicine, including the Financial Aid app.</li>
           <li>Speaker at TiE Chandigarh on AI and Human-Centred Design.</li>
         </ul>
       </section>
 
       <section style="margin-bottom: 36px;">
-        <h2 style="font-size: 24px; margin: 0 0 12px 0;">My Focus</h2>
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">My Focus & Core Skills</h2>
         <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
-          <li><strong>01 Human–AI Interaction & Agentic UX:</strong> Agentic UX, AI Behavior Design, Adaptive Interfaces, Conversational UX, Enterprise AI Systems.</li>
-          <li><strong>02 Product Strategy & Enterprise Platforms:</strong> Product Strategy, Operational Systems, AI Product Management, Workflow Design, Cross-functional Leadership.</li>
-          <li><strong>03 Systems Thinking & Craft:</strong> Design Systems, Vibe UX Framework, Rapid Prototyping, Figma, Information Architecture.</li>
+          <li><strong>01 AI & Product:</strong> Human–AI Interaction, Agentic AI UX, Conversational AI, LLM-Powered Products, Generative AI (GenAI), Human-in-the-Loop Design, AI Guardrails, Multi-Agent Workflows, AI Product Strategy.</li>
+          <li><strong>02 Product:</strong> Product Roadmap & Prioritisation, Product Discovery, 0-to-1 Product Development, Stakeholder Management, Cross-Functional Leadership, Enterprise SaaS, Workflow Automation.</li>
+          <li><strong>03 Design:</strong> UX Strategy, Interaction Design, User Flows, Wireframing, Information Architecture, Usability Testing, User Research, Accessibility (WCAG), Design Systems, Rapid Prototyping, Developer Handoff.</li>
+          <li><strong>04 Tools:</strong> Figma, Figma Make, Jira, Claude, ChatGPT, Gemini, Antigravity, HTML Prototyping.</li>
         </ul>
       </section>
 

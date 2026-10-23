@@ -61,7 +61,7 @@ export function MobileTulahOpportunity() {
         </p>
 
         <p className="mobile-story-opportunity-p">
-          Consultants also needed a structured way to combine their expertise into one personalized retreat plan.
+          Consultants also needed a structured way to combine their expertise into one personalised retreat plan.
         </p>
 
         <p className="mobile-story-opportunity-p">

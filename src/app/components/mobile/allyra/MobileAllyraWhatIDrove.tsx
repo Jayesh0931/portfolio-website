@@ -35,7 +35,7 @@ export function MobileAllyraWhatIDrove() {
           </p>
 
           <p className="mobile-story-wid-roles">
-            Product Strategy / Product Definition / Feature Prioritization / Human-AI Interaction Design / Enterprise Workflow Design / Stakeholder Alignment
+            Product Strategy / Product Definition / Feature Prioritisation / Human-AI Interaction Design / Enterprise Workflow Design / Stakeholder Alignment
           </p>
 
           <p className="mobile-story-wid-p">

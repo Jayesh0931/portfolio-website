@@ -7,53 +7,35 @@ export function MobileAllyraImpact() {
       {/* 1. Top Tag */}
       <p className="mobile-story-impact-tag">
         <span>[ AGENT CREATION → </span>
-        <span className="mobile-story-impact-tag-orange">ENTERPRISE AI PLATFORM</span>
+        <span className="mobile-story-impact-tag-orange">ENTERPRISE SCALE &amp; ADOPTION</span>
         <span> ]</span>
       </p>
 
-      {/* 2. Header Row: IMPACT + Brand Vector */}
+      {/* 2. Header Row: SCALE & ADOPTION + Brand Vector */}
       <div className="mobile-story-impact-header-row">
-        <h2 className="mobile-story-impact-title">IMPACT</h2>
+        <h2 className="mobile-story-impact-title mobile-story-scale-title">SCALE &amp; ADOPTION</h2>
         <div className="mobile-story-impact-brand">
           <BrandVector theme="dark" width={60} height={40} />
         </div>
       </div>
 
-      {/* 3. Four Stacked Metric Cards */}
+      {/* 3. Two Stacked Metric Cards */}
       <div className="mobile-story-impact-metrics">
         {/* Metric 1 */}
         <div className="mobile-story-impact-metric-item">
-          <span className="mobile-story-impact-num">50+</span>
-          <h3 className="mobile-story-impact-subhead">Enterprise Demonstrations</h3>
+          <span className="mobile-story-impact-num">15+</span>
+          <h3 className="mobile-story-impact-subhead">Organisations Reached</h3>
           <p className="mobile-story-impact-desc">
-            Validated through enterprise conversations, workshops and live product demos.
+            Expanded reach across 15+ organisations, including a pilot with a leading Indian enterprise group, through platform usage and API integrations.
           </p>
         </div>
 
         {/* Metric 2 */}
         <div className="mobile-story-impact-metric-item">
-          <span className="mobile-story-impact-num">20+</span>
-          <h3 className="mobile-story-impact-subhead">Enterprise Use Allyra</h3>
+          <span className="mobile-story-impact-num">19+</span>
+          <h3 className="mobile-story-impact-subhead">AI Agents Designed</h3>
           <p className="mobile-story-impact-desc">
-            Successfully onboarded into production environments.
-          </p>
-        </div>
-
-        {/* Metric 3 */}
-        <div className="mobile-story-impact-metric-item">
-          <span className="mobile-story-impact-num">7+</span>
-          <h3 className="mobile-story-impact-subhead">Operational AI Workflows</h3>
-          <p className="mobile-story-impact-desc">
-            / Hiring / HR / Communication / Presentations / Scheduling/ Productivity / Sales
-          </p>
-        </div>
-
-        {/* Metric 4 */}
-        <div className="mobile-story-impact-metric-item">
-          <span className="mobile-story-impact-num">~60%</span>
-          <h3 className="mobile-story-impact-subhead">Administrative Effort Reduced</h3>
-          <p className="mobile-story-impact-desc">
-            Reduced repetitive work through AI-powered operational workflows.
+            Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents across enterprise operational domains.
           </p>
         </div>
       </div>

@@ -69,7 +69,7 @@ export function MobileVousVousHero({ onBack, isDark = false }: MobileVousVousHer
         {/* Narrative & Metadata Block */}
         <div className="mobile-story-narrative-block">
           <p className="mobile-story-paragraph text-[#77695d]">
-            Fashion discovery has long been driven by filters, endless grids, and keyword searches. With VousVous, we explored a different interaction model—one where users discover, personalize, and{" "}
+            Fashion discovery has long been driven by filters, endless grids, and keyword searches. With VousVous, we explored a different interaction model—one where users discover, personalise, and{" "}
             <strong className="font-bold text-[#190b00]">
               create fashion through gestures and AI-guided conversations instead of traditional browsing.
             </strong>
@@ -77,18 +77,27 @@ export function MobileVousVousHero({ onBack, isDark = false }: MobileVousVousHer
 
           <div className="mobile-story-meta-group">
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">ROLE</span>
-              <span className="mobile-story-role-val">Product Designer</span>
+              <span className="mobile-story-meta-label">COMPANY</span>
+              <span className="mobile-story-role-val">Vrozart Dackson</span>
             </div>
 
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">SCOPE</span>
+              <span className="mobile-story-meta-label">ROLE</span>
+              <span className="mobile-story-role-val">UXD Head</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">TIMELINE</span>
+              <span className="mobile-story-role-val">2026</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">FOCUS</span>
               <div className="mobile-story-focus-list">
-                <p>/ Discovery Experience</p>
-                <p>/ AI Assisted Personalization</p>
+                <p>/ Gesture-First Discovery</p>
+                <p>/ AI Assisted Personalisation</p>
                 <p>/ Conversational Commerce</p>
-                <p>/ Interaction Design</p>
-                <p>/ Fashion Marketplace</p>
+                <p>/ Multimodal Style Synthesis</p>
               </div>
             </div>
           </div>

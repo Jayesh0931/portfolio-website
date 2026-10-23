@@ -230,7 +230,7 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
 
         <MobileRecommendations isDark={isDarkCanvas} />
 
-        <MobileFinale isDark={isDarkCanvas} />
+        <MobileFinale isDark={isDarkCanvas} sectionTag="[ S-007 ]" />
       </main>
 
       {/* Celebratory Amber Flare / Bloom Overlay */}

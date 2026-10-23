@@ -1,40 +1,56 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import profileImg from "@/imports/Profile Image Full Size.webp";
+import resumePdf from "@/imports/Jayesh_Soni_Resume_November_2026.pdf";
+import ProfileCard from "@/components/ProfileCard";
+import ElectricBorder from "@/components/ElectricBorder";
 
 interface ContactButtonProps {
   label?: string;
   iconPath: string;
   hoverIconPath?: string;
-  onClick: () => void;
+  onClick?: () => void;
   circular?: boolean;
+  href?: string;
+  download?: string | boolean;
+  target?: string;
+  rel?: string;
 }
 
-function ContactButton({ label, iconPath, hoverIconPath, onClick, circular }: ContactButtonProps) {
+function ContactButton({
+  label,
+  iconPath,
+  hoverIconPath,
+  onClick,
+  circular,
+  href,
+  download,
+  target,
+  rel,
+}: ContactButtonProps) {
   const [hover, setHover] = useState(false);
 
-  return (
-    <div
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onClick={onClick}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: circular ? 0 : 10,
-        width: circular ? 40 : "auto",
-        height: 40,
-        padding: circular ? 0 : "0 24px",
-        border: "1px solid #7b7a77",
-        borderRadius: circular ? "50%" : 24,
-        cursor: "pointer",
-        background: hover ? "#190b00" : "transparent",
-        transition: "all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-        transform: hover ? "translateY(-2px)" : "translateY(0)",
-        boxShadow: hover ? "0 4px 12px rgba(25, 11, 0, 0.12)" : "none",
-        boxSizing: "border-box",
-      }}
-    >
+  const sharedStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: circular ? 0 : 10,
+    width: circular ? 40 : "auto",
+    height: 40,
+    padding: circular ? 0 : "0 24px",
+    border: "1px solid #7b7a77",
+    borderRadius: circular ? "50%" : 24,
+    cursor: "pointer",
+    background: hover ? "#190b00" : "transparent",
+    transition: "all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+    transform: hover ? "translateY(-2px)" : "translateY(0)",
+    boxShadow: hover ? "0 4px 12px rgba(25, 11, 0, 0.12)" : "none",
+    boxSizing: "border-box",
+    textDecoration: "none",
+  };
+
+  const content = (
+    <>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ transition: "fill 0.25s ease" }}>
         <path d={hover && hoverIconPath ? hoverIconPath : iconPath} fill={hover ? "#FFFDFA" : "#EE6C13"} />
       </svg>
@@ -50,16 +66,91 @@ function ContactButton({ label, iconPath, hoverIconPath, onClick, circular }: Co
           {label}
         </span>
       )}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        download={download}
+        target={target}
+        rel={rel}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        onClick={onClick}
+        style={sharedStyle}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onClick={onClick}
+      style={sharedStyle}
+    >
+      {content}
     </div>
   );
 }
 
 interface FooterProps {
   style?: React.CSSProperties;
+  sectionTag?: string;
 }
 
-export default function Footer({ style }: FooterProps) {
-  const [isProfileLoaded, setIsProfileLoaded] = useState(false);
+const footerTitleContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.055,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const footerCharVariants = {
+  hidden: {
+    y: "115%",
+    opacity: 0,
+  },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const footerQuestionVariants = {
+  hidden: {
+    y: "115%",
+    opacity: 0,
+    scale: 0.5,
+    rotate: -14,
+  },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 170,
+      mass: 0.8,
+      delay: 0.32,
+    },
+  },
+};
+
+export default function Footer({ style, sectionTag = "[ S-006 ]" }: FooterProps) {
   const mailIcon = "M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM12.0606 11.6829L5.64722 6.2377L4.35278 7.7623L12.0731 14.3171L19.6544 7.75616L18.3456 6.24384L12.0606 11.6829Z";
   const linkedinIcon = "M6.94048 4.99993C6.94011 5.81424 6.44608 6.54702 5.69134 6.85273C4.9366 7.15845 4.07187 6.97605 3.5049 6.39155C2.93793 5.80704 2.78195 4.93715 3.1105 4.19207C3.43906 3.44699 4.18654 2.9755 5.00048 2.99993C6.08155 3.03238 6.94097 3.91837 6.94048 4.99993ZM7.00048 8.47993H3.00048V20.9999H7.00048V8.47993ZM13.3205 8.47993H9.34048V20.9999H13.2805V14.4299C13.2805 10.7699 18.0505 10.4299 18.0505 14.4299V20.9999H22.0005V13.0699C22.0005 6.89993 14.9405 7.12993 13.2805 10.1599L13.3205 8.47993Z";
   const resumeIcon = "M2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM6 15V17H18V15H6ZM6 7V13H12V7H6ZM14 7V9H18V7H14ZM14 11V13H18V11H14ZM8 9H10V11H8V9Z";
@@ -111,20 +202,72 @@ export default function Footer({ style }: FooterProps) {
             textTransform: "uppercase",
             margin: "0 0 10px 0",
           }}>
-            [ S-006 ]
+            {sectionTag}
           </p>
-          <h2 style={{
-            fontFamily: "Outfit, sans-serif",
-            fontWeight: 900,
-            fontSize: 145,
-            lineHeight: 0.9,
-            color: "#190b00",
-            margin: 0,
-            letterSpacing: "-4px",
-            textTransform: "uppercase",
-          }}>
-            NEXT <span style={{ color: "#EE6C13" }}>?</span>
-          </h2>
+          <motion.h2
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={footerTitleContainerVariants}
+            style={{
+              fontFamily: "Outfit, sans-serif",
+              fontWeight: 900,
+              fontSize: 145,
+              lineHeight: 0.9,
+              color: "#190b00",
+              margin: 0,
+              letterSpacing: "-4px",
+              textTransform: "uppercase",
+              display: "flex",
+              alignItems: "baseline",
+            }}
+          >
+            <span
+              style={{
+                display: "inline-flex",
+                overflow: "hidden",
+                verticalAlign: "bottom",
+                paddingBottom: "10px",
+                marginBottom: "-10px",
+              }}
+            >
+              {["N", "E", "X", "T"].map((char, index) => (
+                <motion.span
+                  key={index}
+                  variants={footerCharVariants}
+                  style={{
+                    display: "inline-block",
+                    willChange: "transform, opacity",
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+
+            <span
+              style={{
+                display: "inline-block",
+                overflow: "hidden",
+                verticalAlign: "bottom",
+                padding: "0 30px 14px 30px",
+                margin: "0 -30px -14px -8px",
+              }}
+            >
+              <motion.span
+                variants={footerQuestionVariants}
+                style={{
+                  display: "inline-block",
+                  color: "#EE6C13",
+                  willChange: "transform, opacity",
+                  transformOrigin: "bottom center",
+                  padding: "0 6px",
+                }}
+              >
+                ?
+              </motion.span>
+            </span>
+          </motion.h2>
         </div>
 
         {/* Bottom Body Area (280px) */}
@@ -176,12 +319,32 @@ export default function Footer({ style }: FooterProps) {
                 hoverIconPath={externalLinkIcon}
                 onClick={() => window.open("https://www.linkedin.com/in/jayeshsoni31/", "_blank")}
               />
-              <ContactButton
-                label="RESUME"
-                iconPath={resumeIcon}
-                hoverIconPath={downloadIcon}
-                onClick={() => window.open("/Jayesh_Soni_Resume.html", "_blank")}
-              />
+              <ElectricBorder
+                color="#EE6C13"
+                glowColor="#EE6C13"
+                borderRadius={20}
+                speed={1.2}
+                chaos={0.6}
+                thickness={1.5}
+                glow={0.8}
+                active={true}
+              >
+                <ContactButton
+                  label="RESUME"
+                  iconPath={resumeIcon}
+                  hoverIconPath={downloadIcon}
+                  href={resumePdf}
+                  download="Jayesh_Soni_Resume_November_2026.pdf"
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = resumePdf;
+                    link.download = "Jayesh_Soni_Resume_November_2026.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
+                />
+              </ElectricBorder>
             </div>
           </div>
         </div>
@@ -198,32 +361,8 @@ export default function Footer({ style }: FooterProps) {
         padding: "50px 30px",
         boxSizing: "border-box",
       }}>
-        {/* Profile Image container adjusting automatically to original aspect ratio */}
-        <div style={{
-          width: 250,
-          aspectRatio: "4/5",
-          border: "1px solid #7b7a77",
-          boxSizing: "border-box",
-          position: "relative",
-          overflow: "hidden",
-        }}>
-          {!isProfileLoaded && (
-            <div className="absolute inset-0 skeleton-shimmer" />
-          )}
-          <img
-            src={profileImg}
-            alt="Jayesh Soni Profile Image - Product Lead & AI Product Designer"
-            onLoad={() => setIsProfileLoaded(true)}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              display: "block",
-              opacity: isProfileLoaded ? 1 : 0,
-              transition: "opacity 0.5s ease-out",
-            }}
-          />
-        </div>
+        {/* Interactive 3D Holographic Profile Card */}
+        <ProfileCard width={250} aspectRatio="4/5" imageSrc={profileImg} />
         <div style={{ width: 250, textAlign: "left" }}>
           <h3 style={{
             fontFamily: "Outfit, sans-serif",

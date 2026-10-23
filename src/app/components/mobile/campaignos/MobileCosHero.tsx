@@ -44,7 +44,7 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
             <span>OVERVIEW</span>
           </div>
           <div className="mobile-story-overview-right">
-            <span>[ 2026 ]</span>
+            <span>[ 2025 ]</span>
           </div>
         </div>
 
@@ -79,23 +79,32 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
           </p>
 
           <p className="mobile-story-footnote">
-            Originally designed as the pilot experience for an AI-first marketing platform.
+            Originally directed as enterprise client platform architecture while at Vrozart Dackson (anonymised under NDA).
           </p>
 
           <div className="mobile-story-meta-group">
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">COMPANY</span>
+              <span className="mobile-story-role-val">Vrozart Dackson</span>
+            </div>
+
             <div className="mobile-story-meta-item">
               <span className="mobile-story-meta-label">ROLE</span>
               <span className="mobile-story-role-val">Product Lead</span>
             </div>
 
             <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">CONTEXT</span>
+              <span className="mobile-story-role-val">Enterprise Client Work (NDA)</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
               <span className="mobile-story-meta-label">FOCUS</span>
               <div className="mobile-story-focus-list">
-                <p>/ Product Design</p>
-                <p>/ UX Strategy</p>
-                <p>/ Interaction Design</p>
-                <p>/ Design Systems</p>
-                <p>/ AI Experience Design</p>
+                <p>/ Autonomous Marketing</p>
+                <p>/ Conversational Analytics</p>
+                <p>/ Living Insights</p>
+                <p>/ Connected Workflows</p>
               </div>
             </div>
           </div>

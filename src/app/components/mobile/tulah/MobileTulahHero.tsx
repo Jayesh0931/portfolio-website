@@ -60,14 +60,14 @@ export function MobileTulahHero({ onBack, isDark = false }: MobileTulahHeroProps
           </div>
 
           <h1 className="mobile-story-headline">
-            Designing an Operational Intelligence Platform for Personalized Wellness Care
+            Designing an Operational Intelligence Platform for Personalised Wellness Care
           </h1>
         </div>
 
         {/* Narrative & Metadata Block */}
         <div className="mobile-story-narrative-block">
           <p className="mobile-story-paragraph">
-            Personalized wellness appears simple to guests, but delivering it requires coordination across consultants, diagnostics, therapies, schedules, and operations.
+            Personalised wellness appears simple to guests, but delivering it requires coordination across consultants, diagnostics, therapies, schedules, and operations.
           </p>
 
           <p className="mobile-story-paragraph">
@@ -78,19 +78,27 @@ export function MobileTulahHero({ onBack, isDark = false }: MobileTulahHeroProps
 
           <div className="mobile-story-meta-group">
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">ROLE</span>
-              <span className="mobile-story-role-val">Product Lead &amp; AI Product Designer</span>
+              <span className="mobile-story-meta-label">COMPANY</span>
+              <span className="mobile-story-role-val">Pansophic Technologies</span>
             </div>
 
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">SCOPE</span>
+              <span className="mobile-story-meta-label">ROLE</span>
+              <span className="mobile-story-role-val">Product Lead</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">TIMELINE</span>
+              <span className="mobile-story-role-val">2025</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">FOCUS</span>
               <div className="mobile-story-focus-list">
-                <p>/ Guest Experience</p>
-                <p>/ CRM Operations</p>
-                <p>/ Retreat Planning</p>
-                <p>/ Consultant Workbenches</p>
-                <p>/ Care Execution Systems</p>
-                <p>/ Home Care Ecosystem</p>
+                <p>/ Workflow Automation</p>
+                <p>/ Wellness Operations</p>
+                <p>/ Journey Timeline</p>
+                <p>/ Care Coordination</p>
               </div>
             </div>
           </div>

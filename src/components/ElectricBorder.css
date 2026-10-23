@@ -1,0 +1,14 @@
+.electric-border {
+  position: relative;
+  display: inline-block;
+}
+
+.electric-border-canvas,
+.electric-border__canvas {
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

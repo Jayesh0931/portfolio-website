@@ -33,7 +33,7 @@ export function MobileCosValidation() {
           </div>
           <h3 className="mobile-story-validation-item-title">Connected Workflows</h3>
           <p className="mobile-story-validation-item-desc">
-            Unified campaign planning, execution and optimization into one continuous experience instead of disconnected marketing tools.
+            Unified campaign planning, execution and optimisation into one continuous experience instead of disconnected marketing tools.
           </p>
         </div>
 

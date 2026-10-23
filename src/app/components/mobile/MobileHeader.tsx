@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import BrandVector from "@/components/BrandVector";
+import { triggerIceFreeze } from "@/components/IceFreezeOverlay";
+import resumePdf from "@/imports/Jayesh_Soni_Resume_November_2026.pdf";
 
 interface MobileHeaderProps {
   onNavigateSection?: (sectionId: string) => void;
@@ -34,22 +37,36 @@ export function MobileHeader({ onNavigateSection }: MobileHeaderProps) {
   return (
     <>
       <header className="mobile-header">
-        <div 
-          className="mobile-header-pill"
-          onClick={() => handleNavClick("mobile-top")}
+        <motion.div
+          initial={{ y: -36, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         >
-          <span>JAYESH SONI</span>
-        </div>
+          <div 
+            className="mobile-header-pill"
+            onClick={(e) => {
+              triggerIceFreeze({ x: e.clientX, y: e.clientY });
+            }}
+          >
+            <span>JAYESH SONI</span>
+          </div>
+        </motion.div>
 
-        <button 
-          className="mobile-burger-btn"
-          aria-label="Open Navigation Menu"
-          onClick={() => setMenuOpen(true)}
+        <motion.div
+          initial={{ y: -36, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          <span className="bar bar-top" />
-          <span className="bar bar-mid" />
-          <span className="bar bar-bot" />
-        </button>
+          <button 
+            className="mobile-burger-btn"
+            aria-label="Open Navigation Menu"
+            onClick={() => setMenuOpen(true)}
+          >
+            <span className="bar bar-top" />
+            <span className="bar bar-mid" />
+            <span className="bar bar-bot" />
+          </button>
+        </motion.div>
       </header>
 
       {menuOpen && (
@@ -60,7 +77,10 @@ export function MobileHeader({ onNavigateSection }: MobileHeaderProps) {
             <div className="mobile-menu-header">
               <div 
                 className="mobile-header-pill"
-                onClick={() => handleNavClick("mobile-top")}
+                onClick={(e) => {
+                  setMenuOpen(false);
+                  triggerIceFreeze({ x: e.clientX, y: e.clientY });
+                }}
               >
                 <span>JAYESH SONI</span>
               </div>
@@ -172,11 +192,10 @@ export function MobileHeader({ onNavigateSection }: MobileHeaderProps) {
 
                 {/* RESUME */}
                 <a 
-                  href="/resume.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href={resumePdf} 
+                  download="Jayesh_Soni_Resume_November_2026.pdf" 
                   className="mobile-menu-action-pill"
-                  aria-label="Open Jayesh Soni Resume"
+                  aria-label="Download Jayesh Soni Resume"
                 >
                   <svg className="mobile-menu-action-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM6 15V17H18V15H6ZM6 7V13H12V7H6ZM14 7V9H18V7H14ZM14 11V13H18V11H14ZM8 9H10V11H8V9Z" />

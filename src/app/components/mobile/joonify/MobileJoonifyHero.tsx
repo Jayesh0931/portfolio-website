@@ -7,7 +7,7 @@ interface MobileJoonifyHeroProps {
   isDark?: boolean;
 }
 
-export function MobileJoonifyHero({ onBack }: MobileJoonifyHeroProps) {
+export function MobileJoonifyHero({ onBack, isDark = false }: MobileJoonifyHeroProps) {
   return (
     <section className="mobile-story-hero-section" id="mobile-joonify-hero">
       {/* 1. Header / Navigation Row */}
@@ -33,7 +33,7 @@ export function MobileJoonifyHero({ onBack }: MobileJoonifyHeroProps) {
           <span>BACK</span>
         </button>
 
-        <BrandVector theme="dark" width={48} height={32} />
+        <BrandVector theme={isDark ? "light" : "dark"} width={48} height={32} />
       </header>
 
       {/* 2. Unified Boxed Hero Card */}
@@ -78,18 +78,27 @@ export function MobileJoonifyHero({ onBack }: MobileJoonifyHeroProps) {
           {/* Role & Scope Metadata Block */}
           <div className="mobile-story-meta-group">
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">ROLE</span>
-              <span className="mobile-story-role-val">Product Designer</span>
+              <span className="mobile-story-meta-label">COMPANY</span>
+              <span className="mobile-story-role-val">Joonify</span>
             </div>
 
             <div className="mobile-story-meta-item">
-              <span className="mobile-story-meta-label">SCOPE</span>
+              <span className="mobile-story-meta-label">ROLE</span>
+              <span className="mobile-story-role-val">User Interface Designer</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">TIMELINE</span>
+              <span className="mobile-story-role-val">2022 – 2023</span>
+            </div>
+
+            <div className="mobile-story-meta-item">
+              <span className="mobile-story-meta-label">FOCUS</span>
               <div className="mobile-story-focus-list">
                 <p>/ Early Childhood Ed-Tech</p>
-                <p>/ Assessment Experience Design</p>
+                <p>/ Assessment Experience</p>
                 <p>/ Child Talent Discovery</p>
-                <p>/ Learning Management &amp; Scheduling</p>
-                <p>/ Mobile Experience Design</p>
+                <p>/ Personalised Learning</p>
               </div>
             </div>
           </div>

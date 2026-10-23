@@ -87,8 +87,9 @@ export function MobileJoonifyWhatIDrove() {
       <MobileImageLightbox
         isOpen={isLightboxOpen}
         onClose={() => setIsLightboxOpen(false)}
-        imageSrc={imgJoonifyDesktop}
-        imageAlt="Joonify Platform Overview"
+        src={imgJoonifyDesktop}
+        alt="Joonify Platform Overview"
+        type="image"
       />
     </section>
   );

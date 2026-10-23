@@ -383,7 +383,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pl-[90px] pr-[30px] py-[16px] relative shrink-0 -ml-[1px]">
               <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">
-                [ 2026 ]
+                [ 2025 ]
               </p>
             </div>
           </div>
@@ -391,25 +391,40 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
           {/* ── Overview Box Metadata & Branding ── */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start left-[80px] p-[30px] top-[249px] w-[1280px] h-[488px]">
             <div className="content-stretch flex gap-[90px] items-end relative shrink-0 h-[428px] w-full">
-              <div className="content-stretch flex flex-col gap-[20px] h-[228px] items-start py-[20px] relative shrink-0">
-                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[108px]">
-                  <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full">
+              <div className="content-stretch flex flex-col gap-[14px] h-auto items-start py-[6px] relative shrink-0">
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                    COMPANY
+                  </p>
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[16px] w-full">
+                    Vrozart Dackson
+                  </p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
                     ROLE
                   </p>
-                  <p className="font-outfit font-normal text-[#190b00] text-[18px] w-full">
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[17px] w-full">
                     Product Lead
                   </p>
                 </div>
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                    CONTEXT
+                  </p>
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[14.5px] leading-[1.3] w-full">
+                    Enterprise Client Work (NDA)
+                  </p>
+                </div>
                 <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0">
-                  <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full">
+                  <p className="font-inter font-bold leading-[normal] min-w-full not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-[min-content]">
                     FOCUS
                   </p>
-                  <div className="font-outfit font-normal text-[#190b00] text-[18px] leading-[1.3]">
-                    <p className="mb-0">/ Product Design</p>
-                    <p className="mb-0">/ UX Strategy</p>
-                    <p className="mb-0">/ Interaction Design</p>
-                    <p className="mb-0">/ Design Systems</p>
-                    <p className="mb-0">/ AI Experience Design</p>
+                  <div className="font-outfit font-normal leading-[1.3] relative shrink-0 text-[#190b00] text-[15px]">
+                    <p className="mb-0">/ Autonomous Marketing</p>
+                    <p className="mb-0">/ Conversational Analytics</p>
+                    <p className="mb-0">/ Living Insights</p>
+                    <p className="mb-0">/ Connected Workflows</p>
                   </div>
                 </div>
               </div>
@@ -428,7 +443,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                     <p className="mb-0">Designing an AI-Native Campaign Operating System</p>
                   </div>
                   <p className="font-outfit font-normal text-[#9c9288] text-[16px] leading-[1.4] tracking-[0.2px] mb-0">
-                    Originally designed as the pilot experience for an AI-first marketing platform.
+                    Originally directed as enterprise client platform architecture while at Vrozart Dackson (anonymised under NDA).
                   </p>
                 </div>
               </div>
@@ -551,7 +566,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             </div>
             <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[840px] left-[69px] w-[1211px]">
               <div className="absolute font-outfit font-normal leading-[1.5] left-[60px] text-[22px] text-[#77695d] top-[45px] w-[1090px]">
-                <p className="mb-3">I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimization. My work included:</p>
+                <p className="mb-3">I led the end-to-end product experience for the pilot, designing the workflows that connected campaign planning, AI-assisted campaign creation, performance monitoring and continuous optimisation. My work included:</p>
                 <p className="font-outfit font-bold text-[#190b00] text-[22px] leading-[1.4] mb-0">
                   Product Strategy / Information Architecture / End-to-end user experience / AI interaction patterns Dashboard and analytics experience / Campaign planning workflows / Design System foundations High-Fidelity Prototypes / Interaction Design
                 </p>
@@ -607,7 +622,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                     </div>
                     <h3 className="font-outfit font-bold text-[#190b00] text-[28px] margin-0">Connected Workflows</h3>
                     <p className="font-outfit font-normal text-[#77695d] text-[18px] leading-[1.5] margin-0">
-                      Unified campaign planning, execution and optimization into one continuous experience instead of disconnected marketing tools.
+                      Unified campaign planning, execution and optimisation into one continuous experience instead of disconnected marketing tools.
                     </p>
                   </div>
                 </div>

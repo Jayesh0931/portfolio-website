@@ -361,26 +361,40 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           {/* Overview Box Metadata & Branding */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start left-[80px] p-[30px] top-[249px] w-[1280px] h-[488px]">
             <div className="content-stretch flex gap-[90px] items-end relative shrink-0 h-[428px] w-full">
-              <div className="[word-break:break-word] content-stretch flex flex-col gap-[16px] items-start relative shrink-0">
-                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[160px]">
-                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full">
-                    ROLE
+              <div className="[word-break:break-word] content-stretch flex flex-col gap-[14px] items-start relative shrink-0">
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                    COMPANY
                   </p>
-                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[18px] w-full leading-[1.3]">
-                    Product Lead &<br />AI Product Designer
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[16px] w-full">
+                    Pansophic Technologies
                   </p>
                 </div>
-                <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0 mt-2">
-                  <p className="font-inter font-bold leading-[normal] min-w-full not-italic relative shrink-0 text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-[min-content]">
-                    SCOPE
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                    ROLE
                   </p>
-                  <div className="font-outfit font-normal leading-[1.3] relative shrink-0 text-[#190b00] text-[17px]">
-                    <p className="leading-[normal] mb-0">/ Guest Experience</p>
-                    <p className="leading-[normal] mb-0">/ CRM Operations</p>
-                    <p className="leading-[normal] mb-0">/ Retreat Planning</p>
-                    <p className="leading-[normal] mb-0">/ Consultant Workbenches</p>
-                    <p className="leading-[normal] mb-0">/ Care Execution Systems</p>
-                    <p className="leading-[normal] mb-0">/ Home Care Ecosystem</p>
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[17px] w-full">
+                    Product Lead
+                  </p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                  <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                    TIMELINE
+                  </p>
+                  <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[15px] w-full">
+                    2025
+                  </p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0">
+                  <p className="font-inter font-bold leading-[normal] min-w-full not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-[min-content]">
+                    FOCUS
+                  </p>
+                  <div className="font-outfit font-normal leading-[1.3] relative shrink-0 text-[#190b00] text-[15px]">
+                    <p className="leading-[normal] mb-0">/ Workflow Automation</p>
+                    <p className="leading-[normal] mb-0">/ Wellness Operations</p>
+                    <p className="leading-[normal] mb-0">/ Journey Timeline</p>
+                    <p className="leading-[normal] mb-0">/ Care Coordination</p>
                   </div>
                 </div>
               </div>
@@ -399,7 +413,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
                     <p className="leading-[normal] mb-0">
                       Designing an Operational<br />
                       Intelligence Platform for<br />
-                      Personalized Wellness Care
+                      Personalised Wellness Care
                     </p>
                   </div>
                 </div>
@@ -425,7 +439,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           {/* Overview Box pullquote copy */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex items-end justify-center left-[80px] p-[30px] top-[736px] w-[1280px]">
             <div className="[word-break:break-word] flex-[1_0_0] font-outfit font-normal italic leading-[1.5] min-w-px relative text-[#77695d] text-[24px] whitespace-pre-wrap">
-              <p className="leading-[normal] mb-0">{`Personalized wellness appears simple to guests, but delivering it requires coordination across consultants, diagnostics, therapies, schedules, and operations.`}</p>
+              <p className="leading-[normal] mb-0">{`Personalised wellness appears simple to guests, but delivering it requires coordination across consultants, diagnostics, therapies, schedules, and operations.`}</p>
               <p className="leading-[normal] mb-0">​</p>
               <p>
                 <span className="leading-[normal]">{`My role was to design the systems that brought together `}</span>
@@ -446,7 +460,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
           {/* ─── 2. THE CHALLENGE SECTION (Top 2158px - 200px gap after Hero ends at 1958px) ─── */}
           <div className="absolute left-[80px] top-[2158px] w-[1280px] h-[600px]">
             <div className={`[word-break:break-word] absolute font-outfit font-normal leading-[1.6] left-[0px] text-[24px] top-[100px] w-[1106px] transition-colors duration-700 ${isChallengeInView ? "text-[#ccc]" : "text-[#77695d]"}`}>
-              <p className="leading-[normal] mb-0 whitespace-pre-wrap">Delivering personalized wellness wasn't the challenge. Coordinating it was. Every guest journey involved multiple consultants, diagnostics, therapies, nutrition plans, fitness programs, medications, wearable data, and operational teams working together.</p>
+              <p className="leading-[normal] mb-0 whitespace-pre-wrap">Delivering personalised wellness wasn't the challenge. Coordinating it was. Designed workflow automation for Tulah, a wellness platform, replacing fragmented spreadsheets, documents, forms, and manual communication with connected digital workflows.</p>
               <p className="leading-[normal] mb-0 whitespace-pre-wrap">​</p>
               <p className="leading-[normal] mb-0 whitespace-pre-wrap">Without a connected system:</p>
               <ul className="list-disc mb-0 pl-[36px]">
@@ -498,7 +512,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
 
                   <div className="flex flex-col gap-[6px] font-outfit font-normal text-[#190b00] text-[22px] leading-[1.5]">
                     <p className="margin-0">
-                      Consultants also needed a structured way to combine their expertise into one personalized retreat plan.
+                      Consultants also needed a structured way to combine their expertise into one personalised retreat plan.
                     </p>
                     <p className="margin-0">
                       <span>This became an opportunity to design a </span>
@@ -606,7 +620,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
                       </p>
                     </div>
                     <p className="font-outfit font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0">
-                      Unified recommendations from Medical, Ayurveda, Nutrition, Fitness, Yoga and Diagnostics into one personalized retreat plan.
+                      Unified recommendations from Medical, Ayurveda, Nutrition, Fitness, Yoga and Diagnostics into one personalised retreat plan.
                     </p>
                   </div>
                 </div>
@@ -614,15 +628,15 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
                 <div className="border-[#7b7a77] border-r border-solid border-t content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[24px] relative self-stretch shrink-0">
                   <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full">
                     <div className="content-stretch flex flex-col items-start relative shrink-0 w-full">
-                      <p className="font-outfit font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0">
-                        ~65%
+                      <p className="font-outfit font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[68px] w-[min-content] margin-0">
+                        End-to-End
                       </p>
                       <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0">
-                        Administrative Overhead Reduced
+                        Workflow Automation
                       </p>
                     </div>
                     <p className="font-outfit font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0">
-                      Digitized planning, scheduling and execution significantly reduced administrative coordination across departments.
+                      Replaced fragmented spreadsheets, paper forms, and manual coordination with connected digital care workflows.
                     </p>
                   </div>
                 </div>
@@ -647,7 +661,7 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
                 <p className="[word-break:break-word] font-outfit font-normal italic leading-normal relative shrink-0 text-[#190b00] text-[24px] w-full margin-0">
                   <span>{`"The platform wasn't built to manage activities—`}</span>
                   <strong className="font-outfit font-bold text-[#ee6c13] italic">
-                    it was built to orchestrate personalized care.
+                    it was built to orchestrate personalised care.
                   </strong>
                   <span>{`"`}</span>
                 </p>

@@ -1,33 +1,46 @@
 # Jayesh Soni - Portfolio & AI Product Engineering Directory
 
-> Product Lead & AI Product Designer specializing in Enterprise AI Workforce systems, Human-AI Collaboration, and Interaction Architecture.
+> Product Lead • AI Product Designer
+> Designing AI products that align human behaviour, business goals, and intelligent agents.
 
 ## Executive Summary
-Jayesh Soni designs the moments where people decide whether to trust intelligent systems. His work spans scaling AI from individual agents to enterprise-grade workflows, designing trustworthy AI interactions, and crafting autonomous monitoring systems.
+Jayesh Soni is an AI Product Designer and Product Lead with 7+ years in technology, including 6+ years in UX and product design. Focused on Human–AI Interaction, Agentic AI UX, Conversational AI, and AI product strategy for LLM-powered, Generative AI (GenAI) products. Experienced in taking B2B and enterprise SaaS products from early concept to production, translating complex AI agent capabilities into goal-oriented, human-in-the-loop workflows that help people understand, trust, and work effectively with AI.
 
 - **Website**: https://jayeshsoni.com
-- **Role**: Product Lead & AI Product Designer
-- **Specialization**: Enterprise AI Workforce, Generative Workflows, Human-AI Collaboration, Interaction Design
+- **Role**: Product Lead • AI Product Designer
+- **Specialisation**: Human–AI Interaction, Agentic AI UX, Conversational AI, Multi-Agent Workflows, AI Guardrails
 
-## Key Case Studies & Projects
+## Selected Impact
+- Drove Allyra.ai’s shift from an agent-building tool to an organisation-ready enterprise AI platform.
+- Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents.
+- Expanded Allyra's reach across 15+ organisations, including Fortune 500 conglomerate pilots, through platform usage and API integrations.
+- Led a team of 3 designers and 2 business analysts; increased design throughput to 2–3 features per designer/week.
+- Designed workflow automation for Tulah, a wellness and hospitality platform, replacing fragmented spreadsheets and manual communication with connected digital workflows.
+- Delivered operational product experiences for Stanford Medicine, including the Financial Aid app.
+- Speaker at TiE Chandigarh on AI and Human-Centred Design.
 
-- [Allyra.ai Story](https://jayeshsoni.com/allyra-story): Scaling AI from individual agents to enterprise-grade workflows. Features agent orchestra orchestration, governance, and enterprise deployment.
+## Key Pages & Case Studies
+
+- [About Jayesh Soni](https://jayeshsoni.com/about): Career timeline, selected impact, leadership philosophy, and core skills.
+- [Allyra.ai Story](https://jayeshsoni.com/allyra-story): Scaling AI from individual agents to enterprise-grade workflows. Features agent orchestra governance and enterprise deployment.
 - [Campaign OS Story](https://jayeshsoni.com/campaign-os-story): Designing an autonomous marketing & campaign operating system. Features connected workflows, conversational analytics, and calm monitoring.
-- [tulah](https://jayeshsoni.com/#story-03-block): Simplifying wellness operations through thoughtful workflow design.
-- [VousVous](https://jayeshsoni.com/#story-04-block): Designing trustworthy AI interactions for modern relationships.
-- [Joonify](https://jayeshsoni.com/#story-05-block): Early-stage AI product design and talent discovery platforms.
+- [Tulah Clinical Wellness](https://jayeshsoni.com/tulah-story): Orchestrating personalised care across complex multidisciplinary wellness and clinical workflows.
+- [VousVous](https://jayeshsoni.com/vousvous-story): Designing fashion discovery beyond search using gesture-first UX and conversational multimodal AI.
+- [Joonify](https://jayeshsoni.com/joonify-story): Talent discovery assessment journey helping parents understand how their children learn and grow.
 
-## Core Design & Product Principles
+## Core Skills
 
-1. **Reliable Outcomes over Autonomous Hype**: People don't want autonomous AI for its own sake; people want reliable outcomes built on well-designed collaboration between humans and AI.
-2. **Progressive Disclosure**: Reducing cognitive load through contextual side panels, progressive disclosure, and calm monitoring.
-3. **Conversational Analytics**: Transforming static analytics dashboards into dynamic, conversational AI interactions.
-4. **Calm Monitoring**: Surfacing autonomous monitoring alerts only when human intervention is genuinely needed.
+- **AI & Product**: Human–AI Interaction • Agentic AI UX • Conversational AI • LLM-Powered Products • Generative AI (GenAI) • Human-in-the-Loop Design • AI Guardrails • Multi-Agent Workflows • AI Product Strategy
+- **Product**: Product Roadmap & Prioritisation • Product Discovery • 0-to-1 Product Development • Stakeholder Management • Cross-Functional Leadership • Enterprise SaaS • Workflow Automation
+- **Design**: UX Strategy • Interaction Design • User Flows • Wireframing • Information Architecture • Usability Testing • User Research • Accessibility (WCAG) • Design Systems • Rapid Prototyping • Developer Handoff
+- **Tools**: Figma • Figma Make • Jira • Claude • ChatGPT • Gemini • Antigravity • HTML Prototyping
 
 ## Contact & Links
 
 - Website: https://jayeshsoni.com
-- LinkedIn: https://www.linkedin.com/in/jayeshsoni09/
+- Resume: https://jayeshsoni.com/resume.pdf
+- LinkedIn: https://www.linkedin.com/in/jayeshsoni31/
+- Email: jayeshsoni31@gmail.com
 - X / Twitter: https://x.com/jayeshsoni_
 - GitHub: https://github.com/Jayesh0931
 - Full LLM Context: https://jayeshsoni.com/llms-full.txt

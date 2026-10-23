@@ -1,212 +1,62 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
+import { playHoverTick } from "@/utils/soundEffects";
 import { MobileFinale } from "./components/mobile/MobileFinale";
-import profileImg from "@/imports/Profile Image Full Size.webp";
-import imgE1 from "@/imports/E1.webp";
-import imgE2 from "@/imports/E2.webp";
-import imgE3_1 from "@/imports/E3.1.webp";
-import imgE3_2 from "@/imports/E3.2.webp";
-import imgCosCoverLarge from "@/imports/cos_cover_large.webp";
-import imgAllyraStoryHero from "@/imports/allyra_story_hero.webp";
-import imgTulahLargeThumb from "@/imports/tulah_large_thumb.webp";
+import ExperienceTimeline from "./components/ExperienceTimeline";
+import CreativeLab from "./components/CreativeLab";
+import GravitySkillsSection from "./components/GravitySkillsSection";
+
 
 interface AboutPageProps {
   navigateTo: (path: string) => void;
   disableScrollReset?: boolean;
+  scale?: number;
+  left?: number;
 }
 
 const CLIENTS = [
-  "Pansophic Technologies",
-  "Stanford Medicine",
-  "allyra.ai",
-  "tulah",
   "Tata Consultancy Services",
-  "VousVous",
+  "5Exceptions",
   "Joonify",
   "Vertisystem",
-  "5Exceptions",
+  "Stanford Medicine",
+  "Vrozart Dackson",
+  "Pansophic Technologies",
+  "Allyra.ai",
 ];
 
 const IMPACT_HIGHLIGHTS = [
   {
-    num: "allyra.ai",
-    label: "Product Lead",
-    desc: "Product Lead for allyra.ai, an enterprise Human–AI Interaction platform.",
+    num: "15+",
+    label: "Organisations Reached",
+    desc: "Expanded Allyra's reach across 15+ organisations, including a pilot with a leading Indian enterprise group.",
   },
   {
-    num: "50+",
-    label: "Enterprise Organizations",
-    desc: "Demonstrated allyra to 50+ enterprise organizations, contributing to customer validation and adoption.",
+    num: "19+",
+    label: "AI Agents Designed",
+    desc: "Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents.",
   },
   {
-    num: "10+",
-    label: "Active Organizations",
-    desc: "10+ enterprise organizations actively use Allyra across production workflows.",
+    num: "~1 → 2–3",
+    label: "Features / Designer / Wk",
+    desc: "Increased design throughput from ~1 to 2–3 features per designer per week through AI-assisted workflows and coded prototypes.",
   },
   {
-    num: "60–70%",
-    label: "Workflow Overhead Reduction",
-    desc: "Reduced operational workflow overhead by approximately 60–70% through AI-powered operational systems for tulah.",
+    num: "Tulah",
+    label: "Wellness Platform",
+    desc: "Designed workflow automation for a wellness platform, replacing fragmented spreadsheets and manual forms.",
   },
   {
     num: "Stanford",
     label: "Stanford Medicine",
-    desc: "Designed operational product experiences supporting scholarship and course-planning workflows.",
+    desc: "Designed operational UI/UX for course planning, accounts, scholarships, and the Financial Aid app, receiving leadership appreciation.",
   },
   {
     num: "TiE Talk",
     label: "Keynote Speaker",
     desc: "Speaker at TiE Chandigarh on AI and Human-Centred Design.",
-  },
-];
-
-const FOCUS_ITEMS = [
-  {
-    num: "01",
-    title: "AI & PRODUCT",
-    skills: [
-      "Human–AI Interaction",
-      "Agentic UX",
-      "AI Product Design",
-      "AI Workflow Design",
-      "Prompt Engineering",
-      "AI Behavior Design",
-    ],
-    desc: "Designing AI products that align human behaviour, business goals, and intelligent agents. Defining interaction patterns, agentic workflows, supervisory models, and prompt-driven experiences for enterprise teams.",
-  },
-  {
-    num: "02",
-    title: "PRODUCT & DESIGN",
-    skills: [
-      "Product Strategy",
-      "Product Discovery",
-      "Enterprise UX",
-      "Workflow Design",
-      "Design Systems",
-      "Interaction Design",
-      "Rapid Prototyping",
-      "Figma",
-    ],
-    desc: "End-to-end product ownership from discovery and rapid prototyping through validated implementation. Creating scalable design systems, clear platform architectures, and developer handoff workflows.",
-  },
-  {
-    num: "03",
-    title: "AI TOOLS & SYSTEMS",
-    skills: [
-      "Figma Make",
-      "Claude Design",
-      "ChatGPT",
-      "Gemini",
-      "Antigravity",
-      "Lovable",
-      "Emergent",
-    ],
-    desc: "Leveraging cutting-edge AI creation tools and intelligent environments to accelerate concept exploration, multi-agent prototyping, and production-grade software delivery.",
-  },
-];
-
-const EXPERIENCES = [
-  {
-    period: "JAN 2025 – PRESENT",
-    company: "PANSOPHIC TECHNOLOGIES",
-    role: "Product Lead",
-    subnote: "(Promoted into Product Leadership following transition of the core Vrozart team into Pansophic Technologies)",
-    summary:
-      "Led AI product strategy and experience design across pilot, beta, and production releases for Allyra.ai, an enterprise Human–AI Interaction platform. Designed AI interaction patterns, agentic workflows, prompt-driven experiences, and adaptive interfaces. Demonstrated Allyra to 50+ enterprise organizations, contributing to customer discovery, solution validation, and product adoption; 10+ organizations currently use the platform. Designed operational systems for tulah, reducing administrative workflow overhead by approximately 60–70%.",
-    points: [
-      "Led AI product strategy and experience design across pilot, beta, and production releases for Allyra.ai, an enterprise Human–AI Interaction platform.",
-      "Designed AI interaction patterns, agentic workflows, prompt-driven experiences, and adaptive interfaces for AI-native enterprise products.",
-      "Demonstrated Allyra to 50+ enterprise organizations, contributing to customer discovery, solution validation, and product adoption; 10+ organizations currently use the platform.",
-      "Translated customer feedback and product requirements into validated workflows and interaction patterns, supporting product discovery and solution validation.",
-      "Designed operational systems for tulah, reducing administrative workflow overhead by approximately 60–70% through workflow automation and experience redesign.",
-      "Partnered with engineering, sales, marketing, and leadership to align product strategy, customer feedback, and delivery while contributing to early-stage AI platforms including Raxaa.ai and EOMs.ai.",
-    ],
-    tags: ["allyra.ai", "50+ Enterprise Demos", "10+ Active Orgs", "tulah (60–70% Overhead)", "Raxaa.ai & EOMs.ai"],
-  },
-  {
-    period: "JUN 2024 – DEC 2024",
-    company: "VROZART DACKSON ENTERPRISE PVT. LTD.",
-    role: "UXD Head",
-    subnote: "(Core Team transitioned to Pansophic Technologies)",
-    summary:
-      "Co-authored the Vibe UX Framework, establishing principles for context-aware and AI-native user experiences. Led UX and interaction design across enterprise SaaS, AI-powered products, and consumer platforms. Directed product experience for Farmland Bazaar, Evosell by Evoluxar, and VousVous across discovery, workflows, and platform architecture. Established scalable design systems and integrated AI-assisted workflows.",
-    points: [
-      "Co-authored the Vibe UX Framework, establishing principles for context-aware and AI-native user experiences.",
-      "Led UX and interaction design across enterprise SaaS, AI-powered products, and consumer platforms.",
-      "Directed product experience for Farmland Bazaar, Evosell by Evoluxar, and VousVous across discovery, workflows, and platform architecture.",
-      "Established scalable design systems and developer handoff processes across multiple products.",
-      "Integrated AI-assisted workflows for rapid concept exploration, prototyping, and design iteration.",
-    ],
-    tags: ["Vibe UX Framework", "VousVous", "Farmland Bazaar", "Evosell", "Design Systems"],
-  },
-  {
-    period: "MAY 2023 – JUN 2024",
-    company: "VERTISYSTEM (Client: Stanford Medicine)",
-    role: "UI UX Designer",
-    subnote: "Formal recognition received from Stanford Medicine leadership",
-    summary:
-      "Partnered with Stanford Medicine stakeholders to simplify complex administrative workflows into scalable digital experiences. Delivered end-to-end UX design for Stanford Medicine operational applications supporting scholarship and course-planning workflows. Created high-fidelity prototypes and interaction models that accelerated development and stakeholder alignment.",
-    points: [
-      "Partnered with Stanford Medicine stakeholders to simplify complex administrative workflows into scalable digital experiences.",
-      "Delivered end-to-end UX design for Stanford Medicine operational applications supporting scholarship and course-planning workflows.",
-      "Created high-fidelity prototypes and interaction models that accelerated development and stakeholder alignment.",
-      "Independently managed product design across distributed teams and complex administrative workflows.",
-      "Received formal recognition from Stanford Medicine leadership for contributions that were instrumental to project success.",
-    ],
-    tags: ["Stanford Medicine", "Administrative UX", "Course Planning", "Prototyping"],
-  },
-  {
-    period: "JUN 2022 – MAY 2023",
-    company: "JOONIFY",
-    role: "User Interface Designer",
-    subnote: "Platform trusted by 750+ parents",
-    summary:
-      "Designed end-to-end product experiences across web and mobile platforms for parents and children. Created the Talent Discovery Assessment journey, helping deliver personalized learning and growth insights through guided assessments. Contributed to a platform trusted by 750+ parents through onboarding, assessment, and learning experiences.",
-    points: [
-      "Designed end-to-end product experiences across web and mobile platforms for parents and children.",
-      "Created the Talent Discovery Assessment journey, helping deliver personalized learning and growth insights through guided assessments.",
-      "Contributed to a platform trusted by 750+ parents through onboarding, assessment, and learning experiences.",
-    ],
-    tags: ["Ed-Tech", "Assessment Journey", "Personalized Learning", "Web & Mobile"],
-  },
-  {
-    period: "MAY 2021 – MAY 2022",
-    company: "5EXCEPTIONS SOFTWARE SOLUTIONS",
-    role: "UI UX Designer",
-    subnote: "Cross-domain enterprise & emerging technology platforms",
-    summary:
-      "Designed digital products across healthcare, fintech, education, utility, and emerging technology domains. Delivered UX and UI solutions for web platforms, mobile applications, enterprise systems, e-commerce products, and HMI interfaces. Built foundational expertise in responsive design systems, interaction design, and developer handoff workflows.",
-    points: [
-      "Designed digital products across healthcare, fintech, education, utility, and emerging technology domains.",
-      "Delivered UX and UI solutions for web platforms, mobile applications, enterprise systems, e-commerce products, and HMI interfaces.",
-      "Built foundational expertise in responsive design systems, interaction design, and developer handoff workflows.",
-    ],
-    tags: ["Healthcare & Fintech", "HMI Interfaces", "Enterprise Systems", "Design Systems"],
-  },
-  {
-    period: "OCT 2020 – MAY 2021",
-    company: "FREELANCE",
-    role: "UI UX Designer",
-    subnote: "E-commerce, IoT & connected device launches",
-    summary:
-      "Partnered with Robo Inventors to launch e-commerce, IoT, and smart home products, contributing from UX strategy to production-ready interfaces.",
-    points: [
-      "Partnered with Robo Inventors to launch e-commerce, IoT, and smart home products, contributing from UX strategy to production-ready interfaces.",
-    ],
-    tags: ["Smart Home & IoT", "E-Commerce", "UX Strategy", "Robo Inventors"],
-  },
-  {
-    period: "JUN 2019 – SEP 2020",
-    company: "TATA CONSULTANCY SERVICES",
-    role: "Assistant System Engineer",
-    subnote: "Apple Enterprise Production Systems",
-    summary:
-      "Supported Apple's enterprise production systems while building a strong foundation in large-scale operations, incident management, and enterprise software.",
-    points: [
-      "Supported Apple's enterprise production systems while building a strong foundation in large-scale operations, incident management, and enterprise software.",
-    ],
-    tags: ["Apple Production Support", "Enterprise Operations", "Systems Thinking"],
   },
 ];
 
@@ -223,18 +73,365 @@ const EDUCATION = [
   },
 ];
 
-const GALLERY_IMAGES = [
-  { src: profileImg, alt: "Jayesh Soni Portrait", label: "Jayesh Soni" },
-  { src: imgE1, alt: "Brand Architecture Exploration", label: "Brand Architecture" },
-  { src: imgCosCoverLarge, alt: "Campaign OS Interface", label: "Campaign OS" },
-  { src: imgE2, alt: "Editorial & Typography Craft", label: "Visual Craft" },
-  { src: imgAllyraStoryHero, alt: "Allyra Multi-Agent Orchestration", label: "allyra.ai" },
-  { src: imgE3_1, alt: "Mobile Interface Craft", label: "Mobile Craft" },
-  { src: imgTulahLargeThumb, alt: "Tulah Clinical Wellness Platform", label: "tulah Platform" },
-  { src: imgE3_2, alt: "Component Anatomy & States", label: "Design Systems" },
+
+
+const NUTSHELL_SEGMENTS_DESKTOP = [
+  {
+    text: "Product Lead and AI Product Designer with 7+ years in technology, including 6+ years in UX and product design. Experienced in Human–AI Interaction, Agentic UX, AI workflow design, and product strategy, with end-to-end ownership from discovery and prototyping through implementation. Designing AI products that align human behaviour, business goals, and intelligent agents.",
+    style: { color: "#77695d", fontWeight: 400 },
+  },
 ];
 
-export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageProps) {
+const NUTSHELL_SEGMENTS_MOBILE = [
+  {
+    text: "Product Lead and AI Product Designer with 7+ years in technology, including 6+ years in UX and product design. Experienced in Human–AI Interaction, Agentic UX, AI workflow design, and product strategy, with end-to-end ownership from discovery and prototyping through implementation. Designing AI products that align human behaviour, business goals, and intelligent agents.",
+    style: { color: "#77695d", fontWeight: 400 },
+  },
+];
+
+interface QuickStreamingParagraphProps {
+  segments: {
+    text: string;
+    style?: React.CSSProperties;
+  }[];
+  baseDelay?: number;
+  stagger?: number;
+  style?: React.CSSProperties;
+}
+
+function QuickStreamingParagraph({
+  segments,
+  baseDelay = 0.26,
+  stagger = 0.015,
+  style = {},
+}: QuickStreamingParagraphProps) {
+  let globalWordIndex = 0;
+
+  return (
+    <h1 style={style}>
+      {segments.map((seg, sIdx) => {
+        const words = seg.text.trim().split(/\s+/);
+        return (
+          <span key={sIdx} style={seg.style}>
+            {words.map((word, wIdx) => {
+              const currentIdx = globalWordIndex++;
+              const isLastInSeg = wIdx === words.length - 1;
+              const isLastOverall = sIdx === segments.length - 1 && isLastInSeg;
+              const delay = baseDelay + currentIdx * stagger;
+
+              return (
+                <span
+                  key={wIdx}
+                  style={{
+                    display: "inline-block",
+                    overflow: "hidden",
+                    verticalAlign: "top",
+                    lineHeight: "inherit",
+                    paddingBottom: "4px",
+                    marginBottom: "-4px",
+                    marginRight: isLastOverall ? 0 : "0.26em",
+                  }}
+                >
+                  <motion.span
+                    style={{
+                      display: "inline-block",
+                      willChange: "transform, opacity",
+                    }}
+                    initial={{ y: "105%", opacity: 0 }}
+                    animate={{ y: "0%", opacity: 1 }}
+                    transition={{
+                      duration: 0.42,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay,
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              );
+            })}
+            {sIdx < segments.length - 1 && " "}
+          </span>
+        );
+      })}
+    </h1>
+  );
+}
+
+interface AboutHighlightCardProps {
+  item: (typeof IMPACT_HIGHLIGHTS)[0];
+  delay: number;
+  isMobile?: boolean;
+}
+
+function AboutHighlightCard({
+  item,
+  delay,
+  isMobile = false,
+}: AboutHighlightCardProps) {
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    playHoverTick();
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
+  return (
+    <motion.div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: isMobile ? 24 : 32, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        duration: 0.72,
+        ease: [0.16, 1, 0.3, 1],
+        delay,
+      }}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: 0, // SHARP CORNER
+        padding: isMobile ? "14px 12px" : "22px 18px",
+        backgroundColor: "#FFFDFA",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        cursor: "default",
+        transform: hovered ? "translateY(-3px)" : "none",
+        boxShadow: hovered ? "0 10px 24px rgba(25, 11, 0, 0.08)" : "none",
+        transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
+        willChange: "transform, opacity",
+      }}
+    >
+      <div>
+        <span
+          style={{
+            fontFamily: "Outfit, sans-serif",
+            fontWeight: 900,
+            fontSize: isMobile ? 20 : 32,
+            lineHeight: isMobile ? 1.1 : 1,
+            color: "#EE6C13",
+            display: "block",
+            marginBottom: isMobile ? 4 : 8,
+          }}
+        >
+          {item.num}
+        </span>
+        <h4
+          style={{
+            fontFamily: "Outfit, sans-serif",
+            fontWeight: 800,
+            fontSize: isMobile ? 11 : 13.5,
+            lineHeight: isMobile ? 1.25 : undefined,
+            color: "#190b00",
+            margin: isMobile ? "0 0 4px 0" : "0 0 6px 0",
+            textTransform: "uppercase",
+          }}
+        >
+          {item.label}
+        </h4>
+      </div>
+      <p
+        style={{
+          fontFamily: "Outfit, sans-serif",
+          fontWeight: 400,
+          fontSize: isMobile ? 10.5 : 13,
+          lineHeight: isMobile ? 1.35 : 1.45,
+          color: "#77695d",
+          margin: 0,
+        }}
+      >
+        {item.desc}
+      </p>
+
+      {/* Slow ease-in border stroke overlay (same as hero right side bento cards) */}
+      <motion.div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 0,
+          border: `1px solid ${hovered ? "#EE6C13" : "#7b7a77"}`,
+          pointerEvents: "none",
+          zIndex: 10,
+          transition: "border-color 0.25s ease",
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1],
+          delay: delay + 0.2,
+        }}
+      />
+    </motion.div>
+  );
+}
+
+interface AboutKineticCharWordProps {
+  word: string;
+  baseDelay: number;
+  charStagger?: number;
+  style?: React.CSSProperties;
+}
+
+function AboutKineticCharWord({
+  word,
+  baseDelay,
+  charStagger = 0.045,
+  style = {},
+}: AboutKineticCharWordProps) {
+  return (
+    <span style={{ display: "inline-flex", overflow: "visible", ...style }}>
+      {word.split("").map((char, index) => {
+        const curvedDelay = baseDelay + Math.pow(index, 0.9) * charStagger;
+        return (
+          <span
+            key={index}
+            style={{
+              display: "inline-block",
+              overflow: "hidden",
+              verticalAlign: "bottom",
+              lineHeight: 1.05,
+              paddingBottom: "8px",
+              marginBottom: "-8px",
+            }}
+          >
+            <motion.span
+              style={{
+                display: "inline-block",
+                willChange: "transform",
+              }}
+              initial={{ y: "115%" }}
+              animate={{ y: "0%" }}
+              transition={{
+                duration: 0.72,
+                ease: [0.16, 1, 0.3, 1],
+                delay: curvedDelay,
+              }}
+            >
+              {char}
+            </motion.span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+interface AboutMarqueeUnitProps {
+  animateEntrance?: boolean;
+  isMobile?: boolean;
+}
+
+function AboutMarqueeUnit({
+  animateEntrance = false,
+  isMobile = false,
+}: AboutMarqueeUnitProps) {
+  const fontStyleBase: React.CSSProperties = {
+    fontFamily: "Outfit, sans-serif",
+    fontWeight: 900,
+    lineHeight: 1,
+    textTransform: "uppercase",
+    fontSize: isMobile ? 72 : "clamp(98px, 11vw, 170px)",
+    letterSpacing: isMobile ? "2.6px" : "5.2px",
+    whiteSpace: "nowrap",
+  };
+
+  const solidStyle: React.CSSProperties = {
+    ...fontStyleBase,
+    color: "#190b00",
+  };
+
+  const outlineStyle: React.CSSProperties = {
+    ...fontStyleBase,
+    color: "#FFFDFA",
+    WebkitTextStroke: isMobile ? "2px #190b00" : "2.5px #190b00",
+    paintOrder: "stroke fill",
+  };
+
+  const gap = isMobile ? 26 : 64;
+  const vecW = isMobile ? 88 : 144;
+  const vecH = isMobile ? 60 : 96;
+
+  if (!animateEntrance) {
+    return (
+      <div
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: `${gap}px`,
+          paddingRight: `${gap}px`,
+          flexShrink: 0,
+        }}
+      >
+        <span style={solidStyle}>ABOUT</span>
+        <BrandVector theme="dark" width={vecW} height={vecH} />
+        <span style={outlineStyle}>ABOUT</span>
+        <BrandVector theme="dark" width={vecW} height={vecH} />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: `${gap}px`,
+        paddingRight: `${gap}px`,
+        flexShrink: 0,
+      }}
+    >
+      {/* 1. First ABOUT - solid */}
+      <AboutKineticCharWord
+        word="ABOUT"
+        baseDelay={0.06}
+        charStagger={0.045}
+        style={solidStyle}
+      />
+
+      {/* 2. First BrandVector - Crisp spring entry */}
+      <motion.div
+        style={{ display: "inline-flex", alignItems: "center", position: "relative", flexShrink: 0 }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
+      >
+        <BrandVector theme="dark" width={vecW} height={vecH} />
+      </motion.div>
+
+      {/* 3. Second ABOUT - outline */}
+      <AboutKineticCharWord
+        word="ABOUT"
+        baseDelay={0.32}
+        charStagger={0.025}
+        style={outlineStyle}
+      />
+
+      {/* 4. Second BrandVector */}
+      <motion.div
+        style={{ display: "inline-flex", alignItems: "center", position: "relative", flexShrink: 0 }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
+      >
+        <BrandVector theme="dark" width={vecW} height={vecH} />
+      </motion.div>
+    </div>
+  );
+}
+
+export default function AboutPage({
+  navigateTo,
+  disableScrollReset,
+  scale: propScale,
+  left: propLeft,
+}: AboutPageProps) {
   const [vw, setVw] = useState(() => (typeof window !== "undefined" ? window.innerWidth : 1440));
   const [isDark, setIsDark] = useState(false);
 
@@ -271,21 +468,26 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
   }, []);
 
   const isMobile = vw < 768;
-  const footerScale = Math.min(1, Math.max(0.65, (vw - 48) / 1280));
+  const clampedVw = isMobile ? vw : Math.min(vw, 1728);
+  const derivedScale = isMobile ? 1 : clampedVw / 1440;
+  const derivedLeft = isMobile ? 0 : (vw - clampedVw) / 2;
+  const scale = propScale ?? derivedScale;
+  const left = propLeft ?? derivedLeft;
+  const contentWidth = 1280 * scale;
 
   const pillStyle: React.CSSProperties = {
-    background: isDark ? "#2a1b10" : "#e5ddd4",
-    border: "1px solid rgba(123, 122, 119, 0.4)",
-    padding: "6px 12px",
-    borderRadius: 20, // ONLY tag pills have 20px border radius
-    fontFamily: "Inter, sans-serif",
-    fontWeight: 700,
-    fontSize: isMobile ? 10.5 : 11.5,
-    letterSpacing: "0.5px",
-    textTransform: "uppercase",
-    color: isDark ? "#E5DDD4" : "#77695d",
-    display: "inline-block",
-    transition: "background 0.8s ease, color 0.8s ease",
+    background: isDark ? "rgba(255, 253, 250, 0.05)" : "#f0ebe3",
+    border: `1px solid ${isDark ? "rgba(123, 122, 119, 0.32)" : "rgba(123, 122, 119, 0.35)"}`,
+    padding: isMobile ? "5px 10px" : "6px 12px",
+    borderRadius: 100,
+    fontFamily: "Outfit, sans-serif",
+    fontWeight: 500,
+    fontSize: isMobile ? 11.5 : 12.5,
+    letterSpacing: "0.15px",
+    color: isDark ? "#E5DDD4" : "#4A4238",
+    display: "inline-flex",
+    alignItems: "center",
+    transition: "all 0.25s ease",
   };
 
   return (
@@ -302,8 +504,12 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
     >
       <style>{`
         @keyframes about-marquee-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          from {
+            transform: translate3d(0, 0, 0);
+          }
+          to {
+            transform: translate3d(-50%, 0, 0);
+          }
         }
         @keyframes about-client-marquee {
           0% { transform: translateX(0); }
@@ -313,18 +519,16 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
           display: flex;
           align-items: center;
           width: max-content;
-          animation: about-marquee-scroll 24s linear infinite;
+          animation: about-marquee-scroll 50s linear infinite;
+          will-change: transform;
         }
-        .about-photo-track {
-          display: flex;
-          gap: 16px;
-          overflow-x: auto;
-          scrollbar-width: none;
-          -ms-overflow-style: none;
-          padding: 8px 0;
+        .about-marquee-track:hover {
+          animation-play-state: paused;
         }
-        .about-photo-track::-webkit-scrollbar {
-          display: none;
+        @media (max-width: 767px) {
+          .about-marquee-track {
+            animation: about-marquee-scroll 26s linear infinite;
+          }
         }
         .about-client-track {
           display: flex;
@@ -336,18 +540,41 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
         .about-back-btn {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          padding: 9px 24px;
+          gap: 8px;
+          height: 40px;
+          padding: 0 16px;
           border-radius: 110px;
           border: 1px solid #7b7a77;
           cursor: pointer;
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
           text-decoration: none;
         }
-        .about-back-btn:hover {
+        .about-back-btn:hover,
+        .about-back-btn:active {
           transform: translateY(-2px);
-          border-color: #EE6C13;
-          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+          background-color: #190b00 !important;
+          border-color: #190b00 !important;
+          box-shadow: 0 6px 20px rgba(25, 11, 0, 0.25) !important;
+        }
+        .about-back-btn:hover span,
+        .about-back-btn:active span {
+          color: #FFFDFA !important;
+        }
+        .about-back-btn:hover svg path,
+        .about-back-btn:active svg path {
+          stroke: #FFFDFA !important;
+        }
+        .about-brand-capsule {
+          transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .about-brand-capsule:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba(25, 11, 0, 0.16) !important;
         }
         .about-card-hover {
           transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -359,30 +586,19 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
           border-color: #EE6C13 !important;
           box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
         }
-        .about-image-card {
-          position: relative;
-          overflow: hidden;
-          border-radius: 0px; /* SHARP CORNERS */
-          border: 1px solid #7b7a77;
-          flex-shrink: 0;
-          width: 260px;
-          height: 340px;
-        }
-        .about-image-card img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .about-image-card:hover img {
-          transform: scale(1.06);
-        }
         .about-exp-row {
           transition: background-color 0.25s ease;
         }
         .about-exp-row:hover {
           background-color: rgba(238, 108, 19, 0.06);
+        }
+        .timeline-nav-btn {
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .timeline-nav-btn:hover:not(:disabled) {
+          background-color: #190b00 !important;
+          color: #FFFDFA !important;
+          border-color: #190b00 !important;
         }
       `}</style>
 
@@ -392,109 +608,115 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
           with sharp corners (0px) and smooth light-to-dark transition on scroll!
           ========================================================================= */}
       {!isMobile && (
-        <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: `${120 * scale}px` }}>
           {/* Top Sticky Header Navigation Bar */}
           <header
+            role="banner"
             style={{
-              position: "sticky",
-              top: 0,
-              zIndex: 100,
-              width: "100%",
-              backgroundColor: isDark ? "rgba(25, 11, 0, 0.94)" : "rgba(255, 253, 250, 0.94)",
-              backdropFilter: "blur(14px)",
-              WebkitBackdropFilter: "blur(14px)",
-              borderBottom: "1px solid rgba(123, 122, 119, 0.3)",
-              padding: "16px 40px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              boxSizing: "border-box",
-              transition: "background-color 0.8s ease",
+              position: "fixed",
+              top: `${(25 + 8) * scale}px`,
+              left: `${left}px`,
+              width: "1440px",
+              height: "40px",
+              transformOrigin: "top left",
+              transform: `scale(${scale})`,
+              pointerEvents: "none",
+              zIndex: 9999,
             }}
           >
             {/* Back Button (Capsule pill) */}
-            <button
-              className="about-back-btn"
-              onClick={() => navigateTo("/")}
-              aria-label="Back to Portfolio Homepage"
-              style={{
-                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-                borderColor: "#7b7a77",
-              }}
+            <motion.div
+              style={{ position: "absolute", left: 90, top: 0, pointerEvents: "auto" }}
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M13 8H3M3 8L7.5 3.5M3 8L7.5 12.5"
-                  stroke={isDark ? "#FFFDFA" : "#190B00"}
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span
+              <button
+                className="about-back-btn"
+                onClick={() => navigateTo("/")}
+                aria-label="Back to Portfolio Homepage"
                 style={{
-                  fontFamily: "Outfit, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 13,
-                  color: isDark ? "#FFFDFA" : "#190b00",
-                  letterSpacing: "0.6px",
-                  textTransform: "uppercase",
-                  transition: "color 0.25s ease",
+                  backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                  borderColor: "#7b7a77",
+                  height: 40,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  paddingLeft: 16,
+                  paddingRight: 16,
+                  borderRadius: 110,
+                  border: "1px solid #7b7a77",
+                  cursor: "pointer",
+                  pointerEvents: "auto",
+                  boxShadow: "0 4px 12px rgba(25, 11, 0, 0.08)",
+                  boxSizing: "border-box",
                 }}
               >
-                BACK
-              </span>
-            </button>
+                <div style={{ display: "flex", width: 11, height: 11, alignItems: "center", justifyContent: "center" }}>
+                  <svg width="11" height="11" viewBox="0 0 15 15" fill="none">
+                    <path
+                      d="M10 12.5L4.5 7.5L10 2.5"
+                      stroke={isDark ? "#FFFDFA" : "#190B00"}
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ transition: "stroke 0.25s ease" }}
+                    />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 900,
+                    fontSize: 14,
+                    color: isDark ? "#FFFDFA" : "#190b00",
+                    letterSpacing: "0.56px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    transition: "color 0.25s ease",
+                  }}
+                >
+                  BACK
+                </span>
+              </button>
+            </motion.div>
 
-            {/* Rotating Brand Vector */}
-            <div
-              onClick={() => navigateTo("/")}
-              style={{ cursor: "pointer", display: "flex", alignItems: "center" }}
-              title="Return Home"
+            {/* Brand Capsule on the right (Pill BG shape + shadow, strictly no stroke) */}
+            <motion.div
+              style={{ position: "absolute", left: 1292, top: 0, pointerEvents: "auto" }}
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
             >
-              <BrandVector theme={isDark ? "light" : "dark"} width={78} height={52} />
-            </div>
+              <div
+                className="about-brand-capsule"
+                onClick={() => navigateTo("/")}
+                role="button"
+                aria-label="Return Home"
+                title="Return Home"
+                style={{
+                  cursor: "pointer",
+                  pointerEvents: "auto",
+                  backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                  borderRadius: 110,
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 58,
+                  height: 40,
+                  boxShadow: isDark
+                    ? "0 4px 14px rgba(0, 0, 0, 0.45)"
+                    : "0 4px 14px rgba(25, 11, 0, 0.08)",
+                  boxSizing: "border-box",
+                  transition: "background-color 0.8s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease",
+                }}
+              >
+                <BrandVector theme={isDark ? "light" : "dark"} width={48} height={32} />
+              </div>
+            </motion.div>
           </header>
-
-          {/* Metadata above Section 1: [ INFO ] ... 2026 */}
-          <div
-            style={{
-              width: "min(1280px, calc(100% - 64px))",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              margin: "36px auto 14px auto",
-              padding: "0 4px",
-              boxSizing: "border-box",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "1px",
-                textTransform: "uppercase",
-                color: isDark ? "#998D80" : "#77695d",
-                transition: "color 0.8s ease",
-              }}
-            >
-              [ INFO ]
-            </span>
-            <span
-              style={{
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "1px",
-                textTransform: "uppercase",
-                color: isDark ? "#998D80" : "#77695d",
-                transition: "color 0.8s ease",
-              }}
-            >
-              2026
-            </span>
-          </div>
 
           {/* ═══════════════════════════════════════════════════════════════════
               SECTION 1: [ S-001 ] IN A NUTSHELL & OVERVIEW
@@ -502,11 +724,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               ═══════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              width: "min(1280px, calc(100% - 64px))",
-              backgroundColor: "#FFFDFA",
-              border: "1px solid #7b7a77",
-              borderRadius: 0, // STRICTLY SHARP CORNERS
-              boxShadow: "0 10px 35px rgba(0, 0, 0, 0.05)",
+              width: `${contentWidth}px`,
               marginBottom: 200, // 200PX GAP SEPARATION
               boxSizing: "border-box",
             }}
@@ -517,68 +735,37 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                 width: "100%",
                 overflow: "hidden",
                 whiteSpace: "nowrap",
-                borderBottom: "1px solid #7b7a77",
-                padding: "20px 0",
+                border: "1px solid #7b7a77",
+                padding: "24px 0",
                 display: "flex",
                 alignItems: "center",
                 backgroundColor: "#FFFDFA",
+                boxSizing: "border-box",
               }}
             >
               <div className="about-marquee-track">
-                {Array(6)
-                  .fill(null)
-                  .map((_, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 48,
-                        paddingRight: 48,
-                        flexShrink: 0,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: "clamp(75px, 8.5vw, 130px)",
-                          lineHeight: 1,
-                          letterSpacing: "4px",
-                          color: "#190b00",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        ABOUT
-                      </span>
-
-                      {/* Rotating Brand Mark / Star */}
-                      <BrandVector theme="dark" width={110} height={74} />
-
-                      <span
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: "clamp(75px, 8.5vw, 130px)",
-                          lineHeight: 1,
-                          letterSpacing: "4px",
-                          color: "#FFFDFA",
-                          WebkitTextStroke: "2px #190b00",
-                          paintOrder: "stroke fill",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        ABOUT
-                      </span>
-
-                      <BrandVector theme="dark" width={110} height={74} />
-                    </div>
-                  ))}
+                {/* First half: unit 1 animates entrance, followed by static units */}
+                <AboutMarqueeUnit animateEntrance />
+                <AboutMarqueeUnit />
+                <AboutMarqueeUnit />
+                {/* Second half for seamless linear loop */}
+                <AboutMarqueeUnit />
+                <AboutMarqueeUnit />
+                <AboutMarqueeUnit />
               </div>
             </div>
 
-            {/* Row 2: In A Nutshell Content */}
-            <div style={{ padding: "48px 56px 48px 56px", boxSizing: "border-box" }}>
+            {/* Content Box (Attached Brutalist Stage) */}
+            <div
+              style={{
+                backgroundColor: "#FFFDFA",
+                border: "1px solid #7b7a77",
+                borderTop: "none",
+                padding: "52px 56px",
+                boxSizing: "border-box",
+              }}
+            >
+              {/* Section Sub-Tag */}
               <div
                 style={{
                   fontFamily: "Inter, sans-serif",
@@ -587,132 +774,122 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                   letterSpacing: "0.8px",
                   color: "#EE6C13",
                   textTransform: "uppercase",
-                  marginBottom: 16,
+                  marginBottom: 20,
                 }}
               >
-                [ S-001 ] IN A NUTSHELL
+                [ S-001 ] EXECUTIVE PROFILE
               </div>
-
-              {/* Big Editorial Headline */}
-              <h1
+              {/* Big Editorial Headline with Quick Text Streaming Reveal */}
+              <QuickStreamingParagraph
+                segments={NUTSHELL_SEGMENTS_DESKTOP}
+                baseDelay={0.28}
+                stagger={0.015}
                 style={{
                   fontFamily: "Outfit, sans-serif",
-                  fontWeight: 800,
-                  fontSize: "clamp(26px, 2.7vw, 38px)",
-                  lineHeight: 1.35,
+                  fontWeight: 400,
+                  fontSize: "clamp(26px, 2.5vw, 36px)",
+                  lineHeight: 1.45,
                   letterSpacing: "-0.015em",
-                  margin: "0 0 36px 0",
-                  color: "#190b00",
+                  margin: "0 0 52px 0",
+                  color: "#77695d",
                 }}
-              >
-                Product Lead and AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.{" "}
-                <span style={{ color: "#77695d", fontWeight: 400 }}>
-                  Experienced in Human–AI Interaction, Agentic UX, AI workflow design, prompt engineering, and product strategy—
-                </span>{" "}
-                <span style={{ color: "#190b00", fontWeight: 800 }}>
-                  with end-to-end ownership from discovery and prototyping through implementation. Designing AI products that align human behaviour, business goals, and intelligent agents.
-                </span>
-              </h1>
+              />
 
-              {/* Selected Impact Metric Cards (SHARP CORNERS: borderRadius: 0) */}
+              {/* Architectural Impact Metrics Grid (VousVous OUTCOME Style) */}
               <div
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: 16,
-                  marginBottom: 44,
+                  borderTop: "1px solid #7b7a77",
+                  borderBottom: "1px solid #7b7a77",
+                  boxSizing: "border-box",
                 }}
               >
-                {IMPACT_HIGHLIGHTS.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="about-card-hover"
-                    style={{
-                      border: "1px solid #7b7a77",
-                      borderRadius: 0, // SHARP CORNER
-                      padding: "22px 18px",
-                      backgroundColor: "#FFFDFA",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <div>
-                      <span
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: 32,
-                          lineHeight: 1,
-                          color: "#EE6C13",
-                          display: "block",
-                          marginBottom: 8,
-                        }}
-                      >
-                        {item.num}
-                      </span>
-                      <h4
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 800,
-                          fontSize: 13.5,
-                          color: "#190b00",
-                          margin: "0 0 6px 0",
-                          textTransform: "uppercase",
-                        }}
-                      >
-                        {item.label}
-                      </h4>
-                    </div>
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 400,
-                        fontSize: 13,
-                        lineHeight: 1.45,
-                        color: "#77695d",
-                        margin: 0,
-                      }}
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
+                {/* Metric 1 */}
+                <div style={{ padding: "36px 32px 36px 0", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "clamp(48px, 4.5vw, 68px)", color: "#EE6C13", lineHeight: 1, marginBottom: 8 }}>
+                    15+
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 19, color: "#190b00", textTransform: "uppercase", margin: "0 0 8px 0" }}>
+                    Organisations Reached
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Expanded Allyra's reach across 15+ organisations, including a pilot with a leading Indian enterprise group.
+                  </p>
+                </div>
+
+                {/* Metric 2 */}
+                <div style={{ padding: "36px 32px", borderLeft: "1px solid #7b7a77", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "clamp(48px, 4.5vw, 68px)", color: "#EE6C13", lineHeight: 1, marginBottom: 8 }}>
+                    19+
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 19, color: "#190b00", textTransform: "uppercase", margin: "0 0 8px 0" }}>
+                    AI Agents Designed
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents with safety guardrails.
+                  </p>
+                </div>
+
+                {/* Metric 3 */}
+                <div style={{ padding: "36px 0 36px 32px", borderLeft: "1px solid #7b7a77", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "clamp(48px, 4.5vw, 68px)", color: "#EE6C13", lineHeight: 1, marginBottom: 8 }}>
+                    ~1 → 2–3
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 19, color: "#190b00", textTransform: "uppercase", margin: "0 0 8px 0" }}>
+                    Features / Designer / Wk
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Scaled design velocity from ~1 to 2–3 features per designer per week through coded HTML prototypes and AI workflows.
+                  </p>
+                </div>
               </div>
 
-              {/* Horizontal Photo Carousel (SHARP CORNERS: borderRadius: 0) */}
-              <div style={{ width: "100%", overflow: "hidden" }}>
-                <div className="about-photo-track">
-                  {GALLERY_IMAGES.map((img, idx) => (
-                    <div key={idx} className="about-image-card" style={{ backgroundColor: "#e5ddd4" }}>
-                      <img src={img.src} alt={img.alt} loading="lazy" />
-                      <div
-                        style={{
-                          position: "absolute",
-                          bottom: 12,
-                          left: 12,
-                          backgroundColor: "rgba(25, 11, 0, 0.85)",
-                          backdropFilter: "blur(6px)",
-                          padding: "4px 10px",
-                          borderRadius: 20, // Capsule tag pill
-                          border: "1px solid rgba(123, 122, 119, 0.4)",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "Inter, sans-serif",
-                            fontWeight: 700,
-                            fontSize: 10.5,
-                            letterSpacing: "0.5px",
-                            textTransform: "uppercase",
-                            color: "#FFFDFA",
-                          }}
-                        >
-                          {img.label}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+              {/* Row 2: Secondary Domain Highlights with 1px Vertical Dividers */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  boxSizing: "border-box",
+                }}
+              >
+                {/* Col 1 */}
+                <div style={{ padding: "32px 32px 10px 0", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "0.8px", color: "#EE6C13", textTransform: "uppercase", marginBottom: 6 }}>
+                    [ PLATFORM WORKFLOWS ]
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 8px 0" }}>
+                    Tulah Wellness
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Replaced fragmented spreadsheets, documents, and manual forms with connected digital hospitality workflows.
+                  </p>
+                </div>
+
+                {/* Col 2 */}
+                <div style={{ padding: "32px 32px 10px 32px", borderLeft: "1px solid #7b7a77", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "0.8px", color: "#EE6C13", textTransform: "uppercase", marginBottom: 6 }}>
+                    [ CLIENT APPRECIATION ]
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 8px 0" }}>
+                    Stanford Medicine
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Designed operational UI/UX for course planning, accounts, scholarships, and the Financial Aid app.
+                  </p>
+                </div>
+
+                {/* Col 3 */}
+                <div style={{ padding: "32px 0 10px 32px", borderLeft: "1px solid #7b7a77", display: "flex", flexDirection: "column" }}>
+                  <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, letterSpacing: "0.8px", color: "#EE6C13", textTransform: "uppercase", marginBottom: 6 }}>
+                    [ THOUGHT LEADERSHIP ]
+                  </span>
+                  <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 8px 0" }}>
+                    TiE Keynote Speaker
+                  </h4>
+                  <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 16, lineHeight: 1.6, color: "#77695d", margin: 0 }}>
+                    Speaker at TiE Chandigarh on Human-Centred Design and building trustworthy AI interaction models.
+                  </p>
                 </div>
               </div>
             </div>
@@ -724,23 +901,21 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               ═══════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              width: "min(1280px, calc(100% - 64px))",
-              backgroundColor: "#FFFDFA",
-              border: "1px solid #7b7a77",
-              borderRadius: 0, // STRICTLY SHARP CORNERS
-              boxShadow: "0 10px 35px rgba(0, 0, 0, 0.05)",
+              width: `${contentWidth}px`,
               marginBottom: 200, // 200PX GAP SEPARATION
               boxSizing: "border-box",
             }}
           >
+            {/* Header Box */}
             <div
               style={{
-                padding: "50px 56px",
-                display: "grid",
-                gridTemplateColumns: "clamp(260px, 30%, 340px) 1fr",
-                gap: 50,
-                boxSizing: "border-box",
                 backgroundColor: "#FFFDFA",
+                border: "1px solid #7b7a77",
+                padding: "44px 56px",
+                boxSizing: "border-box",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
               <div>
@@ -748,7 +923,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                   style={{
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 700,
-                    fontSize: 11.5,
+                    fontSize: 12,
                     letterSpacing: "0.8px",
                     color: "#EE6C13",
                     textTransform: "uppercase",
@@ -756,504 +931,222 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     marginBottom: 12,
                   }}
                 >
-                  [ S-002 ] THE FOUNDATION
+                  [ S-002 ] FROM SYSTEMS TO AI-NATIVE PRODUCTS
                 </span>
                 <h2
                   style={{
                     fontFamily: "Outfit, sans-serif",
                     fontWeight: 900,
-                    fontSize: "clamp(34px, 3.5vw, 44px)",
-                    lineHeight: 1.05,
+                    fontSize: "clamp(64px, 7vw, 110px)",
+                    lineHeight: 0.95,
+                    letterSpacing: "-0.02em",
                     color: "#190b00",
                     textTransform: "uppercase",
-                    margin: "0 0 18px 0",
+                    margin: 0,
                   }}
                 >
-                  LET'S DIVE
-                  <br />
-                  EVEN DEEPER
+                  FOUNDATION
                 </h2>
+              </div>
+              <div style={{ flexShrink: 0 }}>
+                <BrandVector theme="dark" width={180} height={120} />
+              </div>
+            </div>
+
+            {/* Content Box (Attached -mt-[1px]) */}
+            <div
+              style={{
+                backgroundColor: "#FFFDFA",
+                border: "1px solid #7b7a77",
+                borderTop: "none",
+                boxSizing: "border-box",
+              }}
+            >
+              {/* Lead Pullquote Banner */}
+              <div
+                style={{
+                  padding: "44px 56px 40px 56px",
+                  borderBottom: "1px solid #7b7a77",
+                  boxSizing: "border-box",
+                }}
+              >
                 <p
                   style={{
                     fontFamily: "Outfit, sans-serif",
                     fontWeight: 500,
-                    fontSize: 13.5,
-                    color: "#77695d",
-                    margin: "0 0 24px 0",
+                    fontStyle: "italic",
+                    fontSize: "clamp(20px, 2vw, 26px)",
                     lineHeight: 1.5,
+                    color: "#77695d",
+                    margin: 0,
                   }}
                 >
-                  B.E. Computer Science (2015–2019)
-                  <br />
-                  Google UX Design Professional Certificate
+                  “My journey began in <strong style={{ color: "#190b00", fontWeight: 800 }}>Computer Science Engineering</strong>, where I developed a deep appreciation for system architecture, constraints, and data flows. That technical rigour shapes every AI interaction pattern, agent approval flow, and enterprise workflow I design today.”
                 </p>
-                <BrandVector theme="dark" width={68} height={46} />
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-                <p
+              {/* 3-Column Architectural Progression Grid */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  boxSizing: "border-box",
+                }}
+              >
+                {/* Chapter 01 */}
+                <div
                   style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 16.5,
-                    lineHeight: 1.7,
-                    color: "#4A4238",
-                    margin: 0,
+                    padding: "40px 36px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    boxSizing: "border-box",
                   }}
                 >
-                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple's enterprise production systems, I built a strong foundation in large-scale operations, incident management, and mission-critical software.
-                </p>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 40, color: "#EE6C13" }}>
+                        01
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12.5, fontWeight: 700, color: "#77695d" }}>
+                        2015 – 2020
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 10px 0", textTransform: "uppercase", letterSpacing: "-0.01em" }}>
+                      SYSTEMS &amp; ENTERPRISE ROOTS
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 700, color: "#EE6C13", letterSpacing: "0.5px", margin: "0 0 14px 0", textTransform: "uppercase" }}>
+                      B.E. COMPUTER SCIENCE · TCS · APPLE PRODUCTION SYSTEMS
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 17, lineHeight: 1.7, color: "#4A4238", margin: 0 }}>
+                      I studied Computer Science Engineering, then supported Apple's enterprise production systems at Tata Consultancy Services. It taught me how large-scale operations and incident management work when reliability matters, and why good products start with how systems behave.
+                    </p>
+                  </div>
+                </div>
 
-                <p
+                {/* Chapter 02 */}
+                <div
                   style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 16.5,
-                    lineHeight: 1.7,
-                    color: "#4A4238",
-                    margin: 0,
+                    padding: "40px 36px",
+                    borderLeft: "1px solid #7b7a77",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    boxSizing: "border-box",
                   }}
                 >
-                  That systems background naturally led to product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed the Talent Discovery Assessment journey helping deliver personalized learning insights trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered end-to-end operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b> supporting scholarship and course-planning workflows, receiving formal recognition from Stanford leadership.
-                </p>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 40, color: "#EE6C13" }}>
+                        02
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12.5, fontWeight: 700, color: "#77695d" }}>
+                        2020 – 2024
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 10px 0", textTransform: "uppercase", letterSpacing: "-0.01em" }}>
+                      COMPLEX WORKFLOWS &amp; SCALE
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 700, color: "#EE6C13", letterSpacing: "0.5px", margin: "0 0 14px 0", textTransform: "uppercase" }}>
+                      5EXCEPTIONS · JOONIFY · STANFORD MEDICINE
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 17, lineHeight: 1.7, color: "#4A4238", margin: 0 }}>
+                      I moved into product design across healthcare, fintech, education, and IoT. I owned design for Stanford Medicine's Financial Aid app, earning written appreciation from its leadership, and created Joonify's Talent Discovery Assessment journey for a platform serving 750+ parents.
+                    </p>
+                  </div>
+                </div>
 
-                <p
+                {/* Chapter 03 */}
+                <div
                   style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 16.5,
-                    lineHeight: 1.7,
-                    color: "#4A4238",
-                    margin: 0,
+                    padding: "40px 36px",
+                    borderLeft: "1px solid #7b7a77",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    boxSizing: "border-box",
                   }}
                 >
-                  As UXD Head at <b style={{ color: "#190b00" }}>Vrozart Dackson</b>, I co-authored the <b style={{ color: "#190b00" }}>Vibe UX Framework</b>—establishing principles for context-aware and AI-native user experiences while directing product experiences for Farmland Bazaar, Evosell by Evoluxar, and VousVous. Following the transition of our core team into <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I stepped into Product Leadership.
-                </p>
-
-                <p
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 16.5,
-                    lineHeight: 1.7,
-                    color: "#4A4238",
-                    margin: 0,
-                  }}
-                >
-                  Today, as Product Lead at <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I lead AI product strategy and experience design across pilot, beta, and production releases for <b style={{ color: "#190b00" }}>Allyra.ai</b> (demonstrated to 50+ enterprise orgs, actively used by 10+), design operational systems for <b style={{ color: "#190b00" }}>tulah</b> (reducing administrative workflow overhead by approximately 60–70%), and contribute to early-stage platforms including <b style={{ color: "#190b00" }}>Raxaa.ai</b> and <b style={{ color: "#190b00" }}>EOMs.ai</b>. I also spoke at TiE Chandigarh on AI and Human-Centred Design.
-                </p>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 14 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 40, color: "#EE6C13" }}>
+                        03
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12.5, fontWeight: 700, color: "#77695d" }}>
+                        2024 – PRESENT
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#190b00", margin: "0 0 10px 0", textTransform: "uppercase", letterSpacing: "-0.01em" }}>
+                      AI-NATIVE PRODUCT LEADERSHIP
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 13, fontWeight: 700, color: "#EE6C13", letterSpacing: "0.5px", margin: "0 0 14px 0", textTransform: "uppercase" }}>
+                      PANSOPHIC TECHNOLOGIES · VROZART DACKSON · ALLYRA.AI
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 17, lineHeight: 1.7, color: "#4A4238", margin: 0 }}>
+                      I co-authored the Vibe UX Framework for AI-native experiences, then stepped into product leadership. Today I lead direction and roadmap for Allyra.ai with a team of 3 designers and 2 business analysts, designing human-in-the-loop workflows for 19+ AI agents, now reaching 15+ organisations.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Client Ticker Bar on the bottom of Section 2 */}
-            <div
-              style={{
-                height: 70,
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "#FFFDFA",
-                borderTop: "1px solid #7b7a77",
-                boxSizing: "border-box",
-              }}
-            >
-              <div className="about-client-track">
-                {Array(3)
-                  .fill(CLIENTS)
-                  .flat()
-                  .map((client, idx) => (
-                    <span
-                      key={idx}
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 800,
-                        fontSize: 18,
-                        color: "#77695d",
-                        letterSpacing: "0.5px",
-                        textTransform: "uppercase",
-                        whiteSpace: "nowrap",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 40,
-                      }}
-                    >
-                      {client}
-                      <span style={{ color: "#EE6C13", fontSize: 14 }}>•</span>
-                    </span>
-                  ))}
+              {/* Client Ticker Bar on the bottom of Section 2 */}
+              <div
+                style={{
+                  height: 68,
+                  overflow: "hidden",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "#FFFDFA",
+                  borderTop: "1px solid #7b7a77",
+                  boxSizing: "border-box",
+                }}
+              >
+                <div className="about-client-track">
+                  {Array(3)
+                    .fill(CLIENTS)
+                    .flat()
+                    .map((client, idx) => (
+                      <span
+                        key={idx}
+                        style={{
+                          fontFamily: "Outfit, sans-serif",
+                          fontWeight: 800,
+                          fontSize: 17,
+                          color: "#77695d",
+                          letterSpacing: "0.5px",
+                          textTransform: "uppercase",
+                          whiteSpace: "nowrap",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 40,
+                        }}
+                      >
+                        {client}
+                        <span style={{ color: "#EE6C13", fontSize: 14 }}>•</span>
+                      </span>
+                    ))}
+                </div>
               </div>
             </div>
           </section>
 
           {/* ═══════════════════════════════════════════════════════════════════
               DARK TRANSITION TRIGGER ELEMENT
-              When you scroll past Section 2 towards Section 3 (MY FOCUS),
+              When you scroll past Section 2 towards Career Timeline,
               the background smoothly transitions into deep dark espresso #190b00!
               ═══════════════════════════════════════════════════════════════════ */}
           <div id="about-dark-trigger" style={{ height: 1, width: "100%", opacity: 0 }} />
 
           {/* ═══════════════════════════════════════════════════════════════════
-              SECTION 3: [ S-003 ] CORE COMPETENCIES / MY FOCUS
+              SECTION 3: [ S-003 ] CAREER TIMELINE / EXPERIENCE
               Separated from next section by 200px
               ═══════════════════════════════════════════════════════════════════ */}
-          <section
-            style={{
-              width: "min(1280px, calc(100% - 64px))",
-              backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-              color: isDark ? "#FFFDFA" : "#190b00",
-              border: "1px solid #7b7a77",
-              borderRadius: 0, // STRICTLY SHARP CORNERS
-              boxShadow: "0 10px 35px rgba(0, 0, 0, 0.05)",
-              marginBottom: 200, // 200PX GAP SEPARATION
-              boxSizing: "border-box",
-              transition: "background-color 0.8s ease, color 0.8s ease",
-            }}
-          >
-            {/* Section Header Bar */}
-            <div
-              style={{
-                padding: "36px 56px",
-                borderBottom: "1px solid #7b7a77",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <span
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 700,
-                    fontSize: 11.5,
-                    letterSpacing: "0.8px",
-                    color: "#EE6C13",
-                    textTransform: "uppercase",
-                    display: "block",
-                    marginBottom: 8,
-                  }}
-                >
-                  [ S-003 ] CORE COMPETENCIES
-                </span>
-                <h2
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontWeight: 900,
-                    fontSize: "clamp(34px, 3.5vw, 44px)",
-                    letterSpacing: "-0.02em",
-                    color: isDark ? "#FFFDFA" : "#190b00",
-                    margin: 0,
-                    textTransform: "uppercase",
-                    transition: "color 0.8s ease",
-                  }}
-                >
-                  MY FOCUS
-                </h2>
-              </div>
-              <BrandVector theme={isDark ? "light" : "dark"} width={78} height={52} />
-            </div>
-
-            {/* 3-Column Focus Cards (SHARP CORNERS: borderRadius: 0) */}
-            <div style={{ padding: "44px 56px 50px 56px", boxSizing: "border-box" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-                {FOCUS_ITEMS.map((item, i) => (
-                  <div
-                    key={i}
-                    className="about-card-hover"
-                    style={{
-                      backgroundColor: isDark ? "#150c05" : "#FFFDFA",
-                      border: "1px solid #7b7a77",
-                      borderRadius: 0, // SHARP CORNER
-                      padding: "28px 24px",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      minHeight: 420,
-                      boxSizing: "border-box",
-                      transition: "background-color 0.8s ease, border-color 0.3s ease",
-                    }}
-                  >
-                    <div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "flex-start",
-                          marginBottom: 16,
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "Outfit, sans-serif",
-                            fontWeight: 900,
-                            fontSize: 42,
-                            lineHeight: 1,
-                            color: "#EE6C13",
-                          }}
-                        >
-                          {item.num}
-                        </span>
-                        <BrandVector theme={isDark ? "light" : "dark"} width={38} height={26} />
-                      </div>
-
-                      <h3
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: 20,
-                          letterSpacing: "-0.01em",
-                          color: isDark ? "#FFFDFA" : "#190b00",
-                          margin: "0 0 16px 0",
-                          textTransform: "uppercase",
-                          lineHeight: 1.25,
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {item.title}
-                      </h3>
-
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
-                        {item.skills.map((skill, sIdx) => (
-                          <span key={sIdx} style={pillStyle}>
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        borderTop: `1px solid ${isDark ? "#38291d" : "#e5ddd4"}`,
-                        paddingTop: 16,
-                        transition: "border-color 0.8s ease",
-                      }}
-                    >
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 400,
-                          fontSize: 14.5,
-                          lineHeight: 1.6,
-                          color: isDark ? "#C9C1B7" : "#4A4238",
-                          margin: 0,
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ═══════════════════════════════════════════════════════════════════
-              SECTION 4: [ S-004 ] CAREER TIMELINE / EXPERIENCE
-              Separated from next section by 200px
-              ═══════════════════════════════════════════════════════════════════ */}
-          <section
-            style={{
-              width: "min(1280px, calc(100% - 64px))",
-              backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-              color: isDark ? "#FFFDFA" : "#190b00",
-              border: "1px solid #7b7a77",
-              borderRadius: 0, // STRICTLY SHARP CORNERS
-              boxShadow: "0 10px 35px rgba(0, 0, 0, 0.05)",
-              marginBottom: 200, // 200PX GAP SEPARATION
-              boxSizing: "border-box",
-              transition: "background-color 0.8s ease, color 0.8s ease",
-            }}
-          >
-            {/* Section Header Bar */}
-            <div
-              style={{
-                padding: "36px 56px",
-                borderBottom: "1px solid #7b7a77",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "baseline",
-              }}
-            >
-              <div>
-                <span
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 700,
-                    fontSize: 11.5,
-                    letterSpacing: "0.8px",
-                    color: "#EE6C13",
-                    textTransform: "uppercase",
-                    display: "block",
-                    marginBottom: 8,
-                  }}
-                >
-                  [ S-004 ] CAREER TIMELINE
-                </span>
-                <h2
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontWeight: 900,
-                    fontSize: "clamp(34px, 3.5vw, 44px)",
-                    letterSpacing: "-0.02em",
-                    color: isDark ? "#FFFDFA" : "#190b00",
-                    margin: 0,
-                    textTransform: "uppercase",
-                    transition: "color 0.8s ease",
-                  }}
-                >
-                  EXPERIENCE
-                </h2>
-              </div>
-              <span
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 12,
-                  letterSpacing: "0.6px",
-                  color: isDark ? "#998D80" : "#77695d",
-                  textTransform: "uppercase",
-                  transition: "color 0.8s ease",
-                }}
-              >
-                7+ YEARS LEADERSHIP
-              </span>
-            </div>
-
-            {/* List of Experience Rows (SHARP CORNERS: borderRadius: 0) */}
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              {EXPERIENCES.map((exp, i) => (
-                <div
-                  key={i}
-                  className="about-exp-row"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "clamp(260px, 30%, 340px) 1fr",
-                    gap: 40,
-                    padding: "36px 56px",
-                    borderBottom: i < EXPERIENCES.length - 1 ? "1px solid #7b7a77" : "none",
-                    boxSizing: "border-box",
-                  }}
-                >
-                  {/* Left Info Column */}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                    <span
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontWeight: 700,
-                        fontSize: 11.5,
-                        letterSpacing: "0.6px",
-                        color: isDark ? "#998D80" : "#77695d",
-                        textTransform: "uppercase",
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.period}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 900,
-                        fontSize: 24,
-                        letterSpacing: "-0.01em",
-                        color: isDark ? "#FFFDFA" : "#190b00",
-                        margin: 0,
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.company}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 700,
-                        fontSize: 16,
-                        color: "#EE6C13",
-                        margin: 0,
-                      }}
-                    >
-                      {exp.role}
-                    </p>
-
-                    {exp.subnote && (
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontStyle: "italic",
-                          fontSize: 12.5,
-                          color: isDark ? "#998D80" : "#77695d",
-                          margin: "2px 0 0 0",
-                          lineHeight: 1.4,
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {exp.subnote}
-                      </p>
-                    )}
-
-                    <div style={{ display: "flex", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-                      {exp.tags.map((t, idx) => (
-                        <span
-                          key={idx}
-                          style={{
-                            fontFamily: "Inter, sans-serif",
-                            fontWeight: 700,
-                            fontSize: 10,
-                            color: isDark ? "#998D80" : "#77695d",
-                            letterSpacing: "0.5px",
-                            textTransform: "uppercase",
-                            transition: "color 0.8s ease",
-                          }}
-                        >
-                          [ {t} ]
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right Summary Column */}
-                  <div style={{ display: "flex", alignItems: "center" }}>
-                    {exp.points && exp.points.length > 0 ? (
-                      <ul
-                        style={{
-                          margin: 0,
-                          paddingLeft: 20,
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 10,
-                        }}
-                      >
-                        {exp.points.map((pt, pIdx) => (
-                          <li
-                            key={pIdx}
-                            style={{
-                              fontFamily: "Outfit, sans-serif",
-                              fontWeight: 400,
-                              fontSize: 15.5,
-                              lineHeight: 1.6,
-                              color: isDark ? "#C9C1B7" : "#4A4238",
-                              transition: "color 0.8s ease",
-                            }}
-                          >
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 400,
-                          fontSize: 16,
-                          lineHeight: 1.7,
-                          color: isDark ? "#C9C1B7" : "#4A4238",
-                          margin: 0,
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {exp.summary}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          <ExperienceTimeline
+            isDark={isDark}
+            contentWidth={contentWidth}
+            scale={scale}
+            isMobile={false}
+          />
 
           {/* ═══════════════════════════════════════════════════════════════════
               SECTION 5: [ S-005 ] ACADEMICS & CREDENTIALS
@@ -1261,25 +1154,22 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               ═══════════════════════════════════════════════════════════════════ */}
           <section
             style={{
-              width: "min(1280px, calc(100% - 64px))",
-              backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-              color: isDark ? "#FFFDFA" : "#190b00",
-              border: "1px solid #7b7a77",
-              borderRadius: 0, // STRICTLY SHARP CORNERS
-              boxShadow: "0 10px 35px rgba(0, 0, 0, 0.05)",
+              width: `${contentWidth}px`,
               marginBottom: 200, // 200PX GAP SEPARATION BEFORE FOOTER
               boxSizing: "border-box",
-              transition: "background-color 0.8s ease, color 0.8s ease",
             }}
           >
-            {/* Section Header Bar */}
+            {/* Header Box */}
             <div
               style={{
-                padding: "36px 56px",
-                borderBottom: "1px solid #7b7a77",
+                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                border: "1px solid #7b7a77",
+                padding: "44px 56px",
+                boxSizing: "border-box",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+                transition: "background-color 0.8s ease",
               }}
             >
               <div>
@@ -1287,85 +1177,100 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                   style={{
                     fontFamily: "Inter, sans-serif",
                     fontWeight: 700,
-                    fontSize: 11.5,
+                    fontSize: 12,
                     letterSpacing: "0.8px",
                     color: "#EE6C13",
                     textTransform: "uppercase",
                     display: "block",
-                    marginBottom: 8,
+                    marginBottom: 12,
                   }}
                 >
-                  [ S-005 ] ACADEMICS
+                  [ S-005 ] ACADEMICS &amp; CREDENTIALS
                 </span>
-                <h3
+                <h2
                   style={{
                     fontFamily: "Outfit, sans-serif",
                     fontWeight: 900,
-                    fontSize: "clamp(28px, 3vw, 36px)",
-                    letterSpacing: "-0.01em",
+                    fontSize: "clamp(64px, 7vw, 110px)",
+                    lineHeight: 0.95,
+                    letterSpacing: "-0.02em",
                     color: isDark ? "#FFFDFA" : "#190b00",
-                    margin: 0,
                     textTransform: "uppercase",
+                    margin: 0,
                     transition: "color 0.8s ease",
                   }}
                 >
-                  EDUCATION &amp; CERTIFICATION
-                </h3>
+                  EDUCATION
+                </h2>
               </div>
-              <BrandVector theme={isDark ? "light" : "dark"} width={60} height={40} />
+              <div style={{ flexShrink: 0 }}>
+                <BrandVector theme={isDark ? "light" : "dark"} width={180} height={120} />
+              </div>
             </div>
 
-            {/* Academic Cards */}
-            <div style={{ padding: "44px 56px 50px 56px", boxSizing: "border-box" }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+            {/* Content Box (Attached -mt-[1px]) */}
+            <div
+              style={{
+                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                border: "1px solid #7b7a77",
+                borderTop: "none",
+                boxSizing: "border-box",
+                transition: "background-color 0.8s ease",
+              }}
+            >
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  boxSizing: "border-box",
+                }}
+              >
                 {EDUCATION.map((edu, idx) => (
                   <div
                     key={idx}
-                    className="about-card-hover"
                     style={{
-                      border: "1px solid #7b7a77",
-                      borderRadius: 0, // SHARP CORNER
-                      padding: "26px 22px",
-                      backgroundColor: isDark ? "#150c05" : "#FFFDFA",
+                      padding: "48px 52px",
+                      borderLeft: idx > 0 ? "1px solid #7b7a77" : "none",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "space-between",
-                      transition: "background-color 0.8s ease, border-color 0.3s ease",
+                      backgroundColor: isDark ? "#150c05" : "#FFFDFA",
+                      transition: "background-color 0.8s ease",
+                      boxSizing: "border-box",
                     }}
                   >
                     <div>
                       <span
                         style={{
-                          fontFamily: "Inter, sans-serif",
-                          fontWeight: 700,
-                          fontSize: 11.5,
-                          letterSpacing: "0.6px",
+                          fontFamily: "Outfit, sans-serif",
+                          fontWeight: 900,
+                          fontSize: 56,
+                          lineHeight: 1,
                           color: "#EE6C13",
-                          textTransform: "uppercase",
                           display: "block",
-                          marginBottom: 6,
+                          marginBottom: 16,
                         }}
                       >
                         {edu.year}
                       </span>
-                      <h4
+                      <h3
                         style={{
                           fontFamily: "Outfit, sans-serif",
                           fontWeight: 900,
-                          fontSize: 20,
+                          fontSize: 24,
                           color: isDark ? "#FFFDFA" : "#190b00",
-                          margin: "0 0 6px 0",
+                          margin: "0 0 10px 0",
                           transition: "color 0.8s ease",
                         }}
                       >
                         {edu.degree}
-                      </h4>
+                      </h3>
                     </div>
                     <p
                       style={{
                         fontFamily: "Outfit, sans-serif",
                         fontWeight: 500,
-                        fontSize: 14.5,
+                        fontSize: 16,
                         color: isDark ? "#998D80" : "#77695d",
                         margin: 0,
                         transition: "color 0.8s ease",
@@ -1380,7 +1285,29 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
           </section>
 
           {/* ═══════════════════════════════════════════════════════════════════
-              SECTION 6: [ S-006 ] FOOTER
+              SECTION 6: [ S-006 ] CREATIVE LAB
+              Exploratory Generative AI Video Direction & Visual Storytelling
+              ═══════════════════════════════════════════════════════════════════ */}
+          <CreativeLab
+            isDark={isDark}
+            contentWidth={contentWidth}
+            scale={scale}
+            isMobile={false}
+          />
+
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 6B: [ S-006 // CAPABILITIES ] GRAVITY SKILLS LAB
+              Physics-driven gravity pill drop positioned just above footer
+              ═══════════════════════════════════════════════════════════════════ */}
+          <GravitySkillsSection
+            isDark={isDark}
+            contentWidth={contentWidth}
+            scale={scale}
+            isMobile={false}
+          />
+
+          {/* ═══════════════════════════════════════════════════════════════════
+              SECTION 7: [ S-007 ] FOOTER
               Standard site footer with sharp corners (borderRadius: 0)
               ═══════════════════════════════════════════════════════════════════ */}
           <div
@@ -1392,30 +1319,26 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               boxSizing: "border-box",
             }}
           >
-            {footerScale < 1 ? (
+            <div
+              style={{
+                width: `${contentWidth}px`,
+                height: `${560 * scale}px`,
+                overflow: "hidden",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
               <div
                 style={{
-                  width: 1280 * footerScale,
-                  height: 560 * footerScale,
-                  overflow: "hidden",
-                  display: "flex",
-                  justifyContent: "center",
+                  transform: `scale(${scale})`,
+                  transformOrigin: "top center",
+                  width: 1280,
+                  height: 560,
                 }}
               >
-                <div
-                  style={{
-                    transform: `scale(${footerScale})`,
-                    transformOrigin: "top center",
-                    width: 1280,
-                    height: 560,
-                  }}
-                >
-                  <Footer style={{ borderRadius: 0, border: "1px solid #7b7a77" }} />
-                </div>
+                <Footer style={{ borderRadius: 0, border: "1px solid #7b7a77" }} sectionTag="[ S-007 ]" />
               </div>
-            ) : (
-              <Footer style={{ borderRadius: 0, border: "1px solid #7b7a77" }} />
-            )}
+            </div>
           </div>
         </div>
       )}
@@ -1434,7 +1357,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               zIndex: 50,
               background: isDark ? "rgba(25, 11, 0, 0.95)" : "rgba(255, 253, 250, 0.95)",
               backdropFilter: "blur(10px)",
-              borderBottom: "1px solid rgba(123, 122, 119, 0.3)",
+              borderBottom: "none",
               padding: "14px 20px",
               display: "flex",
               justifyContent: "space-between",
@@ -1442,67 +1365,75 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
               transition: "background 0.8s ease",
             }}
           >
-            <button
-              onClick={() => navigateTo("/")}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "6px 16px",
-                borderRadius: 110,
-                border: "1px solid #7b7a77",
-                background: isDark ? "#190B00" : "#FFFDFA",
-                cursor: "pointer",
-              }}
+            <motion.div
+              initial={{ y: -36, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             >
-              <span
+              <button
+                className="about-back-btn"
+                onClick={() => navigateTo("/")}
+                aria-label="Back to Portfolio Homepage"
                 style={{
-                  fontFamily: "Outfit, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 12,
-                  color: isDark ? "#FFFDFA" : "#190b00",
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
+                  height: 38,
+                  padding: "0 16px",
+                  borderRadius: 110,
+                  border: "1px solid #7b7a77",
+                  backgroundColor: isDark ? "#190B00" : "#FFFDFA",
+                  cursor: "pointer",
+                  boxSizing: "border-box",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
                 }}
               >
-                ← BACK
-              </span>
-            </button>
+                <div style={{ display: "flex", width: 11, height: 11, alignItems: "center", justifyContent: "center" }}>
+                  <svg width="11" height="11" viewBox="0 0 15 15" fill="none">
+                    <path
+                      d="M10 12.5L4.5 7.5L10 2.5"
+                      stroke={isDark ? "#FFFDFA" : "#190B00"}
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ transition: "stroke 0.25s ease" }}
+                    />
+                  </svg>
+                </div>
+                <span
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 900,
+                    fontSize: 12,
+                    color: isDark ? "#FFFDFA" : "#190b00",
+                    letterSpacing: "0.5px",
+                    textTransform: "uppercase",
+                    whiteSpace: "nowrap",
+                    transition: "color 0.25s ease",
+                  }}
+                >
+                  BACK
+                </span>
+              </button>
+            </motion.div>
 
-            <BrandVector theme={isDark ? "light" : "dark"} width={60} height={40} />
+            <motion.div
+              initial={{ y: -36, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            >
+              <BrandVector theme={isDark ? "light" : "dark"} width={60} height={40} />
+            </motion.div>
           </header>
 
-          {/* Mobile Metadata */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "20px 20px 10px 20px",
-              fontFamily: "Inter, sans-serif",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "0.8px",
-              color: isDark ? "#998D80" : "#77695d",
-              textTransform: "uppercase",
-              transition: "color 0.8s ease",
-            }}
-          >
-            <span>[ INFO ]</span>
-            <span>2026</span>
-          </div>
-
-          <main style={{ padding: "0 16px 40px 16px", display: "flex", flexDirection: "column" }}>
-            {/* Mobile Section 1: In A Nutshell */}
+          <main style={{ padding: "20px 16px 40px 16px", display: "flex", flexDirection: "column" }}>
+            {/* Mobile Section 1: In A Nutshell / Overview */}
             <div
               style={{
-                border: "1px solid #7b7a77",
-                background: "#FFFDFA",
-                borderRadius: 0, // SHARP CORNER
-                overflow: "hidden",
+                marginBottom: 60,
                 display: "flex",
                 flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                marginBottom: 60,
               }}
             >
               {/* Marquee Inside Card Top */}
@@ -1510,60 +1441,30 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                 style={{
                   overflow: "hidden",
                   whiteSpace: "nowrap",
-                  padding: "14px 0",
-                  borderBottom: "1px solid #7b7a77",
+                  padding: "16px 0",
+                  border: "1px solid #7b7a77",
                   background: "#FFFDFA",
                 }}
               >
                 <div className="about-marquee-track">
-                  {Array(4)
-                    .fill(null)
-                    .map((_, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: 20,
-                          paddingRight: 20,
-                          flexShrink: 0,
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "Outfit, sans-serif",
-                            fontWeight: 900,
-                            fontSize: 56,
-                            lineHeight: 1,
-                            color: "#190b00",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          ABOUT
-                        </span>
-                        <BrandVector theme="dark" width={68} height={46} />
-                        <span
-                          style={{
-                            fontFamily: "Outfit, sans-serif",
-                            fontWeight: 900,
-                            fontSize: 56,
-                            lineHeight: 1,
-                            color: "#FFFDFA",
-                            WebkitTextStroke: "1.5px #190b00",
-                            paintOrder: "stroke fill",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          ABOUT
-                        </span>
-                        <BrandVector theme="dark" width={68} height={46} />
-                      </div>
-                    ))}
+                  <AboutMarqueeUnit animateEntrance isMobile />
+                  <AboutMarqueeUnit isMobile />
+                  <AboutMarqueeUnit isMobile />
+                  <AboutMarqueeUnit isMobile />
                 </div>
               </div>
 
-              {/* In a nutshell body */}
-              <div style={{ padding: "24px 20px" }}>
+              {/* Mobile Content Stage */}
+              <div
+                style={{
+                  backgroundColor: "#FFFDFA",
+                  border: "1px solid #7b7a77",
+                  borderTop: "none",
+                  padding: "24px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <span
                   style={{
                     fontFamily: "Inter, sans-serif",
@@ -1573,139 +1474,112 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                     color: "#EE6C13",
                     textTransform: "uppercase",
                     display: "block",
-                    marginBottom: 12,
+                    marginBottom: 14,
                   }}
                 >
-                  [ S-001 ] IN A NUTSHELL
+                  [ S-001 ] EXECUTIVE PROFILE
                 </span>
-
-                <h1
+                {/* Big Editorial Headline */}
+                <QuickStreamingParagraph
+                  segments={NUTSHELL_SEGMENTS_MOBILE}
+                  baseDelay={0.25}
+                  stagger={0.016}
                   style={{
                     fontFamily: "Outfit, sans-serif",
-                    fontWeight: 800,
-                    fontSize: 22,
-                    lineHeight: 1.3,
-                    color: "#190b00",
-                    margin: "0 0 20px 0",
+                    fontWeight: 400,
+                    fontSize: 20,
+                    lineHeight: 1.45,
+                    color: "#77695d",
+                    margin: "0 0 24px 0",
                   }}
-                >
-                  Product Lead &amp; AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.{" "}
-                  <span style={{ color: "#77695d", fontWeight: 400 }}>
-                    Designing AI products that align human behaviour, business goals, and intelligent agents.
-                  </span>
-                </h1>
+                />
 
-                {/* Impact Highlights (SHARP CORNERS) */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 24 }}>
-                  {IMPACT_HIGHLIGHTS.map((item, idx) => (
-                    <div
-                      key={idx}
-                      style={{
-                        border: "1px solid #7b7a77",
-                        borderRadius: 0, // SHARP CORNER
-                        padding: "14px 12px",
-                        background: "#FFFDFA",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <span
-                          style={{
-                            fontFamily: "Outfit, sans-serif",
-                            fontWeight: 900,
-                            fontSize: 20,
-                            lineHeight: 1.1,
-                            color: "#EE6C13",
-                            display: "block",
-                            marginBottom: 4,
-                          }}
-                        >
-                          {item.num}
-                        </span>
-                        <span
-                          style={{
-                            fontFamily: "Outfit, sans-serif",
-                            fontWeight: 800,
-                            fontSize: 11,
-                            lineHeight: 1.25,
-                            color: "#190b00",
-                            textTransform: "uppercase",
-                            display: "block",
-                            marginBottom: 4,
-                          }}
-                        >
-                          {item.label}
-                        </span>
-                      </div>
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 400,
-                          fontSize: 10.5,
-                          lineHeight: 1.35,
-                          color: "#77695d",
-                          margin: 0,
-                        }}
-                      >
-                        {item.desc}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Touch Photo Carousel (SHARP CORNERS) */}
+                {/* Primary Stats Grid */}
                 <div
                   style={{
-                    overflowX: "auto",
-                    WebkitOverflowScrolling: "touch",
                     display: "flex",
-                    gap: 12,
-                    paddingBottom: 8,
-                    marginRight: -20,
-                    paddingRight: 20,
+                    flexDirection: "column",
+                    borderTop: "1px solid #7b7a77",
+                    borderBottom: "1px solid #7b7a77",
+                    padding: "16px 0",
+                    gap: 18,
+                    marginBottom: 20,
                   }}
                 >
-                  {GALLERY_IMAGES.map((img, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: 200,
-                        height: 270,
-                        borderRadius: 0, // SHARP CORNER
-                        border: "1px solid #7b7a77",
-                        overflow: "hidden",
-                        flexShrink: 0,
-                        position: "relative",
-                        background: "#e5ddd4",
-                      }}
-                    >
-                      <img src={img.src} alt={img.alt} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                      <div
-                        style={{
-                          position: "absolute",
-                          bottom: 8,
-                          left: 8,
-                          background: "rgba(25, 11, 0, 0.85)",
-                          padding: "3px 8px",
-                          borderRadius: 20, // Capsule tag
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontFamily: "Inter, sans-serif",
-                            fontWeight: 700,
-                            fontSize: 9.5,
-                            color: "#FFFDFA",
-                            textTransform: "uppercase",
-                          }}
-                        >
-                          {img.label}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                  <div>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 44, color: "#EE6C13", lineHeight: 1, display: "block" }}>
+                      15+
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 16, color: "#190b00", textTransform: "uppercase", margin: "4px 0 2px 0" }}>
+                      Organisations Reached
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Expanded Allyra across enterprise pilots &amp; production deployment.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid rgba(123, 122, 119, 0.3)", paddingTop: 16 }}>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 44, color: "#EE6C13", lineHeight: 1, display: "block" }}>
+                      19+
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 16, color: "#190b00", textTransform: "uppercase", margin: "4px 0 2px 0" }}>
+                      AI Agents Designed
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Task-focused, human-in-the-loop workflows with safety guardrails.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid rgba(123, 122, 119, 0.3)", paddingTop: 16 }}>
+                    <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 44, color: "#EE6C13", lineHeight: 1, display: "block" }}>
+                      ~1 → 2–3
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 16, color: "#190b00", textTransform: "uppercase", margin: "4px 0 2px 0" }}>
+                      Features / Designer / Wk
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Scaled throughput via coded HTML prototypes and AI workflows.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Secondary Domain Callouts */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+                  <div style={{ background: "rgba(25, 11, 0, 0.03)", border: "1px solid #7b7a77", padding: "14px 16px" }}>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.6px", color: "#EE6C13", textTransform: "uppercase", display: "block", marginBottom: 3 }}>
+                      [ PLATFORM WORKFLOWS ]
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0" }}>
+                      Tulah Wellness
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Automated fragmented spreadsheets and manual forms into connected digital workflows.
+                    </p>
+                  </div>
+
+                  <div style={{ background: "rgba(25, 11, 0, 0.03)", border: "1px solid #7b7a77", padding: "14px 16px" }}>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.6px", color: "#EE6C13", textTransform: "uppercase", display: "block", marginBottom: 3 }}>
+                      [ CLIENT APPRECIATION ]
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0" }}>
+                      Stanford Medicine
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Designed operational UI/UX for course planning, accounts, scholarships, and Financial Aid.
+                    </p>
+                  </div>
+
+                  <div style={{ background: "rgba(25, 11, 0, 0.03)", border: "1px solid #7b7a77", padding: "14px 16px" }}>
+                    <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: "0.6px", color: "#EE6C13", textTransform: "uppercase", display: "block", marginBottom: 3 }}>
+                      [ THOUGHT LEADERSHIP ]
+                    </span>
+                    <h4 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0" }}>
+                      TiE Keynote Speaker
+                    </h4>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, color: "#77695d", margin: 0, lineHeight: 1.5 }}>
+                      Speaker at TiE Chandigarh on Human-Centred Design and AI interactions.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1713,83 +1587,155 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
             {/* Mobile Section 2: The Foundation & Dive Deeper */}
             <div
               style={{
-                border: "1px solid #7b7a77",
-                background: "#FFFDFA",
-                borderRadius: 0, // SHARP CORNER
-                overflow: "hidden",
+                marginBottom: 60,
                 display: "flex",
                 flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                marginBottom: 60,
               }}
             >
-              <div style={{ padding: "24px 20px", display: "flex", flexDirection: "column", gap: 14 }}>
-                <span
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 700,
-                    fontSize: 11,
-                    letterSpacing: "0.8px",
-                    color: "#EE6C13",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  [ S-002 ] THE FOUNDATION
-                </span>
-                <h2
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontWeight: 900,
-                    fontSize: 26,
-                    lineHeight: 1.1,
-                    color: "#190b00",
-                    margin: 0,
-                    textTransform: "uppercase",
-                  }}
-                >
-                  LET'S DIVE EVEN DEEPER
-                </h2>
+              {/* Mobile Header Pavilion Box */}
+              <div
+                style={{
+                  backgroundColor: "#FFFDFA",
+                  border: "1px solid #7b7a77",
+                  padding: "24px 20px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 700,
+                      fontSize: 11,
+                      letterSpacing: "0.8px",
+                      color: "#EE6C13",
+                      textTransform: "uppercase",
+                      display: "block",
+                      marginBottom: 6,
+                    }}
+                  >
+                    [ S-002 ] FROM SYSTEMS TO AI-NATIVE PRODUCTS
+                  </span>
+                  <h2
+                    style={{
+                      fontFamily: "Outfit, sans-serif",
+                      fontWeight: 900,
+                      fontSize: 38,
+                      lineHeight: 1,
+                      letterSpacing: "-0.02em",
+                      color: "#190b00",
+                      textTransform: "uppercase",
+                      margin: 0,
+                    }}
+                  >
+                    FOUNDATION
+                  </h2>
+                </div>
+                <BrandVector theme="dark" width={56} height={38} />
+              </div>
+
+              {/* Mobile Content Stage */}
+              <div
+                style={{
+                  backgroundColor: "#FFFDFA",
+                  border: "1px solid #7b7a77",
+                  borderTop: "none",
+                  padding: "24px 20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 18,
+                }}
+              >
+                {/* Pullquote */}
                 <p
                   style={{
                     fontFamily: "Outfit, sans-serif",
-                    fontSize: 14.5,
-                    lineHeight: 1.6,
-                    color: "#4A4238",
+                    fontStyle: "italic",
+                    fontSize: 15,
+                    lineHeight: 1.5,
+                    color: "#77695d",
+                    borderBottom: "1px solid #7b7a77",
+                    paddingBottom: 16,
                     margin: 0,
                   }}
                 >
-                  My journey began with a degree in Computer Science Engineering, where I developed an appreciation for system architecture, algorithmic constraints, and data flows. Starting my career at <b style={{ color: "#190b00" }}>Tata Consultancy Services</b> supporting Apple's enterprise production systems, I built a strong foundation in large-scale operations and mission-critical software.
+                  “My journey began in <strong style={{ color: "#190b00", fontWeight: 800 }}>Computer Science Engineering</strong>, where I developed a deep appreciation for system architecture, constraints, and data flows. That technical rigour shapes every AI interaction pattern, agent approval flow, and enterprise workflow I design today.”
                 </p>
-                <p
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 14.5,
-                    lineHeight: 1.6,
-                    color: "#4A4238",
-                    margin: 0,
-                  }}
-                >
-                  That foundation naturally led to product design across healthcare, fintech, ed-tech, and consumer platforms. At <b style={{ color: "#190b00" }}>Joonify</b>, I designed the Talent Discovery Assessment journey helping deliver personalized learning insights trusted by 750+ parents. At <b style={{ color: "#190b00" }}>Vertisystem</b>, I delivered scholarship and course-planning operational applications for <b style={{ color: "#190b00" }}>Stanford Medicine</b>, receiving formal recognition from Stanford leadership.
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    fontSize: 14.5,
-                    lineHeight: 1.6,
-                    color: "#4A4238",
-                    margin: 0,
-                  }}
-                >
-                  Today, as Product Lead at <b style={{ color: "#190b00" }}>Pansophic Technologies</b>, I lead AI product strategy and experience design for <b style={{ color: "#190b00" }}>Allyra.ai</b> (demonstrated to 50+ enterprise orgs, actively used by 10+), design operational systems for <b style={{ color: "#190b00" }}>tulah</b> (reducing administrative workflow overhead by ~60–70%), and contribute to early-stage platforms including <b style={{ color: "#190b00" }}>Raxaa.ai</b> and <b style={{ color: "#190b00" }}>EOMs.ai</b>.
-                </p>
+
+                {/* 3 Chapters */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#EE6C13" }}>
+                        01
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12, fontWeight: 700, color: "#77695d" }}>
+                        2015 – 2020
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0", textTransform: "uppercase" }}>
+                      SYSTEMS &amp; ENTERPRISE ROOTS
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, fontWeight: 700, color: "#EE6C13", margin: "0 0 6px 0", textTransform: "uppercase" }}>
+                      B.E. COMPUTER SCIENCE · TCS · APPLE PRODUCTION SYSTEMS
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "#4A4238", margin: 0 }}>
+                      I studied Computer Science Engineering, then supported Apple's enterprise production systems at Tata Consultancy Services. It taught me how large-scale operations and incident management work when reliability matters, and why good products start with how systems behave.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid rgba(123, 122, 119, 0.3)", paddingTop: 14 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#EE6C13" }}>
+                        02
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12, fontWeight: 700, color: "#77695d" }}>
+                        2020 – 2024
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0", textTransform: "uppercase" }}>
+                      COMPLEX WORKFLOWS &amp; SCALE
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, fontWeight: 700, color: "#EE6C13", margin: "0 0 6px 0", textTransform: "uppercase" }}>
+                      5EXCEPTIONS · JOONIFY · STANFORD MEDICINE
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "#4A4238", margin: 0 }}>
+                      I moved into product design across healthcare, fintech, education, and IoT. I owned design for Stanford Medicine's Financial Aid app, earning written appreciation from its leadership, and created Joonify's Talent Discovery Assessment journey for a platform serving 750+ parents.
+                    </p>
+                  </div>
+
+                  <div style={{ borderTop: "1px solid rgba(123, 122, 119, 0.3)", paddingTop: 14 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
+                      <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 24, color: "#EE6C13" }}>
+                        03
+                      </span>
+                      <span style={{ fontFamily: "DM Mono, monospace", fontSize: 12, fontWeight: 700, color: "#77695d" }}>
+                        2024 – PRESENT
+                      </span>
+                    </div>
+                    <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: 18, color: "#190b00", margin: "0 0 4px 0", textTransform: "uppercase" }}>
+                      AI-NATIVE PRODUCT LEADERSHIP
+                    </h3>
+                    <p style={{ fontFamily: "Inter, sans-serif", fontSize: 11, fontWeight: 700, color: "#EE6C13", margin: "0 0 6px 0", textTransform: "uppercase" }}>
+                      PANSOPHIC TECHNOLOGIES · VROZART DACKSON · ALLYRA.AI
+                    </p>
+                    <p style={{ fontFamily: "Outfit, sans-serif", fontSize: 14.5, lineHeight: 1.55, color: "#4A4238", margin: 0 }}>
+                      I co-authored the Vibe UX Framework for AI-native experiences, then stepped into product leadership. Today I lead direction and roadmap for Allyra.ai with a team of 3 designers and 2 business analysts, designing human-in-the-loop workflows for 19+ AI agents, now reaching 15+ organisations.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               {/* Client Ticker */}
               <div
                 style={{
                   overflow: "hidden",
-                  padding: "14px 0",
-                  borderTop: "1px solid #7b7a77",
+                  padding: "12px 0",
+                  border: "1px solid #7b7a77",
+                  borderTop: "none",
                   background: "#FFFDFA",
                 }}
               >
@@ -1803,7 +1749,7 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                         style={{
                           fontFamily: "Outfit, sans-serif",
                           fontWeight: 800,
-                          fontSize: 15,
+                          fontSize: 14,
                           color: "#77695d",
                           textTransform: "uppercase",
                           display: "inline-flex",
@@ -1822,337 +1768,102 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
             {/* Mobile Scroll Trigger */}
             <div id="about-dark-trigger" style={{ height: 1, width: "100%", opacity: 0 }} />
 
-            {/* Mobile Section 3: My Focus (Transitions to Dark) */}
-            <div
-              style={{
-                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-                color: isDark ? "#FFFDFA" : "#190b00",
-                border: "1px solid #7b7a77",
-                borderRadius: 0, // SHARP CORNER
-                padding: "24px 20px",
-                marginBottom: 60,
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                transition: "background-color 0.8s ease, color 0.8s ease",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 11,
-                  letterSpacing: "0.8px",
-                  color: "#EE6C13",
-                  textTransform: "uppercase",
-                  display: "block",
-                  marginBottom: 6,
-                }}
-              >
-                [ S-003 ] CORE COMPETENCIES
-              </span>
-              <h2
-                style={{
-                  fontFamily: "Outfit, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 26,
-                  color: isDark ? "#FFFDFA" : "#190b00",
-                  textTransform: "uppercase",
-                  margin: "0 0 20px 0",
-                  transition: "color 0.8s ease",
-                }}
-              >
-                MY FOCUS
-              </h2>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                {FOCUS_ITEMS.map((item, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: isDark ? "#150C05" : "#FFFDFA",
-                      border: "1px solid #7b7a77",
-                      borderRadius: 0, // SHARP CORNER
-                      padding: "18px 16px",
-                      transition: "background-color 0.8s ease",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginBottom: 8,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontWeight: 900,
-                          fontSize: 28,
-                          color: "#EE6C13",
-                        }}
-                      >
-                        {item.num}
-                      </span>
-                      <BrandVector theme={isDark ? "light" : "dark"} width={34} height={24} />
-                    </div>
-                    <h3
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 900,
-                        fontSize: 17,
-                        color: isDark ? "#FFFDFA" : "#190b00",
-                        margin: "0 0 10px 0",
-                        textTransform: "uppercase",
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 12 }}>
-                      {item.skills.map((s, idx) => (
-                        <span key={idx} style={pillStyle}>
-                          {s}
-                        </span>
-                      ))}
-                    </div>
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontSize: 14,
-                        lineHeight: 1.55,
-                        color: isDark ? "#C9C1B7" : "#4A4238",
-                        margin: 0,
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Mobile Section 4: Experience Timeline */}
-            <div
-              style={{
-                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-                color: isDark ? "#FFFDFA" : "#190b00",
-                border: "1px solid #7b7a77",
-                borderRadius: 0, // SHARP CORNER
-                padding: "24px 20px",
-                marginBottom: 60,
-                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                transition: "background-color 0.8s ease, color 0.8s ease",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 11,
-                  letterSpacing: "0.8px",
-                  color: "#EE6C13",
-                  textTransform: "uppercase",
-                  display: "block",
-                  marginBottom: 6,
-                }}
-              >
-                [ S-004 ] CAREER TIMELINE
-              </span>
-              <h2
-                style={{
-                  fontFamily: "Outfit, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 26,
-                  color: isDark ? "#FFFDFA" : "#190b00",
-                  textTransform: "uppercase",
-                  margin: "0 0 20px 0",
-                  transition: "color 0.8s ease",
-                }}
-              >
-                EXPERIENCE
-              </h2>
-
-              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-                {EXPERIENCES.map((exp, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      border: "1px solid #7b7a77",
-                      borderRadius: 0, // SHARP CORNER
-                      padding: "18px",
-                      background: isDark ? "#150C05" : "#FFFDFA",
-                      transition: "background-color 0.8s ease",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontWeight: 700,
-                        fontSize: 11,
-                        color: isDark ? "#998D80" : "#77695d",
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.period}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 900,
-                        fontSize: 20,
-                        color: isDark ? "#FFFDFA" : "#190b00",
-                        margin: "4px 0 2px 0",
-                        transition: "color 0.8s ease",
-                      }}
-                    >
-                      {exp.company}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: "Outfit, sans-serif",
-                        fontWeight: 700,
-                        fontSize: 15,
-                        color: "#EE6C13",
-                        margin: "0 0 8px 0",
-                      }}
-                    >
-                      {exp.role}
-                    </p>
-                    {exp.subnote && (
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontStyle: "italic",
-                          fontSize: 12,
-                          color: isDark ? "#998D80" : "#77695d",
-                          margin: "0 0 10px 0",
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {exp.subnote}
-                      </p>
-                    )}
-                    {exp.points && exp.points.length > 0 ? (
-                      <ul
-                        style={{
-                          margin: "0 0 12px 0",
-                          paddingLeft: 18,
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 8,
-                        }}
-                      >
-                        {exp.points.map((pt, pIdx) => (
-                          <li
-                            key={pIdx}
-                            style={{
-                              fontFamily: "Outfit, sans-serif",
-                              fontSize: 13,
-                              lineHeight: 1.5,
-                              color: isDark ? "#C9C1B7" : "#4A4238",
-                              transition: "color 0.8s ease",
-                            }}
-                          >
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p
-                        style={{
-                          fontFamily: "Outfit, sans-serif",
-                          fontSize: 13.5,
-                          lineHeight: 1.55,
-                          color: isDark ? "#C9C1B7" : "#4A4238",
-                          margin: "0 0 12px 0",
-                          transition: "color 0.8s ease",
-                        }}
-                      >
-                        {exp.summary}
-                      </p>
-                    )}
-                    <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
-                      {exp.tags.map((t, idx) => (
-                        <span
-                          key={idx}
-                          style={{
-                            fontFamily: "Inter, sans-serif",
-                            fontWeight: 700,
-                            fontSize: 9.5,
-                            color: isDark ? "#998D80" : "#77695d",
-                            transition: "color 0.8s ease",
-                          }}
-                        >
-                          [ {t} ]
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Mobile Section 3: Career Timeline & Experience */}
+            <ExperienceTimeline
+              isDark={isDark}
+              contentWidth={contentWidth}
+              scale={scale}
+              isMobile={true}
+            />
 
             {/* Mobile Section 5: Academics & Credentials */}
             <div
               style={{
-                backgroundColor: isDark ? "#190b00" : "#FFFDFA",
-                color: isDark ? "#FFFDFA" : "#190b00",
-                border: "1px solid #7b7a77",
-                borderRadius: 0, // SHARP CORNER
-                padding: "24px 20px",
                 marginBottom: 60,
+                display: "flex",
+                flexDirection: "column",
                 boxShadow: "0 10px 30px rgba(0, 0, 0, 0.05)",
-                transition: "background-color 0.8s ease, color 0.8s ease",
               }}
             >
-              <span
+              {/* Mobile Header Pavilion Box */}
+              <div
                 style={{
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: 700,
-                  fontSize: 11,
-                  letterSpacing: "0.8px",
-                  color: "#EE6C13",
-                  textTransform: "uppercase",
-                  display: "block",
-                  marginBottom: 6,
+                  backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                  border: "1px solid #7b7a77",
+                  padding: "24px 20px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  transition: "background-color 0.8s ease",
                 }}
               >
-                [ S-005 ] ACADEMICS
-              </span>
-              <h3
+                <div>
+                  <span
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontWeight: 700,
+                      fontSize: 11,
+                      letterSpacing: "0.8px",
+                      color: "#EE6C13",
+                      textTransform: "uppercase",
+                      display: "block",
+                      marginBottom: 6,
+                    }}
+                  >
+                    [ S-005 ] ACADEMICS &amp; CREDENTIALS
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "Outfit, sans-serif",
+                      fontWeight: 900,
+                      fontSize: 34,
+                      lineHeight: 1,
+                      letterSpacing: "-0.01em",
+                      color: isDark ? "#FFFDFA" : "#190b00",
+                      textTransform: "uppercase",
+                      margin: 0,
+                      transition: "color 0.8s ease",
+                    }}
+                  >
+                    EDUCATION
+                  </h3>
+                </div>
+                <BrandVector theme={isDark ? "light" : "dark"} width={56} height={38} />
+              </div>
+
+              {/* Mobile Content Stage */}
+              <div
                 style={{
-                  fontFamily: "Outfit, sans-serif",
-                  fontWeight: 900,
-                  fontSize: 22,
-                  color: isDark ? "#FFFDFA" : "#190b00",
-                  textTransform: "uppercase",
-                  margin: "0 0 16px 0",
-                  transition: "color 0.8s ease",
+                  backgroundColor: isDark ? "#190b00" : "#FFFDFA",
+                  border: "1px solid #7b7a77",
+                  borderTop: "none",
+                  padding: "20px 16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 12,
+                  transition: "background-color 0.8s ease",
                 }}
               >
-                EDUCATION &amp; CERTIFICATION
-              </h3>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 {EDUCATION.map((edu, idx) => (
                   <div
                     key={idx}
                     style={{
                       border: "1px solid #7b7a77",
                       borderRadius: 0, // SHARP CORNER
-                      padding: "16px",
+                      padding: "18px 16px",
                       background: isDark ? "#150C05" : "#FFFDFA",
                       transition: "background-color 0.8s ease",
                     }}
                   >
                     <span
                       style={{
-                        fontFamily: "Inter, sans-serif",
-                        fontWeight: 700,
-                        fontSize: 11,
+                        fontFamily: "Outfit, sans-serif",
+                        fontWeight: 900,
+                        fontSize: 32,
+                        lineHeight: 1,
                         color: "#EE6C13",
                         display: "block",
-                        marginBottom: 4,
+                        marginBottom: 6,
                       }}
                     >
                       {edu.year}
@@ -2184,10 +1895,28 @@ export default function AboutPage({ navigateTo, disableScrollReset }: AboutPageP
                 ))}
               </div>
             </div>
+
+            {/* Mobile Section 6: [ S-006 ] Creative Lab */}
+            <CreativeLab
+              isDark={isDark}
+              contentWidth={contentWidth}
+              scale={scale}
+              isMobile={true}
+            />
+
+            {/* Mobile Gravity Skills Section just above footer */}
+            <div style={{ padding: "0 16px", marginTop: "32px", marginBottom: "32px" }}>
+              <GravitySkillsSection
+                isDark={isDark}
+                contentWidth="100%"
+                scale={scale}
+                isMobile={true}
+              />
+            </div>
           </main>
 
           {/* Mobile Finale Footer */}
-          <MobileFinale isDark={isDark} />
+          <MobileFinale isDark={isDark} sectionTag="[ S-007 ]" />
         </div>
       )}
     </div>

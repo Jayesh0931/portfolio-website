@@ -8,7 +8,7 @@ export function MobileJoonifyOutcome() {
       {/* 1. Top Supertag */}
       <p className="mobile-story-validation-tag">
         <span>[ </span>
-        <span className="mobile-story-validation-tag-orange text-[#335FE6]">FROM ASSESSMENT TO ACTIONABLE GROWTH</span>
+        <span className="mobile-story-validation-tag-orange">FROM ASSESSMENT TO ACTIONABLE GROWTH</span>
         <span> ]</span>
       </p>
 
@@ -31,7 +31,7 @@ export function MobileJoonifyOutcome() {
         <div className="grid grid-cols-2 border border-[#7b7a77] bg-[#fffdfa] mb-5">
           <div className="p-3.5 flex flex-col justify-between">
             <div>
-              <span className="font-outfit font-black text-[34px] text-[#335FE6] leading-none block">
+              <span className="font-outfit font-black text-[34px] text-[#EE6C13] leading-none block">
                 750+
               </span>
               <span className="font-outfit font-bold text-[13px] text-[#190b00] leading-snug block mt-2">
@@ -45,7 +45,7 @@ export function MobileJoonifyOutcome() {
 
           <div className="border-l border-[#7b7a77] p-3.5 flex flex-col justify-between">
             <div>
-              <span className="font-outfit font-black text-[34px] text-[#335FE6] leading-none block">
+              <span className="font-outfit font-black text-[34px] text-[#EE6C13] leading-none block">
                 30 Min
               </span>
               <span className="font-outfit font-bold text-[13px] text-[#190b00] leading-snug block mt-2">
@@ -60,16 +60,16 @@ export function MobileJoonifyOutcome() {
 
         {/* Highlight Bar: The Connected Journey */}
         <div className="border border-[#7b7a77] bg-[#fffdfa] p-3.5 mb-5">
-          <h3 className="font-outfit font-bold text-[20px] text-[#335FE6] m-0">
+          <h3 className="font-outfit font-bold text-[20px] text-[#EE6C13] m-0">
             Connected Learning Journey
           </h3>
           <p className="font-outfit font-medium text-[14px] leading-snug text-[#190b00] mt-1.5 m-0">
-            Understand → Discover → <span className="text-[#335FE6] font-bold">Assess</span> → Recommend → Schedule
+            Understand → Discover → <span className="text-[#EE6C13] font-bold">Assess</span> → Recommend → Schedule
           </p>
         </div>
 
         {/* Quote / Takeaway Card */}
-        <div className="bg-[#f2ede7] border-l-4 border-[#335FE6] p-4 flex flex-col justify-between gap-3">
+        <div className="bg-[#f2ede7] border-l-4 border-[#EE6C13] p-4 flex flex-col justify-between gap-3">
           <p className="font-outfit italic text-[13.5px] leading-relaxed text-[#190b00] m-0">
             Personalization becomes meaningful when parents can nurture a child&apos;s unique strengths, rather than forcing them into generic academic molds.
           </p>

@@ -7,12 +7,12 @@ export function MobileJoonifyChallenge() {
 
   return (
     <section id="mobile-joonify-challenge" className="mobile-story-challenge-section">
-      {/* 1. Hero Composite Showcase Frame with Soft Mint & Blue Glow */}
+      {/* 1. Hero Composite Showcase Frame with Warm Peach & Orange Glow */}
       <div className="mobile-story-challenge-img-container">
         <div
           className="mobile-story-challenge-glow"
           style={{
-            background: "linear-gradient(110deg, #73F9C9 0%, #335FE6 100%)",
+            background: "linear-gradient(110deg, #FFA05C 0%, #EE6C13 100%)",
             filter: "blur(60px)",
             opacity: 0.85,
           }}
@@ -31,7 +31,7 @@ export function MobileJoonifyChallenge() {
           }}
           aria-label="View Joonify platform overview in fullscreen"
           style={{
-            boxShadow: "-20px 0 45px rgba(115, 249, 201, 0.35), 20px 0 45px rgba(51, 95, 230, 0.35)",
+            boxShadow: "-20px 0 45px rgba(255, 160, 92, 0.35), 20px 0 45px rgba(238, 108, 19, 0.35)",
             backgroundColor: "#1F2231",
           }}
         >
@@ -70,8 +70,9 @@ export function MobileJoonifyChallenge() {
       <MobileImageLightbox
         isOpen={isLightboxOpen}
         onClose={() => setIsLightboxOpen(false)}
-        imageSrc={imgJoonifyBanner}
-        imageAlt="Joonify Platform Overview"
+        src={imgJoonifyBanner}
+        alt="Joonify Platform Overview"
+        type="image"
       />
 
       {/* 2. Section Header: THE CHALLENGE + Divider */}
@@ -92,7 +93,7 @@ export function MobileJoonifyChallenge() {
         </p>
 
         <p className="mobile-story-challenge-p">
-          Joonify aimed to help parents understand these differences through an intelligent talent discovery assessment and connect them with relevant, personalized learning resources.
+          Joonify aimed to help parents understand these differences through an intelligent talent discovery assessment and connect them with relevant, personalised learning resources.
         </p>
 
         <p className="mobile-story-challenge-callout font-outfit italic font-bold text-[#FFFDFA]">

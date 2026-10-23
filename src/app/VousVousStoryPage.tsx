@@ -441,33 +441,48 @@ export default function VousVousStoryPage({
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pr-[30px] w-[174px] relative shrink-0 -ml-[1px]">
               <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">
-                [ 2025 ]
+                [ 2026 ]
               </p>
             </div>
           </div>
 
           {/* ── Overview Box Metadata & Branding ── */}
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid left-[80px] top-[249px] w-[1280px] h-[488px]">
-            {/* Left Column: ROLE & SCOPE */}
-            <div className="absolute left-[30px] bottom-[30px] w-[240px] flex flex-col gap-[28px]">
-              <div className="flex flex-col gap-[4px] leading-[normal] w-full">
-                <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full mb-0">
-                  ROLE
+            {/* Left Column: Context Metadata & Scope */}
+            <div className="absolute left-[30px] bottom-[30px] w-[260px] flex flex-col gap-[14px]">
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  COMPANY
                 </p>
-                <p className="font-outfit font-normal text-[#190b00] text-[18px] w-full mb-0">
-                  Product Designer
+                <p className="font-outfit font-normal text-[#190b00] text-[16px] w-full mb-0">
+                  Vrozart Dackson
                 </p>
               </div>
-              <div className="flex flex-col gap-[4px] w-full">
-                <p className="font-inter font-bold text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full mb-1">
-                  SCOPE
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  ROLE
                 </p>
-                <div className="font-outfit font-normal text-[#190b00] text-[17px] leading-[1.38]">
-                  <p className="mb-0">/ Discovery Experience</p>
-                  <p className="mb-0">/ AI Assisted Personalization</p>
+                <p className="font-outfit font-normal text-[#190b00] text-[17px] w-full mb-0">
+                  UXD Head
+                </p>
+              </div>
+              <div className="flex flex-col gap-[2px] leading-[normal] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-0">
+                  TIMELINE
+                </p>
+                <p className="font-outfit font-normal text-[#190b00] text-[15px] w-full mb-0">
+                  2026
+                </p>
+              </div>
+              <div className="flex flex-col gap-[2px] w-full">
+                <p className="font-inter font-bold text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full mb-1">
+                  FOCUS
+                </p>
+                <div className="font-outfit font-normal text-[#190b00] text-[15px] leading-[1.3]">
+                  <p className="mb-0">/ Gesture-First Discovery</p>
+                  <p className="mb-0">/ AI Assisted Personalisation</p>
                   <p className="mb-0">/ Conversational Commerce</p>
-                  <p className="mb-0">/ Interaction Design</p>
-                  <p className="mb-0">/ Fashion Marketplace</p>
+                  <p className="mb-0">/ Multimodal Style Synthesis</p>
                 </div>
               </div>
             </div>
@@ -698,7 +713,7 @@ export default function VousVousStoryPage({
             <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] border-solid content-stretch flex flex-col p-[40px] relative shrink-0 w-full -mt-[1px]">
               {/* Intro Narrative */}
               <p className="font-outfit font-normal text-[#77695d] text-[24px] leading-[1.4] mb-[45px]">
-                VousVous moved beyond a conventional fashion-commerce experience, creating a live mobile product built around discovery, personalization, and AI-assisted creation.
+                VousVous moved beyond a conventional fashion-commerce experience, creating a live mobile product built around discovery, personalisation, and AI-assisted creation.
               </p>
 
               {/* Two Metrics Columns */}

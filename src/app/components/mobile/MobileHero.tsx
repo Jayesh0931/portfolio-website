@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import {
   AllyraHeroCard,
   CampaignOSHeroCard,
@@ -6,6 +8,7 @@ import {
   JoonifyHeroCard,
   SharedMarqueeUnit
 } from "@/components/hero/SharedHeroComponents";
+import KineticText from "@/components/KineticText";
 
 interface MobileHeroProps {
   onNavigatePath: (path: string) => void;
@@ -19,7 +22,7 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
       <div className="mobile-hero-marquee" aria-hidden="true">
         <div className="mobile-hero-marquee-scaler">
           <div className="mobile-hero-marquee-track">
-            <SharedMarqueeUnit />
+            <SharedMarqueeUnit animateEntrance />
             <SharedMarqueeUnit />
           </div>
         </div>
@@ -33,14 +36,12 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
 
       {/* 3. Hero Main Headline */}
       <h1 className="mobile-hero-title">
-        DESIGNING HOW AI<br />
-        BEHAVES IN PRODUCTS.
+        <KineticText text="DESIGNING HOW AI BEHAVES IN PRODUCTS." />
       </h1>
 
       {/* 4. Hero Subtitle */}
       <p className="mobile-hero-desc">
-        I shape the moments where people<br />
-        decide whether to trust intelligent systems.
+        <KineticText delay={0.15} text="I shape the moments where people decide whether to trust intelligent systems." />
       </p>
 
       {/* 5. Capability Pills (2 Rows, Warm Taupe) */}
@@ -58,28 +59,51 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
       {/* 6. Exact Web Bento Cards Stacked for Mobile */}
       <div style={{ display: "flex", flexDirection: "column", gap: "36px", padding: "0 20px" }}>
         {/* Card 1: allyra.ai */}
-        <AllyraHeroCard 
-          isMobile 
-          onClick={() => onNavigatePath("/allyra-story")} 
-          style={{ width: "100%", height: 280 }} 
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
+        >
+          <AllyraHeroCard 
+            isMobile 
+            onClick={() => onNavigatePath("/allyra-story")} 
+            style={{ width: "100%", height: 280 }} 
+          />
+        </motion.div>
 
         {/* Card 2: CampaignOS */}
-        <CampaignOSHeroCard 
-          isMobile 
-          onClick={() => onNavigatePath("/campaign-os-story")} 
-          style={{ width: "100%", height: 195 }} 
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1], delay: 0.42 }}
+        >
+          <CampaignOSHeroCard 
+            isMobile 
+            onClick={() => onNavigatePath("/campaign-os-story")} 
+            style={{ width: "100%", height: 195 }} 
+          />
+        </motion.div>
 
         {/* Card 3: tulah */}
-        <TulahHeroCard 
-          isMobile 
-          onClick={() => onNavigatePath("/tulah-story")} 
-          style={{ width: "100%", height: 195 }} 
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1], delay: 0.54 }}
+        >
+          <TulahHeroCard 
+            isMobile 
+            onClick={() => onNavigatePath("/tulah-story")} 
+            style={{ width: "100%", height: 195 }} 
+          />
+        </motion.div>
 
         {/* 2-Column Split: VousVous + Joonify */}
-        <div style={{ display: "flex", gap: "12px", width: "100%" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1], delay: 0.64 }}
+          style={{ display: "flex", gap: "12px", width: "100%" }}
+        >
           <VousVousHeroCard 
             isMobile 
             onClick={() => onNavigatePath("/vousvous-story")} 
@@ -90,7 +114,7 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
             onClick={() => onScrollToSection("mobile-stories")} 
             style={{ flex: 1, height: 220 }} 
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

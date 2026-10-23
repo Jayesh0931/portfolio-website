@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
+import { useLenis } from "lenis/react";
 import Desktop from "@/imports/Desktop6/index";
 import AllyraStoryPage from "./AllyraStoryPage";
 import TulahStoryPage from "./TulahStoryPage";
@@ -8,6 +9,13 @@ import JoonifyStoryPage from "./JoonifyStoryPage";
 import AboutPage from "./AboutPage";
 import MobileHomepage from "./components/mobile/MobileHomepage";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import SoundToggle from "@/components/SoundToggle";
+import FilmGrain from "@/components/FilmGrain";
+import IceFreezeOverlay, { triggerIceFreeze } from "@/components/IceFreezeOverlay";
+import TargetCursor from "@/components/TargetCursor";
+import GradualBlur from "@/components/GradualBlur";
+import { playClickSound, playHoverTick, playTransitionSound } from "@/utils/soundEffects";
+import { motion } from "motion/react";
 import { usePageProtection } from "@/hooks/usePageProtection";
 import { useDynamicFavicon } from "@/utils/useDynamicFavicon";
 import { useSEOManager } from "@/hooks/useSEOManager";
@@ -50,14 +58,19 @@ function useLayout() {
 
 const marqueeStyles = `
   @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
   .marquee-track {
     display: flex;
     align-items: center;
     width: max-content;
     animation: marquee-scroll 28s linear infinite;
+    will-change: transform;
   }
   .nav-pill {
     position: absolute;
@@ -138,8 +151,28 @@ const marqueeStyles = `
   }
   .sticky-header-capsule:hover {
     transform: translateY(-1px);
+    background-color: #190b00 !important;
     border-color: #190b00 !important;
-    box-shadow: 0 6px 20px rgba(25, 11, 0, 0.12) !important;
+    box-shadow: 0 6px 20px rgba(25, 11, 0, 0.25) !important;
+  }
+  .sticky-header-capsule:hover span {
+    color: #FFFDFA !important;
+  }
+  .sticky-header-capsule:hover svg path {
+    fill: #FFFDFA !important;
+    stroke: #FFFDFA !important;
+  }
+  .sticky-header-jayesh {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .sticky-header-jayesh:hover {
+    transform: translateY(-1px);
+    background-color: #EE6C13 !important;
+    border-color: #EE6C13 !important;
+    box-shadow: 0 6px 20px rgba(238, 108, 19, 0.32) !important;
+  }
+  .sticky-header-jayesh:hover span {
+    color: #FFFDFA !important;
   }
 `;
 
@@ -180,7 +213,9 @@ function CardHoverOverlays() {
           key={i}
           className={`card-overlay card-overlay-${theme}`}
           style={{ top, left, width, height }}
+          onMouseEnter={() => playHoverTick()}
           onClick={() => {
+            playClickSound();
             if (path) {
               window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: path }));
             } else {
@@ -507,23 +542,151 @@ function CraftExpandOverlay() {
   );
 }
 
-function MarqueeUnit() {
+interface KineticCharWordProps {
+  word: string;
+  baseDelay: number;
+  charStagger?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function KineticCharWord({
+  word,
+  baseDelay,
+  charStagger = 0.038,
+  className = "",
+  style = {},
+}: KineticCharWordProps) {
+  return (
+    <span className={`inline-flex ${className}`} style={{ ...style, overflow: "visible" }}>
+      {word.split("").map((char, index) => {
+        const curvedDelay = baseDelay + Math.pow(index, 0.9) * charStagger;
+        return (
+          <span
+            key={index}
+            className="inline-block overflow-hidden"
+            style={{
+              verticalAlign: "bottom",
+              lineHeight: "1.05",
+              paddingBottom: "8px",
+              marginBottom: "-8px",
+            }}
+          >
+            <motion.span
+              className="inline-block"
+              style={{ willChange: "transform" }}
+              initial={{ y: "115%" }}
+              animate={{ y: "0%" }}
+              transition={{
+                duration: 0.72,
+                ease: [0.16, 1, 0.3, 1],
+                delay: curvedDelay,
+              }}
+            >
+              {char}
+            </motion.span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+function MarqueeUnit({ animateEntrance = false }: { animateEntrance?: boolean }) {
+  if (!animateEntrance) {
+    return (
+      <div className="flex shrink-0 gap-[50px] items-center pr-[50px]">
+        <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px] text-[#190b00]"
+          style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}>
+          JAYESH
+        </p>
+        <div className="content-stretch flex items-center relative shrink-0">
+          <BrandVector theme="dark" width={150} height={100} />
+        </div>
+        <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900, color: "#FFFDFA", WebkitTextStroke: "1.5px #190b00", paintOrder: "stroke fill" }}>
+          DESIGNING AI BEHAVIOUR
+        </p>
+        <div className="content-stretch flex items-center relative shrink-0">
+          <BrandVector theme="dark" width={150} height={100} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex shrink-0 gap-[50px] items-center pr-[50px]">
-      <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px] text-[#190b00]"
-        style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}>
-        JAYESH
-      </p>
-      <div className="content-stretch flex items-center relative shrink-0">
+      {/* 1. JAYESH - Character-by-character cascade */}
+      <KineticCharWord
+        word="JAYESH"
+        baseDelay={0.06}
+        charStagger={0.045}
+        className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px] text-[#190b00]"
+        style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}
+      />
+
+      {/* 2. BrandVector - Crisp spring entry */}
+      <motion.div
+        className="content-stretch flex items-center relative shrink-0"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
+      >
         <BrandVector theme="dark" width={150} height={100} />
+      </motion.div>
+
+      {/* 3. DESIGNING AI BEHAVIOR - Cohesive character cascade */}
+      <div className="flex items-center gap-[24px]">
+        <KineticCharWord
+          word="DESIGNING"
+          baseDelay={0.36}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
+        <KineticCharWord
+          word="AI"
+          baseDelay={0.52}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
+        <KineticCharWord
+          word="BEHAVIOUR"
+          baseDelay={0.62}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
       </div>
-      <p className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
-        style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900, color: "#FFFDFA", WebkitTextStroke: "1.5px #190b00", paintOrder: "stroke fill" }}>
-        DESIGNING AI BEHAVIOR
-      </p>
-      <div className="content-stretch flex items-center relative shrink-0">
+
+      {/* 4. Second BrandVector */}
+      <motion.div
+        className="content-stretch flex items-center relative shrink-0"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
+      >
         <BrandVector theme="dark" width={150} height={100} />
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -536,8 +699,14 @@ function MarqueeFrame5() {
       overflow: "hidden", background: "#FFFDFA",
       display: "flex", alignItems: "center",
     }}>
-      <div className="marquee-track" style={{ pointerEvents: "none" }}>
-        <MarqueeUnit /><MarqueeUnit />
+      <div
+        className="marquee-track"
+        style={{
+          pointerEvents: "none",
+        }}
+      >
+        <MarqueeUnit animateEntrance />
+        <MarqueeUnit />
       </div>
     </div>
   );
@@ -587,10 +756,10 @@ function MobileView() {
       <div style={{ overflow: "hidden", background: "#FFFDFA", borderBottom: "1px solid #7b7a77", padding: "10px 0", display: "flex", alignItems: "center" }}>
         <div className="marquee-track" style={{ display: "flex", gap: "32px", animationDuration: "16s" }}>
           <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", whiteSpace: "nowrap", letterSpacing: "1px", textTransform: "uppercase" }}>
-            DESIGNING AI BEHAVIOR • DESIGNING AI BEHAVIOR •
+            DESIGNING AI BEHAVIOUR • DESIGNING AI BEHAVIOR •
           </span>
           <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", whiteSpace: "nowrap", letterSpacing: "1px", textTransform: "uppercase" }}>
-            DESIGNING AI BEHAVIOR • DESIGNING AI BEHAVIOR •
+            DESIGNING AI BEHAVIOUR • DESIGNING AI BEHAVIOR •
           </span>
         </div>
       </div>
@@ -718,7 +887,7 @@ function MobileView() {
           <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "9px", color: "#FFFDFA" }}>[ STORY 02 ]</span>
           <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "20px", color: "#FFFDFA", margin: 0 }}>Campaign OS</h3>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "12px", color: "#FFFDFA", lineHeight: "1.3", margin: 0 }}>
-            Reimagining campaign planning, execution and optimization through AI-native workflows.
+            Reimagining campaign planning, execution and optimisation through AI-native workflows.
           </p>
         </div>
 
@@ -801,11 +970,11 @@ function MobileView() {
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
               <span>[ STORY 02 ]</span>
-              <span>[ 2026 ]</span>
+              <span>[ 2025 ]</span>
             </div>
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>Campaign OS</h3>
             <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
-              AI-native operating system that brings campaign planning, execution, monitoring and optimization into one connected workflow.
+              AI-native operating system that brings campaign planning, execution, monitoring and optimisation into one connected workflow.
             </p>
             <div style={{ borderTop: "1px dashed #7b7a77", paddingTop: "12px" }}>
               <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "12px", color: "#77695d", textTransform: "uppercase" }}>Key Insight</span>
@@ -875,11 +1044,11 @@ function MobileView() {
           <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", color: "#77695d" }}>
               <span>[ STORY 04 ]</span>
-              <span>[ 2025 ]</span>
+              <span>[ 2026 ]</span>
             </div>
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "28px", color: "#190b00", margin: 0 }}>VousVous</h3>
             <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "16px", color: "#190b00", fontWeight: 500, lineHeight: "1.4", margin: 0 }}>
-              AI-powered fashion platform for discovering, creating, and personalizing unique styles.
+              AI-powered fashion platform for discovering, creating, and personalising unique styles.
             </p>
             <div style={{ borderTop: "1px dashed #7b7a77", paddingTop: "12px" }}>
               <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: "12px", color: "#77695d", textTransform: "uppercase" }}>Key Insight</span>
@@ -953,8 +1122,8 @@ function MobileView() {
       <div style={{ padding: "24px 20px", display: "flex", flexDirection: "column", gap: "24px" }}>
         {/* Focus 1 */}
         <div style={{ borderBottom: "1px solid #e5ddd4", paddingBottom: "20px" }}>
-          <div style={{ display: "flex", gap: "12px", alignItems: "baseline", marginBottom: "8px" }}>
-            <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 500, fontSize: "14px", color: "#77695d" }}>01</span>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "8px" }}>
+            <img src="/gifs/focus-product-design.gif" alt="Product Design" style={{ width: "32px", height: "32px", objectFit: "contain", flexShrink: 0 }} />
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "22px", color: "#190b00", margin: 0, textTransform: "uppercase" }}>PRODUCT DESIGN</h3>
           </div>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "15px", color: "#77695d", lineHeight: "1.6", margin: 0 }}>
@@ -964,19 +1133,19 @@ function MobileView() {
 
         {/* Focus 2 */}
         <div style={{ borderBottom: "1px solid #e5ddd4", paddingBottom: "20px" }}>
-          <div style={{ display: "flex", gap: "12px", alignItems: "baseline", marginBottom: "8px" }}>
-            <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 500, fontSize: "14px", color: "#77695d" }}>02</span>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "8px" }}>
+            <img src="/gifs/focus-human-ai.gif" alt="Human–AI Interaction" style={{ width: "32px", height: "32px", objectFit: "contain", flexShrink: 0 }} />
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "22px", color: "#190b00", margin: 0, textTransform: "uppercase" }}>HUMAN–AI INTERACTION</h3>
           </div>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "15px", color: "#77695d", lineHeight: "1.6", margin: 0 }}>
-            Agentic UX • AI Workflows • Conversational Experiences • AI Behavior Design • Enterprise AI Systems
+            Agentic UX • AI Workflows • Conversational Experiences • AI Behaviour Design • Enterprise AI Systems
           </p>
         </div>
 
         {/* Focus 3 */}
         <div>
-          <div style={{ display: "flex", gap: "12px", alignItems: "baseline", marginBottom: "8px" }}>
-            <span style={{ fontFamily: "Outfit, sans-serif", fontWeight: 500, fontSize: "14px", color: "#77695d" }}>03</span>
+          <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "8px" }}>
+            <img src="/gifs/focus-systems-craft.gif" alt="Systems & Craft" style={{ width: "32px", height: "32px", objectFit: "contain", flexShrink: 0 }} />
             <h3 style={{ fontFamily: "Outfit, sans-serif", fontWeight: 900, fontSize: "22px", color: "#190b00", margin: 0, textTransform: "uppercase" }}>SYSTEMS & CRAFT</h3>
           </div>
           <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "15px", color: "#77695d", lineHeight: "1.6", margin: 0 }}>
@@ -1085,9 +1254,10 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
     display: "flex",
     alignItems: "center",
     gap: 8,
+    transition: "color 0.25s ease",
   };
 
-  return (
+    return (
     <div style={{
       position: "fixed",
       top: `${(25 + 8) * scale}px`,
@@ -1100,66 +1270,103 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
       zIndex: 9999,
     }}>
       {/* Jayesh Soni - scrolls to top */}
-      <div style={{ position: "absolute", left: 90, top: 0 }}>
-        <div className="sticky-header-capsule" style={capsuleStyle(false)} onClick={() => scrollToY(0)}>
-          <span style={textStyle}>Jayesh Soni</span>
-        </div>
-      </div>
-
-      {/* Stories - scrolls to 2077 */}
-      <div style={{ position: "absolute", left: 1120, top: 0 }}>
-        <div className="sticky-header-capsule" style={capsuleStyle(true)} onClick={() => scrollToY(2077)}>
-          <span style={textStyle}>
-            Stories
-            <svg 
-              width="11" 
-              height="11" 
-              viewBox="0 0 11 11.3137" 
-              fill="none"
-              style={{
-                transform: storiesPassed ? "rotate(180deg)" : "rotate(0deg)",
-                transition: "transform 0.3s ease",
-              }}
-            >
-              <path d={svgPaths.p20be5a00} fill="#77695D" />
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      {/* About - navigates to /about */}
-      <div style={{ position: "absolute", left: 1238, top: 0 }}>
+      <motion.div
+        style={{ position: "absolute", left: 90, top: 0, pointerEvents: "auto" }}
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+      >
         <div
-          className="sticky-header-capsule"
-          style={capsuleStyle(true)}
-          onClick={() => {
-            if (onAboutClick) {
-              onAboutClick();
-            } else {
-              window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/about" }));
-            }
+          className="sticky-header-jayesh"
+          style={capsuleStyle(false)}
+          onMouseEnter={() => playHoverTick()}
+          onClick={(e) => {
+            playClickSound();
+            triggerIceFreeze({ x: e.clientX, y: e.clientY });
           }}
         >
-          <span style={textStyle}>
-            About
-            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-              <path d={svgPaths.p18019200} fill="#77695D" />
-            </svg>
-          </span>
+          <span style={textStyle}>Jayesh Soni</span>
         </div>
+      </motion.div>
+
+      {/* Right Nav Pills: Stories & About */}
+      <div style={{
+        position: "absolute",
+        right: 90,
+        top: 0,
+        display: "flex",
+        alignItems: "center",
+        gap: 16,
+      }}>
+        {/* Stories - scrolls to 2077 */}
+        <motion.div
+          style={{ pointerEvents: "auto" }}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
+        >
+          <div
+            className="sticky-header-capsule"
+            style={capsuleStyle(true)}
+            onMouseEnter={() => playHoverTick()}
+            onClick={() => {
+              playClickSound();
+              scrollToY(2077);
+            }}
+          >
+            <span style={textStyle}>
+              Stories
+              <svg 
+                width="11" 
+                height="11" 
+                viewBox="0 0 11 11.3137" 
+                fill="none"
+                style={{
+                  transform: storiesPassed ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.3s ease",
+                }}
+              >
+                <path d={svgPaths.p20be5a00} fill="#77695D" style={{ transition: "fill 0.25s ease" }} />
+              </svg>
+            </span>
+          </div>
+        </motion.div>
+
+        {/* About - navigates to /about */}
+        <motion.div
+          style={{ pointerEvents: "auto" }}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.32 }}
+        >
+          <div
+            className="sticky-header-capsule"
+            style={capsuleStyle(true)}
+            onMouseEnter={() => playHoverTick()}
+            onClick={() => {
+              playClickSound();
+              if (onAboutClick) {
+                onAboutClick();
+              } else {
+                window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/about" }));
+              }
+            }}
+          >
+            <span style={textStyle}>
+              About
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d={svgPaths.p18019200} fill="#77695D" style={{ transition: "fill 0.25s ease" }} />
+              </svg>
+            </span>
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 }
 
-type AboutTransitionPhase =
-  | "idle"
-  | "entering-start"
-  | "entering-active"
-  | "exiting-start"
-  | "exiting-active";
-
 export default function App() {
+  const lenis = useLenis();
   useDynamicFavicon();
   useAutoScroll();
   const isBlurred = usePageProtection();
@@ -1168,110 +1375,36 @@ export default function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
-  
-  const [aboutTransitionPhase, setAboutTransitionPhase] = useState<AboutTransitionPhase>("idle");
-  const homeScrollYRef = useRef(0);
-  const aboutScrollYRef = useRef(0);
-  const homeContainerRef = useRef<HTMLDivElement | null>(null);
-  const aboutContainerRef = useRef<HTMLDivElement | null>(null);
+  const [resetKey, setResetKey] = useState(0);
 
-  const shouldRestoreHomeScrollRef = useRef(false);
-
-  const triggerEnterAbout = () => {
-    if (aboutTransitionPhase !== "idle") return;
-    homeScrollYRef.current = window.scrollY;
-    aboutScrollYRef.current = 0;
-    window.history.pushState({}, "", "/about");
-    setCurrentPath("/about");
-    document.body.style.overflow = "hidden";
-    setAboutTransitionPhase("entering-start");
-  };
-
-  const triggerExitAbout = (fromPopState = false) => {
-    if (aboutTransitionPhase !== "idle") return;
-    aboutScrollYRef.current = window.scrollY;
-    shouldRestoreHomeScrollRef.current = true;
-    if (!fromPopState) {
-      window.history.pushState({}, "", "/");
-    }
-    document.body.style.overflow = "hidden";
-    setAboutTransitionPhase("exiting-start");
-  };
-
+  // Background reset listener triggered while screen is 100% frozen under ice
   useEffect(() => {
-    if (aboutTransitionPhase === "entering-start") {
-      let r2: number;
-      const r1 = requestAnimationFrame(() => {
-        r2 = requestAnimationFrame(() => {
-          setAboutTransitionPhase("entering-active");
-        });
-      });
-      return () => {
-        cancelAnimationFrame(r1);
-        if (r2) cancelAnimationFrame(r2);
-      };
-    } else if (aboutTransitionPhase === "entering-active") {
-      const timer = setTimeout(() => {
-        setAboutTransitionPhase("idle");
-        document.body.style.overflow = "";
-        window.scrollTo(0, 0);
-      }, 700);
-      return () => clearTimeout(timer);
-    } else if (aboutTransitionPhase === "exiting-start") {
-      let r2: number;
-      const r1 = requestAnimationFrame(() => {
-        r2 = requestAnimationFrame(() => {
-          setAboutTransitionPhase("exiting-active");
-        });
-      });
-      return () => {
-        cancelAnimationFrame(r1);
-        if (r2) cancelAnimationFrame(r2);
-      };
-    } else if (aboutTransitionPhase === "exiting-active") {
-      const timer = setTimeout(() => {
-        setAboutTransitionPhase("idle");
+    const handleIceReset = () => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      }
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+
+      if (currentPath !== "/") {
         setCurrentPath("/");
-        document.body.style.overflow = "";
-      }, 700);
-      return () => clearTimeout(timer);
-    }
-  }, [aboutTransitionPhase]);
+        window.history.pushState({}, "", "/");
+      }
 
-  useLayoutEffect(() => {
-    if (aboutTransitionPhase === "idle" && currentPath === "/" && shouldRestoreHomeScrollRef.current) {
-      shouldRestoreHomeScrollRef.current = false;
-      window.scrollTo(0, homeScrollYRef.current);
-    }
-  }, [aboutTransitionPhase, currentPath]);
+      document.body.style.backgroundColor = "#FFFDFA";
+      setResetKey((prev) => prev + 1);
+    };
 
-  useLayoutEffect(() => {
-    if (homeContainerRef.current) {
-      homeContainerRef.current.scrollTop = homeScrollYRef.current;
-    }
-    if (aboutContainerRef.current) {
-      const targetScroll = (aboutTransitionPhase === "exiting-start" || aboutTransitionPhase === "exiting-active")
-        ? aboutScrollYRef.current
-        : 0;
-      aboutContainerRef.current.scrollTop = targetScroll;
-    }
-  }, [aboutTransitionPhase]);
+    window.addEventListener("ice-freeze-reset", handleIceReset);
+    return () => window.removeEventListener("ice-freeze-reset", handleIceReset);
+  }, [currentPath, lenis]);
 
-  const setHomeContainerRef = (el: HTMLDivElement | null) => {
-    homeContainerRef.current = el;
-    if (el) {
-      el.scrollTop = homeScrollYRef.current;
+  const navigateTo = (path: string) => {
+    playTransitionSound();
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, "", path);
     }
-  };
-
-  const setAboutContainerRef = (el: HTMLDivElement | null) => {
-    aboutContainerRef.current = el;
-    if (el) {
-      const targetScroll = (aboutTransitionPhase === "exiting-start" || aboutTransitionPhase === "exiting-active")
-        ? aboutScrollYRef.current
-        : 0;
-      el.scrollTop = targetScroll;
-    }
+    setCurrentPath(path);
+    window.scrollTo(0, 0);
   };
   
   useSEOManager(currentPath);
@@ -1289,6 +1422,13 @@ export default function App() {
 
     const handleMouseMove = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+
+      // Never show story custom cursor when hovering inside the interactive skills section
+      if (target?.closest?.(".interactive-skills-section")) {
+        setShowCursor(false);
+        return;
+      }
+
       const closestFullScreen = target?.closest?.('[data-custom-cursor="full-screen"]');
       const closestHeroStory = target?.closest?.('[data-custom-cursor="hero-story"]');
       const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
@@ -1331,13 +1471,11 @@ export default function App() {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 10);
       setShowScrollTop(window.scrollY > 300);
-      if (currentPath === "/" && aboutTransitionPhase === "idle") {
-        homeScrollYRef.current = window.scrollY;
-      }
+      setShowCursor(false);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPath, aboutTransitionPhase]);
+  }, []);
 
   useEffect(() => {
     const handleScrollRotation = () => {
@@ -1354,35 +1492,21 @@ export default function App() {
 
   useEffect(() => {
     const onPopState = () => {
-      const newPath = window.location.pathname;
-      if (currentPath === "/" && newPath === "/about") {
-        triggerEnterAbout();
-      } else if (currentPath === "/about" && newPath === "/") {
-        triggerExitAbout(true);
-      } else {
-        setCurrentPath(newPath);
-      }
+      setCurrentPath(window.location.pathname);
+      window.scrollTo(0, 0);
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-  }, [currentPath, aboutTransitionPhase]);
+  }, []);
 
   useEffect(() => {
     const onNavigateToPath = (e: Event) => {
       const path = (e as CustomEvent<string>).detail;
-      if (path === "/about" && currentPath === "/") {
-        triggerEnterAbout();
-      } else if (path === "/" && currentPath === "/about") {
-        triggerExitAbout();
-      } else {
-        window.history.pushState({}, "", path);
-        setCurrentPath(path);
-        window.scrollTo(0, 0);
-      }
+      navigateTo(path);
     };
     window.addEventListener("navigate-to-path", onNavigateToPath);
     return () => window.removeEventListener("navigate-to-path", onNavigateToPath);
-  }, [currentPath, aboutTransitionPhase]);
+  }, []);
 
   useEffect(() => {
     const handleScrollBg = () => {
@@ -1437,20 +1561,10 @@ export default function App() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const handleNavigateFromAbout = (path: string) => {
-    if (path === "/") {
-      triggerExitAbout();
-    } else {
-      window.history.pushState({}, "", path);
-      setCurrentPath(path);
-      window.scrollTo(0, 0);
-    }
-  };
-
   const desktopHomeView = (
     <main role="main">
       <header role="banner">
-        <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} onAboutClick={triggerEnterAbout} />
+        <StickyHeader scale={scale} left={left} hasScrolled={hasScrolled} onAboutClick={() => navigateTo("/about")} />
       </header>
       {/* Outer shell: true scrollable height accounts for scaling + offset space */}
       <div style={{ width: "100%", height: `${(DESIGN_H + 25) * scale}px`, overflow: "hidden", position: "relative" }}>
@@ -1473,106 +1587,16 @@ export default function App() {
   const mobileHomeView = (
     <div className={isBlurred ? "protection-blur-overlay" : ""} style={{ width: "100%", minHeight: "100vh" }}>
       <MobileHomepage 
-        onNavigatePath={(path) => {
-          if (path === "/about") {
-            triggerEnterAbout();
-          } else {
-            window.history.pushState({}, "", path);
-            setCurrentPath(path);
-            window.scrollTo(0, 0);
-          }
-        }} 
+        onNavigatePath={(path) => navigateTo(path)} 
       />
     </div>
   );
 
-  const currentHomeView = vw < 768 ? mobileHomeView : desktopHomeView;
-
-  const isTransitioningAbout = aboutTransitionPhase !== "idle";
-
-  let homeTransform = "translate3d(0, 0, 0)";
-  let aboutTransform = "translate3d(100vw, 0, 0)";
-  let transitionStyle = "none";
-
-  if (aboutTransitionPhase === "entering-start") {
-    homeTransform = "translate3d(0, 0, 0)";
-    aboutTransform = "translate3d(100vw, 0, 0)";
-    transitionStyle = "none";
-  } else if (aboutTransitionPhase === "entering-active") {
-    homeTransform = "translate3d(-100vw, 0, 0)";
-    aboutTransform = "translate3d(0, 0, 0)";
-    transitionStyle = "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)";
-  } else if (aboutTransitionPhase === "exiting-start") {
-    homeTransform = "translate3d(-100vw, 0, 0)";
-    aboutTransform = "translate3d(0, 0, 0)";
-    transitionStyle = "none";
-  } else if (aboutTransitionPhase === "exiting-active") {
-    homeTransform = "translate3d(0, 0, 0)";
-    aboutTransform = "translate3d(100vw, 0, 0)";
-    transitionStyle = "transform 650ms cubic-bezier(0.16, 1, 0.3, 1)";
-  }
-
-  if (isTransitioningAbout) {
-    return (
-      <div className={isBlurred ? "protection-blur-overlay" : ""}>
-        <style>{marqueeStyles}</style>
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            overflow: "hidden",
-            zIndex: 99999,
-            pointerEvents: "none",
-          }}
-        >
-          {/* Home Screen (Slide Container) */}
-          <div
-            ref={setHomeContainerRef}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              overflow: "hidden",
-              transform: homeTransform,
-              transition: transitionStyle,
-              willChange: "transform",
-              background: "#FFFDFA",
-              zIndex: 1,
-            }}
-          >
-            {currentHomeView}
-          </div>
-
-          {/* About Screen (Slide Container) */}
-          <div
-            ref={setAboutContainerRef}
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              overflow: "hidden",
-              transform: aboutTransform,
-              transition: transitionStyle,
-              willChange: "transform",
-              borderLeft: "1px solid #7b7a77",
-              boxShadow: "-24px 0 60px rgba(25, 11, 0, 0.22)",
-              background: "#FFFDFA",
-              zIndex: 2,
-            }}
-          >
-            <AboutPage navigateTo={handleNavigateFromAbout} disableScrollReset={true} />
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const currentHomeView = (
+    <div key={resetKey} style={{ width: "100%" }}>
+      {vw < 768 ? mobileHomeView : desktopHomeView}
+    </div>
+  );
 
   let content = null;
   if (currentPath.startsWith("/allyra-story")) {
@@ -1580,16 +1604,8 @@ export default function App() {
       <AllyraStoryPage 
         scale={vw < 768 ? 1 : scale} 
         left={vw < 768 ? 0 : left} 
-        onBack={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-          window.scrollTo(0, 0);
-        }} 
-        onNextStory={() => {
-          window.history.pushState({}, "", "/tulah-story");
-          setCurrentPath("/tulah-story");
-          window.scrollTo(0, 0);
-        }}
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/tulah-story")}
       />
     );
   } else if (currentPath.startsWith("/tulah-story")) {
@@ -1597,16 +1613,8 @@ export default function App() {
       <TulahStoryPage 
         scale={vw < 768 ? 1 : scale} 
         left={vw < 768 ? 0 : left} 
-        onBack={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-          window.scrollTo(0, 0);
-        }} 
-        onNextStory={() => {
-          window.history.pushState({}, "", "/campaign-os-story");
-          setCurrentPath("/campaign-os-story");
-          window.scrollTo(0, 0);
-        }}
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/campaign-os-story")}
       />
     );
   } else if (currentPath.startsWith("/campaign-os-story")) {
@@ -1614,16 +1622,8 @@ export default function App() {
       <CampaignOSStoryPage 
         scale={vw < 768 ? 1 : scale} 
         left={vw < 768 ? 0 : left} 
-        onBack={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-          window.scrollTo(0, 0);
-        }} 
-        onNextStory={() => {
-          window.history.pushState({}, "", "/vousvous-story");
-          setCurrentPath("/vousvous-story");
-          window.scrollTo(0, 0);
-        }}
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/vousvous-story")}
       />
     );
   } else if (currentPath.startsWith("/vousvous-story")) {
@@ -1631,16 +1631,8 @@ export default function App() {
       <VousVousStoryPage 
         scale={vw < 768 ? 1 : scale} 
         left={vw < 768 ? 0 : left} 
-        onBack={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-          window.scrollTo(0, 0);
-        }} 
-        onNextStory={() => {
-          window.history.pushState({}, "", "/joonify-story");
-          setCurrentPath("/joonify-story");
-          window.scrollTo(0, 0);
-        }}
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/joonify-story")}
       />
     );
   } else if (currentPath.startsWith("/joonify-story")) {
@@ -1648,21 +1640,17 @@ export default function App() {
       <JoonifyStoryPage 
         scale={vw < 768 ? 1 : scale} 
         left={vw < 768 ? 0 : left} 
-        onBack={() => {
-          window.history.pushState({}, "", "/");
-          setCurrentPath("/");
-          window.scrollTo(0, 0);
-        }} 
-        onNextStory={() => {
-          window.history.pushState({}, "", "/allyra-story");
-          setCurrentPath("/allyra-story");
-          window.scrollTo(0, 0);
-        }}
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/allyra-story")}
       />
     );
   } else if (currentPath === "/about") {
     content = (
-      <AboutPage navigateTo={handleNavigateFromAbout} />
+      <AboutPage
+        scale={vw < 768 ? 1 : scale}
+        left={vw < 768 ? 0 : left}
+        navigateTo={navigateTo}
+      />
     );
   } else {
     content = currentHomeView;
@@ -1670,6 +1658,8 @@ export default function App() {
 
   return (
     <div className={isBlurred ? "protection-blur-overlay" : ""}>
+      <FilmGrain />
+      <IceFreezeOverlay />
       <style>{marqueeStyles}</style>
       <style>{`
         [data-custom-cursor="read-story"],
@@ -1682,12 +1672,49 @@ export default function App() {
         }
       `}</style>
       
+      {/* React Bits Target Cursor - Cybernetic HUD tracking cursor in theme orange (#EE6C13) with sharp 0px corners */}
+      <TargetCursor
+        targetSelector=".cursor-target, .premium-hover-card, .premium-hover-row, a, button, [data-custom-cursor]"
+        cursorColor="#EE6C13"
+        cursorColorOnTarget="#EE6C13"
+        cornerRadius={0}
+        matchRadius={false}
+        lockToTarget={true}
+        cornersOnlyOnTarget={true}
+        spinDuration={2.5}
+        hoverDuration={0.18}
+        size={36}
+        cornerSize={12}
+        thickness={2.5}
+        padding={6}
+        dotSize={5}
+        blendMode="normal"
+        hideDefaultCursor={false}
+      />
+
+      {/* React Bits Gradual Blur - Progressive bokeh backdrop diffusion at top of viewport */}
+      <GradualBlur
+        position="top"
+        target="page"
+        height="76px"
+        strength={2.5}
+        layers={8}
+        curve="bezier"
+        zIndex={40}
+      />
+
       {content}
+
+      {/* Floating Tactical Audio Toggle */}
+      <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />
 
       {currentPath === "/" && (
         <ScrollToTopButton
           show={showScrollTop}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() => {
+            playClickSound();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
         />
       )}
 

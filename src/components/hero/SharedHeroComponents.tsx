@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 import imgAllyraCoverSmall from "@/imports/allyra_cover_small.webp";
 import imgCosCoverSmall from "@/imports/cos_cover_small.webp";
 import imgTulahSmallThumb from "@/imports/tulah_small_thumb.webp";
 import imgVousvousSmallThumb from "@/imports/vousvous_small_thumb.webp";
 import BrandVector from "@/components/BrandVector";
+import { playClickSound, playHoverTick } from "@/utils/soundEffects";
 
 export const triggerScrollToId = (id: string) => {
   window.dispatchEvent(new CustomEvent("scroll-to-id", { detail: id }));
@@ -28,9 +30,16 @@ export function BentoCard({
   className?: string;
 }) {
   const isAbsolute = top !== undefined && left !== undefined;
+
+  const handleClick = () => {
+    playClickSound();
+    if (onClick) onClick();
+  };
+
   return (
     <div
-      onClick={onClick}
+      onClick={handleClick}
+      onMouseEnter={() => playHoverTick()}
       data-custom-cursor={isStoryCard ? "hero-story" : undefined}
       className={`premium-hover-card ${className}`}
       style={{
@@ -332,7 +341,7 @@ export function VousVousHeroCard({
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: isMobile ? 9.5 : 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
               [ STORY 04 ] [ 2025 ]
             </p>
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
               <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>
             </div>
           </div>
@@ -396,34 +405,162 @@ export function JoonifyHeroCard({
   );
 }
 
+interface SharedKineticCharWordProps {
+  word: string;
+  baseDelay: number;
+  charStagger?: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+function SharedKineticCharWord({
+  word,
+  baseDelay,
+  charStagger = 0.038,
+  className = "",
+  style = {},
+}: SharedKineticCharWordProps) {
+  return (
+    <span className={`inline-flex ${className}`} style={{ ...style, overflow: "visible" }}>
+      {word.split("").map((char, index) => {
+        const curvedDelay = baseDelay + Math.pow(index, 0.9) * charStagger;
+        return (
+          <span
+            key={index}
+            className="inline-block overflow-hidden"
+            style={{
+              verticalAlign: "bottom",
+              lineHeight: "1.05",
+              paddingBottom: "8px",
+              marginBottom: "-8px",
+            }}
+          >
+            <motion.span
+              className="inline-block"
+              style={{ willChange: "transform" }}
+              initial={{ y: "115%" }}
+              animate={{ y: "0%" }}
+              transition={{
+                duration: 0.72,
+                ease: [0.16, 1, 0.3, 1],
+                delay: curvedDelay,
+              }}
+            >
+              {char}
+            </motion.span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 /* ── 6. Marquee Unit (Original Web Component) ── */
-export function SharedMarqueeUnit() {
+export function SharedMarqueeUnit({ animateEntrance = false }: { animateEntrance?: boolean }) {
+  if (!animateEntrance) {
+    return (
+      <div className="flex shrink-0 gap-[50px] items-center pr-[50px]">
+        <p
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px] text-[#190b00]"
+          style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}
+        >
+          JAYESH
+        </p>
+        <div className="content-stretch flex items-center relative shrink-0">
+          <BrandVector theme="dark" width={150} height={100} />
+        </div>
+        <p
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        >
+          DESIGNING AI BEHAVIOUR
+        </p>
+        <div className="content-stretch flex items-center relative shrink-0">
+          <BrandVector theme="dark" width={150} height={100} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex shrink-0 gap-[50px] items-center pr-[50px]">
-      <p
+      {/* 1. JAYESH - Character-by-character cascade */}
+      <SharedKineticCharWord
+        word="JAYESH"
+        baseDelay={0.06}
+        charStagger={0.045}
         className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px] text-[#190b00]"
         style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 900 }}
+      />
+
+      {/* 2. BrandVector - Crisp spring entry */}
+      <motion.div
+        className="content-stretch flex items-center relative shrink-0"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.28 }}
       >
-        JAYESH
-      </p>
-      <div className="content-stretch flex items-center relative shrink-0">
         <BrandVector theme="dark" width={150} height={100} />
+      </motion.div>
+
+      {/* 3. DESIGNING AI BEHAVIOR - Cohesive character cascade */}
+      <div className="flex items-center gap-[24px]">
+        <SharedKineticCharWord
+          word="DESIGNING"
+          baseDelay={0.36}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
+        <SharedKineticCharWord
+          word="AI"
+          baseDelay={0.52}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
+        <SharedKineticCharWord
+          word="BEHAVIOUR"
+          baseDelay={0.62}
+          charStagger={0.035}
+          className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
+          style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontWeight: 900,
+            color: "#FFFDFA",
+            WebkitTextStroke: "1.5px #190b00",
+            paintOrder: "stroke fill",
+          }}
+        />
       </div>
-      <p
-        className="shrink-0 whitespace-nowrap leading-[140px] text-[140px] tracking-[5.6px]"
-        style={{
-          fontFamily: "'Outfit', sans-serif",
-          fontWeight: 900,
-          color: "#FFFDFA",
-          WebkitTextStroke: "1.5px #190b00",
-          paintOrder: "stroke fill",
-        }}
+
+      {/* 4. Second BrandVector */}
+      <motion.div
+        className="content-stretch flex items-center relative shrink-0"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
       >
-        DESIGNING AI BEHAVIOR
-      </p>
-      <div className="content-stretch flex items-center relative shrink-0">
         <BrandVector theme="dark" width={150} height={100} />
-      </div>
+      </motion.div>
     </div>
   );
 }

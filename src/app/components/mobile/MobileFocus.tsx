@@ -3,6 +3,7 @@ import BrandVector from "@/components/BrandVector";
 const focusData = [
   {
     num: "01",
+    icon: "/gifs/focus-product-design.gif",
     title: "PRODUCT\nDESIGN",
     skills: [
       "UX/UI Design",
@@ -14,17 +15,19 @@ const focusData = [
   },
   {
     num: "02",
+    icon: "/gifs/focus-human-ai.gif",
     title: "HUMAN–AI\nINTERACTION",
     skills: [
       "Agentic UX",
       "AI Workflows",
       "Conversational Experiences",
-      "AI Behavior Design",
+      "AI Behaviour Design",
       "Enterprise AI Systems",
     ],
   },
   {
     num: "03",
+    icon: "/gifs/focus-systems-craft.gif",
     title: "SYSTEMS\n& CRAFT",
     skills: [
       "Design Systems",
@@ -54,7 +57,12 @@ export function MobileFocus() {
           <div className="mobile-focus-items">
             {focusData.map((item) => (
               <div key={item.num} className="mobile-focus-row">
-                <span className="mobile-focus-num">{item.num}</span>
+                <img
+                  src={item.icon}
+                  alt={item.title.replace('\n', ' ')}
+                  className="mobile-focus-icon"
+                  loading="eager"
+                />
                 <div className="mobile-focus-content">
                   <h3 className="mobile-focus-item-title">{item.title}</h3>
                   <div className="mobile-focus-item-list">

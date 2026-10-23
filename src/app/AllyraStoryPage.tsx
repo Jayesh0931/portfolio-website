@@ -385,23 +385,39 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         {/* Overview Box Metadata and Branding */}
         <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start left-[80px] p-[30px] top-[249px] w-[1280px] h-[488px]" data-node-id="1:29">
           <div className="content-stretch flex gap-[90px] items-end relative shrink-0 h-[428px] w-full" data-node-id="1:30">
-            <div className="[word-break:break-word] content-stretch flex flex-col gap-[20px] h-[228px] items-start py-[20px] relative shrink-0" data-node-id="1:31">
-              <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[108px]" data-node-id="1:32">
-                <p className="font-inter font-bold font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-full" data-node-id="1:33">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[14px] h-auto items-start py-[6px] relative shrink-0" data-node-id="1:31">
+              <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
                   ROLE
                 </p>
-                <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[18px] w-full" data-node-id="1:34">
+                <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[18px] w-full" data-node-id="1:34">
                   Product Lead
                 </p>
               </div>
+              <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                  TEAM
+                </p>
+                <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[15px] leading-[1.3] w-full">
+                  3 designers and 2 business analysts
+                </p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
+                <p className="font-inter font-bold not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-full">
+                  TIMELINE
+                </p>
+                <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[15px] w-full">
+                  2024 – 2026
+                </p>
+              </div>
               <div className="content-stretch flex flex-col gap-[2px] items-start relative shrink-0" data-node-id="1:35">
-                <p className="font-inter font-bold font-bold leading-[normal] min-w-full not-italic relative shrink-0 text-[#7b7b7b] text-[12px] tracking-[0.6px] uppercase w-[min-content]" data-node-id="1:36">
+                <p className="font-inter font-bold leading-[normal] min-w-full not-italic relative shrink-0 text-[#7b7b7b] text-[11px] tracking-[0.6px] uppercase w-[min-content]" data-node-id="1:36">
                   Focus
                 </p>
-                <div className="font-outfit font-normal font-normal leading-[1.3] relative shrink-0 text-[#190b00] text-[18px]" data-node-id="1:37">
+                <div className="font-outfit font-normal leading-[1.3] relative shrink-0 text-[#190b00] text-[15px]" data-node-id="1:37">
                   <p className="leading-[normal] mb-0">/ Product Strategy</p>
-                  <p className="leading-[normal] mb-0">/ Human-AI Interaction</p>
-                  <p className="leading-[normal] mb-0">/ Agentic UX</p>
+                  <p className="leading-[normal] mb-0">/ Human–AI Interaction</p>
+                  <p className="leading-[normal] mb-0">/ Agentic AI UX</p>
                   <p className="leading-[normal]">/ Enterprise AI Systems</p>
                 </div>
               </div>
@@ -434,7 +450,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" data-node-id="1:47" />
           <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pl-[90px] pr-[30px] py-[16px] relative shrink-0 -ml-[1px]" data-node-id="1:48">
             <p className="[word-break:break-word] font-inter font-bold font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap" data-node-id="1:49">
-              [ 2026 ]
+              [ 2024–2026 ]
             </p>
           </div>
         </div>
@@ -445,11 +461,11 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
             <p className="leading-[normal] mb-0">{`AI wasn't struggling to generate answers. It was struggling to operate inside real workflows.`}</p>
             <p className="leading-[normal] mb-0">​</p>
             <p>
-              <span className="leading-[normal]">{`Between 2024 and 2026, I helped shape `}</span>
+              <span className="leading-[normal]">{`Between 2024 and 2026, I led product direction and UX strategy for `}</span>
               <span className="[word-break:break-word] font-outfit font-bold font-bold leading-[normal]">Allyra</span>
-              <span className="leading-[normal]">{` from a no-code AI agent creation platform into `}</span>
-              <span className="[word-break:break-word] font-outfit font-bold font-bold leading-[normal]">an enterprise AI workspace</span>
-              <span className="leading-[normal]">{` capable of creating, training, orchestrating and operationalizing AI workers.`}</span>
+              <span className="leading-[normal]">{`, evolving it from an agent-building tool into `}</span>
+              <span className="[word-break:break-word] font-outfit font-bold font-bold leading-[normal]">an organisation-ready enterprise AI platform</span>
+              <span className="leading-[normal]">{` capable of creating, training, orchestrating, and operationalising AI workers.`}</span>
             </p>
           </div>
         </div>
@@ -538,7 +554,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           <div className="absolute bg-[#fffdfa] border border-[#7b7a77] border-solid h-[840px] left-[69px] w-[1211px]" data-node-id="1:69">
             <div className="[word-break:break-word] absolute font-outfit font-normal leading-[1.5] left-[60px] text-[22px] text-[#7b7b7b] top-[45px] w-[1090px]" data-node-id="1:70">
               <p className="leading-[1.4] mb-3 text-[#7b7b7b]">While leading product experience, my contribution extended beyond UX design. I worked at the intersection of market signals, business strategy and product execution. My role included:</p>
-              <p className="font-outfit font-bold text-[#190b00] text-[22px] leading-[1.4] mb-3">{`Product Strategy  /  Product Definition  /  Feature Prioritization  /  Human-AI Interaction Design  /  Enterprise Workflow Design  /  Stakeholder Alignment`}</p>
+              <p className="font-outfit font-bold text-[#190b00] text-[22px] leading-[1.4] mb-3">{`Product Strategy  /  Product Definition  /  Feature Prioritisation  /  Human-AI Interaction Design  /  Enterprise Workflow Design  /  Stakeholder Alignment`}</p>
               <p className="leading-[1.4] mb-0 text-[#7b7b7b]">Across the project I helped translate emerging AI capabilities into products people could actually use.</p>
             </div>
             
@@ -553,100 +569,70 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
           </div>
         </div>
 
-        {/* ─── IMPACT SECTION (Starts at top-[5021px]) ─── */}
+        {/* ─── SCALE & ADOPTION SECTION (Starts at top-[5021px]) ─── */}
         <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5021px] w-[1280px] z-[2]" data-node-id="1:255">
-          <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start p-[30px] relative shrink-0 w-full" data-node-id="1:256">
-            <div className="content-stretch flex gap-[265px] items-center relative shrink-0 w-full justify-between" data-node-id="1:257">
-              <div className="[word-break:break-word] content-stretch flex flex-col gap-[20px] items-start relative shrink-0 flex-1" data-node-id="1:258">
-                <p className="font-inter font-bold font-bold leading-[0] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full" data-node-id="1:259">
-                  <span>{`[ agent creation → `}</span>
-                  <span className="text-[#ee6c13]">enterprise AI platform</span>
-                  <span>{` ]`}</span>
-                </p>
-                <p className="font-outfit font-black font-black leading-[140px] relative shrink-0 text-[#190b00] text-[140px] tracking-[5.6px] w-full margin-0" data-node-id="1:260">
-                  IMPACT
-                </p>
-              </div>
-              <div className="flex items-center justify-center relative shrink-0" data-node-id="1:261">
-                <div className="flex-none">
-                  <BrandVector theme="dark" width={231} height={154} />
-                </div>
+          <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex gap-[60px] items-center relative shrink-0 w-full justify-between p-[30px]" data-node-id="1:256">
+            <div className="[word-break:break-word] content-stretch flex flex-col gap-[20px] items-start relative shrink-0 flex-1" data-node-id="1:258">
+              <p className="font-inter font-bold leading-[0] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full" data-node-id="1:259">
+                <span>{`[ agent creation → `}</span>
+                <span className="text-[#ee6c13]">enterprise scale &amp; adoption</span>
+                <span>{` ]`}</span>
+              </p>
+              <p className="font-outfit font-black leading-none relative shrink-0 text-[#190b00] text-[96px] tracking-[3px] w-full margin-0" data-node-id="1:260">
+                SCALE &amp; ADOPTION
+              </p>
+            </div>
+            <div className="flex items-center justify-center relative shrink-0" data-node-id="1:261">
+              <div className="flex-none">
+                <BrandVector theme="dark" width={231} height={154} />
               </div>
             </div>
           </div>
-          <div className="bg-[#fffdfa] border-l border-r border-b border-[#7b7a77] border-solid content-stretch flex flex-col gap-[60px] h-[780px] items-start p-[30px] relative shrink-0 w-full" data-node-id="1:264">
-            <div className="flex-[1_0_0] grid grid-cols-[repeat(2,minmax(0,1fr))] grid-rows-[repeat(2,minmax(0,1fr))] min-h-px relative w-full" data-node-id="1:265" data-name="Cards">
-              <div className="border-[#7b7a77] border-b border-r border-solid content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[24px] relative self-stretch shrink-0" data-node-id="1:266" data-name="Number Card">
+          <div className="bg-[#fffdfa] border-l border-r border-b border-[#7b7a77] border-solid content-stretch flex flex-col gap-[40px] h-[780px] items-start p-[30px] relative shrink-0 w-full" data-node-id="1:264">
+            <div className="flex-[1_0_0] grid grid-cols-2 min-h-px relative w-full border border-[#7b7a77]" data-node-id="1:265" data-name="Cards">
+              {/* Card 1: 15+ Organisations Reached */}
+              <div className="border-[#7b7a77] border-r border-solid content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[36px] relative self-stretch shrink-0 bg-[#fffdfa]" data-node-id="1:266" data-name="Number Card">
                 <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full" data-node-id="1:268">
                   <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:269">
-                    <p className="font-outfit font-bold font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0" data-node-id="1:270">
-                      50+
+                    <p className="font-outfit font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[96px] leading-none w-[min-content] margin-0" data-node-id="1:270">
+                      15+
                     </p>
-                    <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0" data-node-id="1:271">
-                      Enterprise Demonstrations
+                    <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[34px] whitespace-nowrap margin-0 mt-3" data-node-id="1:271">
+                      Organisations Reached
                     </p>
-                    <p className="font-inter font-bold not-italic relative shrink-0 text-[#77695d] text-[11px] tracking-[0.6px] uppercase w-full margin-0 mt-1" data-node-id="1:271b">
-                      LAST UPDATED IN JUNE 2026
+                    <p className="font-inter font-bold not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full margin-0 mt-2" data-node-id="1:271b">
+                      ENTERPRISE ECOSYSTEM
                     </p>
                   </div>
-                  <p className="font-outfit font-normal font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0" data-node-id="1:272">
-                    Validated through enterprise conversations, workshops and live product demos.
+                  <p className="font-outfit font-normal relative shrink-0 text-[#7b7b7b] text-[20px] leading-[1.6] w-full margin-0 mt-6" data-node-id="1:272">
+                    Expanded reach across 15+ organisations, including a pilot with a leading Indian enterprise group, through platform usage and API integrations.
                   </p>
                 </div>
               </div>
-              <div className="border-[#7b7a77] border-b border-l border-solid content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[24px] relative self-stretch shrink-0" data-node-id="1:273" data-name="Number Card">
+              {/* Card 2: 19+ AI Agents Designed */}
+              <div className="content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[36px] relative self-stretch shrink-0 bg-[#fffdfa]" data-node-id="1:273" data-name="Number Card">
                 <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full" data-node-id="1:275">
                   <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:276">
-                    <p className="font-outfit font-bold font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0" data-node-id="1:277">
-                      10+
+                    <p className="font-outfit font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[96px] leading-none w-[min-content] margin-0" data-node-id="1:277">
+                      19+
                     </p>
-                    <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0" data-node-id="1:278">
-                      Enterprise Use Allyra
+                    <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[34px] whitespace-nowrap margin-0 mt-3" data-node-id="1:278">
+                      AI Agents Designed
                     </p>
-                    <p className="font-inter font-bold not-italic relative shrink-0 text-[#77695d] text-[11px] tracking-[0.6px] uppercase w-full margin-0 mt-1" data-node-id="1:278b">
-                      LAST UPDATED IN JUNE 2026
-                    </p>
-                  </div>
-                  <p className="font-outfit font-normal font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0" data-node-id="1:279">
-                    Successfully onboarded into production environments.
-                  </p>
-                </div>
-              </div>
-              <div className="border-[#7b7a77] border-r border-solid border-t content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[24px] relative self-stretch shrink-0" data-node-id="1:280" data-name="Number Card">
-                <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full" data-node-id="1:282">
-                  <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:283">
-                    <p className="font-outfit font-bold font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0" data-node-id="1:284">
-                      7+
-                    </p>
-                    <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0" data-node-id="1:285">
-                      Operational AI Workflows
+                    <p className="font-inter font-bold not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full margin-0 mt-2" data-node-id="1:278b">
+                      MULTI-AGENT WORKFLOWS
                     </p>
                   </div>
-                  <p className="font-outfit font-normal font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0" data-node-id="1:286">
-                    / Hiring / HR / Communication / Presentations / Scheduling/ Productivity / Sales
-                  </p>
-                </div>
-              </div>
-              <div className="border-[#7b7a77] border-l border-solid border-t content-stretch flex flex-col gap-[10px] items-start justify-self-stretch overflow-clip p-[24px] relative self-stretch shrink-0" data-node-id="1:287" data-name="Number Card">
-                <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col items-start justify-between leading-[normal] min-h-px relative w-full" data-node-id="1:289">
-                  <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:290">
-                    <p className="font-outfit font-bold font-bold min-w-full relative shrink-0 text-[#ee6c13] text-[80px] w-[min-content] margin-0" data-node-id="1:291">
-                      ~60%
-                    </p>
-                    <p className="font-outfit font-normal font-normal relative shrink-0 text-[#190b00] text-[30px] whitespace-nowrap margin-0" data-node-id="1:292">
-                      Administrative Effort Reduced
-                    </p>
-                  </div>
-                  <p className="font-outfit font-normal font-normal relative shrink-0 text-[#7b7b7b] text-[18px] w-full margin-0" data-node-id="1:293">
-                    Reduced repetitive work through AI-powered operational workflows.
+                  <p className="font-outfit font-normal relative shrink-0 text-[#7b7b7b] text-[20px] leading-[1.6] w-full margin-0 mt-6" data-node-id="1:279">
+                    Designed interaction patterns and task-focused, human-in-the-loop workflows for 19+ AI agents across enterprise operational domains.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-[#f2ede7] border-[#ee6c13] border-l-6 border-solid content-stretch flex gap-[10px] items-center justify-center overflow-clip pl-[30px] pr-[120px] py-[20px] relative shrink-0 w-full" data-node-id="1:294">
+            <div className="bg-[#f2ede7] border-[#ee6c13] border-l-6 border-solid content-stretch flex gap-[10px] items-center justify-center overflow-clip pl-[30px] pr-[120px] py-[24px] relative shrink-0 w-full" data-node-id="1:294">
               <p className="[word-break:break-word] font-outfit font-normal italic leading-normal relative shrink-0 text-[#190b00] text-[24px] w-full margin-0" data-node-id="1:295">
                 <span>{`"The platform evolved beyond agent creation into a foundation for `}</span>
-                <strong className="font-outfit font-bold font-bold text-[#ee6c13] italic">
+                <strong className="font-outfit font-bold text-[#ee6c13] italic">
                   Enterprise AI Operations.
                 </strong>
                 <span>{`"`}</span>
@@ -810,7 +796,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
                     <p className={`[word-break:break-word] font-outfit font-normal font-normal leading-[1.4] relative shrink-0 text-[16px] w-[276px] margin-0 transition-colors duration-700 ${isDecisionsInView ? "text-[#ccc]" : "text-[#190b00]"}`} data-node-id="1:121">
                       <span className="leading-[normal]">{`Introduce a `}</span>
                       <span className={`font-outfit font-bold font-bold leading-[normal] transition-colors duration-700 ${isDecisionsInView ? "text-white" : "text-[#190b00]"}`}>Training Layer</span>
-                      <span className="leading-[normal]">{` that allowed subject matter experts to shape behavior.`}</span>
+                      <span className="leading-[normal]">{` that allowed subject matter experts to shape behaviour.`}</span>
                     </p>
                   </div>
                 </div>

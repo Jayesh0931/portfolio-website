@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { triggerAutoScroll } from "@/hooks/useAutoScroll";
 import svgPaths from "./svg-rk1gtf9dz9";
 import imgEllipse5 from "./49f9bacadb0b6c33f4b16626866a7ba76ea5c76a.png";
@@ -16,6 +17,8 @@ import imgVousvousSmallThumb from "../vousvous_small_thumb.webp";
 import imgVousvousLargeThumb from "../vousvous_large_thumbnail.webp";
 import imgJoonifyDesktop from "../joonify_desktop.webp";
 import BrandVector from "../../components/BrandVector";
+import KineticText from "../../components/KineticText";
+import { playClickSound, playHoverTick } from "@/utils/soundEffects";
 
 function Group() {
   return (
@@ -42,7 +45,7 @@ function Frame4() {
     <div className="-translate-y-1/2 absolute content-stretch flex gap-[50px] items-center left-[-26px] top-1/2">
       <p className="[word-break:break-word] font-['Outfit:Black',sans-serif] font-black leading-[140px] relative shrink-0 text-[#190b00] text-[140px] tracking-[5.6px] whitespace-nowrap">JAYESH</p>
       <Frame6 />
-      <p className="[word-break:break-word] font-['Outfit:Black',sans-serif] font-black leading-[140px] relative shrink-0 text-[140px] text-[transparent] tracking-[5.6px] whitespace-nowrap">DESIGNING AI BEHAVIOR</p>
+      <p className="[word-break:break-word] font-['Outfit:Black',sans-serif] font-black leading-[140px] relative shrink-0 text-[140px] text-[transparent] tracking-[5.6px] whitespace-nowrap">DESIGNING AI BEHAVIOUR</p>
     </div>
   );
 }
@@ -50,14 +53,19 @@ function Frame4() {
 function Frame5() {
   return (
     <div className="absolute h-[180px] left-[80px] overflow-clip top-[127px] w-[1280px]">
-      <div className="-translate-x-1/2 absolute h-0 left-1/2 top-[183px] w-[1280px]">
+      <motion.div
+        className="-translate-x-1/2 absolute h-0 left-1/2 top-[183px] w-[1280px]"
+        initial={{ opacity: 0, scaleX: 0 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+        style={{ transformOrigin: "center" }}
+      >
         <div className="absolute inset-[-1px_0_0_0]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1280 1">
             <line id="Line 1" stroke="var(--stroke-0, #190B00)" x2="1280" y1="0.5" y2="0.5" />
           </svg>
         </div>
-      </div>
-      <Frame4 />
+      </motion.div>
     </div>
   );
 }
@@ -128,31 +136,79 @@ const triggerNavigate = (path: string) => {
 
 function BentoCard({
   top, left, width, height,
-  bgColor, borderColor = "#7b7a77",
-  onClick, children, isStoryCard
+  bgColor, borderColor = "#7b7a77", hoverBorderColor = "#190b00",
+  onClick, children, isStoryCard,
+  delay = 0,
 }: {
   top: number; left: number; width: number; height: number;
   bgColor: string; borderColor?: string; hoverBorderColor?: string;
   onClick?: () => void; children: React.ReactNode;
   isStoryCard?: boolean;
+  delay?: number;
 }) {
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHovered(true);
+    playHoverTick();
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
+  };
+
+  const handleClick = () => {
+    playClickSound();
+    if (onClick) onClick();
+  };
+
   return (
-    <div
-      onClick={onClick}
+    <motion.div
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       data-custom-cursor={isStoryCard ? "hero-story" : undefined}
       className="premium-hover-card"
+      initial={{ opacity: 0, y: 32, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        duration: 0.72,
+        ease: [0.16, 1, 0.3, 1],
+        delay: delay,
+      }}
       style={{
         position: "absolute",
         top, left, width, height,
         backgroundColor: bgColor,
         borderRadius: 10,
-        border: `1px solid ${borderColor}`,
         cursor: "pointer",
         overflow: "hidden",
+        boxShadow: hovered ? "0 10px 24px rgba(25, 11, 0, 0.08)" : "none",
+        willChange: "transform, opacity",
       }}
     >
       {children}
-    </div>
+      {/* Slow ease-in border overlay */}
+      <motion.div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: 10,
+          border: `1px solid ${hovered ? (hoverBorderColor || borderColor) : borderColor}`,
+          pointerEvents: "none",
+          zIndex: 20,
+          transition: "border-color 0.25s ease",
+        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          ease: [0.16, 1, 0.3, 1],
+          delay: (delay ?? 0) + 0.2,
+        }}
+      />
+    </motion.div>
   );
 }
 
@@ -160,22 +216,61 @@ function Group7() {
   return (
     <div className="absolute contents left-[80px] top-[127px]">
       <div className="-translate-x-1/2 absolute bg-[#FFFDFA] h-[800px] left-1/2 top-[127px] w-[1280px]">
-        <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
+        <motion.div
+          aria-hidden
+          className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+        />
       </div>
-      <p className="[word-break:break-word] absolute font-['Outfit:Bold',sans-serif] font-bold leading-[normal] left-[105px] text-[#190b00] text-[30px] top-[471px] w-[353px]">DESIGNING HOW AI BEHAVES IN PRODUCTS.</p>
-      <div className="[word-break:break-word] absolute font-['Outfit:Regular',sans-serif] font-normal leading-[0] left-[105px] text-[#77695d] text-[18px] top-[577px] w-[353px]">
-        <p className="leading-[normal] mb-0">I shape the moments where people</p>
-        <p className="leading-[normal]">decide whether to trust intelligent systems.</p>
+      <p className="[word-break:break-word] absolute font-['Outfit:Bold',sans-serif] font-bold leading-[normal] left-[105px] text-[#190b00] text-[30px] top-[471px] w-[353px]">
+        <KineticText text="DESIGNING HOW AI BEHAVES IN PRODUCTS." />
+      </p>
+      <div className="[word-break:break-word] absolute font-['Outfit:Regular',sans-serif] font-normal leading-[1.4] left-[105px] text-[#77695d] text-[18px] top-[577px] w-[353px]">
+        <KineticText delay={0.35} text="I shape the moments where people decide whether to trust intelligent systems." />
       </div>
       <Frame5 />
-      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] left-[110px] not-italic text-[#77695d] text-[12px] top-[337px] tracking-[0.6px] uppercase whitespace-nowrap">[ INTRO ]</p>
-      <p className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] left-[110px] not-italic text-[#77695d] text-[12px] top-[364px] tracking-[0.6px] uppercase whitespace-nowrap">2026</p>
-      <Frame9 />
-      <Frame10 />
-      <Frame11 />
-      <Frame12 />
-      <Frame8 />
-      <div className="absolute flex h-[620px] items-center justify-center left-[560px] top-[307px] w-0">
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+        className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] left-[110px] not-italic text-[#77695d] text-[12px] top-[337px] tracking-[0.6px] uppercase whitespace-nowrap"
+      >
+        [ INTRO ]
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
+        className="[word-break:break-word] absolute font-['Inter:Bold',sans-serif] font-bold leading-[normal] left-[110px] not-italic text-[#77695d] text-[12px] top-[364px] tracking-[0.6px] uppercase whitespace-nowrap"
+      >
+        2026
+      </motion.p>
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.48 }}
+      >
+        <Frame9 />
+        <Frame10 />
+        <Frame11 />
+        <Frame12 />
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.62 }}
+      >
+        <Frame8 />
+      </motion.div>
+      <motion.div
+        className="absolute flex h-[620px] items-center justify-center left-[560px] top-[307px] w-0"
+        initial={{ scaleY: 0, opacity: 0 }}
+        animate={{ scaleY: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.35 }}
+        style={{ transformOrigin: "top" }}
+      >
         <div className="flex-none rotate-90">
           <div className="h-0 relative w-[620px]">
             <div className="absolute inset-[-1px_0_0_0]">
@@ -185,8 +280,14 @@ function Group7() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="absolute flex h-0 items-center justify-center left-[80px] top-[307px] w-[1280px]">
+      </motion.div>
+      <motion.div
+        className="absolute flex h-0 items-center justify-center left-[80px] top-[307px] w-[1280px]"
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.22 }}
+        style={{ transformOrigin: "left" }}
+      >
         <div className="flex-none rotate-180">
           <div className="h-0 relative w-[1280px]">
             <div className="absolute inset-[-1px_0_0_0]">
@@ -196,10 +297,9 @@ function Group7() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       {/* ── allyra.ai card ── */}
-      {/* ── allyra.ai card ── */}
-      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerNavigate("/allyra-story")} isStoryCard>
+      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerNavigate("/allyra-story")} isStoryCard delay={0.28}>
         <div style={{ position: "relative", width: "100%", height: "100%", padding: 20, boxSizing: "border-box", overflow: "hidden" }}>
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 2 }}>
@@ -233,7 +333,7 @@ function Group7() {
 
           {/* Bottom Left Content */}
           <div style={{ position: "absolute", left: 20, bottom: 20, display: "flex", flexDirection: "column", gap: 12, maxWidth: 200, zIndex: 2 }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#FFFDFA", margin: 0 }}>allyra.ai</p>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 28, color: "#FFFDFA", margin: 0, letterSpacing: "-0.01em" }}>allyra.ai</p>
             <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
               <p style={{ margin: 0 }}>Scaling AI from individual agents to enterprise-grade workflows.</p>
             </div>
@@ -242,7 +342,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── VousVous card (Story 04) ── */}
-      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard>
+      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard delay={0.42}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           {/* Background Mockup Image (Anchored with room above the phone) */}
           <img 
@@ -270,7 +370,7 @@ function Group7() {
               <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
                 [ STORY 04 ] [ 2025 ]
               </p>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
                   <path d={svgPaths.p18019200} fill="#77695D" />
                 </svg>
@@ -279,7 +379,7 @@ function Group7() {
 
             {/* Title & Description */}
             <div style={{ marginTop: 6, display: "flex", flexDirection: "column", gap: 3 }}>
-              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 27, color: "#190b00", margin: 0, lineHeight: 1.05 }}>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 28, color: "#190b00", margin: 0, lineHeight: 1.05, letterSpacing: "-0.01em" }}>
                 VousVous
               </p>
               <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 12.5, color: "#7b7a77", lineHeight: "1.3", maxWidth: "195px" }}>
@@ -291,7 +391,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Joonify card (Story 05) ── */}
-      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/joonify-story")} isStoryCard>
+      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/joonify-story")} isStoryCard delay={0.54}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 05 ] [ 2022 ]</p>
@@ -300,13 +400,13 @@ function Group7() {
             </div>
           </div>
           <div style={{ marginTop: "auto" }}>
-            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 30, color: "#190b00", margin: 0, lineHeight: 1.1 }}>Joonify</p>
+            <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 28, color: "#190b00", margin: 0, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Joonify</p>
           </div>
         </div>
       </BentoCard>
 
       {/* ── tulah card (Story 03) ── */}
-      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/tulah-story")} isStoryCard>
+      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/tulah-story")} isStoryCard delay={0.64}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           
           {/* Background Mockup Image (Shifted down so top edge of laptop sits below text) */}
@@ -343,7 +443,7 @@ function Group7() {
 
             {/* Title & Subtitle on Top Left Clear Space */}
             <div style={{ marginTop: 8, display: "flex", flexDirection: "column", gap: 4, maxWidth: "230px" }}>
-              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 700, fontSize: 28, color: "#190b00", margin: 0, lineHeight: 1 }}>
+              <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 28, color: "#190b00", margin: 0, lineHeight: 1, letterSpacing: "-0.01em" }}>
                 tulah
               </p>
               <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 13, color: "#7b7b7b", lineHeight: "1.35" }}>
@@ -356,7 +456,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Campaign OS card (Story 02) ── */}
-      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/campaign-os-story")} isStoryCard>
+      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/campaign-os-story")} isStoryCard delay={0.74}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           
           {/* Right MacBook Mockup Image (Positioned flush on right half) */}
@@ -383,14 +483,14 @@ function Group7() {
             left: 20,
             top: 20,
             fontFamily: "Outfit, sans-serif",
-            fontWeight: 700,
-            fontSize: 30,
+            fontWeight: 800,
+            fontSize: 28,
             color: "#FFFDFA",
             margin: 0,
             lineHeight: 1,
             zIndex: 5,
             whiteSpace: "nowrap",
-            letterSpacing: "-0.5px"
+            letterSpacing: "-0.01em"
           }}>
             CampaignOS
           </p>
@@ -740,12 +840,12 @@ function StoryCampaignOS() {
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[40px] items-start leading-[normal] relative shrink-0 w-[273px]">
               <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
                 <p className="relative shrink-0">[ story 02 ]</p>
-                <p className="relative shrink-0">[ 2026 ]</p>
+                <p className="relative shrink-0">[ 2025 ]</p>
               </div>
               <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full">
                 <p className="font-['Outfit:Bold',sans-serif] font-bold relative shrink-0 text-[#190b00] text-[30px] w-full">Campaign OS</p>
                 <p className="font-['Outfit:Regular',sans-serif] font-normal relative shrink-0 text-[#77695d] text-[18px] w-full">
-                  AI-native operating system that brings campaign planning, execution, monitoring and optimization into one connected workflow.
+                  AI-native operating system that brings campaign planning, execution, monitoring and optimisation into one connected workflow.
                 </p>
               </div>
             </div>
@@ -1070,7 +1170,7 @@ function Frame57() {
   return (
     <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
       <p className="relative shrink-0">[ story 04 ]</p>
-      <p className="relative shrink-0">[ 2025 ]</p>
+      <p className="relative shrink-0">[ 2026 ]</p>
     </div>
   );
 }
@@ -1594,7 +1694,12 @@ function Frame93() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-[580px] items-center justify-center min-w-px relative">
       <div className="flex flex-col items-start gap-[20px]">
-        <p className="font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#77695d] text-[18px]">01</p>
+        <img
+          src="/gifs/focus-product-design.gif"
+          alt="Product Design"
+          className="w-[44px] h-[44px] object-contain shrink-0"
+          loading="eager"
+        />
         <Frame94 />
       </div>
     </div>
@@ -1612,7 +1717,7 @@ function Frame96() {
         <br aria-hidden />
         Conversational Experiences
         <br aria-hidden />
-        AI Behavior Design
+        AI Behaviour Design
         <br aria-hidden />
         Enterprise AI Systems
       </p>
@@ -1624,7 +1729,12 @@ function Frame95() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-[580px] items-center justify-center leading-[normal] min-w-px relative">
       <div className="flex flex-col items-start gap-[20px]">
-        <p className="font-['Outfit:Regular',sans-serif] font-normal relative shrink-0 text-[#77695d] text-[18px]">02</p>
+        <img
+          src="/gifs/focus-human-ai.gif"
+          alt="Human–AI Interaction"
+          className="w-[44px] h-[44px] object-contain shrink-0"
+          loading="eager"
+        />
         <Frame96 />
       </div>
     </div>
@@ -1653,7 +1763,12 @@ function Frame97() {
   return (
     <div className="content-stretch flex flex-[1_0_0] flex-col h-[580px] items-center justify-center min-w-px relative">
       <div className="flex flex-col items-start gap-[20px]">
-        <p className="font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative shrink-0 text-[#77695d] text-[18px]">03</p>
+        <img
+          src="/gifs/focus-systems-craft.gif"
+          alt="Systems & Craft"
+          className="w-[44px] h-[44px] object-contain shrink-0"
+          loading="eager"
+        />
         <Frame98 />
       </div>
     </div>

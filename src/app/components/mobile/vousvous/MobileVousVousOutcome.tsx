@@ -24,7 +24,7 @@ export function MobileVousVousOutcome() {
       <div className="bg-[#fffdfa] border-x border-b border-[#7b7a77] p-4 -mt-[1px] flex flex-col">
         {/* Intro Narrative */}
         <p className="font-outfit font-normal text-[#77695d] text-[15px] leading-[1.5] mb-5">
-          VousVous moved beyond a conventional fashion-commerce experience, creating a live mobile product built around discovery, personalization, and AI-assisted creation.
+          VousVous moved beyond a conventional fashion-commerce experience, creating a live mobile product built around discovery, personalisation, and AI-assisted creation.
         </p>
 
         {/* Two Metrics Cards (Sharp 90-degree borders) */}

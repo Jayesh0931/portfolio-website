@@ -369,6 +369,19 @@ function generateHomeSemanticHtml(templateHtml) {
   };
 
   let html = templateHtml;
+  
+  // Preload hero LCP image in root document so Lighthouse/PageSpeed discovers it immediately
+  const assetsDir = path.join(distDir, "assets");
+  if (fs.existsSync(assetsDir)) {
+    const files = fs.readdirSync(assetsDir);
+    const heroAsset = files.find((f) => /^allyra_cover_small-.*\.webp$/.test(f));
+    if (heroAsset) {
+      const preloadTag = `\n    <link rel="preload" as="image" href="/assets/${heroAsset}" fetchpriority="high" />\n  </head>`;
+      html = html.replace("</head>", preloadTag);
+      console.log(`[prerender] Injected LCP hero image preload: /assets/${heroAsset}`);
+    }
+  }
+
   const jsonLdScript = `\n    <script type="application/ld+json" id="json-ld-schema">${JSON.stringify(homeJsonLd, null, 2)}</script>\n  </head>`;
   html = html.replace("</head>", jsonLdScript);
 

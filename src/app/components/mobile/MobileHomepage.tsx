@@ -183,27 +183,38 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const onScrollBg = () => {
-      const focusEl = document.getElementById("mobile-focus");
-      if (!focusEl) return;
-      const rect = focusEl.getBoundingClientRect();
-      const inView = rect.top <= window.innerHeight * 0.7;
-      setIsDarkCanvas(inView);
-    };
+    const focusEl = document.getElementById("mobile-focus");
+    if (!focusEl) return;
 
+    // Use IntersectionObserver to transition dark background with zero forced reflow
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]) {
+          setIsDarkCanvas(entries[0].isIntersecting);
+        }
+      },
+      { rootMargin: "0px 0px -30% 0px" }
+    );
+
+    observer.observe(focusEl);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldShow = window.scrollY > 300;
+          setShowScrollTop((prev) => (prev !== shouldShow ? shouldShow : prev));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", onScrollBg, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
-    onScrollBg();
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", onScrollBg);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {

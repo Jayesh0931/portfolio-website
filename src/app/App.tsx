@@ -1208,25 +1208,24 @@ function MobileView() {
 
 function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: number; left: number; hasScrolled: boolean; onAboutClick?: () => void }) {
   const [scrollY, setScrollY] = useState(0);
-  const [craftTop, setCraftTop] = useState<number | null>(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
-      const craftEl = document.getElementById("focus-section-block");
-      if (craftEl) {
-        setCraftTop(craftEl.getBoundingClientRect().top);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrollY(window.scrollY);
+          ticking = false;
+        });
+        ticking = true;
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Stories section starts at 2077*scale. Arrow points UP (rotate 180deg) when scrolled past stories section header
   const storiesPassed = scrollY > (2077 + 400) * scale;
-  // Craft section arrow points UP (rotate 180deg) when craft section top is at or above viewport top
-  const craftPassed = craftTop !== null ? craftTop <= 100 : scrollY > 6000 * scale;
 
   const capsuleStyle = (isCta: boolean): React.CSSProperties => ({
     background: "#FFFDFA",
@@ -1510,31 +1509,32 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const handleScrollBg = () => {
-      // Trigger dark background transition on home page and about page
-      const isAbout = currentPath === "/about" || window.location.pathname === "/about" || window.location.pathname.startsWith("/about");
-      if (isAbout) {
-        const triggerEl = document.getElementById("about-dark-trigger");
-        const isDarkInView = triggerEl ? triggerEl.getBoundingClientRect().top <= window.innerHeight * 0.7 : false;
-        document.body.style.transition = "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-        document.body.style.backgroundColor = isDarkInView ? "#190b00" : "#FFFDFA";
-        return;
-      }
+    const isAbout = currentPath === "/about" || window.location.pathname === "/about" || window.location.pathname.startsWith("/about");
 
-      if (window.location.pathname !== "/") {
-        document.body.style.backgroundColor = "#FFFDFA";
-        return;
-      }
-      
-      const focusEl = document.getElementById("focus-section-block");
-      const isFocusInView = focusEl ? focusEl.getBoundingClientRect().top <= window.innerHeight * 0.7 : false;
+    if (window.location.pathname !== "/" && !isAbout) {
+      document.body.style.backgroundColor = "#FFFDFA";
+      return;
+    }
 
-      document.body.style.transition = "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      document.body.style.backgroundColor = isFocusInView ? "#190b00" : "#FFFDFA";
-    };
-    window.addEventListener("scroll", handleScrollBg, { passive: true });
-    handleScrollBg();
-    return () => window.removeEventListener("scroll", handleScrollBg);
+    const targetEl = isAbout
+      ? document.getElementById("about-dark-trigger")
+      : document.getElementById("focus-section-block");
+
+    if (!targetEl) return;
+
+    document.body.style.transition = "background-color 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]) {
+          document.body.style.backgroundColor = entries[0].isIntersecting ? "#190b00" : "#FFFDFA";
+        }
+      },
+      { rootMargin: "0px 0px -30% 0px" }
+    );
+
+    observer.observe(targetEl);
+    return () => observer.disconnect();
   }, [scale, currentPath]);
 
   useEffect(() => {

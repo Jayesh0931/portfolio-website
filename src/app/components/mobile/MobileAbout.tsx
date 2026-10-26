@@ -1,15 +1,14 @@
 import BrandVector from "@/components/BrandVector";
 
 const CLIENTS = [
-  "Pansophic Technologies",
-  "allyra.ai",
-  "Stanford Medicine",
-  "tulah",
   "Tata Consultancy Services",
-  "VousVous",
+  "5Exceptions",
   "Joonify",
   "Vertisystem",
-  "5Exceptions",
+  "Stanford Medicine",
+  "Vrozart Dackson",
+  "Pansophic Technologies",
+  "Allyra.ai",
 ];
 
 export function MobileAbout() {
@@ -41,15 +40,26 @@ export function MobileAbout() {
           {/* Right Main Column */}
           <div className="mobile-about-content">
             {/* Body Paragraphs */}
-            <div className="mobile-about-body-text">
-            <p>
-              I'm <b>Jayesh Soni</b>, Product Lead &amp; AI Product Designer with 7+ years designing AI-native products, enterprise platforms, and operational systems.
-              Experienced in Human–AI Interaction, Agentic UX, AI workflow design, prompt engineering, and product strategy, with end-to-end ownership from discovery through implementation.
-            </p>
-            <p>
-              I design AI products that align human behaviour, business goals, and intelligent agents—bringing clarity to complexity and creating adaptive experiences that enterprise teams can confidently adopt and trust.
-            </p>
-          </div>
+            <div
+              className="mobile-about-body-text"
+              style={{
+                fontFamily: "Outfit, sans-serif",
+                fontWeight: 400,
+                fontSize: "18px",
+                lineHeight: 1.45,
+                letterSpacing: "-0.015em",
+                color: "#77695d",
+              }}
+            >
+              <p style={{ margin: 0, lineHeight: 1.45 }}>
+                {`I'm `}
+                <strong style={{ color: "#190b00", fontWeight: 700 }}>Jayesh Soni</strong>
+                {`, and with 7+ years in technology—including 6+ years in UX and product design—I work at the intersection of people, systems, and emerging technologies. From healthcare and education to marketplaces and enterprise AI, my work has evolved into shaping Human–AI interactions, agentic experiences, and adaptive systems that people can understand and trust.`}
+              </p>
+              <p style={{ margin: 0, lineHeight: 1.45 }}>
+                {`Along the way, I've learned that the hardest product challenges are rarely just technical. They're human. The work I enjoy most is bringing clarity to complexity and creating experiences that people can confidently adopt and rely on.`}
+              </p>
+            </div>
 
           {/* Client Ticker Marquee */}
           <div className="mobile-about-ticker-wrap">

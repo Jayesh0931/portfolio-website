@@ -39,7 +39,7 @@ export function MobileVousVousOutcome() {
               </span>
             </div>
             <span className="font-outfit text-[11px] text-[#77695d] mt-2 block">
-              Exclusive access to the first live experience
+              Early cohort testing gesture discovery & AI style remixing
             </span>
           </div>
 

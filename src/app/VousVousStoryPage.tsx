@@ -441,7 +441,7 @@ export default function VousVousStoryPage({
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pr-[30px] w-[174px] relative shrink-0 -ml-[1px]">
               <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">
-                [ 2026 ]
+                [ 2024 ]
               </p>
             </div>
           </div>
@@ -471,7 +471,7 @@ export default function VousVousStoryPage({
                   TIMELINE
                 </p>
                 <p className="font-outfit font-normal text-[#190b00] text-[15px] w-full mb-0">
-                  2026
+                  2024
                 </p>
               </div>
               <div className="flex flex-col gap-[2px] w-full">
@@ -727,7 +727,7 @@ export default function VousVousStoryPage({
                     Pilot Users
                   </h3>
                   <p className="font-outfit font-normal text-[#77695d] text-[16px] leading-[normal] m-0">
-                    Exclusive access to the first live experience
+                    Early cohort testing gesture discovery & AI style remixing
                   </p>
                 </div>
 

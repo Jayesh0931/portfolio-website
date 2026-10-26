@@ -73,7 +73,7 @@ function Frame5() {
 function Frame9() {
   return (
     <div className="absolute bg-[#e5ddd4] content-stretch flex items-center justify-center left-[105px] px-[11px] py-[6px] rounded-[20px] top-[733px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Human-AI Interaction</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Human-AI Interaction</p>
     </div>
   );
 }
@@ -81,7 +81,7 @@ function Frame9() {
 function Frame10() {
   return (
     <div className="absolute bg-[#e5ddd4] content-stretch flex items-center justify-center left-[297px] px-[11px] py-[6px] rounded-[20px] top-[733px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Agentic UX</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Agentic UX</p>
     </div>
   );
 }
@@ -89,7 +89,7 @@ function Frame10() {
 function Frame11() {
   return (
     <div className="absolute bg-[#e5ddd4] content-stretch flex items-center justify-center left-[251px] px-[11px] py-[6px] rounded-[20px] top-[768px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Enterprise Systems</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Enterprise Systems</p>
     </div>
   );
 }
@@ -97,7 +97,7 @@ function Frame11() {
 function Frame12() {
   return (
     <div className="absolute bg-[#e5ddd4] content-stretch flex items-center justify-center left-[105px] px-[11px] py-[6px] rounded-[20px] top-[768px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Product Design</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Product Design</p>
     </div>
   );
 }
@@ -318,6 +318,9 @@ function Group7() {
           <img 
             src={imgAllyraCoverSmall} 
             alt="Allyra Mockup"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             style={{
               position: "absolute",
               right: 0,
@@ -368,7 +371,7 @@ function Group7() {
             {/* Top Header Row */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
-                [ STORY 04 ] [ 2025 ]
+                [ STORY 04 ] [ 2024 ]
               </p>
               <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
@@ -516,7 +519,7 @@ function Group7() {
           <div style={{ position: "absolute", left: 20, bottom: 16, zIndex: 5, display: "flex", flexDirection: "column", gap: 4 }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#FFFDFA", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 02 ]</p>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#FFFDFA", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ 2026 ]</p>
+              <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#FFFDFA", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ 2024–25 ]</p>
               <span style={{ color: "#FFFDFA", fontSize: 14, fontWeight: "bold", lineHeight: 1 }}>↙</span>
             </div>
           </div>
@@ -745,7 +748,7 @@ function Frame19() {
 function Frame17() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Human-AI Interaction</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Human-AI Interaction</p>
     </div>
   );
 }
@@ -753,7 +756,7 @@ function Frame17() {
 function Frame24() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Enterprise AI</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Enterprise AI</p>
     </div>
   );
 }
@@ -761,7 +764,7 @@ function Frame24() {
 function Frame25() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Agentic UX</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Agentic UX</p>
     </div>
   );
 }
@@ -842,7 +845,7 @@ function StoryCampaignOS() {
             <div className="[word-break:break-word] content-stretch flex flex-col gap-[40px] items-start leading-[normal] relative shrink-0 w-[273px]">
               <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
                 <p className="relative shrink-0">[ story 02 ]</p>
-                <p className="relative shrink-0">[ 2025 ]</p>
+                <p className="relative shrink-0">[ 2024–25 ]</p>
               </div>
               <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full">
                 <p className="font-['Outfit:Bold',sans-serif] font-bold relative shrink-0 text-[#190b00] text-[30px] w-full">Campaign OS</p>
@@ -921,13 +924,13 @@ function StoryCampaignOS() {
           <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-0 pointer-events-none transition-colors duration-300" />
           <div className="content-stretch flex flex-[1_0_0] gap-[8px] items-center min-w-px relative">
             <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">AI WORKFLOWS</p>
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">AI WORKFLOWS</p>
             </div>
             <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">MARKETING OS</p>
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">MARKETING OS</p>
             </div>
             <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">HUMAN-AI INTERACTION</p>
+              <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">HUMAN-AI INTERACTION</p>
             </div>
           </div>
           <Frame32 />
@@ -1091,7 +1094,7 @@ function Frame47() {
 function Frame50() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">{` Wellness AI`}</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">{` Wellness AI`}</p>
     </div>
   );
 }
@@ -1099,7 +1102,7 @@ function Frame50() {
 function Frame51() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Operations</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Operations</p>
     </div>
   );
 }
@@ -1107,7 +1110,7 @@ function Frame51() {
 function Frame52() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Service Experience</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Service Experience</p>
     </div>
   );
 }
@@ -1176,7 +1179,7 @@ function Frame57() {
   return (
     <div className="content-stretch flex font-['Inter:Bold',sans-serif] font-bold gap-[20px] items-center not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full whitespace-nowrap">
       <p className="relative shrink-0">[ story 04 ]</p>
-      <p className="relative shrink-0">[ 2026 ]</p>
+      <p className="relative shrink-0">[ 2024 ]</p>
     </div>
   );
 }
@@ -1329,7 +1332,7 @@ function Frame65() {
 function Frame68() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Fashion Tech</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Fashion Tech</p>
     </div>
   );
 }
@@ -1337,7 +1340,7 @@ function Frame68() {
 function Frame69() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">AI Personalization</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">AI Personalization</p>
     </div>
   );
 }
@@ -1345,7 +1348,7 @@ function Frame69() {
 function Frame70() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Consumer Products</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Consumer Products</p>
     </div>
   );
 }
@@ -1567,7 +1570,7 @@ function Frame83() {
 function Frame86() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">ED-Tech</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">ED-Tech</p>
     </div>
   );
 }
@@ -1575,7 +1578,7 @@ function Frame86() {
 function Frame87() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">{` Learning Experience`}</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">{` Learning Experience`}</p>
     </div>
   );
 }
@@ -1583,7 +1586,7 @@ function Frame87() {
 function Frame88() {
   return (
     <div className="bg-[#e5ddd4] content-stretch flex items-center justify-center px-[11px] py-[6px] relative rounded-[20px] shrink-0">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Child Development</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Child Development</p>
     </div>
   );
 }
@@ -1840,14 +1843,30 @@ function Group12() {
       <div className="bg-[#FFFDFA] col-1 h-[750px] ml-[71px] mt-0 relative row-1 w-[1209px]">
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="[word-break:break-word] col-1 font-['Outfit:Regular',sans-serif] font-normal ml-[250px] mt-[155px] relative row-1 text-[#77695d] text-[24px] w-[850px] whitespace-pre-wrap">
-        <p className="mb-0">
-          <span className="leading-[normal]">{`I'm `}</span>
-          <span className="[word-break:break-word] font-['Outfit:Bold',sans-serif] font-bold leading-[normal] text-[#190b00]">Jayesh Soni</span>
-          <span className="leading-[normal]">{`, and for the past 7+ years, I've been designing products at the intersection of people, systems, and emerging technologies. From healthcare and education to marketplaces and enterprise AI, my work has evolved into shaping Human–AI interactions, agentic experiences, and adaptive systems that people can understand and trust.`}</span>
+      <div
+        style={{
+          fontFamily: "Outfit, sans-serif",
+          fontWeight: 400,
+          fontSize: "24px",
+          lineHeight: 1.45,
+          letterSpacing: "-0.015em",
+          color: "#77695d",
+          width: "880px",
+          marginLeft: "250px",
+          marginTop: "155px",
+          position: "relative",
+          wordBreak: "break-word",
+        }}
+        className="col-1 row-1"
+      >
+        <p style={{ margin: "0 0 24px 0", lineHeight: 1.45 }}>
+          {`I'm `}
+          <strong style={{ color: "#190b00", fontWeight: 700 }}>Jayesh Soni</strong>
+          {`, and with 7+ years in technology—including 6+ years in UX and product design—I work at the intersection of people, systems, and emerging technologies. From healthcare and education to marketplaces and enterprise AI, my work has evolved into shaping Human–AI interactions, agentic experiences, and adaptive systems that people can understand and trust.`}
         </p>
-        <p className="leading-[normal] mb-0">​</p>
-        <p className="leading-[normal]">{`Along the way, I've learned that the hardest product challenges are rarely just technical. They're human. The work I enjoy most is bringing clarity to complexity and creating experiences that people can confidently adopt and rely on.`}</p>
+        <p style={{ margin: 0, lineHeight: 1.45 }}>
+          {`Along the way, I've learned that the hardest product challenges are rarely just technical. They're human. The work I enjoy most is bringing clarity to complexity and creating experiences that people can confidently adopt and rely on.`}
+        </p>
       </div>
       <p className="[word-break:break-word] col-1 font-['Outfit:Regular',sans-serif] font-normal leading-[normal] ml-[250px] mt-[92px] relative row-1 text-[#77695d] text-[18px] w-[448px]">THE JOURNEY THAT SHAPED HOW I DESIGN</p>
       <div className="col-1 flex h-[57px] items-center justify-center ml-[27px] mt-[663px] relative row-1 w-[15px]">
@@ -1889,11 +1908,13 @@ function Group12() {
         <div className="marquee-track" style={{ display: "flex", gap: "80px", animationDuration: "25s" }}>
           {Array(3).fill([
             "Tata Consultancy Services",
+            "5Exceptions",
             "Joonify",
             "Vertisystem",
-            "Stanford",
-            "allyra.ai",
-            "tulah"
+            "Stanford Medicine",
+            "Vrozart Dackson",
+            "Pansophic Technologies",
+            "Allyra.ai"
           ]).flat().map((name, idx) => (
             <span key={idx} style={{
               fontFamily: "Outfit, sans-serif",

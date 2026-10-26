@@ -793,14 +793,14 @@ function MobileView() {
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
           {["Human-AI Interaction", "Agentic UX", "Product Design", "Enterprise Systems"].map(tag => (
-            <span key={tag} style={{ background: "#e5ddd4", color: "#77695d", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", padding: "4px 10px", borderRadius: "20px", textTransform: "uppercase" }}>
+            <span key={tag} style={{ background: "#e5ddd4", color: "#584e45", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "10px", padding: "4px 10px", borderRadius: "20px", textTransform: "uppercase" }}>
               {tag}
             </span>
           ))}
         </div>
         <div 
           onClick={(e) => triggerAutoScroll(e)}
-          style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#77695d", textTransform: "uppercase", marginTop: "4px", cursor: "pointer" }}
+          style={{ display: "flex", gap: "8px", alignItems: "center", fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: "11px", color: "#584e45", textTransform: "uppercase", marginTop: "4px", cursor: "pointer" }}
         >
           <span>Scroll to explore</span>
           <span>↙</span>
@@ -1177,11 +1177,11 @@ function MobileView() {
 
       {/* About Content */}
       <div style={{ padding: "24px 20px", display: "flex", flexDirection: "column", gap: "24px" }}>
-        <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "18px", color: "#77695d", lineHeight: "1.5", margin: 0 }}>
-          I'm <strong style={{ color: "#190b00", fontWeight: 700 }}>Jayesh Soni</strong>, and for the past 7+ years, I've been designing products at the intersection of people, systems, and emerging technologies. From healthcare and education to marketplaces and enterprise AI, my work has evolved into shaping Human–AI interactions, agentic experiences, and adaptive systems that people can understand and trust.
+        <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: "18px", color: "#77695d", lineHeight: 1.45, letterSpacing: "-0.015em", margin: 0 }}>
+          I'm <strong style={{ color: "#190b00", fontWeight: 700 }}>Jayesh Soni</strong>, and with 7+ years in technology—including 6+ years in UX and product design—I work at the intersection of people, systems, and emerging technologies. From healthcare and education to marketplaces and enterprise AI, my work has evolved into shaping Human–AI interactions, agentic experiences, and adaptive systems that people can understand and trust.
         </p>
 
-        <p style={{ fontFamily: "Outfit, sans-serif", fontSize: "18px", color: "#77695d", lineHeight: "1.5", margin: 0 }}>
+        <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: "18px", color: "#77695d", lineHeight: 1.45, letterSpacing: "-0.015em", margin: 0 }}>
           Along the way, I've learned that the hardest product challenges are rarely just technical. They're human. The work I enjoy most is bringing clarity to complexity and creating experiences that people can confidently adopt and rely on.
         </p>
 

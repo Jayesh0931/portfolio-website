@@ -46,7 +46,7 @@ export function MobileVousVousHero({ onBack, isDark = false }: MobileVousVousHer
             <span>OVERVIEW</span>
           </div>
           <div className="mobile-story-overview-right">
-            <span>[ 2025 ]</span>
+            <span>[ 2024 ]</span>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export function MobileVousVousHero({ onBack, isDark = false }: MobileVousVousHer
 
             <div className="mobile-story-meta-item">
               <span className="mobile-story-meta-label">TIMELINE</span>
-              <span className="mobile-story-role-val">2026</span>
+              <span className="mobile-story-role-val">2024</span>
             </div>
 
             <div className="mobile-story-meta-item">

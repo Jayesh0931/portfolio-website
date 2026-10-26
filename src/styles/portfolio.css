@@ -49,20 +49,22 @@ body.dark-mode .text-outline-dark {
 
 /* Custom animations */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee-slow {
   display: flex;
   width: max-content;
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-fast {
   display: flex;
   width: max-content;
   animation: marquee 15s linear infinite;
+  will-change: transform;
 }
 
 /* Glassmorphism Navigation capsule */

@@ -103,6 +103,9 @@ export function AllyraHeroCard({
         <img 
           src={imgAllyraCoverSmall} 
           alt="Allyra Mockup"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           style={{
             position: "absolute",
             right: isMobile ? "-20px" : 0,
@@ -175,7 +178,7 @@ export function CampaignOSHeroCard({
             <>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#fff", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>
-                  [ STORY 02 ] [ 2026 ]
+                  [ STORY 02 ] [ 2024–25 ]
                 </p>
                 <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
                   <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
@@ -208,7 +211,7 @@ export function CampaignOSHeroCard({
                 </p>
                 <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                   <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 10.5, color: "#fff", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
-                    [ 2026 ]
+                    [ 2024–25 ]
                   </p>
                   <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
                     <svg width="10" height="10" viewBox="0 0 11 11" fill="none">
@@ -339,7 +342,7 @@ export function VousVousHeroCard({
         <div style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", height: "100%", padding: isMobile ? "12px 14px 0" : "14px 16px 0", boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: isMobile ? 9.5 : 11.5, color: "#77695d", letterSpacing: "0.5px", textTransform: "uppercase", margin: 0 }}>
-              [ STORY 04 ] [ 2025 ]
+              [ STORY 04 ] [ 2024 ]
             </p>
             <div style={{ transform: "rotate(180deg)", display: "flex", alignItems: "center" }}>
               <svg width="10" height="10" viewBox="0 0 11 11" fill="none"><path d={svgPaths.p18019200} fill="#77695D" /></svg>

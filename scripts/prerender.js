@@ -64,12 +64,12 @@ const STORIES = [
   },
   {
     path: "campaign-os-story",
-    title: "Campaign OS Case Study — Jayesh Soni | Product Lead",
+    title: "Campaign OS Case Study — Jayesh Soni | UXD Head",
     description: "Case study on Campaign OS: Client project directed at Vrozart Dackson designing an autonomous campaign operating system with conversational analytics and calm monitoring.",
     headline: "Designing an Autonomous Marketing & Campaign Operating System",
     company: "Vrozart Dackson Enterprise",
-    year: "2025",
-    role: "Product Lead",
+    year: "2024–2025",
+    role: "UXD Head",
     team: "Enterprise Client Work (NDA)",
     scope: "Product Direction / UX Strategy / Autonomous Marketing / Conversational Analytics",
     keywords: "Campaign OS, Autonomous Marketing, Conversational Analytics, Living Insights, Calm Monitoring, Multi-Channel Workflows",
@@ -118,7 +118,7 @@ const STORIES = [
     description: "Case study on VousVous: Declarative fashion discovery beyond search, multimodal style synthesis, and interactive wardrobe curation.",
     headline: "Designing Fashion Discovery Beyond Search",
     company: "Vrozart Dackson Enterprise",
-    year: "2026",
+    year: "2024",
     role: "UXD Head, Vrozart Dackson",
     team: "Design & Engineering Team",
     scope: "Product Direction / Gesture-First Discovery / Multimodal AI Synthesis / Conversational Commerce",
@@ -128,7 +128,7 @@ const STORIES = [
     challenge: "Most fashion platforms assume users know exactly what they're looking for. In reality, fashion shopping is exploratory. People discover styles while browsing, save pieces they like, compare options, and gradually refine their preferences. Traditional patterns interrupt this process with complex filters and overwhelming choices.",
     opportunity: "Discover naturally using simple gestures, express intent conversationally with AI, and personalise before purchasing with AI remixing and try-on.",
     whatIDrove: "Gesture-first discovery experience, Conversational AI workflows for fashion exploration, The remix interaction for personalisation, Quotation and measurement journeys, Consistent visual language, Reusable interaction patterns.",
-    impact: "100+ Pilot Users, 3 Core Gestures (Like · Skip · Explore), AI-powered journey (Discover → Create → Remix → Quote → Purchase).",
+    impact: "100+ Pilot Users (early cohort testing gesture discovery & AI style remixing), 3 Core Gestures (Like · Skip · Explore), AI-powered journey (Discover → Create → Remix → Quote → Purchase).",
     keyDecisions: [
       "Discovery Before Search — One design at a time with swipe-based exploration",
       "Conversation Over Filters — Expressing fashion intent through natural language",
@@ -297,8 +297,33 @@ function generateStoryHtml(templateHtml, story) {
         <p style="font-size: 17px; color: #190b00;">${story.whatIDrove}</p>
       </section>
 
+      ${story.path === "allyra-story" ? `
       <section style="margin-bottom: 36px;">
-        <h2 style="font-size: 24px; margin: 0 0 12px 0;">${story.path === "allyra-story" ? "Scale &amp; Adoption" : (story.path === "tulah-story" ? "Foundation &amp; Care Orchestration" : (story.path === "campaign-os-story" ? "Validation" : "Outcome"))}</h2>
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">End-to-End Multi-Agent Workflow Pipeline</h2>
+        <ol style="padding-left: 20px; font-size: 17px; color: #190b00; line-height: 1.7;">
+          <li style="margin-bottom: 12px;"><strong>Stage 1: Intent &amp; Goal Formulation:</strong> Decomposes natural language business goals into a structured Directed Acyclic Graph (DAG) of discrete tasks with scoped tool dependencies.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 2: Orchestration &amp; Delegation:</strong> A supervisory agent routes tasks to specialized domain agents (Knowledge Retrieval, Policy Compliance, Generation, API Execution) while bounding context windows.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 3: Confidence Thresholds &amp; Guardrails:</strong> Dual-layer verification pairing deterministic rules (schema validation, data privacy boundaries) with probabilistic confidence scoring to prevent runtime hallucinations.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 4: Human-in-the-Loop (HITL) Approval Gate:</strong> Contextual staging queue where low-confidence or high-stakes actions are paused for human review with explanatory diffs and quick-approval controls.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 5: Live Execution &amp; Telemetry Audit:</strong> Execution through secure enterprise connectors with real-time tracking of latency, token expenditure, and error recovery in a centralized governance dashboard.</li>
+        </ol>
+      </section>
+      ` : ""}
+
+      ${story.path === "tulah-story" ? `
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Cross-Specialty Care Handover Matrix</h2>
+        <ol style="padding-left: 20px; font-size: 17px; color: #190b00; line-height: 1.7;">
+          <li style="margin-bottom: 12px;"><strong>Stage 1: Pre-Arrival Onboarding &amp; Intake:</strong> Digital capture of biometric data, medical contraindications, and wellness goals into a unified electronic health profile before check-in.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 2: Multidisciplinary Specialist Consultations:</strong> Independent diagnostic assessments across Ayurveda, modern clinical medicine, naturopathy, and clinical nutrition.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 3: Care Plan Synthesis &amp; Conflict Resolution:</strong> Automated conflict-detection engine flagging therapeutic contradictions across disciplines, enabling clinical leadership to synthesize a single source of truth care plan.</li>
+          <li style="margin-bottom: 12px;"><strong>Stage 4: Synchronized Guest Timeline &amp; Operations Delivery:</strong> Real-time operational dispatch translating clinical plans into guest mobile schedules, custom herbal kitchen orders, and therapy room prep.</li>
+        </ol>
+      </section>
+      ` : ""}
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">${story.path === "allyra-story" ? "Scale &amp; Adoption" : (story.path === "tulah-story" ? "Foundation &amp; Care Orchestration" : (story.path === "campaign-os-story" ? "The Solution" : "Outcome"))}</h2>
         <p style="font-size: 17px; color: #190b00;">${story.impact}</p>
       </section>
 

@@ -2841,13 +2841,13 @@
   justify-content: center;
 }
 
-/* Web: font-inter font-bold (700) 12px #77695d tracking 0.6px -> Mobile: identical */
+/* Web: font-inter font-bold (700) 12px #584e45 tracking 0.6px -> Mobile: identical */
 .mobile-story-overview-right span {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.6px;
-  color: #77695d;
+  color: #584e45;
   text-transform: uppercase;
 }
 

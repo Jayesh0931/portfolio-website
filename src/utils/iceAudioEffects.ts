@@ -42,10 +42,27 @@ async function preloadBuffer(key: "freeze" | "crack" | "shatter", url: string): 
   }
 }
 
-if (typeof window !== "undefined") {
+let hasPreloaded = false;
+
+// Preload real audio buffers only after initial user interaction or on-demand
+export function lazyPreloadIceAudio(): void {
+  if (hasPreloaded || typeof window === "undefined") return;
+  hasPreloaded = true;
   preloadBuffer("freeze", "/sounds/ice_freeze.mp3");
   preloadBuffer("crack", "/sounds/ice_crack.mp3");
   preloadBuffer("shatter", "/sounds/ice_shatter.mp3");
+}
+
+if (typeof window !== "undefined") {
+  const triggerLazy = () => {
+    lazyPreloadIceAudio();
+    window.removeEventListener("pointerdown", triggerLazy);
+    window.removeEventListener("keydown", triggerLazy);
+    window.removeEventListener("scroll", triggerLazy);
+  };
+  window.addEventListener("pointerdown", triggerLazy, { once: true, passive: true });
+  window.addEventListener("keydown", triggerLazy, { once: true, passive: true });
+  window.addEventListener("scroll", triggerLazy, { once: true, passive: true });
 }
 
 function playBuffer(

@@ -45,7 +45,7 @@ const storiesData: StoryItem[] = [
   {
     id: "mobile-story-2",
     storyNum: "STORY 02",
-    year: "2025",
+    year: "2024–25",
     title: "Campaign OS",
     subtitle: "AI-native operating system that brings campaign planning, execution, monitoring and optimisation into one connected workflow.",
     pills: ["AI WORKFLOWS", "MARKETING OS", "HUMAN-AI INTERACTION"],
@@ -71,7 +71,7 @@ const storiesData: StoryItem[] = [
   {
     id: "mobile-story-4",
     storyNum: "STORY 04",
-    year: "2026",
+    year: "2024",
     title: "VousVous",
     subtitle: "AI-powered fashion platform for discovering, creating, and personalising unique styles.",
     pills: ["FASHION TECH", "AI PERSONALISATION", "CONSUMER PRODUCTS"],

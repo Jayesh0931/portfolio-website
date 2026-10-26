@@ -384,7 +384,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid flex-[1_0_0] h-[70px] min-w-px relative -ml-[1px]" />
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex h-[70px] items-center justify-end pl-[90px] pr-[30px] py-[16px] relative shrink-0 -ml-[1px]">
               <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">
-                [ 2025 ]
+                [ 2024–25 ]
               </p>
             </div>
           </div>
@@ -406,7 +406,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                     ROLE
                   </p>
                   <p className="font-outfit font-normal relative shrink-0 text-[#190b00] text-[17px] w-full">
-                    Product Lead
+                    UXD Head
                   </p>
                 </div>
                 <div className="content-stretch flex flex-col gap-[2px] items-start leading-[normal] relative shrink-0 w-[180px]">
@@ -444,7 +444,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                     <p className="mb-0">Designing an AI-Native Campaign Operating System</p>
                   </div>
                   <p className="font-outfit font-normal text-[#9c9288] text-[16px] leading-[1.4] tracking-[0.2px] mb-0">
-                    Originally directed as enterprise client platform architecture while at Vrozart Dackson (anonymised under NDA).
+                    Enterprise client platform architecture initiated at Vrozart Dackson (UXD Head), with roadmap and system workflows continuing through the core team transition into Pansophic Technologies (Product Lead) under NDA.
                   </p>
                 </div>
               </div>
@@ -584,7 +584,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
             </div>
           </div>
 
-          {/* ── 5. VALIDATION SECTION (Top 5333px - 200px gap after What I Drove ends at 5133px) ── */}
+          {/* ── 5. THE SOLUTION SECTION (Top 5333px - 200px gap after What I Drove ends at 5133px) ── */}
           <div className="absolute content-stretch flex flex-col items-start left-[80px] top-[5333px] w-[1280px] z-[2]">
             {/* Header Box */}
             <div className="bg-[#fffdfa] border border-[#7b7a77] border-solid content-stretch flex flex-col items-start p-[40px] relative shrink-0 w-full">
@@ -593,8 +593,8 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
                   <p className="font-inter font-bold text-[#77695d] text-[12px] tracking-[0.6px] uppercase w-full mb-0">
                     [ AI-NATIVE MARKETING ]
                   </p>
-                  <p className="font-outfit font-black leading-[1] text-[#190b00] text-[140px] tracking-[5.6px] w-full margin-0">
-                    VALIDATION
+                  <p className="font-outfit font-black leading-[1] text-[#190b00] text-[120px] tracking-[4.8px] w-full margin-0">
+                    THE SOLUTION
                   </p>
                 </div>
                 <div className="flex items-center justify-center relative shrink-0">

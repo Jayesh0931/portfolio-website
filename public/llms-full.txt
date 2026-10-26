@@ -41,44 +41,65 @@ Jayesh Soni is a Product Lead and AI Product Designer based in 2026. He shapes h
 ## Detailed Case Study 1: Allyra.ai
 - **URL**: https://jayeshsoni.com/allyra-story
 - **Title**: Scaling AI from Individual Agents to Enterprise-Grade Workflows
+- **Company**: Pansophic Technologies (Jan 2025 – Present)
 - **Role**: Product Lead • AI Product Designer
 - **Team**: Led 3 designers and 2 business analysts
 - **Summary**: Allyra.ai solves the fundamental challenge of moving enterprise AI beyond single point-solution chatbots into unified, multi-agent workflows.
 
-### Key Milestones & Contributions
-- **Agent Governance & Portal Dashboard**: Centralized control centers for monitoring agent activities, compliance, and enterprise data permissions.
-- **Workflow Composite Engine**: Visual and natural-language workflow builders for enterprise teams to chain AI agents together.
-- **Outcome Validation**: Deployed across 15+ organisations, including Fortune 500 conglomerate pilots, with 19+ specialized AI agents and human-in-the-loop approvals.
+### End-to-End Multi-Agent Workflow Pipeline
+1. **Stage 1: Intent & Goal Formulation**: The system translates ambiguous natural-language business goals into a structured Directed Acyclic Graph (DAG) of actionable sub-tasks, identifying prerequisites and scoped tool dependencies before execution.
+2. **Stage 2: Orchestration & Delegation**: A supervisory meta-agent orchestrates tasks across specialized domain agents (Data Ingestion, Policy Compliance, Generation, API Integrations), bounding context windows and preventing cross-contamination.
+3. **Stage 3: Confidence Thresholds & Guardrails Check**: Dual-layer verification with deterministic security bounds (enterprise privacy boundaries, schema constraints) and probabilistic confidence scoring to detect hallucinations before runtime side-effects.
+4. **Stage 4: Calibrated Human-in-the-Loop (HITL) Gate**: Staging tray for low-confidence or high-impact actions (financial approvals, bulk mutations, external communications) with inline diffs, contextual reasoning, and quick-approval controls.
+5. **Stage 5: Live Execution, Observability & Telemetry**: Execution through enterprise connectors with real-time latency, token economics, error recovery rates, and compliance event logging on a central operations dashboard.
+
+### Outcome & Adoption Evidence
+- Expanded reach across 15+ organisations, including a pilot with a leading Indian enterprise group.
+- 19+ task-focused AI agents operating under human-in-the-loop safety guardrails.
+- Cross-functional design team throughput increased from ~1 to 2–3 features per designer/week.
 
 ---
 
 ## Detailed Case Study 2: Campaign OS
 - **URL**: https://jayeshsoni.com/campaign-os-story
 - **Title**: Autonomous Campaign Operating System & Conversational Analytics
-- **Role**: Product Lead
+- **Company**: Vrozart Dackson (Initiated as UXD Head) → Pansophic Technologies (Product Lead) (2024–2025)
+- **Role**: UXD Head
 - **Summary**: Campaign OS unifies campaign planning, execution, and optimization into a single collaborative workspace where AI acts as an active marketing partner.
 
-### Key Features
-- **Connected Workflows**: Unified campaign lifecycle on a continuous canvas.
-- **Conversational Analytics**: Interactive AI dialogues explaining the "why" behind performance metrics.
+### The Solution Architecture
+- **Connected Workflows**: Unified campaign lifecycle on a continuous canvas replacing fragmented point tools.
+- **Conversational Analytics**: Interactive AI dialogues explaining the underlying "why" behind performance metrics rather than static data graphs.
 - **Living Insights**: Modular AI insight blocks remixable across marketing teams.
-- **Calm Monitoring**: Autonomous background alerts that surface only when human decision-making is strictly required.
+- **Calm Monitoring**: Autonomous background anomaly detection alerting marketers only when human intervention is strictly necessary.
 
 ---
 
 ## Detailed Case Study 3: Tulah Clinical Wellness
 - **URL**: https://jayeshsoni.com/tulah-story
 - **Title**: Orchestrating Personalised Care Across Complex Clinical Workflows
+- **Company**: Pansophic Technologies (2025)
 - **Role**: Product Lead
 - **Summary**: Connected multidisciplinary care teams, specialists, and guests across an integrated wellness and hospitality platform, replacing manual spreadsheets and fragmented documents with unified digital workflows.
+
+### Cross-Specialty Clinical Care Handover Matrix
+1. **Stage 1: Pre-Arrival Onboarding & Intake**: Digitized intake capturing biometrics, medical contraindications, lifestyle goals, and lab diagnostics into a unified guest health profile prior to check-in.
+2. **Stage 2: Multidisciplinary Clinical Consultations**: Tailored diagnostic capture for Ayurvedic physicians, modern clinicians, naturopaths, and nutritionists within discipline-specific interfaces that feed structured care data.
+3. **Stage 3: Cross-Specialty Care Plan Synthesis**: Automated conflict-detection engine flagging therapeutic and dietary contradictions between practitioners, enabling clinical leadership to synthesize a single source of truth care plan.
+4. **Stage 4: Synchronized Guest Timeline & Operations Delivery**: Real-time dispatch converting clinical plans into guest mobile schedules, custom herbal kitchen orders, and therapy room preparation protocols.
 
 ---
 
 ## Detailed Case Study 4: VousVous
 - **URL**: https://jayeshsoni.com/vousvous-story
 - **Title**: Designing Fashion Discovery Beyond Search
-- **Role**: UXD Head (Vrozart Dackson)
+- **Company**: Vrozart Dackson Enterprise (2024)
+- **Role**: UXD Head
 - **Summary**: Declarative fashion exploration through gesture-first discovery (Like · Skip · Explore), conversational style remixing, and personalised co-creation.
+
+### 100+ Pilot Cohort Testing
+- Tested gesture-first discovery and multimodal style remixing with an initial cohort of 100+ pilot users.
+- User feedback drove interaction responsiveness and latency optimization for generative image rendering during wardrobe remixing.
 
 ---
 

@@ -12,9 +12,9 @@ export function MobileCosValidation() {
         <span> ]</span>
       </p>
 
-      {/* 2. Header Row: VALIDATION + Brand Vector */}
+      {/* 2. Header Row: THE SOLUTION + Brand Vector */}
       <div className="mobile-story-validation-header-row">
-        <h2 className="mobile-story-validation-title">VALIDATION</h2>
+        <h2 className="mobile-story-validation-title">THE SOLUTION</h2>
         <div className="mobile-story-validation-brand">
           <BrandVector theme="dark" width={60} height={40} />
         </div>

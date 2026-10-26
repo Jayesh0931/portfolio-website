@@ -2,6 +2,13 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/Jayesh_Soni_Resume_2026.pdf",
+      "destination": "/resume.pdf",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

@@ -46,7 +46,7 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
             <span>OVERVIEW</span>
           </div>
           <div className="mobile-story-overview-right">
-            <span>[ 2025 ]</span>
+            <span>[ 2024–25 ]</span>
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
           </p>
 
           <p className="mobile-story-footnote">
-            Originally directed as enterprise client platform architecture while at Vrozart Dackson (anonymised under NDA).
+            Enterprise client platform architecture initiated at Vrozart Dackson (UXD Head), with roadmap and system workflows continuing through the core team transition into Pansophic Technologies (Product Lead) under NDA.
           </p>
 
           <div className="mobile-story-meta-group">
@@ -92,7 +92,7 @@ export function MobileCosHero({ onBack, isDark = false }: MobileCosHeroProps) {
 
             <div className="mobile-story-meta-item">
               <span className="mobile-story-meta-label">ROLE</span>
-              <span className="mobile-story-role-val">Product Lead</span>
+              <span className="mobile-story-role-val">UXD Head</span>
             </div>
 
             <div className="mobile-story-meta-item">

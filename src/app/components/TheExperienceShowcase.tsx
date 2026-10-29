@@ -101,6 +101,7 @@ export function TheExperienceShowcase({
   left = 0,
   sectionTop = 9529,
 }: TheExperienceShowcaseProps) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const [activeStep, setActiveStep] = useState<number>(1);
   const [pinMode, setPinMode] = useState<"before" | "pinned" | "after">("before");
 
@@ -119,12 +120,13 @@ export function TheExperienceShowcase({
   const SCROLL_DISTANCE = 2400;
 
   // Stride between card centers: Card width (240px) + Gap (32px) = 272px
-  const CARD_WIDTH = 240;
-  const GAP = 32;
+  const CARD_WIDTH = isPdf ? 165 : 240;
+  const GAP = isPdf ? 16 : 32;
   const STRIDE = CARD_WIDTH + GAP;
 
   // 1. Scroll listener: updates targetProgress continuously in real time
   useEffect(() => {
+    if (isPdf) return;
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const start = (sectionTop - 30) * scale;
@@ -247,8 +249,17 @@ export function TheExperienceShowcase({
   };
 
   // Viewport-pinned positioning
-  const containerStyle: React.CSSProperties =
-    pinMode === "pinned"
+  const containerStyle: React.CSSProperties = isPdf
+    ? {
+        position: "absolute",
+        top: `${sectionTop * scale}px`,
+        left: 0,
+        width: "100%",
+        height: "100vh",
+        zIndex: 2,
+        pointerEvents: "auto",
+      }
+    : pinMode === "pinned"
       ? {
           position: "fixed",
           top: 0,
@@ -318,22 +329,24 @@ export function TheExperienceShowcase({
           </div>
 
           {/* ── 2. BLUR & GRADIENT OVERLAY (Gently blurs & fades phones as they pass behind the left text) ── */}
-          <div
-            className="pointer-events-none absolute left-0 top-0 h-full w-[500px] lg:w-[540px] z-10"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(25, 11, 0, 1) 0%, rgba(25, 11, 0, 0.95) 70%, rgba(25, 11, 0, 0) 100%)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              maskImage: "linear-gradient(to right, black 65%, transparent 100%)",
-              WebkitMaskImage: "linear-gradient(to right, black 65%, transparent 100%)",
-            }}
-          />
+          {!isPdf && (
+            <div
+              className="pointer-events-none absolute left-0 top-0 h-full w-[500px] lg:w-[540px] z-10"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(25, 11, 0, 1) 0%, rgba(25, 11, 0, 0.95) 70%, rgba(25, 11, 0, 0) 100%)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                maskImage: "linear-gradient(to right, black 65%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, black 65%, transparent 100%)",
+              }}
+            />
+          )}
 
           {/* ── 3. HORIZONTAL TRACK OF PHONES: First phone starts CENTERED in the right panel ── */}
           <div
             style={{
-              paddingLeft: "calc(50vw + 108px)",
+              paddingLeft: isPdf ? "460px" : "calc(50vw + 108px)",
             }}
             className="w-full h-full relative z-0 flex items-center overflow-visible"
           >
@@ -342,7 +355,7 @@ export function TheExperienceShowcase({
               style={{
                 willChange: "transform",
               }}
-              className="flex items-end justify-start gap-8 min-w-[1800px] pb-6"
+              className={`flex items-end justify-start ${isPdf ? "gap-4 min-w-[950px]" : "gap-8 min-w-[1800px]"} pb-6`}
             >
               {STEPS.map((step, idx) => {
                 const isActive = activeStep === step.id;

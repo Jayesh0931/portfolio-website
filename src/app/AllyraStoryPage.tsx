@@ -38,11 +38,23 @@ interface AllyraStoryPageProps {
 const CANVAS_W = 1440;
 const CANVAS_H = 14464; // Total height of absolute canvas from node coordinates
 
+const ALLYRA_FRAMES: Record<string, string> = {
+  [videoOpportunity]: "/video-frames/allyra_opportunity.png",
+  [videoD1]: "/video-frames/allyra_d1.png",
+  [videoD2]: "/video-frames/allyra_d2.png",
+  [videoD3]: "/video-frames/allyra_d3.png",
+  [videoD4]: "/video-frames/allyra_d4.png",
+  [videoE4]: "/video-frames/allyra_e4.png",
+  [videoE5]: "/video-frames/allyra_e5.png",
+};
+
 function ViewportVideo({ src, className }: { src: string; className?: string }) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -63,11 +75,25 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isPdf]);
 
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
   };
+
+  if (isPdf) {
+    const frameSrc = ALLYRA_FRAMES[src] || "/video-frames/allyra_opportunity.png";
+    return (
+      <div className="relative size-full overflow-hidden">
+        <img
+          src={frameSrc}
+          alt="Video Frame"
+          className={`${className} opacity-100 block`}
+          style={{ width: "100%", height: "100%", objectFit: className?.includes("object-contain") ? "contain" : "cover" }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -130,7 +156,8 @@ function ShimmerImage({ src, alt, className, style }: {
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   return (
     <div className="relative overflow-hidden size-full" style={style}>
@@ -164,10 +191,12 @@ function DynamicBgBand({
   lightBgColor = "#FFFDFA",
   onViewChange
 }: DynamicBgBandProps) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const ref = useRef<HTMLDivElement>(null);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     const el = ref.current;
     if (!el) return;
 
@@ -187,7 +216,7 @@ function DynamicBgBand({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [onViewChange]);
+  }, [onViewChange, isPdf]);
 
   return (
     <div
@@ -206,10 +235,11 @@ function DynamicBgBand({
 }
 
 export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextStory }: AllyraStoryPageProps) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const keyDecisionsRef = useRef<HTMLDivElement>(null);
-  const [isDecisionsInView, setIsDecisionsInView] = useState(false);
-  const [isChallengeInView, setIsChallengeInView] = useState(false);
-  const [isOneThingInView, setIsOneThingInView] = useState(false);
+  const [isDecisionsInView, setIsDecisionsInView] = useState(isPdf);
+  const [isChallengeInView, setIsChallengeInView] = useState(isPdf);
+  const [isOneThingInView, setIsOneThingInView] = useState(isPdf);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -301,7 +331,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
       <div style={{ height: `${CANVAS_H * scale}px`, width: "100%", position: "relative" }}>
         {/* Sticky Header Wrapper (placed outside the scaled inner canvas) */}
         <div style={{
-          position: "fixed",
+          position: isPdf ? "absolute" : "fixed",
           top: 0,
           left: `${left}px`,
           width: `${CANVAS_W}px`,

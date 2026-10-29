@@ -33,6 +33,13 @@ interface VousVousStoryPageProps {
 const CANVAS_W = 1440;
 const CANVAS_H = 13600;
 
+const VOUSVOUS_FRAMES: Record<string, string> = {
+  [videoVousVousD1]: "/video-frames/vousvous_d1.png",
+  [videoVousVousD2]: "/video-frames/vousvous_d2.png",
+  [videoVousVousD3]: "/video-frames/vousvous_d3.png",
+  [videoVousVousD4]: "/video-frames/vousvous_d4.png",
+};
+
 function ViewportVideo({
   src,
   className,
@@ -42,16 +49,19 @@ function ViewportVideo({
   className?: string;
   playbackRate?: number;
 }) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     if (videoRef.current && playbackRate !== 1) {
       videoRef.current.playbackRate = playbackRate;
     }
-  }, [playbackRate, isLoaded]);
+  }, [playbackRate, isLoaded, isPdf]);
 
   useEffect(() => {
+    if (isPdf) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -75,11 +85,25 @@ function ViewportVideo({
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, [playbackRate]);
+  }, [playbackRate, isPdf]);
 
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
   };
+
+  if (isPdf) {
+    const frameSrc = VOUSVOUS_FRAMES[src] || "/video-frames/vousvous_d1.png";
+    return (
+      <div className="relative size-full overflow-hidden">
+        <img
+          src={frameSrc}
+          alt="VousVous Video Preview"
+          className={`${className} opacity-100 block`}
+          style={{ width: "100%", height: "100%", objectFit: className?.includes("object-contain") ? "contain" : "cover" }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -198,7 +222,8 @@ function ShimmerImage({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   return (
     <div className="relative overflow-hidden size-full" style={style}>
@@ -228,10 +253,12 @@ function DynamicBgBand({
   lightBgColor?: string;
   onViewChange?: (isInView: boolean) => void;
 }) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const ref = useRef<HTMLDivElement>(null);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     const el = ref.current;
     if (!el) return;
 
@@ -248,7 +275,7 @@ function DynamicBgBand({
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [onViewChange]);
+  }, [onViewChange, isPdf]);
 
   return (
     <div
@@ -272,8 +299,9 @@ export default function VousVousStoryPage({
   onBack,
   onNextStory,
 }: VousVousStoryPageProps) {
-  const [isChallengeInView, setIsChallengeInView] = useState(false);
-  const [isOneThingInView, setIsOneThingInView] = useState(false);
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const [isChallengeInView, setIsChallengeInView] = useState(isPdf);
+  const [isOneThingInView, setIsOneThingInView] = useState(isPdf);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const [isMobile, setIsMobile] = useState(() =>
@@ -370,7 +398,7 @@ export default function VousVousStoryPage({
         {/* ── Fixed Sticky Navigation Bar ── */}
         <div
           style={{
-            position: "fixed",
+            position: isPdf ? "absolute" : "fixed",
             top: 0,
             left: `${left}px`,
             width: `${CANVAS_W}px`,

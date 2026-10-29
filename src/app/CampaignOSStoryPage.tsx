@@ -32,11 +32,22 @@ interface CampaignOSStoryPageProps {
 const CANVAS_W = 1440;
 const CANVAS_H = 8600;
 
+const COS_FRAMES: Record<string, string> = {
+  [videoCosOpportunity]: "/video-frames/cos_opportunity.png",
+  [videoCosCraft1]: "/video-frames/cos_craft_1.png",
+  [videoCosCraft2]: "/video-frames/cos_craft_2.png",
+  [videoCosCraft3]: "/video-frames/cos_craft_3.png",
+  [videoCosCraft4]: "/video-frames/cos_craft_4.png",
+  [videoCosCraft5]: "/video-frames/cos_craft_5.png",
+};
+
 function ViewportVideo({ src, className }: { src: string; className?: string }) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     const video = videoRef.current;
     if (!video) return;
 
@@ -53,11 +64,25 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
 
     observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [isPdf]);
 
   const handleClick = () => {
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
   };
+
+  if (isPdf) {
+    const frameSrc = COS_FRAMES[src] || "/video-frames/cos_opportunity.png";
+    return (
+      <div className="relative size-full overflow-hidden">
+        <img
+          src={frameSrc}
+          alt="Campaign OS Video Preview"
+          className={`${className} opacity-100 block`}
+          style={{ width: "100%", height: "100%", objectFit: className?.includes("object-contain") ? "contain" : "cover" }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -123,6 +148,33 @@ function CraftVideo({
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
   };
 
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  if (isPdf) {
+    const frameSrc = COS_FRAMES[src] || "/video-frames/cos_craft_1.png";
+    return (
+      <div className="relative size-full overflow-hidden group">
+        <img
+          src={frameSrc}
+          alt="Craft Video Preview"
+          className={`${className} opacity-100 block`}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <div 
+          className="absolute inset-x-0 bottom-0 p-6 pt-24 pointer-events-none z-20 flex items-end opacity-100"
+          style={{
+            background: "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%)",
+          }}
+        >
+          {description && (
+            <p className="font-outfit font-semibold text-[#FFFDFA] text-[17px] leading-[1.4] m-0 drop-shadow-md tracking-[0.2px]">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       onClick={handleClick}
@@ -166,7 +218,8 @@ function ShimmerImage({ src, alt, className, style }: {
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const [isLoaded, setIsLoaded] = useState(isPdf);
 
   return (
     <div className="relative overflow-hidden size-full" style={style}>
@@ -196,10 +249,12 @@ function DynamicBgBand({
   lightBgColor?: string;
   onViewChange?: (isInView: boolean) => void;
 }) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const ref = useRef<HTMLDivElement>(null);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(isPdf);
 
   useEffect(() => {
+    if (isPdf) return;
     const el = ref.current;
     if (!el) return;
 
@@ -233,8 +288,9 @@ function DynamicBgBand({
 }
 
 export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNextStory }: CampaignOSStoryPageProps) {
-  const [isChallengeInView, setIsChallengeInView] = useState(false);
-  const [isOneThingInView, setIsOneThingInView] = useState(false);
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const [isChallengeInView, setIsChallengeInView] = useState(isPdf);
+  const [isOneThingInView, setIsOneThingInView] = useState(isPdf);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
@@ -325,7 +381,7 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
 
         {/* ── Fixed Sticky Navigation Bar ── */}
         <div style={{
-          position: "fixed",
+          position: isPdf ? "absolute" : "fixed",
           top: 0,
           left: `${left}px`,
           width: `${CANVAS_W}px`,

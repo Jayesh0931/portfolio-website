@@ -9,6 +9,7 @@ export function usePageProtection() {
 
   useEffect(() => {
     if (!ENABLE_PROTECTION) return;
+    if (typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf")) return;
 
     // Add CSS protection class to body
     document.body.classList.add("protection-enabled");

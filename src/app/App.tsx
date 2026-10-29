@@ -1657,44 +1657,50 @@ export default function App() {
     content = currentHomeView;
   }
 
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+
   return (
-    <div className={isBlurred ? "protection-blur-overlay" : ""}>
-      <FilmGrain />
-      <IceFreezeOverlay />
+    <div className={!isPdf && isBlurred ? "protection-blur-overlay" : ""}>
+      {!isPdf && <FilmGrain />}
+      {!isPdf && <IceFreezeOverlay />}
       <style>{marqueeStyles}</style>
-      <style>{`
-        [data-custom-cursor="read-story"],
-        [data-custom-cursor="read-story"] *,
-        [data-custom-cursor="hero-story"],
-        [data-custom-cursor="hero-story"] *,
-        [data-custom-cursor="full-screen"],
-        [data-custom-cursor="full-screen"] * {
-          cursor: none !important;
-        }
-      `}</style>
+      {!isPdf && (
+        <style>{`
+          [data-custom-cursor="read-story"],
+          [data-custom-cursor="read-story"] *,
+          [data-custom-cursor="hero-story"],
+          [data-custom-cursor="hero-story"] *,
+          [data-custom-cursor="full-screen"],
+          [data-custom-cursor="full-screen"] * {
+            cursor: none !important;
+          }
+        `}</style>
+      )}
       
       {/* React Bits Target Cursor - Cybernetic HUD tracking cursor in theme orange (#EE6C13) with sharp 0px corners */}
-      <TargetCursor
-        targetSelector=".cursor-target, .premium-hover-card, .premium-hover-row, a, button, [data-custom-cursor]"
-        cursorColor="#EE6C13"
-        cursorColorOnTarget="#EE6C13"
-        cornerRadius={0}
-        matchRadius={false}
-        lockToTarget={true}
-        cornersOnlyOnTarget={true}
-        spinDuration={2.5}
-        hoverDuration={0.18}
-        size={36}
-        cornerSize={12}
-        thickness={2.5}
-        padding={6}
-        dotSize={5}
-        blendMode="normal"
-        hideDefaultCursor={false}
-      />
+      {!isPdf && (
+        <TargetCursor
+          targetSelector=".cursor-target, .premium-hover-card, .premium-hover-row, a, button, [data-custom-cursor]"
+          cursorColor="#EE6C13"
+          cursorColorOnTarget="#EE6C13"
+          cornerRadius={0}
+          matchRadius={false}
+          lockToTarget={true}
+          cornersOnlyOnTarget={true}
+          spinDuration={2.5}
+          hoverDuration={0.18}
+          size={36}
+          cornerSize={12}
+          thickness={2.5}
+          padding={6}
+          dotSize={5}
+          blendMode="normal"
+          hideDefaultCursor={false}
+        />
+      )}
 
       {/* React Bits Gradual Blur - Progressive bokeh backdrop diffusion at top of viewport (desktop homepage only, never over mobile headers) */}
-      {vw >= 768 && currentPath === "/" && (
+      {!isPdf && vw >= 768 && currentPath === "/" && (
         <GradualBlur
           position="top"
           target="page"
@@ -1711,7 +1717,9 @@ export default function App() {
       </Suspense>
 
       {/* Floating Tactical Audio Toggle */}
-      <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />
+      {!isPdf && (
+        <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />
+      )}
 
       {currentPath === "/" && (
         <ScrollToTopButton

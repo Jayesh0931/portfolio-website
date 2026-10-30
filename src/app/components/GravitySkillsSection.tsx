@@ -44,6 +44,7 @@ const GRAVITY_SKILLS: SkillPill[] = [
   { id: "claude", name: "Claude", category: "tools" },
   { id: "chatgpt", name: "ChatGPT", category: "tools" },
   { id: "gemini", name: "Gemini", category: "tools" },
+  { id: "emergent", name: "Emergent", category: "tools" },
   { id: "antigravity", name: "Antigravity", category: "tools" },
   { id: "html-react", name: "HTML & React Prototyping", category: "tools", highlight: true },
 ];

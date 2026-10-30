@@ -482,7 +482,7 @@ function generateAboutHtml(baseHtml) {
           <li><strong>01 AI & Product:</strong> Human–AI Interaction, Agentic AI UX, Conversational AI, LLM-Powered Products, Generative AI (GenAI), Human-in-the-Loop Design, AI Guardrails, Multi-Agent Workflows, AI Product Strategy.</li>
           <li><strong>02 Product:</strong> Product Roadmap & Prioritisation, Product Discovery, 0-to-1 Product Development, Stakeholder Management, Cross-Functional Leadership, Enterprise SaaS, Workflow Automation.</li>
           <li><strong>03 Design:</strong> UX Strategy, Interaction Design, User Flows, Wireframing, Information Architecture, Usability Testing, User Research, Accessibility (WCAG), Design Systems, Rapid Prototyping, Developer Handoff.</li>
-          <li><strong>04 Tools:</strong> Figma, Figma Make, Jira, Claude, ChatGPT, Gemini, Antigravity, HTML Prototyping.</li>
+          <li><strong>04 Tools:</strong> Figma, Figma Make, Jira, Claude, ChatGPT, Gemini, Emergent, Antigravity, HTML Prototyping.</li>
         </ul>
       </section>
 

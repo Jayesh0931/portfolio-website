@@ -38,6 +38,31 @@ const PERSON_SCHEMA = {
 
 const STORIES = [
   {
+    path: "allyra-evolution",
+    title: "Beyond the Launch: The Evolution of Allyra's Agentic Experience — Jayesh Soni",
+    description: "Deep dive into Portal Nxt: Designing the next generation of agentic search, intent decomposition, transparent responses, and human-in-the-loop oversight.",
+    headline: "Beyond the Launch: The Evolution of Allyra's Agentic Experience",
+    company: "Pansophic Technologies",
+    year: "2025–2026",
+    role: "Product Lead & AI Product Designer",
+    team: "3 designers and 2 business analysts",
+    scope: "Agentic Search / Intent Formulation / Multi-Agent UX / Human-in-the-Loop Governance",
+    keywords: "Agentic Search, Agentic UX, Human-AI Interaction, Multi-Agent Workflows, AI Transparency, Human-in-the-Loop, Allyra.ai",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "The product didn't stop evolving at launch. This case study details the next generation of interaction models, capabilities, and decisions designed to make enterprise AI more useful, transparent, and actionable.",
+    challenge: "Enterprise workflows require moving beyond keyword search and single-turn chat: translating ambiguous business intent into structured plans, bounding data connector permissions, and producing structured deliverables with calibrated human control.",
+    opportunity: "Designing four foundational capabilities: intent-to-outcome execution graphs, transparent connector permissions and action receipts, structured outputs over conversational transcripts, and calibrated human-in-the-loop checkpoints.",
+    whatIDrove: "Agentic Search Interaction Architecture, Scoped Connector Permissions, Structured Canvas Deliverables, Calibrated Escalation Gates.",
+    impact: "Designed and piloted across enterprise environments; enabled 19+ AI agents to execute multi-step workflows safely under human oversight.",
+    keyDecisions: [
+      "Ambiguous Intent Decomposition into Visual Plans",
+      "Explicit Permission Checkpoints and Transparent Action Receipts",
+      "Structured Deliverables Over Conversational Chatwalls",
+      "Confidence-Calibrated Human Oversight and Escalation Gates"
+    ],
+    oneThing: "True agency isn't about removing the human from the loop. It is about giving humans clear visibility, calibrated intervention points, and structured outcomes they can stand behind."
+  },
+  {
     path: "allyra-story",
     title: "Allyra.ai Case Study — Jayesh Soni | Product Lead",
     description: "Case study on Allyra.ai: Scaling enterprise AI workforce systems from point-solution bots to multi-agent workflows with human-in-the-loop governance.",
@@ -398,6 +423,15 @@ function generateHomeSemanticHtml(templateHtml) {
         <p style="font-size: 18px; color: #190b00; margin-top: 12px; max-width: 720px; line-height: 1.5;">Designing AI products that align human behaviour, business goals, and intelligent agents.</p>
       </header>
 
+      <section style="margin-bottom: 40px; border: 1px solid #7b7a77; padding: 24px; background: #190b00; color: #FFFDFA;">
+        <p style="font-size: 11px; font-weight: bold; letter-spacing: 0.8px; text-transform: uppercase; color: #EE6C13; margin: 0 0 8px 0;">RECENT WORK · PORTAL NXT</p>
+        <h2 style="font-size: 26px; margin: 0 0 10px 0; color: #FFFDFA;">Beyond the launch. Into the agentic era.</h2>
+        <p style="font-size: 15px; color: #cfc5bb; margin: 0 0 20px 0; line-height: 1.5;">The next evolution of Allyra — where AI understands goals, orchestrates work and delivers outcomes.</p>
+        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15);">
+          <a href="/allyra-evolution" style="display: inline-block; background: #EE6C13; color: #FFFDFA; font-weight: bold; padding: 10px 20px; border-radius: 110px; text-decoration: none; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Take a look →</a>
+        </div>
+      </section>
+
       <section style="margin-bottom: 40px;">
         <h2 style="font-size: 26px; margin: 0 0 16px 0;">Featured AI & Product Case Studies</h2>
         <ul style="list-style: none; padding: 0;">
@@ -426,6 +460,56 @@ function generateHomeSemanticHtml(templateHtml) {
         <a href="mailto:jayeshsoni31@gmail.com" style="color: #190b00; text-decoration: none;">Email</a>
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" style="color: #190b00; text-decoration: none;">Resume (PDF)</a>
       </footer>
+    </main>
+  `;
+
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+}
+
+function generateAiCompanionHtml(baseHtml) {
+  let html = baseHtml;
+  const canonicalUrl = `${BASE_URL}/ai-companion`;
+  const title = "From Search to Outcomes: Human-Controlled AI Companion — Jayesh Soni";
+  const desc = "Interactive UX Concept: Designing a Human-Controlled AI Companion for enterprise benefits workflows. Demonstrating intent decomposition, execution transparency, grounding, and human-in-the-loop review.";
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
+  html = html.replace(/<link\s+rel="canonical"[\s\S]*?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
+  html = html.replace(/<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${desc}" />`);
+  html = html.replace(/<meta\s+property="og:title"[\s\S]*?>/i, `<meta property="og:title" content="${title}" />`);
+  html = html.replace(/<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${desc}" />`);
+  html = html.replace(/<meta\s+property="og:url"[\s\S]*?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
+
+  const semanticBody = `
+    <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
+      <nav aria-label="Breadcrumb" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0dbd1; padding-bottom: 16px;">
+        <a href="/" style="color: #EE6C13; text-decoration: none; font-weight: 600;">← Back to Jayesh Soni Portfolio</a>
+        <span style="color: #77695d; font-size: 13px;">[ INDEPENDENT UX CONCEPT ]</span>
+      </nav>
+      
+      <header style="margin-bottom: 40px; border-bottom: 1px solid #7b7a77; padding-bottom: 24px;">
+        <p style="font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #EE6C13; margin: 0 0 8px 0;">[ FROM SEARCH TO OUTCOMES ]</p>
+        <h1 style="font-size: 38px; line-height: 1.2; margin: 0 0 16px 0;">Designing a Human-Controlled AI Companion</h1>
+        <p style="font-size: 20px; color: #190b00; line-height: 1.4;">An interactive concept demonstrating how an AI companion moves beyond returning search links to understanding user goals, planning work, grounding in policy evidence, and delivering verified claim packages under human oversight.</p>
+      </header>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Core Design Principle</h2>
+        <p style="font-size: 18px; color: #190b00;">The AI should not feel like a black box, and the user should not feel like a supervisor who has to micromanage it. The user should feel informed, involved, and in control.</p>
+      </section>
+
+      <section style="margin-bottom: 36px;">
+        <h2 style="font-size: 24px; margin: 0 0 12px 0;">8 Interactive Journey States</h2>
+        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
+          <li><strong>01 Goal Discovery:</strong> Accept natural-language intent without agent pickers.</li>
+          <li><strong>02 Intent Clarification:</strong> Resolve policy ambiguity before execution.</li>
+          <li><strong>03 Verifiable Plan:</strong> User inspects and approves ordered task steps.</li>
+          <li><strong>04 Transparent Execution:</strong> Step progress, agent attribution, and telemetry stream.</li>
+          <li><strong>05 Engagement While AI Works:</strong> Contextual knowledge check and policy tips.</li>
+          <li><strong>06 Source Evidence Grounding:</strong> Verifiable excerpts from benefits schedule.</li>
+          <li><strong>07 Human-in-the-Loop Review:</strong> Mandatory approval gate before package sign-off.</li>
+          <li><strong>08 Structured Outcome:</strong> Audit-ready claim dossier and portal submission checklist.</li>
+        </ul>
+      </section>
     </main>
   `;
 
@@ -547,6 +631,16 @@ function runPrerender() {
   fs.writeFileSync(path.join(aboutDir, "index.html"), aboutHtml, "utf-8");
   fs.writeFileSync(path.join(distDir, "about.html"), aboutHtml, "utf-8");
   console.log(`[prerender] Generated static route: /about/index.html & /about.html`);
+
+  // 2.5. Generate Pre-rendered Page for /ai-companion
+  const companionDir = path.join(distDir, "ai-companion");
+  if (!fs.existsSync(companionDir)) {
+    fs.mkdirSync(companionDir, { recursive: true });
+  }
+  const companionHtml = generateAiCompanionHtml(baseHtml);
+  fs.writeFileSync(path.join(companionDir, "index.html"), companionHtml, "utf-8");
+  fs.writeFileSync(path.join(distDir, "ai-companion.html"), companionHtml, "utf-8");
+  console.log(`[prerender] Generated static route: /ai-companion/index.html & /ai-companion.html`);
 
   // 3. Enhance root index.html with fallback semantic HTML
   const homeHtml = generateHomeSemanticHtml(baseHtml);

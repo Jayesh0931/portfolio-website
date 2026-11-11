@@ -72,7 +72,7 @@ export const EXPERIENCES: ExperienceItem[] = [
       },
       {
         id: "uxd-head",
-        tabLabel: "02 · UXD HEAD (VROZART)",
+        tabLabel: "02 · UXD HEAD",
         mobileTabLabel: "02 · UXD HEAD",
         shortRole: "UXD Head",
         role: "UXD Head",
@@ -1247,6 +1247,7 @@ export default function ExperienceTimeline({
                         borderRadius: 0,
                         gap: 4,
                         marginBottom: 16,
+                        overflow: "hidden",
                       }}
                     >
                       {currentExp.subRoles!.map((sub, sIdx) => {
@@ -1267,7 +1268,7 @@ export default function ExperienceTimeline({
                               alignItems: "center",
                               justifyContent: "center",
                               gap: 8,
-                              padding: "9px 18px",
+                              padding: "9px 12px",
                               borderRadius: 0,
                               border: isSubSelected
                                 ? "1px solid #EE6C13"
@@ -1291,6 +1292,7 @@ export default function ExperienceTimeline({
                                 ? "0 2px 10px rgba(238, 108, 19, 0.35)"
                                 : "none",
                               boxSizing: "border-box",
+                              overflow: "hidden",
                             }}
                           >
                             <span
@@ -1298,10 +1300,20 @@ export default function ExperienceTimeline({
                                 width: 6,
                                 height: 6,
                                 borderRadius: "50%",
+                                flexShrink: 0,
                                 backgroundColor: isSubSelected ? "#FFFDFA" : isDark ? "#7b7a77" : "#8c8278",
                               }}
                             />
-                            <span>{sub.tabLabel}</span>
+                            <span
+                              style={{
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                                minWidth: 0,
+                              }}
+                            >
+                              {sub.tabLabel}
+                            </span>
                             <span
                               style={{
                                 fontFamily: "DM Mono, monospace",
@@ -1309,6 +1321,8 @@ export default function ExperienceTimeline({
                                 opacity: isSubSelected ? 0.95 : 0.6,
                                 fontWeight: 500,
                                 letterSpacing: "0.3px",
+                                whiteSpace: "nowrap",
+                                flexShrink: 0,
                               }}
                             >
                               ({sub.yearLabel})

@@ -3,12 +3,15 @@ import { useLenis } from "lenis/react";
 import Desktop from "@/imports/Desktop6/index";
 
 const AllyraStoryPage = lazy(() => import("./AllyraStoryPage"));
+const AllyraEvolutionStoryPage = lazy(() => import("./AllyraEvolutionStoryPage"));
 const TulahStoryPage = lazy(() => import("./TulahStoryPage"));
 const CampaignOSStoryPage = lazy(() => import("./CampaignOSStoryPage"));
 const VousVousStoryPage = lazy(() => import("./VousVousStoryPage"));
 const JoonifyStoryPage = lazy(() => import("./JoonifyStoryPage"));
 const AboutPage = lazy(() => import("./AboutPage"));
 const MobileHomepage = lazy(() => import("./components/mobile/MobileHomepage"));
+const AiCompanionExperience = lazy(() => import("@/components/ai-companion/AiCompanionExperience"));
+import FloatingExperienceButton from "@/components/ai-companion/FloatingExperienceButton";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SoundToggle from "@/components/SoundToggle";
 import FilmGrain from "@/components/FilmGrain";
@@ -29,7 +32,7 @@ import imgEllipse8 from "@/imports/Desktop6/9ff71da8485c02d3fd081a21e1d07fea6194
 import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 
 const DESIGN_W = 1440;
-const DESIGN_H = 10020;
+const DESIGN_H = 10300;
 
 function getScaleAndLeft(vw: number) {
   if (vw >= 768) {
@@ -187,23 +190,18 @@ function scrollToY(designY: number) {
 
 const navItems = [
   { left: 80,   label: "JAYESH SONI", icon: null,       scrollY: 0    },
-  { left: 1010, label: "STORIES",     icon: "down",     scrollY: 2138 },
-  { left: 1135, label: "CRAFT",       icon: "down",     scrollY: 6820 },
+  { left: 1010, label: "STORIES",     icon: "down",     scrollY: 2418 },
+  { left: 1135, label: "CRAFT",       icon: "down",     scrollY: 7100 },
   { left: 1250, label: "ABOUT",       icon: "diagonal", path: "/about" },
 ];
 
 // Each bento card maps to its corresponding section further down the page.
-// story positions inside Frame43 (top-[2138px], flex-col gap-[90px]):
-//   header Group8 h=381 → stories start at 2138+381+90 = 2609
-//   Story 01 h=690+90 → Story 02 at 3389
-//   Story 02 h=690+90 → Story 03 at 4169
-//   Story 03 h=690+90 → Story 04 at 4949
 const bentoCards = [
-  { top: 327, left: 580,  width: 500, height: 360, path: "/allyra-story", scrollY: 2609, theme: "dark"  }, // allyra  → Story 01
-  { top: 707, left: 580,  width: 370, height: 200, path: "/tulah-story", scrollY: 3389, theme: "light" }, // tulah   → Story 02
-  { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 4949, theme: "orange" }, // Campaign OS → Story 03
-  { top: 327, left: 1100, width: 240, height: 220, path: "/vousvous-story", scrollY: 4169, theme: "light" }, // VousVous→ Story 04
-  { top: 567, left: 1100, width: 240, height: 120, scrollY: 6623, theme: "light" }, // Stanford→ Focus
+  { top: 327, left: 580,  width: 500, height: 360, path: "/allyra-story", scrollY: 2889, theme: "dark"  }, // allyra  → Story 01
+  { top: 707, left: 580,  width: 370, height: 200, path: "/tulah-story", scrollY: 3669, theme: "light" }, // tulah   → Story 02
+  { top: 707, left: 970,  width: 370, height: 200, path: "/campaign-os-story", scrollY: 5229, theme: "orange" }, // Campaign OS → Story 03
+  { top: 327, left: 1100, width: 240, height: 220, path: "/vousvous-story", scrollY: 4449, theme: "light" }, // VousVous→ Story 04
+  { top: 567, left: 1100, width: 240, height: 120, scrollY: 6903, theme: "light" }, // Stanford→ Focus
 ];
 
 function CardHoverOverlays() {
@@ -232,10 +230,10 @@ function CardHoverOverlays() {
 // Invisible click targets for the small arrow icons in the bento grid
 // that sit outside the main card overlay bounds (top-right of each card).
 const bentoArrows = [
-  { top: 343, left: 1315, scrollY: 2609 }, // allyra arrow
-  { top: 723, left: 925,  scrollY: 3389 }, // tulah arrow  ([ Story 02 ])
-  { top: 583, left: 1315, scrollY: 4169 }, // VousVous arrow
-  { top: 723, left: 1315, scrollY: 4949 }, // joonify arrow
+  { top: 343, left: 1315, scrollY: 2889 }, // allyra arrow
+  { top: 723, left: 925,  scrollY: 3669 }, // tulah arrow  ([ Story 02 ])
+  { top: 583, left: 1315, scrollY: 4449 }, // VousVous arrow
+  { top: 723, left: 1315, scrollY: 5229 }, // joonify arrow
 ];
 
 function BentoArrowLinks() {
@@ -275,7 +273,7 @@ function StoriesScrollOverlay() {
   useEffect(() => {
     const onScroll = () => {
       const { scale } = getScaleAndLeft(window.innerWidth);
-      const secTop = 2077 * scale;                     // design y → screen y
+      const secTop = 2357 * scale;                     // design y → screen y
       const vh     = window.innerHeight;
       const start  = secTop - vh * 0.8;                // begins animating before section arrives
       const end    = secTop + vh * 0.6;                // finishes well inside the section
@@ -308,7 +306,7 @@ function StoriesScrollOverlay() {
       {/* ── TEXT — covers Frame15 ── */}
       <div style={{
         position : "absolute",
-        top      : 2153,
+        top      : 2433,
         left     : 80,
         width    : 995,
         height   : 200,
@@ -335,11 +333,11 @@ function StoriesScrollOverlay() {
         </div>
       </div>
 
-      {/* ── CIRCLES — covers Frame16 (top=2078, left=1075, w=285, h=381) ── */}
+      {/* ── CIRCLES — covers Frame16 (top=2358, left=1075, w=285, h=381) ── */}
       {/* Frame16 inner: absolute left-[59px] top-50% -translate-y-1/2; Frame7 wrapped in rotate-180 */}
       <div style={{
         position : "absolute",
-        top      : 2078,
+        top      : 2358,
         left     : 1075,
         width    : 285,
         height   : 381,
@@ -389,7 +387,7 @@ function CraftExpandOverlay() {
   const vhD        = vh / scale;  // viewport height in design-space px
   const vwD        = vw / scale;  // real viewport width in design-space px
 
-  const SECT_TOP  = 7600;
+  const SECT_TOP  = 7880;
   const SECT_H    = 800;
   const GALLERY_H = 1440; // total gallery content height in design-space px
 
@@ -1224,8 +1222,8 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Stories section starts at 2077*scale. Arrow points UP (rotate 180deg) when scrolled past stories section header
-  const storiesPassed = scrollY > (2077 + 400) * scale;
+  // Stories section starts at 2357*scale. Arrow points UP (rotate 180deg) when scrolled past stories section header
+  const storiesPassed = scrollY > (2357 + 400) * scale;
 
   const capsuleStyle = (isCta: boolean): React.CSSProperties => ({
     background: "#FFFDFA",
@@ -1311,7 +1309,7 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
             onMouseEnter={() => playHoverTick()}
             onClick={() => {
               playClickSound();
-              scrollToY(2077);
+              scrollToY(2357);
             }}
           >
             <span style={textStyle}>
@@ -1375,6 +1373,9 @@ export default function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
+  const [isCompanionOpen, setIsCompanionOpen] = useState(() =>
+    typeof window !== "undefined" ? window.location.pathname.startsWith("/ai-companion") : false
+  );
   const [resetKey, setResetKey] = useState(0);
 
   // Background reset listener triggered while screen is 100% frozen under ice
@@ -1493,6 +1494,7 @@ export default function App() {
   useEffect(() => {
     const onPopState = () => {
       setCurrentPath(window.location.pathname);
+      setIsCompanionOpen(window.location.pathname.startsWith("/ai-companion"));
       window.scrollTo(0, 0);
     };
     window.addEventListener("popstate", onPopState);
@@ -1600,7 +1602,16 @@ export default function App() {
   );
 
   let content = null;
-  if (currentPath.startsWith("/allyra-story")) {
+  if (currentPath.startsWith("/allyra-evolution")) {
+    content = (
+      <AllyraEvolutionStoryPage 
+        scale={vw < 768 ? 1 : scale} 
+        left={vw < 768 ? 0 : left} 
+        onBack={() => navigateTo("/")} 
+        onNextStory={() => navigateTo("/allyra-story")}
+      />
+    );
+  } else if (currentPath.startsWith("/allyra-story")) {
     content = (
       <AllyraStoryPage 
         scale={vw < 768 ? 1 : scale} 
@@ -1651,6 +1662,15 @@ export default function App() {
         scale={vw < 768 ? 1 : scale}
         left={vw < 768 ? 0 : left}
         navigateTo={navigateTo}
+      />
+    );
+  } else if (currentPath.startsWith("/ai-companion") || isCompanionOpen) {
+    content = (
+      <AiCompanionExperience
+        onClose={() => {
+          setIsCompanionOpen(false);
+          navigateTo("/");
+        }}
       />
     );
   } else {
@@ -1720,6 +1740,19 @@ export default function App() {
       {!isPdf && (
         <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />
       )}
+
+      {/* Floating Central "Experience Now" Button on Homepage (Hidden for now) */}
+      {/* {!isPdf && currentPath === "/" && !isCompanionOpen && (
+        <FloatingExperienceButton
+          onClick={() => {
+            setIsCompanionOpen(true);
+            if (window.location.pathname !== "/ai-companion") {
+              window.history.pushState({}, "", "/ai-companion");
+              setCurrentPath("/ai-companion");
+            }
+          }}
+        />
+      )} */}
 
       {currentPath === "/" && (
         <ScrollToTopButton
@@ -1840,7 +1873,7 @@ function RecommendationsScrollOverlay() {
   const vhD        = vh / scale;
   const vwD        = clampedVw / scale;
 
-  const SECT_TOP  = 7600;
+  const SECT_TOP  = 7880;
   const SECT_H    = 824; // 100px (header) + 680px (card) + 44px (indicator spacing)
 
   // Spacing calculation for exact vertical centering in viewport

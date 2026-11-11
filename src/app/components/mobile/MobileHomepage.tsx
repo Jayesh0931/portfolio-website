@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "@/app/styles/mobileTheme.css";
 import { MobileHeader } from "./MobileHeader";
 import { MobileHero } from "./MobileHero";
+import AllyraEvolutionBanner from "../AllyraEvolutionBanner";
 import { MobileAbout } from "./MobileAbout";
 import { MobileStories } from "./MobileStories";
 import { MobileFocus } from "./MobileFocus";
@@ -229,6 +230,11 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
         <MobileHero 
           onNavigatePath={handleNavigatePath} 
           onScrollToSection={handleScrollToSection} 
+        />
+
+        <AllyraEvolutionBanner 
+          isMobile 
+          onNavigate={() => handleNavigatePath("/allyra-evolution")} 
         />
 
         <MobileAbout />

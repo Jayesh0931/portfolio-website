@@ -77,6 +77,17 @@ export function useSEOManager(path: string) {
         headline: matchedStudy.headline,
         caseStudy: matchedStudy,
       };
+    } else if (path.startsWith("/ai-companion")) {
+      config = {
+        title: "From Search to Outcomes: Human-Controlled AI Companion — Jayesh Soni",
+        description:
+          "Interactive UX Concept: Designing a Human-Controlled AI Companion for enterprise benefits workflows. Demonstrating intent decomposition, execution transparency, grounding, and human-in-the-loop review.",
+        keywords:
+          "Human-Controlled AI Companion, Agentic Search, AI Workflows, Human-in-the-Loop, AI Transparency, Jayesh Soni, Concept",
+        path: "/ai-companion",
+        type: "article",
+        image: DEFAULT_IMAGE,
+      };
     } else if (path.startsWith("/about")) {
       config = {
         title: "About — Jayesh Soni | Product Lead & AI Product Designer",

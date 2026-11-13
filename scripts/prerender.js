@@ -366,13 +366,14 @@ function generateStoryHtml(templateHtml, story) {
     </main>
   `;
 
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
 
   return html;
 }
 
 function cleanBaseHtml(html) {
   let cleaned = html.replace(/\s*<script type="application\/ld\+json" id="json-ld-schema">[\s\S]*?<\/script>/i, "");
+  cleaned = cleaned.replace(/\s*<noscript>[\s\S]*?<\/noscript>/i, "");
   cleaned = cleaned.replace(/<div id="root">[\s\S]*?<\/div>/i, '<div id="root"></div>');
   return cleaned;
 }
@@ -463,7 +464,7 @@ function generateHomeSemanticHtml(templateHtml) {
     </main>
   `;
 
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
 function generateAiCompanionHtml(baseHtml) {
@@ -513,7 +514,7 @@ function generateAiCompanionHtml(baseHtml) {
     </main>
   `;
 
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
 function generateAboutHtml(baseHtml) {
@@ -593,7 +594,7 @@ function generateAboutHtml(baseHtml) {
     </main>
   `;
 
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>`);
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
 function runPrerender() {

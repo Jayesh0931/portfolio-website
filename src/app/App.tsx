@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, startTransition } from "react";
 import { useLenis } from "lenis/react";
 import Desktop from "@/imports/Desktop6/index";
 
@@ -1404,7 +1404,10 @@ export default function App() {
     if (window.location.pathname !== path) {
       window.history.pushState({}, "", path);
     }
-    setCurrentPath(path);
+    startTransition(() => {
+      setCurrentPath(path);
+      setIsCompanionOpen(path.startsWith("/ai-companion"));
+    });
     window.scrollTo(0, 0);
   };
   
@@ -1493,8 +1496,10 @@ export default function App() {
 
   useEffect(() => {
     const onPopState = () => {
-      setCurrentPath(window.location.pathname);
-      setIsCompanionOpen(window.location.pathname.startsWith("/ai-companion"));
+      startTransition(() => {
+        setCurrentPath(window.location.pathname);
+        setIsCompanionOpen(window.location.pathname.startsWith("/ai-companion"));
+      });
       window.scrollTo(0, 0);
     };
     window.addEventListener("popstate", onPopState);

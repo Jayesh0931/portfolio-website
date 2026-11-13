@@ -9,6 +9,7 @@ import {
   SharedMarqueeUnit
 } from "@/components/hero/SharedHeroComponents";
 import KineticText from "@/components/KineticText";
+import { playClickSound } from "@/utils/soundEffects";
 
 interface MobileHeroProps {
   onNavigatePath: (path: string) => void;
@@ -54,6 +55,56 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
           <span className="mobile-hero-pill-tag">PRODUCT DESIGN</span>
           <span className="mobile-hero-pill-tag">ENTERPRISE SYSTEMS</span>
         </div>
+      </div>
+
+      {/* 5b. Quick Navigation Bar: About Jayesh & Explore Indicator */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "0 20px",
+        marginTop: "-16px",
+        marginBottom: "28px",
+      }}>
+        <button
+          onClick={() => {
+            playClickSound();
+            onNavigatePath("/about");
+          }}
+          aria-label="Read About Jayesh Soni"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 7,
+            background: "#190b00",
+            color: "#FFFDFA",
+            padding: "8px 16px",
+            borderRadius: 110,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 12,
+            fontWeight: 800,
+            letterSpacing: "0.56px",
+            textTransform: "uppercase",
+            border: "1px solid #190b00",
+            cursor: "pointer",
+            boxShadow: "0 2px 6px rgba(25, 11, 0, 0.12)",
+          }}
+        >
+          <span>About Jayesh</span>
+          <svg width="10" height="10" viewBox="0 0 11 11" fill="none">
+            <path d="M2 9L9 2M9 2H4M9 2V7" stroke="#FFFDFA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <span style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: 11,
+          color: "#77695D",
+          fontWeight: 600,
+          letterSpacing: "0.5px",
+        }}>
+          [ 05 PROJECTS ↓ ]
+        </span>
       </div>
 
       {/* 6. Exact Web Bento Cards Stacked for Mobile */}

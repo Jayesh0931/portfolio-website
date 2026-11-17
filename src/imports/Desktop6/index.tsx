@@ -20,7 +20,6 @@ import BrandVector from "../../components/BrandVector";
 import KineticText from "../../components/KineticText";
 import { playClickSound, playHoverTick } from "@/utils/soundEffects";
 import AllyraEvolutionBanner from "@/app/components/AllyraEvolutionBanner";
-import ExperienceAgenticSearchCTA from "@/app/components/ExperienceAgenticSearchCTA";
 
 function Group() {
   return (
@@ -2341,7 +2340,6 @@ export default function Desktop() {
       <Frame43 />
       <Group11 />
       <Frame99 />
-      <ExperienceAgenticSearchCTA style={{ position: "absolute", left: 80, top: 9400 }} />
       <Footer style={{ position: "absolute", left: 80, top: 9700 }} />
     </div>
   );

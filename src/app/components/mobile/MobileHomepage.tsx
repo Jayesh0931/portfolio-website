@@ -3,7 +3,6 @@ import "@/app/styles/mobileTheme.css";
 import { MobileHeader } from "./MobileHeader";
 import { MobileHero } from "./MobileHero";
 import AllyraEvolutionBanner from "../AllyraEvolutionBanner";
-import ExperienceAgenticSearchCTA from "../ExperienceAgenticSearchCTA";
 import { MobileAbout } from "./MobileAbout";
 import { MobileStories } from "./MobileStories";
 import { MobileFocus } from "./MobileFocus";
@@ -247,11 +246,6 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
         <MobileFocus />
 
         <MobileRecommendations isDark={isDarkCanvas} />
-
-        <ExperienceAgenticSearchCTA 
-          isMobile 
-          onNavigate={() => handleNavigatePath("/allyra-evolution")} 
-        />
 
         <MobileFinale isDark={isDarkCanvas} sectionTag="[ S-007 ]" />
       </main>

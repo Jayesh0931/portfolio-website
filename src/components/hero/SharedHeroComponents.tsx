@@ -125,7 +125,7 @@ export function AllyraHeroCard({
         <div style={{ position: "absolute", left: isMobile ? 18 : 20, bottom: isMobile ? 18 : 20, display: "flex", flexDirection: "column", gap: isMobile ? 6 : 12, maxWidth: isMobile ? "48%" : 200, zIndex: 2 }}>
           <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: isMobile ? 28 : 30, color: "#FFFDFA", margin: 0, lineHeight: 1 }}>allyra.ai</p>
           <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: isMobile ? 11.5 : 14, color: "#C9C1B7", lineHeight: "1.35" }}>
-            <p style={{ margin: 0 }}>Scaling AI from individual agents to enterprise-grade workflows.</p>
+            <p style={{ margin: 0 }}>Agentic search and multi-agent workflows for enterprise teams.</p>
           </div>
         </div>
       </div>

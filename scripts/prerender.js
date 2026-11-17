@@ -39,9 +39,9 @@ const PERSON_SCHEMA = {
 const STORIES = [
   {
     path: "allyra-evolution",
-    title: "Beyond the Launch: The Evolution of Allyra's Agentic Experience — Jayesh Soni",
-    description: "Deep dive into Portal Nxt: Designing the next generation of agentic search, intent decomposition, transparent responses, and human-in-the-loop oversight.",
-    headline: "Beyond the Launch: The Evolution of Allyra's Agentic Experience",
+    title: "Beyond the Search Box: Designing Allyra's Agentic Search Experience — Jayesh Soni",
+    description: "Deep dive into Agentic Search: Designing the next generation of intent formulation, multi-agent task decomposition, source provenance, and human-in-the-loop oversight.",
+    headline: "Beyond the Search Box: Designing Allyra's Agentic Search Experience",
     company: "Pansophic Technologies",
     year: "2025–2026",
     role: "Product Lead & AI Product Designer",
@@ -425,11 +425,11 @@ function generateHomeSemanticHtml(templateHtml) {
       </header>
 
       <section style="margin-bottom: 40px; border: 1px solid #7b7a77; padding: 24px; background: #190b00; color: #FFFDFA;">
-        <p style="font-size: 11px; font-weight: bold; letter-spacing: 0.8px; text-transform: uppercase; color: #EE6C13; margin: 0 0 8px 0;">RECENT WORK · PORTAL NXT</p>
-        <h2 style="font-size: 26px; margin: 0 0 10px 0; color: #FFFDFA;">Beyond the launch. Into the agentic era.</h2>
-        <p style="font-size: 15px; color: #cfc5bb; margin: 0 0 20px 0; line-height: 1.5;">The next evolution of Allyra — where AI understands goals, orchestrates work and delivers outcomes.</p>
+        <p style="font-size: 11px; font-weight: bold; letter-spacing: 0.8px; text-transform: uppercase; color: #EE6C13; margin: 0 0 8px 0;">RECENT WORK · AGENTIC SEARCH & WORKFLOWS</p>
+        <h2 style="font-size: 26px; margin: 0 0 10px 0; color: #FFFDFA;">Beyond the launch. Into Agentic Search.</h2>
+        <p style="font-size: 15px; color: #cfc5bb; margin: 0 0 20px 0; line-height: 1.5;">The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.</p>
         <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15);">
-          <a href="/allyra-evolution" style="display: inline-block; background: #EE6C13; color: #FFFDFA; font-weight: bold; padding: 10px 20px; border-radius: 110px; text-decoration: none; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Take a look →</a>
+          <a href="/allyra-evolution" style="display: inline-block; background: #EE6C13; color: #FFFDFA; font-weight: bold; padding: 10px 20px; border-radius: 110px; text-decoration: none; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Explore Agentic Search →</a>
         </div>
       </section>
 

@@ -53,7 +53,7 @@ export function MobileHero({ onNavigatePath, onScrollToSection }: MobileHeroProp
         </div>
         <div className="mobile-hero-tags-row">
           <span className="mobile-hero-pill-tag">PRODUCT DESIGN</span>
-          <span className="mobile-hero-pill-tag">ENTERPRISE SYSTEMS</span>
+          <span className="mobile-hero-pill-tag">AGENTIC SEARCH</span>
         </div>
       </div>
 

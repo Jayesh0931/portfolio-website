@@ -77,6 +77,17 @@ export function useSEOManager(path: string) {
         headline: matchedStudy.headline,
         caseStudy: matchedStudy,
       };
+    } else if (path.startsWith("/allyra-evolution")) {
+      config = {
+        title: "Beyond the Search Box: Designing Allyra's Agentic Search Experience — Jayesh Soni",
+        description:
+          "Deep dive into Agentic Search: Designing the next generation of intent formulation, multi-agent task decomposition, source provenance, and human-in-the-loop oversight.",
+        keywords:
+          "Agentic Search, Agentic UX, Human-AI Interaction, Multi-Agent Workflows, AI Transparency, Human-in-the-Loop, Allyra.ai, Jayesh Soni",
+        path: "/allyra-evolution",
+        type: "article",
+        image: DEFAULT_IMAGE,
+      };
     } else if (path.startsWith("/ai-companion")) {
       config = {
         title: "From Search to Outcomes: Human-Controlled AI Companion — Jayesh Soni",

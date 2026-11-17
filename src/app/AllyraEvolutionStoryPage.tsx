@@ -186,11 +186,11 @@ export default function AllyraEvolutionStoryPage({
           {/* Micro Category Bar */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="font-inter font-bold text-[11px] tracking-[0.8px] uppercase text-[#ee6c13] bg-[#ee6c13]/10 px-2.5 py-1 rounded">
-              PRODUCT DESIGN UPDATE
+              CASE STUDY · AGENTIC SEARCH
             </span>
             <span className="text-[#7b7a77] text-[12px]">•</span>
             <span className="font-inter font-bold text-[11px] tracking-[0.8px] uppercase text-[#77695d]">
-              PORTAL NXT
+              PORTAL NXT · AGENTIC ENGINE
             </span>
             <span className="text-[#7b7a77] text-[12px]">•</span>
             <span className="font-inter font-bold text-[11px] tracking-[0.8px] uppercase text-[#77695d]">
@@ -203,7 +203,7 @@ export default function AllyraEvolutionStoryPage({
             className="font-outfit font-black tracking-[-0.5px] text-[#190b00] leading-[1.08] mb-6"
             style={{ fontSize: isMobile ? "36px" : "56px" }}
           >
-            Beyond the Launch: The Evolution of Allyra's Agentic Experience
+            Beyond the Search Box: The Evolution of Allyra's Agentic Search Experience
           </h1>
 
           {/* Article Subtitle / Deck */}
@@ -211,7 +211,7 @@ export default function AllyraEvolutionStoryPage({
             className="font-outfit font-normal text-[#77695d] leading-[1.5] mb-8"
             style={{ fontSize: isMobile ? "19px" : "24px" }}
           >
-            The product didn't stop evolving at launch. Here's what I've been shaping next — new interaction models, capabilities, and decisions designed to make AI more useful, transparent, and actionable.
+            The product didn't stop evolving at launch. Here's what I've been shaping next — agentic search interaction models, intent formulation, and architectural decisions that transform simple query boxes into autonomous execution pipelines.
           </p>
 
           {/* Metadata pill & branding strip */}
@@ -270,7 +270,7 @@ export default function AllyraEvolutionStoryPage({
             {/* Header / Number Badge */}
             <div className="flex items-center justify-between border-b border-[#7b7a77]/30 pb-4 mb-6">
               <span className="font-inter font-bold text-[12px] tracking-[0.8px] uppercase text-[#ee6c13]">
-                [ 01 · AGENTIC WORKFLOWS ]
+                [ 01 · AGENTIC SEARCH &amp; TASK DECOMPOSITION ]
               </span>
               <span className="font-inter font-bold text-[11px] tracking-[0.6px] uppercase text-[#77695d]">
                 DAG TASK DECOMPOSITION
@@ -281,10 +281,10 @@ export default function AllyraEvolutionStoryPage({
               className="font-outfit font-bold text-[#190b00] leading-[1.15] mb-3"
               style={{ fontSize: isMobile ? "26px" : "34px" }}
             >
-              From Intent to Outcomes
+              From Search Query to Multi-Agent Execution
             </h2>
             <p className="font-outfit text-[#77695d] text-[18px] leading-[1.4] mb-6 font-normal">
-              Transforming open-ended user requests into an observable, inspectable multi-agent execution pipeline.
+              Transforming ambiguous enterprise search intent into an observable, inspectable multi-agent execution pipeline.
             </p>
 
             {/* Image Showcase */}

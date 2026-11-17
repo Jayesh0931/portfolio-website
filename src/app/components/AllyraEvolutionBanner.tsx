@@ -70,7 +70,7 @@ export default function AllyraEvolutionBanner({
           {/* Eyebrow */}
           <div className="flex items-center gap-[8px] mb-[10px] relative z-10">
             <span className="font-['Inter:Bold',sans-serif] font-bold text-[10.5px] tracking-[0.8px] uppercase text-[#EE6C13]">
-              RECENT WORK · PORTAL NXT
+              RECENT WORK · AGENTIC SEARCH & WORKFLOWS
             </span>
           </div>
 
@@ -78,18 +78,18 @@ export default function AllyraEvolutionBanner({
           <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[24px] leading-[1.18] tracking-[-0.015em] mb-[10px] relative z-10">
             Beyond the launch.
             <br />
-            <span className="text-[#FFFDFA]">Into the agentic era.</span>
+            <span className="text-[#FFFDFA]">Into Agentic Search.</span>
           </h2>
 
           {/* Concise Description */}
           <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[13.5px] leading-[1.45] mb-[18px] relative z-10">
-            The next evolution of Allyra — where AI understands goals, orchestrates work and delivers outcomes.
+            The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.
           </p>
 
           {/* CTA Row */}
           <div className="relative z-10 flex flex-wrap items-center gap-3 mb-[18px]">
             <div className="inline-flex items-center gap-[8px] h-[36px] px-[18px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[12.5px] uppercase tracking-[0.3px] shadow-sm">
-              <span>Take a look</span>
+              <span>Explore Agentic Search</span>
               <svg className="size-[12px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 2.5L10.5 7.5L5 12.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -166,7 +166,7 @@ export default function AllyraEvolutionBanner({
               {/* Eyebrow Label */}
               <div className="flex items-center gap-[8px] mb-[12px]">
                 <span className="font-['Inter:Bold',sans-serif] font-bold text-[11px] tracking-[0.8px] uppercase text-[#EE6C13]">
-                  RECENT WORK · PORTAL NXT
+                  RECENT WORK · AGENTIC SEARCH & WORKFLOWS
                 </span>
               </div>
 
@@ -174,12 +174,12 @@ export default function AllyraEvolutionBanner({
               <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[33px] leading-[1.12] tracking-[-0.02em] mb-[10px]">
                 Beyond the launch.
                 <br />
-                <span className="text-[#FFFDFA]">Into the agentic era.</span>
+                <span className="text-[#FFFDFA]">Into Agentic Search.</span>
               </h2>
 
               {/* Concise Supporting Sentence */}
               <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[15px] leading-[1.45] max-w-[530px] m-0">
-                The next evolution of Allyra — where AI understands goals, orchestrates work and delivers outcomes.
+                The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ export default function AllyraEvolutionBanner({
               <div
                 className="inline-flex items-center gap-[9px] h-[38px] px-[20px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[13px] tracking-[0.3px] uppercase transition-all duration-200 group-hover:bg-[#FFFDFA] group-hover:text-[#190b00] group-hover:shadow-md shrink-0"
               >
-                <span>Take a look</span>
+                <span>Explore Agentic Search</span>
                 <svg
                   className="size-[13px] transition-transform duration-200 group-hover:translate-x-1"
                   fill="none"

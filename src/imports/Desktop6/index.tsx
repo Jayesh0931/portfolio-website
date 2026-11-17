@@ -20,6 +20,7 @@ import BrandVector from "../../components/BrandVector";
 import KineticText from "../../components/KineticText";
 import { playClickSound, playHoverTick } from "@/utils/soundEffects";
 import AllyraEvolutionBanner from "@/app/components/AllyraEvolutionBanner";
+import ExperienceAgenticSearchCTA from "@/app/components/ExperienceAgenticSearchCTA";
 
 function Group() {
   return (
@@ -90,7 +91,7 @@ function Frame10() {
 function Frame11() {
   return (
     <div className="absolute bg-[#e5ddd4] content-stretch flex items-center justify-center left-[251px] px-[11px] py-[6px] rounded-[20px] top-[768px]">
-      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Enterprise Systems</p>
+      <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative shrink-0 text-[#584e45] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">Agentic Search</p>
     </div>
   );
 }
@@ -336,10 +337,10 @@ function Group7() {
           />
 
           {/* Bottom Left Content */}
-          <div style={{ position: "absolute", left: 20, bottom: 20, display: "flex", flexDirection: "column", gap: 12, maxWidth: 200, zIndex: 2 }}>
+          <div style={{ position: "absolute", left: 20, bottom: 20, display: "flex", flexDirection: "column", gap: 12, maxWidth: 220, zIndex: 2 }}>
             <p style={{ fontFamily: "Outfit, sans-serif", fontWeight: 800, fontSize: 28, color: "#FFFDFA", margin: 0, letterSpacing: "-0.01em" }}>allyra.ai</p>
             <div style={{ fontFamily: "Outfit, sans-serif", fontWeight: 400, fontSize: 14, color: "#7b7b7b", lineHeight: "1.4" }}>
-              <p style={{ margin: 0 }}>Scaling AI from individual agents to enterprise-grade workflows.</p>
+              <p style={{ margin: 0 }}>Agentic search and multi-agent workflows for enterprise teams.</p>
             </div>
           </div>
         </div>
@@ -2340,6 +2341,7 @@ export default function Desktop() {
       <Frame43 />
       <Group11 />
       <Frame99 />
+      <ExperienceAgenticSearchCTA style={{ position: "absolute", left: 80, top: 9400 }} />
       <Footer style={{ position: "absolute", left: 80, top: 9700 }} />
     </div>
   );

@@ -89,7 +89,7 @@ export default function AllyraEvolutionBanner({
           {/* CTA Row */}
           <div className="relative z-10 flex flex-wrap items-center gap-3 mb-[18px]">
             <div className="inline-flex items-center gap-[8px] h-[36px] px-[18px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[12.5px] uppercase tracking-[0.3px] shadow-sm">
-              <span>Explore Agentic Search</span>
+              <span>Know More</span>
               <svg className="size-[12px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5 2.5L10.5 7.5L5 12.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -189,7 +189,7 @@ export default function AllyraEvolutionBanner({
               <div
                 className="inline-flex items-center gap-[9px] h-[38px] px-[20px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[13px] tracking-[0.3px] uppercase transition-all duration-200 group-hover:bg-[#FFFDFA] group-hover:text-[#190b00] group-hover:shadow-md shrink-0"
               >
-                <span>Explore Agentic Search</span>
+                <span>Know More</span>
                 <svg
                   className="size-[13px] transition-transform duration-200 group-hover:translate-x-1"
                   fill="none"

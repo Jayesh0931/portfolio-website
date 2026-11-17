@@ -90,11 +90,11 @@ export function useSEOManager(path: string) {
       };
     } else if (path.startsWith("/ai-companion")) {
       config = {
-        title: "From Search to Outcomes: Human-Controlled AI Companion — Jayesh Soni",
+        title: "NEXUS — Agentic Enterprise Search & Intelligence — Jayesh Soni",
         description:
-          "Interactive UX Concept: Designing a Human-Controlled AI Companion for enterprise benefits workflows. Demonstrating intent decomposition, execution transparency, grounding, and human-in-the-loop review.",
+          "Independent UX Concept: Designing NEXUS, an agentic enterprise knowledge search and intelligence product. Demonstrating intent decomposition, multi-source retrieval, grounded citations, and human-in-the-loop deliverable synthesis.",
         keywords:
-          "Human-Controlled AI Companion, Agentic Search, AI Workflows, Human-in-the-Loop, AI Transparency, Jayesh Soni, Concept",
+          "NEXUS, Agentic Enterprise Search, Enterprise Knowledge, Intent Decomposition, Human-in-the-Loop, Grounded Citations, Procurement Operations, AI UX, Jayesh Soni",
         path: "/ai-companion",
         type: "article",
         image: DEFAULT_IMAGE,

@@ -429,7 +429,7 @@ function generateHomeSemanticHtml(templateHtml) {
         <h2 style="font-size: 26px; margin: 0 0 10px 0; color: #FFFDFA;">Beyond the launch. Into Agentic Search.</h2>
         <p style="font-size: 15px; color: #cfc5bb; margin: 0 0 20px 0; line-height: 1.5;">The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.</p>
         <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15);">
-          <a href="/allyra-evolution" style="display: inline-block; background: #EE6C13; color: #FFFDFA; font-weight: bold; padding: 10px 20px; border-radius: 110px; text-decoration: none; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Explore Agentic Search →</a>
+          <a href="/allyra-evolution" style="display: inline-block; background: #EE6C13; color: #FFFDFA; font-weight: bold; padding: 10px 20px; border-radius: 110px; text-decoration: none; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px;">Know More →</a>
         </div>
       </section>
 

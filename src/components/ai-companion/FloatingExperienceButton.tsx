@@ -62,10 +62,10 @@ export const FloatingExperienceButton: React.FC<FloatingExperienceButtonProps> =
         <div className="relative z-10 flex items-center gap-2">
           <div className="flex flex-col text-left">
             <span className="font-['Outfit',sans-serif] font-bold text-[13.5px] md:text-[14px] text-[#FFFDFA] tracking-tight leading-tight group-hover:text-[#EE6C13] transition-colors">
-              Experience Now
+              Experience NEXUS
             </span>
             <span className="hidden sm:block font-['Inter',sans-serif] text-[10px] text-[#A89D91] font-normal tracking-wide">
-              Human-Controlled AI
+              Agentic Enterprise Search
             </span>
           </div>
 

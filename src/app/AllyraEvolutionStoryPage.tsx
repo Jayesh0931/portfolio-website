@@ -37,9 +37,8 @@ function ArticleImage({
           src={src}
           alt={alt}
           onLoad={() => setIsLoaded(true)}
-          className={`max-w-full max-h-[580px] w-auto h-auto object-contain transition-opacity duration-300 ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          className={`max-w-full max-h-[580px] w-auto h-auto object-contain transition-opacity duration-300 ${isLoaded ? "opacity-100" : "opacity-0"
+            }`}
         />
       </div>
       {caption && (
@@ -186,7 +185,7 @@ export default function AllyraEvolutionStoryPage({
           {/* Micro Category Bar */}
           <div className="flex flex-wrap items-center gap-2 mb-4">
             <span className="font-inter font-bold text-[11px] tracking-[0.8px] uppercase text-[#ee6c13] bg-[#ee6c13]/10 px-2.5 py-1 rounded">
-              CASE STUDY · AGENTIC SEARCH
+              AGENTIC SEARCH
             </span>
             <span className="text-[#7b7a77] text-[12px]">•</span>
             <span className="font-inter font-bold text-[11px] tracking-[0.8px] uppercase text-[#77695d]">

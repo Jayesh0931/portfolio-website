@@ -23,7 +23,7 @@ import AllyraEvolutionBanner from "@/app/components/AllyraEvolutionBanner";
 
 function Group() {
   return (
-    <div style={{ position: "absolute", top: 8004, height: 788, left: 305, width: 96 }} data-name="Group">
+    <div style={{ position: "absolute", top: 8194, height: 788, left: 305, width: 96 }} data-name="Group">
       <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 96 787.594">
         <g id="Group">
           <g id="Vector" />
@@ -1654,7 +1654,7 @@ function Frame72() {
 
 function Frame43() {
   return (
-    <div className="absolute content-stretch flex flex-col gap-[90px] items-start left-[80px] top-[2357px] w-[1280px]">
+    <div className="absolute content-stretch flex flex-col gap-[90px] items-start left-[80px] top-[2547px] w-[1280px]">
       <Group8 />
       <Frame23 />
       <StoryCampaignOS />
@@ -1804,19 +1804,19 @@ function Frame92() {
 
 function Group11() {
   return (
-    <div className="absolute contents" style={{ top: 6903, left: 80, width: 1280, height: 780 }}>
-      <div id="focus-section-block" className="absolute bg-[#FFFDFA]" style={{ left: 80, width: 70, top: 6903, height: 780 }}>
+    <div className="absolute contents" style={{ top: 7093, left: 80, width: 1280, height: 780 }}>
+      <div id="focus-section-block" className="absolute bg-[#FFFDFA]" style={{ left: 80, width: 70, top: 7093, height: 780 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="absolute bg-[#FFFDFA]" style={{ left: 151, width: 1209, top: 6903, height: 780 }}>
+      <div className="absolute bg-[#FFFDFA]" style={{ left: 151, width: 1209, top: 7093, height: 780 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="absolute flex items-center justify-center" style={{ top: 7506, left: 107, width: 15, height: 59, containerType: "size" }}>
+      <div className="absolute flex items-center justify-center" style={{ top: 7696, left: 107, width: 15, height: 59, containerType: "size" }}>
         <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
           <p className="[word-break:break-word] font-['Inter:Bold',sans-serif] font-bold leading-[normal] not-italic relative text-[#77695d] text-[12px] tracking-[0.6px] uppercase whitespace-nowrap">[ s-003 ]</p>
         </div>
       </div>
-      <div className="absolute flex items-center justify-center" style={{ top: 6944, left: 97, width: 38, height: 134, containerType: "size" }}>
+      <div className="absolute flex items-center justify-center" style={{ top: 7134, left: 97, width: 38, height: 134, containerType: "size" }}>
         <div className="-rotate-90 flex-none h-[100cqw] w-[100cqh]">
           <p className="[word-break:break-word] font-['Outfit:Regular',sans-serif] font-normal leading-[normal] relative text-[#190b00] text-[30px] text-right w-full">FOCUS</p>
         </div>
@@ -1935,7 +1935,7 @@ function Group12() {
 
 function Frame99() {
   return (
-    <div className="absolute content-stretch flex flex-col items-center left-0 top-[1407px] w-[1440px]">
+    <div className="absolute content-stretch flex flex-col items-center left-0 top-[1597px] w-[1440px]">
       <Group12 />
     </div>
   );
@@ -1991,7 +1991,7 @@ function Frame103() {
 
 function Frame102() {
   return (
-    <div className="absolute h-[800px] left-[261px] overflow-x-clip overflow-y-auto top-[7880px] w-[1099px]">
+    <div className="absolute h-[800px] left-[261px] overflow-x-clip overflow-y-auto top-[8070px] w-[1099px]">
       <Frame103 />
     </div>
   );
@@ -2010,7 +2010,7 @@ function Frame109() {
 
 function Frame108() {
   return (
-    <div className="absolute h-[800px] left-[80px] top-[7880px] w-[180px] flex flex-col">
+    <div className="absolute h-[800px] left-[80px] top-[8070px] w-[180px] flex flex-col">
       {/* Top Box: 2 Circles */}
       <div className="h-[148px] w-full flex items-center justify-center relative border-b border-[#7b7a77] border-solid">
         <div className="rotate-180 scale-75">
@@ -2047,11 +2047,11 @@ function Frame110() {
 
 function Group13() {
   return (
-    <div className="-translate-x-1/2 absolute contents left-[calc(50%-550px)] top-[7880px]">
-      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%-550px)] w-[180px]" style={{ top: 7880, height: 148 }}>
+    <div className="-translate-x-1/2 absolute contents left-[calc(50%-550px)] top-[8070px]">
+      <div className="-translate-x-1/2 absolute bg-[#FFFDFA] left-[calc(50%-550px)] w-[180px]" style={{ top: 8070, height: 148 }}>
         <div aria-hidden className="absolute border border-[#7b7a77] border-solid inset-[-1px] pointer-events-none" />
       </div>
-      <div className="-translate-x-1/2 absolute flex items-center justify-center left-[calc(50%-549px)]" style={{ top: 8002 }}>
+      <div className="-translate-x-1/2 absolute flex items-center justify-center left-[calc(50%-549px)]" style={{ top: 8192 }}>
         <div className="flex-none rotate-180">
           <Frame110 />
         </div>
@@ -2149,7 +2149,7 @@ function RecommendationsSection() {
   const t = testimonials[active];
 
   return (
-    <div id="recommendations-section-block" className="absolute left-[80px] top-[9080px] w-[1280px]">
+    <div id="recommendations-section-block" className="absolute left-[80px] top-[9270px] w-[1280px]">
       {/* ── Section Header Bar ── */}
       <div style={{
         width: "100%", height: 100,
@@ -2336,11 +2336,11 @@ export default function Desktop() {
     <div className="bg-transparent relative size-full" data-name="Desktop - 6">
       <Group />
       <Group7 />
-      <AllyraEvolutionBanner style={{ position: "absolute", left: 80, top: 967 }} />
+      <AllyraEvolutionBanner style={{ position: "absolute", left: 80, top: 1127 }} />
       <Frame43 />
       <Group11 />
       <Frame99 />
-      <Footer style={{ position: "absolute", left: 80, top: 9700 }} />
+      <Footer style={{ position: "absolute", left: 80, top: 9890 }} />
     </div>
   );
 }

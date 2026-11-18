@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // PAGE PROTECTION: Set to false to disable all screenshot, copy, and download protections.
 // Permanently disabled for production.
-const ENABLE_PROTECTION = false;
+const ENABLE_PROTECTION = true;
 
 export function usePageProtection() {
   const [isBlurred] = useState(false);

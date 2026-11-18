@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import vidNxt01 from "@/imports/nxt01.mp4";
+import vidNxt02 from "@/imports/nxt02.mp4";
+import vidNxt03 from "@/imports/nxt03.mp4";
+import vidNxt04 from "@/imports/nxt04.mp4";
 import imgNxt01 from "@/imports/nxt01.webp";
 import imgNxt02 from "@/imports/nxt02.webp";
 import imgNxt03 from "@/imports/nxt03.webp";
+import imgNxt04 from "@/imports/nxt04.webp";
 import imgAllyraLogo from "@/imports/allyra_logo.webp";
 
 interface AllyraEvolutionStoryPageProps {
@@ -12,6 +17,144 @@ interface AllyraEvolutionStoryPageProps {
   left?: number;
   onBack: () => void;
   onNextStory?: () => void;
+}
+
+function ArticleVideo({
+  src,
+  poster,
+  alt,
+  caption,
+}: {
+  src: string;
+  poster?: string;
+  alt: string;
+  caption?: string;
+}) {
+  const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isLoaded, setIsLoaded] = useState(isPdf);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  useEffect(() => {
+    if (isPdf) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().then(() => setIsPlaying(true)).catch(() => {});
+        } else {
+          video.pause();
+          setIsPlaying(false);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [isPdf]);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play().then(() => setIsPlaying(true)).catch(() => {});
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleOpenFullscreen = () => {
+    window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
+  };
+
+  return (
+    <div className="w-full flex flex-col gap-3 my-6">
+      <div
+        onClick={handleOpenFullscreen}
+        data-custom-cursor="full-screen"
+        className="group relative w-full rounded-[10px] overflow-hidden border border-[#7b7a77] bg-[#140801] shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-[#ee6c13]/70"
+        style={{ aspectRatio: "3456 / 1924" }}
+      >
+        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-10" />}
+
+        {isPdf && poster ? (
+          <img
+            src={poster}
+            alt={alt}
+            className="w-full h-full object-contain block"
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            src={src}
+            poster={poster}
+            loop
+            muted
+            playsInline
+            onLoadedData={() => setIsLoaded(true)}
+            className={`w-full h-full object-contain block transition-opacity duration-300 ${
+              isLoaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        )}
+
+        {/* Hover / Status overlay controls */}
+        {!isPdf && (
+          <div className="absolute bottom-3 right-3 z-20 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+            <button
+              type="button"
+              onClick={togglePlay}
+              aria-label={isPlaying ? "Pause video" : "Play video"}
+              className="px-2.5 py-1.5 rounded-full bg-black/75 hover:bg-black text-[#FFFDFA] border border-white/20 text-[11px] font-inter font-semibold uppercase tracking-wider backdrop-blur-sm transition-transform active:scale-95 flex items-center gap-1.5 shadow-md"
+            >
+              {isPlaying ? (
+                <>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <rect x="6" y="4" width="4" height="16" rx="1" />
+                    <rect x="14" y="4" width="4" height="16" rx="1" />
+                  </svg>
+                  <span>Pause</span>
+                </>
+              ) : (
+                <>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                  <span>Play</span>
+                </>
+              )}
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenFullscreen();
+              }}
+              aria-label="Expand video"
+              className="px-2.5 py-1.5 rounded-full bg-[#ee6c13] hover:bg-[#d95a08] text-[#FFFDFA] text-[11px] font-inter font-bold uppercase tracking-wider shadow-md transition-transform active:scale-95 flex items-center gap-1.5"
+            >
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+              </svg>
+              <span>Full Screen</span>
+            </button>
+          </div>
+        )}
+      </div>
+
+      {caption && (
+        <p className="font-inter font-bold text-[11px] tracking-[0.6px] uppercase text-[#77695d] text-center m-0">
+          {caption}
+        </p>
+      )}
+    </div>
+  );
 }
 
 function ArticleImage({
@@ -173,7 +316,7 @@ export default function AllyraEvolutionStoryPage({
       <main
         className="w-full mx-auto"
         style={{
-          maxWidth: isMobile ? "100%" : "960px",
+          maxWidth: isMobile ? "100%" : "1020px",
           paddingLeft: isMobile ? "16px" : "40px",
           paddingRight: isMobile ? "16px" : "40px",
           paddingTop: isMobile ? "0px" : "130px",
@@ -286,9 +429,10 @@ export default function AllyraEvolutionStoryPage({
               Transforming ambiguous enterprise search intent into an observable, inspectable multi-agent execution pipeline.
             </p>
 
-            {/* Image Showcase */}
-            <ArticleImage
-              src={imgNxt01}
+            {/* Video Showcase */}
+            <ArticleVideo
+              src={vidNxt01}
+              poster={imgNxt01}
               alt="Multi-agent DAG task decomposition and execution workflow"
               caption="[ FIG. 01 — MULTI-AGENT EXECUTION GRAPH & PROGRESSION BOARD ]"
             />
@@ -345,9 +489,10 @@ export default function AllyraEvolutionStoryPage({
               Eliminating generative hallucinations through zero-trust attribution and real-time permission mapping.
             </p>
 
-            {/* Image Showcase */}
-            <ArticleImage
-              src={imgNxt02}
+            {/* Video Showcase */}
+            <ArticleVideo
+              src={vidNxt02}
+              poster={imgNxt02}
               alt="Governance and verified enterprise connectors"
               caption="[ FIG. 02 — ENTERPRISE ACCESS TIERS, PERMISSIONS & CITATION GOVERNANCE ]"
             />
@@ -404,9 +549,10 @@ export default function AllyraEvolutionStoryPage({
               Replacing dead-end chat prose with live action blocks, sortable data grids, and workspace deliverables.
             </p>
 
-            {/* Image Showcase */}
-            <ArticleImage
-              src={imgNxt03}
+            {/* Video Showcase */}
+            <ArticleVideo
+              src={vidNxt03}
+              poster={imgNxt03}
               alt="Portal workspace deliverables and Kanban action grids"
               caption="[ FIG. 03 — PORTAL WORKSPACE DELIVERABLES & INTERACTIVE ACTION BOARDS ]"
             />
@@ -463,9 +609,10 @@ export default function AllyraEvolutionStoryPage({
               Balancing machine speed with human discretion through active review gates and parameter steering.
             </p>
 
-            {/* Image Showcase */}
-            <ArticleImage
-              src={imgNxt01}
+            {/* Video Showcase */}
+            <ArticleVideo
+              src={vidNxt04}
+              poster={imgNxt04}
               alt="Human-in-the-loop active steering gates and review controls"
               caption="[ FIG. 04 — HUMAN-IN-THE-LOOP SLIDE GENERATION & ACTIVE STEERING GATES ]"
             />

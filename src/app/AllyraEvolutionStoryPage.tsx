@@ -40,6 +40,14 @@ function ArticleVideo({
     const video = videoRef.current;
     if (!video) return;
 
+    // Respect OS-level reduced motion accessibility preference
+    const prefersReducedMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      video.pause();
+      setIsPlaying(false);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -72,21 +80,44 @@ function ArticleVideo({
     window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src } }));
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleOpenFullscreen();
+    }
+  };
+
   return (
-    <div className="w-full flex flex-col gap-3 my-6">
+    <div className="w-full flex flex-col gap-2.5 my-5 md:my-6">
+      {/* Video Framing Card */}
       <div
+        role="button"
+        tabIndex={0}
         onClick={handleOpenFullscreen}
+        onKeyDown={handleKeyDown}
         data-custom-cursor="full-screen"
-        className="group relative w-full rounded-[10px] overflow-hidden border border-[#7b7a77] bg-[#140801] shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-[#ee6c13]/70"
+        aria-label={`Open ${caption || alt} in full-screen modal`}
+        className="group relative w-full rounded-[10px] overflow-hidden border border-[#7b7a77] bg-[#140801] shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl hover:border-[#ee6c13]/70 focus:outline-none focus:ring-2 focus:ring-[#ee6c13] focus:ring-offset-2 select-none"
         style={{ aspectRatio: "3456 / 1924" }}
       >
-        {!isLoaded && <div className="absolute inset-0 skeleton-shimmer z-10" />}
+        {/* Ambient warm glow behind video */}
+        <div
+          className="absolute inset-0 bg-[#ee6c13] opacity-15 blur-[45px] pointer-events-none"
+          aria-hidden="true"
+        />
+
+        {!isLoaded && (
+          <div
+            className="absolute inset-0 skeleton-shimmer z-10"
+            aria-label="Loading video preview..."
+          />
+        )}
 
         {isPdf && poster ? (
           <img
             src={poster}
             alt={alt}
-            className="w-full h-full object-contain block"
+            className="w-full h-full object-contain block relative z-1"
           />
         ) : (
           <video
@@ -96,25 +127,28 @@ function ArticleVideo({
             loop
             muted
             playsInline
+            preload="metadata"
+            aria-label={alt}
+            title={alt}
             onLoadedData={() => setIsLoaded(true)}
-            className={`w-full h-full object-contain block transition-opacity duration-300 ${
+            className={`w-full h-full object-contain block relative z-1 transition-opacity duration-300 ${
               isLoaded ? "opacity-100" : "opacity-0"
             }`}
           />
         )}
 
-        {/* Hover / Status overlay controls */}
+        {/* Floating Controls Overlay: Persistent on touch / mobile devices, hover on desktop */}
         {!isPdf && (
-          <div className="absolute bottom-3 right-3 z-20 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
+          <div className="absolute bottom-2.5 right-2.5 md:bottom-3 md:right-3 z-20 flex items-center gap-1.5 md:gap-2 opacity-95 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 pointer-events-auto">
             <button
               type="button"
               onClick={togglePlay}
               aria-label={isPlaying ? "Pause video" : "Play video"}
-              className="px-2.5 py-1.5 rounded-full bg-black/75 hover:bg-black text-[#FFFDFA] border border-white/20 text-[11px] font-inter font-semibold uppercase tracking-wider backdrop-blur-sm transition-transform active:scale-95 flex items-center gap-1.5 shadow-md"
+              className="h-7 md:h-8 px-2.5 md:px-3 rounded-full bg-black/80 hover:bg-black text-[#FFFDFA] border border-white/20 text-[10.5px] md:text-[11px] font-inter font-semibold uppercase tracking-wider backdrop-blur-md transition-all active:scale-95 flex items-center gap-1.5 shadow-md cursor-pointer"
             >
               {isPlaying ? (
                 <>
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <rect x="6" y="4" width="4" height="16" rx="1" />
                     <rect x="14" y="4" width="4" height="16" rx="1" />
                   </svg>
@@ -122,7 +156,7 @@ function ArticleVideo({
                 </>
               ) : (
                 <>
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <polygon points="5 3 19 12 5 21 5 3" />
                   </svg>
                   <span>Play</span>
@@ -136,10 +170,10 @@ function ArticleVideo({
                 e.stopPropagation();
                 handleOpenFullscreen();
               }}
-              aria-label="Expand video"
-              className="px-2.5 py-1.5 rounded-full bg-[#ee6c13] hover:bg-[#d95a08] text-[#FFFDFA] text-[11px] font-inter font-bold uppercase tracking-wider shadow-md transition-transform active:scale-95 flex items-center gap-1.5"
+              aria-label="Expand video to full screen"
+              className="h-7 md:h-8 px-2.5 md:px-3 rounded-full bg-[#ee6c13] hover:bg-[#d95a08] text-[#FFFDFA] text-[10.5px] md:text-[11px] font-inter font-bold uppercase tracking-wider shadow-md transition-all active:scale-95 flex items-center gap-1.5 cursor-pointer"
             >
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
                 <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
               </svg>
               <span>Full Screen</span>
@@ -148,8 +182,23 @@ function ArticleVideo({
         )}
       </div>
 
+      {/* Mobile-Only Accessible "Tap to View Full Screen" Action Link */}
+      <div className="flex md:hidden items-center justify-between pt-1">
+        <button
+          type="button"
+          onClick={handleOpenFullscreen}
+          className="inline-flex items-center gap-1.5 text-[#EE6C13] active:text-[#d95a08] font-inter font-bold text-[11.5px] uppercase tracking-[0.5px] py-1 cursor-pointer"
+          aria-label={`Tap to view ${caption || alt} in full screen`}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+          </svg>
+          <span>Tap to expand full screen</span>
+        </button>
+      </div>
+
       {caption && (
-        <p className="font-inter font-bold text-[11px] tracking-[0.6px] uppercase text-[#77695d] text-center m-0">
+        <p className="font-inter font-bold text-[10.5px] md:text-[11px] tracking-[0.6px] uppercase text-[#77695d] text-center m-0">
           {caption}
         </p>
       )}
@@ -408,7 +457,7 @@ export default function AllyraEvolutionStoryPage({
         <div className="flex flex-col gap-20">
 
           {/* ── FEATURE 01: Multi-Step Workflows (From Intent to Outcomes) ── */}
-          <section className="border border-[#7b7a77] bg-[#fffdfa] p-6 md:p-10 shadow-sm relative">
+          <section className="border border-[#7b7a77] bg-[#fffdfa] p-4 sm:p-6 md:p-10 shadow-sm relative">
             {/* Header / Number Badge */}
             <div className="flex items-center justify-between border-b border-[#7b7a77]/30 pb-4 mb-6">
               <span className="font-inter font-bold text-[12px] tracking-[0.8px] uppercase text-[#ee6c13]">
@@ -469,7 +518,7 @@ export default function AllyraEvolutionStoryPage({
           </section>
 
           {/* ── FEATURE 02: Transparent, Defensible Truth ── */}
-          <section className="border border-[#7b7a77] bg-[#fffdfa] p-6 md:p-10 shadow-sm relative">
+          <section className="border border-[#7b7a77] bg-[#fffdfa] p-4 sm:p-6 md:p-10 shadow-sm relative">
             <div className="flex items-center justify-between border-b border-[#7b7a77]/30 pb-4 mb-6">
               <span className="font-inter font-bold text-[12px] tracking-[0.8px] uppercase text-[#ee6c13]">
                 [ 02 · ENTERPRISE PROVENANCE ]
@@ -529,7 +578,7 @@ export default function AllyraEvolutionStoryPage({
           </section>
 
           {/* ── FEATURE 03: Structured, Contextual Outputs ── */}
-          <section className="border border-[#7b7a77] bg-[#fffdfa] p-6 md:p-10 shadow-sm relative">
+          <section className="border border-[#7b7a77] bg-[#fffdfa] p-4 sm:p-6 md:p-10 shadow-sm relative">
             <div className="flex items-center justify-between border-b border-[#7b7a77]/30 pb-4 mb-6">
               <span className="font-inter font-bold text-[12px] tracking-[0.8px] uppercase text-[#ee6c13]">
                 [ 03 · GENERATIVE WORKSPACES ]
@@ -589,7 +638,7 @@ export default function AllyraEvolutionStoryPage({
           </section>
 
           {/* ── FEATURE 04: Human-in-the-Loop Decisions ── */}
-          <section className="border border-[#7b7a77] bg-[#fffdfa] p-6 md:p-10 shadow-sm relative">
+          <section className="border border-[#7b7a77] bg-[#fffdfa] p-4 sm:p-6 md:p-10 shadow-sm relative">
             <div className="flex items-center justify-between border-b border-[#7b7a77]/30 pb-4 mb-6">
               <span className="font-inter font-bold text-[12px] tracking-[0.8px] uppercase text-[#ee6c13]">
                 [ 04 · PROGRESSIVE AUTONOMY ]

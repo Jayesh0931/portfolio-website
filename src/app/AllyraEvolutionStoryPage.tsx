@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import BrandVector from "@/components/BrandVector";
 import Footer from "@/components/Footer";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import "@/app/styles/mobileTheme.css";
 import vidNxt01 from "@/imports/nxt01.mp4";
 import vidNxt02 from "@/imports/nxt02.mp4";
 import vidNxt03 from "@/imports/nxt03.mp4";
@@ -331,13 +332,13 @@ export default function AllyraEvolutionStoryPage({
         </header>
       )}
 
-      {/* Mobile Nav Header */}
+      {/* Mobile Nav Header (Matches MobileAllyraHero & other story pages) */}
       {isMobile && (
-        <header className="mobile-story-nav-header">
+        <header className="mobile-story-nav-header w-full flex items-center justify-between px-4 py-4 mb-7 relative z-50 bg-transparent">
           <button
             type="button"
             onClick={onBack}
-            className="mobile-story-back-pill"
+            className="mobile-story-back-pill inline-flex items-center gap-2 border border-[#706e6b] rounded-full px-5 py-2 font-outfit font-extrabold text-[14px] tracking-[0.02em] text-[#190b00] bg-[#FFFDFA] active:bg-[#190b00] active:text-[#FFFDFA] active:border-[#190b00] cursor-pointer select-none transition-all shadow-xs"
             aria-label="Back to home"
           >
             <svg

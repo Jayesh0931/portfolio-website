@@ -10,8 +10,6 @@ const VousVousStoryPage = lazy(() => import("./VousVousStoryPage"));
 const JoonifyStoryPage = lazy(() => import("./JoonifyStoryPage"));
 const AboutPage = lazy(() => import("./AboutPage"));
 const MobileHomepage = lazy(() => import("./components/mobile/MobileHomepage"));
-const AiCompanionExperience = lazy(() => import("@/components/ai-companion/AiCompanionExperience"));
-import FloatingExperienceButton from "@/components/ai-companion/FloatingExperienceButton";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import SoundToggle from "@/components/SoundToggle";
 import FilmGrain from "@/components/FilmGrain";
@@ -1373,9 +1371,6 @@ export default function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [currentPath, setCurrentPath] = useState(() => typeof window !== "undefined" ? window.location.pathname : "/");
-  const [isCompanionOpen, setIsCompanionOpen] = useState(() =>
-    typeof window !== "undefined" ? window.location.pathname.startsWith("/ai-companion") : false
-  );
   const [resetKey, setResetKey] = useState(0);
 
   // Background reset listener triggered while screen is 100% frozen under ice
@@ -1406,7 +1401,6 @@ export default function App() {
     }
     startTransition(() => {
       setCurrentPath(path);
-      setIsCompanionOpen(path.startsWith("/ai-companion"));
     });
     window.scrollTo(0, 0);
   };
@@ -1498,7 +1492,6 @@ export default function App() {
     const onPopState = () => {
       startTransition(() => {
         setCurrentPath(window.location.pathname);
-        setIsCompanionOpen(window.location.pathname.startsWith("/ai-companion"));
       });
       window.scrollTo(0, 0);
     };
@@ -1669,15 +1662,6 @@ export default function App() {
         navigateTo={navigateTo}
       />
     );
-  } else if (currentPath.startsWith("/ai-companion") || isCompanionOpen) {
-    content = (
-      <AiCompanionExperience
-        onClose={() => {
-          setIsCompanionOpen(false);
-          navigateTo("/");
-        }}
-      />
-    );
   } else {
     content = currentHomeView;
   }
@@ -1744,19 +1728,6 @@ export default function App() {
       {/* Floating Tactical Audio Toggle */}
       {!isPdf && (
         <SoundToggle className="fixed bottom-5 right-[68px] md:bottom-8 md:right-[94px] z-[999] w-[40px] h-[40px] md:w-[50px] md:h-[50px]" />
-      )}
-
-      {/* Floating Central "Experience Now" Button on Homepage in Centre Bottom */}
-      {!isPdf && currentPath === "/" && !isCompanionOpen && (
-        <FloatingExperienceButton
-          onClick={() => {
-            setIsCompanionOpen(true);
-            if (window.location.pathname !== "/ai-companion") {
-              window.history.pushState({}, "", "/ai-companion");
-              setCurrentPath("/ai-companion");
-            }
-          }}
-        />
       )}
 
       {currentPath === "/" && (

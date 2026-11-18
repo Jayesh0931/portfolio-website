@@ -88,17 +88,6 @@ export function useSEOManager(path: string) {
         type: "article",
         image: DEFAULT_IMAGE,
       };
-    } else if (path.startsWith("/ai-companion")) {
-      config = {
-        title: "NEXUS — Agentic Enterprise Search & Intelligence — Jayesh Soni",
-        description:
-          "Independent UX Concept: Designing NEXUS, an agentic enterprise knowledge search and intelligence product. Demonstrating intent decomposition, multi-source retrieval, grounded citations, and human-in-the-loop deliverable synthesis.",
-        keywords:
-          "NEXUS, Agentic Enterprise Search, Enterprise Knowledge, Intent Decomposition, Human-in-the-Loop, Grounded Citations, Procurement Operations, AI UX, Jayesh Soni",
-        path: "/ai-companion",
-        type: "article",
-        image: DEFAULT_IMAGE,
-      };
     } else if (path.startsWith("/about")) {
       config = {
         title: "About — Jayesh Soni | Product Lead & AI Product Designer",

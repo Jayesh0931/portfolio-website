@@ -467,56 +467,6 @@ function generateHomeSemanticHtml(templateHtml) {
   return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
-function generateAiCompanionHtml(baseHtml) {
-  let html = baseHtml;
-  const canonicalUrl = `${BASE_URL}/ai-companion`;
-  const title = "From Search to Outcomes: Human-Controlled AI Companion — Jayesh Soni";
-  const desc = "Interactive UX Concept: Designing a Human-Controlled AI Companion for enterprise benefits workflows. Demonstrating intent decomposition, execution transparency, grounding, and human-in-the-loop review.";
-
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${title}</title>`);
-  html = html.replace(/<link\s+rel="canonical"[\s\S]*?>/i, `<link rel="canonical" href="${canonicalUrl}" />`);
-  html = html.replace(/<meta\s+name="description"[\s\S]*?>/i, `<meta name="description" content="${desc}" />`);
-  html = html.replace(/<meta\s+property="og:title"[\s\S]*?>/i, `<meta property="og:title" content="${title}" />`);
-  html = html.replace(/<meta\s+property="og:description"[\s\S]*?>/i, `<meta property="og:description" content="${desc}" />`);
-  html = html.replace(/<meta\s+property="og:url"[\s\S]*?>/i, `<meta property="og:url" content="${canonicalUrl}" />`);
-
-  const semanticBody = `
-    <main role="main" class="pre-rendered-seo" style="max-width: 960px; margin: 0 auto; padding: 40px 20px; font-family: system-ui, -apple-system, sans-serif; color: #190b00; line-height: 1.6;">
-      <nav aria-label="Breadcrumb" style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0dbd1; padding-bottom: 16px;">
-        <a href="/" style="color: #EE6C13; text-decoration: none; font-weight: 600;">← Back to Jayesh Soni Portfolio</a>
-        <span style="color: #77695d; font-size: 13px;">[ INDEPENDENT UX CONCEPT ]</span>
-      </nav>
-      
-      <header style="margin-bottom: 40px; border-bottom: 1px solid #7b7a77; padding-bottom: 24px;">
-        <p style="font-size: 13px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #EE6C13; margin: 0 0 8px 0;">[ FROM SEARCH TO OUTCOMES ]</p>
-        <h1 style="font-size: 38px; line-height: 1.2; margin: 0 0 16px 0;">Designing a Human-Controlled AI Companion</h1>
-        <p style="font-size: 20px; color: #190b00; line-height: 1.4;">An interactive concept demonstrating how an AI companion moves beyond returning search links to understanding user goals, planning work, grounding in policy evidence, and delivering verified claim packages under human oversight.</p>
-      </header>
-
-      <section style="margin-bottom: 36px;">
-        <h2 style="font-size: 24px; margin: 0 0 12px 0;">Core Design Principle</h2>
-        <p style="font-size: 18px; color: #190b00;">The AI should not feel like a black box, and the user should not feel like a supervisor who has to micromanage it. The user should feel informed, involved, and in control.</p>
-      </section>
-
-      <section style="margin-bottom: 36px;">
-        <h2 style="font-size: 24px; margin: 0 0 12px 0;">8 Interactive Journey States</h2>
-        <ul style="padding-left: 20px; font-size: 17px; color: #190b00;">
-          <li><strong>01 Goal Discovery:</strong> Accept natural-language intent without agent pickers.</li>
-          <li><strong>02 Intent Clarification:</strong> Resolve policy ambiguity before execution.</li>
-          <li><strong>03 Verifiable Plan:</strong> User inspects and approves ordered task steps.</li>
-          <li><strong>04 Transparent Execution:</strong> Step progress, agent attribution, and telemetry stream.</li>
-          <li><strong>05 Engagement While AI Works:</strong> Contextual knowledge check and policy tips.</li>
-          <li><strong>06 Source Evidence Grounding:</strong> Verifiable excerpts from benefits schedule.</li>
-          <li><strong>07 Human-in-the-Loop Review:</strong> Mandatory approval gate before package sign-off.</li>
-          <li><strong>08 Structured Outcome:</strong> Audit-ready claim dossier and portal submission checklist.</li>
-        </ul>
-      </section>
-    </main>
-  `;
-
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
-}
-
 function generateAboutHtml(baseHtml) {
   let html = baseHtml;
   const canonicalUrl = `${BASE_URL}/about`;
@@ -632,16 +582,6 @@ function runPrerender() {
   fs.writeFileSync(path.join(aboutDir, "index.html"), aboutHtml, "utf-8");
   fs.writeFileSync(path.join(distDir, "about.html"), aboutHtml, "utf-8");
   console.log(`[prerender] Generated static route: /about/index.html & /about.html`);
-
-  // 2.5. Generate Pre-rendered Page for /ai-companion
-  const companionDir = path.join(distDir, "ai-companion");
-  if (!fs.existsSync(companionDir)) {
-    fs.mkdirSync(companionDir, { recursive: true });
-  }
-  const companionHtml = generateAiCompanionHtml(baseHtml);
-  fs.writeFileSync(path.join(companionDir, "index.html"), companionHtml, "utf-8");
-  fs.writeFileSync(path.join(distDir, "ai-companion.html"), companionHtml, "utf-8");
-  console.log(`[prerender] Generated static route: /ai-companion/index.html & /ai-companion.html`);
 
   // 3. Enhance root index.html with fallback semantic HTML
   const homeHtml = generateHomeSemanticHtml(baseHtml);

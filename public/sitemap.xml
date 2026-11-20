@@ -5,57 +5,97 @@
   <!-- Home Page -->
   <url>
     <loc>https://jayeshsoni.com/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/favicon.png</image:loc>
+      <image:title>Jayesh Soni — Product Lead &amp; AI Product Designer Portfolio</image:title>
+    </image:image>
   </url>
 
   <!-- About Page -->
   <url>
     <loc>https://jayeshsoni.com/about</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/favicon.png</image:loc>
+      <image:title>Jayesh Soni — About Product Lead &amp; AI Product Designer</image:title>
+    </image:image>
+  </url>
+
+  <!-- Allyra Agentic Search Evolution Case Study -->
+  <url>
+    <loc>https://jayeshsoni.com/allyra-evolution</loc>
+    <lastmod>2026-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/allyra_evolution_composite-CQRqYh9m.webp</image:loc>
+      <image:title>Beyond the Search Box: Designing Allyra's Agentic Search Experience — Jayesh Soni</image:title>
+    </image:image>
   </url>
 
   <!-- Allyra.ai Case Study Story Page -->
   <url>
     <loc>https://jayeshsoni.com/allyra-story</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/allyra_story_hero-C4SPDcuF.webp</image:loc>
+      <image:title>Allyra.ai — Scaling AI from Individual Agents to Enterprise-Grade Workflows</image:title>
+    </image:image>
   </url>
 
   <!-- Campaign OS Case Study Story Page -->
   <url>
     <loc>https://jayeshsoni.com/campaign-os-story</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/cos-story-hero-CDaydGfO.webp</image:loc>
+      <image:title>Campaign OS — Autonomous Marketing &amp; Conversational Analytics Platform</image:title>
+    </image:image>
   </url>
 
   <!-- Tulah Wellness Platform Case Study Story Page -->
   <url>
     <loc>https://jayeshsoni.com/tulah-story</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/tulah-story-hero-D5MXapZP.webp</image:loc>
+      <image:title>Tulah Wellness Platform — Orchestrating Personalised Care Across Workflows</image:title>
+    </image:image>
   </url>
 
   <!-- VousVous Case Study Story Page -->
   <url>
     <loc>https://jayeshsoni.com/vousvous-story</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/vousvous-story-hero-FHJVyzag.webp</image:loc>
+      <image:title>VousVous — Designing Fashion Discovery Beyond Search</image:title>
+    </image:image>
   </url>
 
   <!-- Joonify Case Study Story Page -->
   <url>
     <loc>https://jayeshsoni.com/joonify-story</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://jayeshsoni.com/assets/joonify_desktop-CoP02MZj.webp</image:loc>
+      <image:title>Joonify — Child Talent Discovery Assessment &amp; Learning Platform</image:title>
+    </image:image>
   </url>
 
 </urlset>

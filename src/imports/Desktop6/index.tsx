@@ -140,12 +140,14 @@ function BentoCard({
   bgColor, borderColor = "#7b7a77", hoverBorderColor = "#190b00",
   onClick, children, isStoryCard,
   delay = 0,
+  href,
 }: {
   top: number; left: number; width: number; height: number;
   bgColor: string; borderColor?: string; hoverBorderColor?: string;
   onClick?: () => void; children: React.ReactNode;
   isStoryCard?: boolean;
   delay?: number;
+  href?: string;
 }) {
   const [hovered, setHovered] = useState(false);
 
@@ -158,13 +160,19 @@ function BentoCard({
     setHovered(false);
   };
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
     playClickSound();
+    if (href) {
+      e.preventDefault();
+    }
     if (onClick) onClick();
   };
 
+  const Tag = (href ? motion.a : motion.div) as any;
+
   return (
-    <motion.div
+    <Tag
+      href={href}
       onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -186,6 +194,9 @@ function BentoCard({
         overflow: "hidden",
         boxShadow: hovered ? "0 10px 24px rgba(25, 11, 0, 0.08)" : "none",
         willChange: "transform, opacity",
+        display: "block",
+        textDecoration: "none",
+        color: "inherit",
       }}
     >
       {children}
@@ -209,7 +220,7 @@ function BentoCard({
           delay: (delay ?? 0) + 0.2,
         }}
       />
-    </motion.div>
+    </Tag>
   );
 }
 
@@ -300,7 +311,7 @@ function Group7() {
         </div>
       </motion.div>
       {/* ── allyra.ai card ── */}
-      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" onClick={() => triggerNavigate("/allyra-story")} isStoryCard delay={0.28}>
+      <BentoCard top={327} left={580} width={500} height={360} bgColor="#190b00" borderColor="#7b7a77" hoverBorderColor="#EE6C13" href="/allyra-story" onClick={() => triggerNavigate("/allyra-story")} isStoryCard delay={0.28}>
         <div style={{ position: "relative", width: "100%", height: "100%", padding: 20, boxSizing: "border-box", overflow: "hidden" }}>
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative", zIndex: 2 }}>
@@ -346,7 +357,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── VousVous card (Story 04) ── */}
-      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard delay={0.42}>
+      <BentoCard top={327} left={1100} width={240} height={220} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" href="/vousvous-story" onClick={() => triggerNavigate("/vousvous-story")} isStoryCard delay={0.42}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           {/* Background Mockup Image (Anchored with room above the phone) */}
           <img 
@@ -395,7 +406,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Joonify card (Story 05) ── */}
-      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/joonify-story")} isStoryCard delay={0.54}>
+      <BentoCard top={567} left={1100} width={240} height={120} bgColor="#e5ddd4" borderColor="#7b7a77" hoverBorderColor="#190b00" href="/joonify-story" onClick={() => triggerNavigate("/joonify-story")} isStoryCard delay={0.54}>
         <div style={{ display: "flex", flexDirection: "column", height: "100%", padding: 16, boxSizing: "border-box" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <p style={{ fontFamily: "Inter, sans-serif", fontWeight: 700, fontSize: 12, color: "#77695d", letterSpacing: "0.6px", textTransform: "uppercase", margin: 0 }}>[ STORY 05 ] [ 2022 ]</p>
@@ -410,7 +421,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── tulah card (Story 03) ── */}
-      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/tulah-story")} isStoryCard delay={0.64}>
+      <BentoCard top={707} left={580} width={370} height={200} bgColor="#FFFDFA" borderColor="#7b7a77" hoverBorderColor="#190b00" href="/tulah-story" onClick={() => triggerNavigate("/tulah-story")} isStoryCard delay={0.64}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           
           {/* Background Mockup Image (Shifted down so top edge of laptop sits below text) */}
@@ -460,7 +471,7 @@ function Group7() {
       </BentoCard>
 
       {/* ── Campaign OS card (Story 02) ── */}
-      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" onClick={() => triggerNavigate("/campaign-os-story")} isStoryCard delay={0.74}>
+      <BentoCard top={707} left={970} width={370} height={200} bgColor="#EE6C13" borderColor="#7b7a77" hoverBorderColor="#190b00" href="/campaign-os-story" onClick={() => triggerNavigate("/campaign-os-story")} isStoryCard delay={0.74}>
         <div style={{ position: "relative", width: "100%", height: "100%", boxSizing: "border-box", overflow: "hidden" }}>
           
           {/* Right MacBook Mockup Image (Positioned flush on right half) */}
@@ -818,24 +829,34 @@ function Frame20() {
 
 function Frame23() {
   return (
-    <div 
+    <a 
+      href="/allyra-story"
       id="story-01-block"
       data-custom-cursor="read-story"
-      onClick={() => triggerNavigate("/allyra-story")}
+      onClick={(e) => {
+        e.preventDefault();
+        triggerNavigate("/allyra-story");
+      }}
+      style={{ textDecoration: "none", color: "inherit" }}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame22 />
       <Frame20 />
-    </div>
+    </a>
   );
 }
 
 function StoryCampaignOS() {
   return (
-    <div 
+    <a 
+      href="/campaign-os-story"
       id="story-02-block"
       data-custom-cursor="read-story"
-      onClick={() => triggerNavigate("/campaign-os-story")}
+      onClick={(e) => {
+        e.preventDefault();
+        triggerNavigate("/campaign-os-story");
+      }}
+      style={{ textDecoration: "none", color: "inherit" }}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       {/* Left Sidebar */}
@@ -937,7 +958,7 @@ function StoryCampaignOS() {
           <Frame32 />
         </div>
       </div>
-    </div>
+    </a>
   );
 }
 
@@ -1164,15 +1185,20 @@ function Frame46() {
 
 function Frame42() {
   return (
-    <div 
+    <a 
+      href="/tulah-story"
       id="story-03-block"
       data-custom-cursor="read-story"
-      onClick={() => triggerNavigate("/tulah-story")}
+      onClick={(e) => {
+        e.preventDefault();
+        triggerNavigate("/tulah-story");
+      }}
+      style={{ textDecoration: "none", color: "inherit" }}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame33 />
       <Frame46 />
-    </div>
+    </a>
   );
 }
 
@@ -1402,15 +1428,20 @@ function Frame64() {
 
 function Frame54() {
   return (
-    <div 
+    <a 
+      href="/vousvous-story"
       id="story-04-block"
       data-custom-cursor="read-story"
-      onClick={() => triggerNavigate("/vousvous-story")}
+      onClick={(e) => {
+        e.preventDefault();
+        triggerNavigate("/vousvous-story");
+      }}
+      style={{ textDecoration: "none", color: "inherit" }}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame55 />
       <Frame64 />
-    </div>
+    </a>
   );
 }
 
@@ -1640,15 +1671,20 @@ function Frame82() {
 
 function Frame72() {
   return (
-    <div 
+    <a 
+      href="/joonify-story"
       id="story-05-block"
       data-custom-cursor="read-story"
-      onClick={() => triggerNavigate("/joonify-story")}
+      onClick={(e) => {
+        e.preventDefault();
+        triggerNavigate("/joonify-story");
+      }}
+      style={{ textDecoration: "none", color: "inherit" }}
       className="group content-stretch flex h-[690px] items-center relative shrink-0 w-full cursor-pointer premium-hover-row"
     >
       <Frame73 />
       <Frame82 />
-    </div>
+    </a>
   );
 }
 

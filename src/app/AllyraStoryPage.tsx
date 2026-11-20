@@ -91,7 +91,7 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
       <div className="relative size-full overflow-hidden">
         <img
           src={frameSrc}
-          alt="Video Frame"
+          alt="Allyra AI platform multi-agent workflow preview"
           className={`${className} opacity-100 block`}
           style={{ width: "100%", height: "100%", objectFit: className?.includes("object-contain") ? "contain" : "cover" }}
         />
@@ -510,7 +510,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         
         {/* Main Hero composite image */}
         <div className="-translate-x-1/2 absolute border border-solid border-white h-[800px] left-1/2 rounded-[10px] top-[1158px] w-[1280px]" data-node-id="1:57" data-name="allyra-story-hero 1">
-          <ShimmerImage alt="Allyra Story Hero" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgAllyraStoryHero} />
+          <ShimmerImage alt="Allyra.ai Enterprise AI Workforce Orchestration platform interface" className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[10px] size-full" src={imgAllyraStoryHero} />
         </div>
 
         {/* ─── THE CHALLENGE SECTION ─── */}

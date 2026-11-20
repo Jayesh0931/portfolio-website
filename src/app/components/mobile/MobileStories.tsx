@@ -130,13 +130,16 @@ export function MobileStories({ onNavigatePath }: MobileStoriesProps) {
       {/* 4. Stories Cards Stack */}
       <div className="mobile-stories-list">
         {storiesData.map((story) => (
-          <article
+          <a
             key={story.id}
+            href={story.route || "#"}
             className="mobile-story-card"
             id={story.id}
             data-custom-cursor="read-story"
-            onClick={() => {
+            style={{ display: "block", textDecoration: "none", color: "inherit" }}
+            onClick={(e) => {
               if (story.route) {
+                e.preventDefault();
                 onNavigatePath(story.route);
               }
             }}
@@ -189,7 +192,7 @@ export function MobileStories({ onNavigatePath }: MobileStoriesProps) {
                 <p className="mobile-story-info-text">{story.contribution}</p>
               </div>
             </div>
-          </article>
+          </a>
         ))}
       </div>
     </section>

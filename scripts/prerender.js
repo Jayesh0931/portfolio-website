@@ -48,7 +48,7 @@ const STORIES = [
     team: "3 designers and 2 business analysts",
     scope: "Agentic Search / Intent Formulation / Multi-Agent UX / Human-in-the-Loop Governance",
     keywords: "Agentic Search, Agentic UX, Human-AI Interaction, Multi-Agent Workflows, AI Transparency, Human-in-the-Loop, Allyra.ai",
-    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    ogImage: `${BASE_URL}/assets/allyra_evolution_composite-CQRqYh9m.webp`,
     overview: "The product didn't stop evolving at launch. This case study details the next generation of interaction models, capabilities, and decisions designed to make enterprise AI more useful, transparent, and actionable.",
     challenge: "Enterprise workflows require moving beyond keyword search and single-turn chat: translating ambiguous business intent into structured plans, bounding data connector permissions, and producing structured deliverables with calibrated human control.",
     opportunity: "Designing four foundational capabilities: intent-to-outcome execution graphs, transparent connector permissions and action receipts, structured outputs over conversational transcripts, and calibrated human-in-the-loop checkpoints.",
@@ -366,7 +366,7 @@ function generateStoryHtml(templateHtml, story) {
     </main>
   `;
 
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
+  html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>\n    <noscript>${semanticBody}</noscript>`);
 
   return html;
 }
@@ -464,7 +464,7 @@ function generateHomeSemanticHtml(templateHtml) {
     </main>
   `;
 
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
 function generateAboutHtml(baseHtml) {
@@ -544,7 +544,7 @@ function generateAboutHtml(baseHtml) {
     </main>
   `;
 
-  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root"></div>\n    <noscript>${semanticBody}</noscript>`);
+  return html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBody}</div>\n    <noscript>${semanticBody}</noscript>`);
 }
 
 function runPrerender() {
@@ -587,6 +587,14 @@ function runPrerender() {
   const homeHtml = generateHomeSemanticHtml(baseHtml);
   fs.writeFileSync(indexHtmlPath, homeHtml, "utf-8");
   console.log(`[prerender] Enhanced root /index.html with semantic content`);
+
+  // 4. Ensure sitemap.xml and robots.txt are copied to dist
+  const publicSitemap = path.resolve(__dirname, "../public/sitemap.xml");
+  const distSitemap = path.join(distDir, "sitemap.xml");
+  if (fs.existsSync(publicSitemap)) {
+    fs.copyFileSync(publicSitemap, distSitemap);
+    console.log("[prerender] Synchronized sitemap.xml to dist/sitemap.xml");
+  }
 
   console.log("[prerender] Static pre-rendering completed successfully!");
 }

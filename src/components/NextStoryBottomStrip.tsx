@@ -24,8 +24,10 @@ export default function NextStoryBottomStrip({ onNextStory, defaultNextPath, isD
       zIndex: 10,
     }}>
       {/* 1. Next Story */}
-      <div
-        onClick={() => {
+      <a
+        href={defaultNextPath}
+        onClick={(e) => {
+          e.preventDefault();
           playClickSound();
           if (onNextStory) {
             onNextStory();
@@ -35,7 +37,7 @@ export default function NextStoryBottomStrip({ onNextStory, defaultNextPath, isD
           }
         }}
         onMouseEnter={() => playHoverTick()}
-        style={{ cursor: "pointer", pointerEvents: "auto" }}
+        style={{ cursor: "pointer", pointerEvents: "auto", textDecoration: "none" }}
         className={isDark
           ? "hover:bg-[#FFFDFA] hover:text-[#190b00] hover:border-[#FFFDFA] bg-[#190b00] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[22px] rounded-[110px] shadow-sm transition-all duration-200 group"
           : "hover:bg-[#190b00] hover:text-[#fffdfa] hover:border-[#190b00] bg-[#fffdfa] border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[22px] rounded-[110px] shadow-sm transition-all duration-200 group"
@@ -50,17 +52,19 @@ export default function NextStoryBottomStrip({ onNextStory, defaultNextPath, isD
         <svg className="size-[13px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
           <path d="M5 2.5L10.5 7.5L5 12.5" className={isDark ? "stroke-[#FFFDFA] group-hover:stroke-[#190B00] transition-colors duration-200" : "stroke-[#190B00] group-hover:stroke-[#FFFDFA] transition-colors duration-200"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-      </div>
+      </a>
 
       {/* 2. About Jayesh */}
-      <div
-        onClick={() => {
+      <a
+        href="/about"
+        onClick={(e) => {
+          e.preventDefault();
           playClickSound();
           window.dispatchEvent(new CustomEvent("navigate-to-path", { detail: "/about" }));
           window.scrollTo(0, 0);
         }}
         onMouseEnter={() => playHoverTick()}
-        style={{ cursor: "pointer", pointerEvents: "auto" }}
+        style={{ cursor: "pointer", pointerEvents: "auto", textDecoration: "none" }}
         className={isDark
           ? "hover:bg-[#EE6C13] hover:text-[#FFFDFA] hover:border-[#EE6C13] bg-transparent border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[22px] rounded-[110px] shadow-sm transition-all duration-200 group"
           : "hover:bg-[#EE6C13] hover:text-[#FFFDFA] hover:border-[#EE6C13] bg-transparent border border-[#7b7a77] border-solid flex gap-[10px] h-[40px] items-center justify-center px-[22px] rounded-[110px] shadow-sm transition-all duration-200 group"
@@ -75,7 +79,7 @@ export default function NextStoryBottomStrip({ onNextStory, defaultNextPath, isD
         <svg className="size-[13px]" fill="none" viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">
           <path d="M2 9L9 2M9 2H4M9 2V7" className={isDark ? "stroke-[#FFFDFA] group-hover:stroke-[#FFFDFA] transition-colors duration-200" : "stroke-[#190b00] group-hover:stroke-[#FFFDFA] transition-colors duration-200"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-      </div>
+      </a>
     </div>
   );
 }

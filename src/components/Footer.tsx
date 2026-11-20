@@ -305,9 +305,17 @@ export default function Footer({ style, sectionTag = "[ S-006 ]" }: FooterProps)
               <ContactButton
                 iconPath={mailIcon}
                 hoverIconPath={copyIcon}
-                onClick={() => {
-                  navigator.clipboard.writeText("jayeshsoni31@gmail.com");
-                  alert("Email copied to clipboard!");
+                onClick={async () => {
+                  try {
+                    if (navigator?.clipboard?.writeText) {
+                      await navigator.clipboard.writeText("jayeshsoni31@gmail.com");
+                      alert("Email copied to clipboard!");
+                      return;
+                    }
+                  } catch {
+                    // Clipboard access rejected or not available
+                  }
+                  window.location.href = "mailto:jayeshsoni31@gmail.com";
                 }}
                 circular
               />

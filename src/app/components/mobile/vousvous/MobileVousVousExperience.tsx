@@ -100,6 +100,11 @@ export function MobileVousVousExperience() {
       const scrolled = -rect.top;
       const progress = Math.min(Math.max(scrolled / totalScroll, 0), 1);
       targetProgressRef.current = progress * 4; // 0 to 4 steps
+
+      // Wake up RAF loop if stationary
+      if (!rafIdRef.current) {
+        rafIdRef.current = requestAnimationFrame(renderLoop);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -156,7 +161,12 @@ export function MobileVousVousExperience() {
       const nearest = Math.min(5, Math.max(1, Math.round(cur) + 1));
       setActiveStep((prev) => (prev !== nearest ? nearest : prev));
 
-      rafIdRef.current = requestAnimationFrame(renderLoop);
+      // Continue loop only if still moving, otherwise sleep to save 100% idle CPU
+      if (Math.abs(targetProgressRef.current - currentProgressRef.current) > 0.0004) {
+        rafIdRef.current = requestAnimationFrame(renderLoop);
+      } else {
+        rafIdRef.current = null;
+      }
     };
 
     rafIdRef.current = requestAnimationFrame(renderLoop);

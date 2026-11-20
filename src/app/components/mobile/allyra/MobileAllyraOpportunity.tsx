@@ -9,8 +9,9 @@ export function MobileAllyraOpportunity() {
 
   // Auto-play / pause when video enters/leaves viewport
   useEffect(() => {
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -27,6 +28,7 @@ export function MobileAllyraOpportunity() {
 
     observer.observe(video);
     return () => {
+      clearTimeout(fallbackTimer);
       observer.disconnect();
     };
   }, []);
@@ -80,6 +82,7 @@ export function MobileAllyraOpportunity() {
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
             onLoadedData={() => setIsLoaded(true)}
           />

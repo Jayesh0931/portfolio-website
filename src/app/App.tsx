@@ -31,9 +31,10 @@ import svgPaths from "@/imports/Desktop6/svg-rk1gtf9dz9";
 
 const DESIGN_W = 1440;
 const DESIGN_H = 10490;
+const DESKTOP_BREAKPOINT = 1024;
 
 function getScaleAndLeft(vw: number) {
-  if (vw >= 768) {
+  if (vw >= DESKTOP_BREAKPOINT) {
     // Cap the maximum scaling width at 1728px to prevent 
     // the layout from becoming absurdly huge on larger displays.
     const clampedVw = Math.min(vw, 1728);
@@ -41,7 +42,7 @@ function getScaleAndLeft(vw: number) {
     const left = (vw - clampedVw) / 2;
     return { scale, left, clampedVw };
   } else {
-    // Mobile view logic
+    // Mobile and Tablet view logic: 100% scale responsive layout
     return { scale: 1, left: 0, clampedVw: vw };
   }
 }
@@ -1396,6 +1397,9 @@ export default function App() {
 
   const navigateTo = (path: string) => {
     playTransitionSound();
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
     if (window.location.pathname !== path) {
       window.history.pushState({}, "", path);
     }
@@ -1412,7 +1416,7 @@ export default function App() {
   const [fullScreenVideoSrc, setFullScreenVideoSrc] = useState<string | null>(null);
 
   useEffect(() => {
-    if (vw < 768) return;
+    if (vw < DESKTOP_BREAKPOINT) return;
     if (fullScreenVideoSrc) {
       setShowCursor(false);
       return;
@@ -1490,6 +1494,9 @@ export default function App() {
 
   useEffect(() => {
     const onPopState = () => {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      }
       startTransition(() => {
         setCurrentPath(window.location.pathname);
       });
@@ -1497,7 +1504,7 @@ export default function App() {
     };
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-  }, []);
+  }, [lenis]);
 
   useEffect(() => {
     const onNavigateToPath = (e: Event) => {
@@ -1593,9 +1600,11 @@ export default function App() {
     </div>
   );
 
+  const isMobile = vw < DESKTOP_BREAKPOINT;
+
   const currentHomeView = (
     <div key={resetKey} style={{ width: "100%" }}>
-      {vw < 768 ? mobileHomeView : desktopHomeView}
+      {isMobile ? mobileHomeView : desktopHomeView}
     </div>
   );
 
@@ -1603,8 +1612,8 @@ export default function App() {
   if (currentPath.startsWith("/allyra-evolution")) {
     content = (
       <AllyraEvolutionStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/allyra-story")}
       />
@@ -1612,8 +1621,8 @@ export default function App() {
   } else if (currentPath.startsWith("/allyra-story")) {
     content = (
       <AllyraStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/tulah-story")}
       />
@@ -1621,8 +1630,8 @@ export default function App() {
   } else if (currentPath.startsWith("/tulah-story")) {
     content = (
       <TulahStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/campaign-os-story")}
       />
@@ -1630,8 +1639,8 @@ export default function App() {
   } else if (currentPath.startsWith("/campaign-os-story")) {
     content = (
       <CampaignOSStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/vousvous-story")}
       />
@@ -1639,8 +1648,8 @@ export default function App() {
   } else if (currentPath.startsWith("/vousvous-story")) {
     content = (
       <VousVousStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/joonify-story")}
       />
@@ -1648,8 +1657,8 @@ export default function App() {
   } else if (currentPath.startsWith("/joonify-story")) {
     content = (
       <JoonifyStoryPage 
-        scale={vw < 768 ? 1 : scale} 
-        left={vw < 768 ? 0 : left} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
         onNextStory={() => navigateTo("/allyra-story")}
       />
@@ -1657,8 +1666,8 @@ export default function App() {
   } else if (currentPath === "/about") {
     content = (
       <AboutPage
-        scale={vw < 768 ? 1 : scale}
-        left={vw < 768 ? 0 : left}
+        scale={isMobile ? 1 : scale}
+        left={isMobile ? 0 : left}
         navigateTo={navigateTo}
       />
     );
@@ -1709,7 +1718,7 @@ export default function App() {
       )}
 
       {/* React Bits Gradual Blur - Progressive bokeh backdrop diffusion at top of viewport (desktop homepage only, never over mobile headers) */}
-      {!isPdf && vw >= 768 && currentPath === "/" && (
+      {!isPdf && !isMobile && currentPath === "/" && (
         <GradualBlur
           position="top"
           target="page"

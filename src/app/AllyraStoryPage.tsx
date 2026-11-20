@@ -58,6 +58,9 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
     const video = videoRef.current;
     if (!video) return;
 
+    // Safety fallback: if browser delays or blocks loadeddata (low-power / data-saver mode), reveal video
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -73,6 +76,7 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
 
     observer.observe(video);
     return () => {
+      clearTimeout(fallbackTimer);
       observer.disconnect();
     };
   }, [isPdf]);
@@ -109,6 +113,7 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
         src={src}
         loop
         muted
+        defaultMuted
         playsInline
         onLoadedData={() => setIsLoaded(true)}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
@@ -258,11 +263,11 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 1024 : false));
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

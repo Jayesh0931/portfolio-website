@@ -43,12 +43,18 @@ export function useDynamicFavicon() {
   useEffect(() => {
     updateFavicon();
 
+    if (typeof window === "undefined" || !window.matchMedia) return;
+
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleSystemChange = () => {
       updateFavicon();
     };
 
-    mediaQuery.addEventListener("change", handleSystemChange);
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleSystemChange);
+    } else if (typeof (mediaQuery as any).addListener === "function") {
+      (mediaQuery as any).addListener(handleSystemChange);
+    }
 
     const handlePageThemeChange = (e: Event) => {
       const customEv = e as CustomEvent<{ isDark: boolean }>;
@@ -61,7 +67,11 @@ export function useDynamicFavicon() {
     window.addEventListener("page-theme-change", handlePageThemeChange);
 
     return () => {
-      mediaQuery.removeEventListener("change", handleSystemChange);
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", handleSystemChange);
+      } else if (typeof (mediaQuery as any).removeListener === "function") {
+        (mediaQuery as any).removeListener(handleSystemChange);
+      }
       window.removeEventListener("page-theme-change", handlePageThemeChange);
     };
   }, []);

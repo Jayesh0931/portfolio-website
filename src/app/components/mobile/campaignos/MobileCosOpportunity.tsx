@@ -8,8 +8,9 @@ export function MobileCosOpportunity() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -23,7 +24,10 @@ export function MobileCosOpportunity() {
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -77,6 +81,7 @@ export function MobileCosOpportunity() {
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
             onLoadedData={() => setIsLoaded(true)}
           />

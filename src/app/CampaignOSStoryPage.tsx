@@ -48,8 +48,9 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
 
   useEffect(() => {
     if (isPdf) return;
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -63,7 +64,10 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, [isPdf]);
 
   const handleClick = () => {
@@ -96,6 +100,7 @@ function ViewportVideo({ src, className }: { src: string; className?: string }) 
         src={src}
         loop
         muted
+        defaultMuted
         playsInline
         onLoadedData={() => setIsLoaded(true)}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
@@ -189,6 +194,7 @@ function CraftVideo({
         src={src}
         loop
         muted={muted}
+        defaultMuted={muted}
         playsInline
         onLoadedData={() => setIsLoaded(true)}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
@@ -293,11 +299,11 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
   const [isOneThingInView, setIsOneThingInView] = useState(isPdf);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 1024 : false));
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

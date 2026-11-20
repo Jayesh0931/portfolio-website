@@ -30,7 +30,13 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
 
   useEffect(() => {
     // Show prompt on mobile opening if not dismissed in this session
-    const dismissed = sessionStorage.getItem("desktop-prompt-dismissed");
+    let dismissed = false;
+    try {
+      dismissed = sessionStorage.getItem("desktop-prompt-dismissed") === "true";
+    } catch {
+      // In private browsing mode or when storage access is restricted, default to false
+      dismissed = false;
+    }
     if (!dismissed) {
       const timer = setTimeout(() => {
         setShowBottomSheet(true);
@@ -59,7 +65,11 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
     setIsUnlocked(true);
     setIsRevealing(true);
     setIsCelebrationFlash(true);
-    sessionStorage.setItem("desktop-prompt-dismissed", "true");
+    try {
+      sessionStorage.setItem("desktop-prompt-dismissed", "true");
+    } catch {
+      // In private browsing mode or when storage access is restricted, ignore write error
+    }
 
     // Allow slide-down exit animation to complete before removing from DOM
     setTimeout(() => {

@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function FilmGrain() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    // Only run expensive SVG turbulence shader on desktop with fine mouse pointer
+    // Protects mobile/tablet Safari WebProcess from memory limits and thermal throttling
+    const isFine = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    setIsDesktop(Boolean(isFine && window.innerWidth >= 1024));
+  }, []);
+
+  if (!isDesktop) return null;
+
   return (
     <div
       aria-hidden="true"

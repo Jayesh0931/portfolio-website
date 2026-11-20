@@ -94,11 +94,17 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
   settingsRef.current = settings;
 
   useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
     const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
     const update = () => setHost(finePointer.matches ? document.body : null);
     update();
-    finePointer.addEventListener('change', update);
-    return () => finePointer.removeEventListener('change', update);
+    if (typeof finePointer.addEventListener === 'function') {
+      finePointer.addEventListener('change', update);
+      return () => finePointer.removeEventListener('change', update);
+    } else if (typeof (finePointer as any).addListener === 'function') {
+      (finePointer as any).addListener(update);
+      return () => (finePointer as any).removeListener(update);
+    }
   }, []);
 
   useEffect(() => {

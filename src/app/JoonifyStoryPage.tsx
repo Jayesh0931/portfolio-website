@@ -123,11 +123,11 @@ export default function JoonifyStoryPage({
   const [isOneThingInView, setIsOneThingInView] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 1024 : false));
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

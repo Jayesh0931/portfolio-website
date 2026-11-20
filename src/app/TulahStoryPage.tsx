@@ -54,8 +54,13 @@ function ViewportVideo({
   }, [playbackRate, isLoaded]);
 
   useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      setIsLoaded(true);
+      applyPlaybackRate();
+    }, 1200);
+
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -73,6 +78,7 @@ function ViewportVideo({
 
     observer.observe(video);
     return () => {
+      clearTimeout(fallbackTimer);
       observer.disconnect();
     };
   }, [playbackRate]);
@@ -95,6 +101,7 @@ function ViewportVideo({
         src={src}
         loop
         muted
+        defaultMuted
         playsInline
         onLoadedData={() => {
           setIsLoaded(true);
@@ -196,14 +203,14 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== "undefined") {
-      return window.innerWidth < 768;
+      return window.innerWidth < 1024;
     }
     return false;
   });
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

@@ -7,11 +7,16 @@
 let audioCtx: AudioContext | null = null;
 let soundEnabled = true;
 
-// Initialize preference from localStorage if available
+// Initialize preference safely from localStorage if available
 if (typeof window !== "undefined") {
-  const saved = localStorage.getItem("portfolio_sound_enabled");
-  if (saved !== null) {
-    soundEnabled = saved === "true";
+  try {
+    const saved = localStorage.getItem("portfolio_sound_enabled");
+    if (saved !== null) {
+      soundEnabled = saved === "true";
+    }
+  } catch {
+    // In private browsing mode or when storage access is restricted, default safely to true
+    soundEnabled = true;
   }
 }
 
@@ -34,7 +39,11 @@ export const isSoundEnabled = (): boolean => soundEnabled;
 export const setSoundEnabled = (enabled: boolean): void => {
   soundEnabled = enabled;
   if (typeof window !== "undefined") {
-    localStorage.setItem("portfolio_sound_enabled", String(enabled));
+    try {
+      localStorage.setItem("portfolio_sound_enabled", String(enabled));
+    } catch {
+      // In private browsing mode or when storage access is restricted, ignore write error
+    }
     window.dispatchEvent(new CustomEvent("sound-toggle", { detail: enabled }));
   }
 };

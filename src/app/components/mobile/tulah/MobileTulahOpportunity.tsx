@@ -8,8 +8,9 @@ export function MobileTulahOpportunity() {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     video.playbackRate = 2;
 
@@ -26,7 +27,10 @@ export function MobileTulahOpportunity() {
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -94,6 +98,7 @@ export function MobileTulahOpportunity() {
             autoPlay
             loop
             muted
+            defaultMuted
             playsInline
             onLoadedData={() => {
               setIsLoaded(true);

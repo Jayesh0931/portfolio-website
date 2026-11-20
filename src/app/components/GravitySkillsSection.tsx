@@ -184,21 +184,25 @@ export default function GravitySkillsSection({
     bodiesRef.current = bodies;
     Matter.Composite.add(engine.world, Object.values(bodies));
 
-    // Mouse constraint for drag-and-toss interactivity
-    const mouse = Matter.Mouse.create(canvasRef.current);
-    // Prevent mouse wheel capture so page scrolling remains buttery smooth
-    mouse.element.removeEventListener("mousewheel", (mouse as any).mousewheel);
-    mouse.element.removeEventListener("DOMMouseScroll", (mouse as any).mousewheel);
+    // Only attach mouse drag constraint on desktop with fine mouse pointer (prevents mobile touch scroll hijacking)
+    const isTouch = typeof window !== "undefined" && (window.matchMedia("(pointer: coarse)").matches || isMobile);
+    if (!isTouch && canvasRef.current) {
+      const mouse = Matter.Mouse.create(canvasRef.current);
+      // Prevent mouse wheel capture so page scrolling remains buttery smooth
+      mouse.element.removeEventListener("mousewheel", (mouse as any).mousewheel);
+      mouse.element.removeEventListener("DOMMouseScroll", (mouse as any).mousewheel);
+      mouse.element.removeEventListener("wheel", (mouse as any).mousewheel);
 
-    const mouseConstraint = Matter.MouseConstraint.create(engine, {
-      mouse,
-      constraint: {
-        stiffness: 0.2,
-        render: { visible: false },
-      },
-    });
+      const mouseConstraint = Matter.MouseConstraint.create(engine, {
+        mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: { visible: false },
+        },
+      });
 
-    Matter.Composite.add(engine.world, mouseConstraint);
+      Matter.Composite.add(engine.world, mouseConstraint);
+    }
 
     // Run engine
     const runner = Matter.Runner.create();

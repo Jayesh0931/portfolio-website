@@ -160,6 +160,11 @@ export function TheExperienceShowcase({
           progressBarRef.current.style.width = "100%";
         }
       }
+
+      // Wake up render loop if stopped
+      if (!rafIdRef.current) {
+        rafIdRef.current = requestAnimationFrame(renderLoop);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -228,7 +233,12 @@ export function TheExperienceShowcase({
       const nearestStep = Math.min(5, Math.max(1, Math.round(cur) + 1));
       setActiveStep((prev) => (prev !== nearestStep ? nearestStep : prev));
 
-      rafIdRef.current = requestAnimationFrame(renderLoop);
+      // Continue loop only if still moving, otherwise sleep to save 100% idle CPU
+      if (Math.abs(targetProgressRef.current - currentProgressRef.current) > 0.0004) {
+        rafIdRef.current = requestAnimationFrame(renderLoop);
+      } else {
+        rafIdRef.current = null;
+      }
     };
 
     rafIdRef.current = requestAnimationFrame(renderLoop);

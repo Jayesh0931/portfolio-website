@@ -35,6 +35,7 @@ export default defineConfig({
   assetsInclude: ['**/*.svg', '**/*.csv', '**/*.mov'],
 
   build: {
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14'],
     cssMinify: true,
     chunkSizeWarningLimit: 600,
     rollupOptions: {

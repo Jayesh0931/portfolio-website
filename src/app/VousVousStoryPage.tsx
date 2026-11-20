@@ -62,8 +62,9 @@ function ViewportVideo({
 
   useEffect(() => {
     if (isPdf) return;
+    const fallbackTimer = setTimeout(() => setIsLoaded(true), 1200);
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) return () => clearTimeout(fallbackTimer);
 
     if (playbackRate !== 1) {
       video.playbackRate = playbackRate;
@@ -84,7 +85,10 @@ function ViewportVideo({
     );
 
     observer.observe(video);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(fallbackTimer);
+      observer.disconnect();
+    };
   }, [playbackRate, isPdf]);
 
   const handleClick = () => {
@@ -117,6 +121,7 @@ function ViewportVideo({
         src={src}
         loop
         muted
+        defaultMuted
         playsInline
         onLoadedData={() => {
           setIsLoaded(true);
@@ -188,6 +193,7 @@ function CraftVideo({
         src={src}
         loop
         muted={muted}
+        defaultMuted={muted}
         playsInline
         onLoadedData={() => setIsLoaded(true)}
         className={`${className} transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}
@@ -305,12 +311,12 @@ export default function VousVousStoryPage({
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const [isMobile, setIsMobile] = useState(() =>
-    typeof window !== "undefined" ? window.innerWidth < 768 : false
+    typeof window !== "undefined" ? window.innerWidth < 1024 : false
   );
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

@@ -251,14 +251,14 @@ export default function AllyraEvolutionStoryPage({
 }: AllyraEvolutionStoryPageProps) {
   const isPdf = typeof window !== "undefined" && new URLSearchParams(window.location.search).has("pdf");
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 768 : false));
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== "undefined" ? window.innerWidth < 1024 : false));
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);

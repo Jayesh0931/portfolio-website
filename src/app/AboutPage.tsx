@@ -467,7 +467,7 @@ export default function AboutPage({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isMobile = vw < 768;
+  const isMobile = vw < 1024;
   const clampedVw = isMobile ? vw : Math.min(vw, 1728);
   const derivedScale = isMobile ? 1 : clampedVw / 1440;
   const derivedLeft = isMobile ? 0 : (vw - clampedVw) / 2;

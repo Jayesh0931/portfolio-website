@@ -115,6 +115,8 @@ export function TheExperienceShowcase({
   const targetProgressRef = useRef<number>(0);
   const currentProgressRef = useRef<number>(0);
   const rafIdRef = useRef<number | null>(null);
+  // Shared handle so the scroll listener can wake the render loop defined in the RAF effect
+  const renderLoopRef = useRef<(() => void) | null>(null);
 
   // Total scroll budget
   const SCROLL_DISTANCE = 2400;
@@ -162,8 +164,8 @@ export function TheExperienceShowcase({
       }
 
       // Wake up render loop if stopped
-      if (!rafIdRef.current) {
-        rafIdRef.current = requestAnimationFrame(renderLoop);
+      if (!rafIdRef.current && renderLoopRef.current) {
+        rafIdRef.current = requestAnimationFrame(renderLoopRef.current);
       }
     };
 
@@ -241,9 +243,11 @@ export function TheExperienceShowcase({
       }
     };
 
+    renderLoopRef.current = renderLoop;
     rafIdRef.current = requestAnimationFrame(renderLoop);
     return () => {
       isRunning = false;
+      renderLoopRef.current = null;
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
   }, [STRIDE]);

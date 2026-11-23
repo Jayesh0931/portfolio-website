@@ -1,9 +1,13 @@
-import { useState, useEffect, lazy, Suspense, startTransition } from "react";
+import { useState, useEffect, useRef, lazy, Suspense, startTransition } from "react";
 import { useLenis } from "lenis/react";
 import Desktop from "@/imports/Desktop6/index";
 
 const AllyraStoryPage = lazy(() => import("./AllyraStoryPage"));
 const AllyraEvolutionStoryPage = lazy(() => import("./AllyraEvolutionStoryPage"));
+const AllyraOutcomeStoryPage = lazy(() => import("./AllyraOutcomeStoryPage"));
+const AllyraWorkspaceStoryPage = lazy(() => import("./AllyraWorkspaceStoryPage"));
+const AllyraObservabilityStoryPage = lazy(() => import("./AllyraObservabilityStoryPage"));
+const AllyraAutonomyStoryPage = lazy(() => import("./AllyraAutonomyStoryPage"));
 const TulahStoryPage = lazy(() => import("./TulahStoryPage"));
 const CampaignOSStoryPage = lazy(() => import("./CampaignOSStoryPage"));
 const VousVousStoryPage = lazy(() => import("./VousVousStoryPage"));
@@ -1362,6 +1366,120 @@ function StickyHeader({ scale, left, hasScrolled, onAboutClick }: { scale: numbe
   );
 }
 
+function FloatingCursorPill({ currentPath, fullScreenVideoSrc }: { currentPath: string; fullScreenVideoSrc: string | null }) {
+  const pillRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < DESKTOP_BREAKPOINT) return;
+    if (fullScreenVideoSrc) {
+      if (pillRef.current) pillRef.current.style.display = "none";
+      return;
+    }
+
+    let rafId: number | null = null;
+    let pendingX = 0;
+    let pendingY = 0;
+    let pendingText = "";
+    let shouldShow = false;
+
+    const renderFrame = () => {
+      const el = pillRef.current;
+      if (!el) return;
+      if (shouldShow) {
+        if (el.style.display !== "block") {
+          el.style.display = "block";
+        }
+        el.style.transform = `translate3d(${pendingX}px, ${pendingY}px, 0) translate(-50%, -50%)`;
+        if (textRef.current && textRef.current.textContent !== pendingText) {
+          textRef.current.textContent = pendingText;
+        }
+      } else {
+        if (el.style.display !== "none") {
+          el.style.display = "none";
+        }
+      }
+      rafId = null;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (target?.closest?.(".interactive-skills-section")) {
+        shouldShow = false;
+      } else {
+        const closestFullScreen = target?.closest?.('[data-custom-cursor="full-screen"]');
+        const closestHeroStory = target?.closest?.('[data-custom-cursor="hero-story"]');
+        const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
+
+        if (closestFullScreen) {
+          shouldShow = true;
+          pendingText = "Full Screen";
+          pendingX = e.clientX;
+          pendingY = e.clientY;
+        } else if (closestHeroStory && currentPath === "/") {
+          shouldShow = true;
+          pendingText = "Go To Story";
+          pendingX = e.clientX;
+          pendingY = e.clientY;
+        } else if (closestStoryCard && currentPath === "/") {
+          shouldShow = true;
+          pendingText = "Read Story";
+          pendingX = e.clientX;
+          pendingY = e.clientY;
+        } else {
+          shouldShow = false;
+        }
+      }
+
+      if (rafId === null) {
+        rafId = requestAnimationFrame(renderFrame);
+      }
+    };
+
+    const handleScroll = () => {
+      shouldShow = false;
+      if (pillRef.current) pillRef.current.style.display = "none";
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
+  }, [currentPath, fullScreenVideoSrc]);
+
+  return (
+    <div
+      ref={pillRef}
+      style={{
+        display: "none",
+        position: "fixed",
+        left: 0,
+        top: 0,
+        backgroundColor: "#190b00",
+        color: "#FFFDFA",
+        padding: "8px 16px",
+        borderRadius: "30px",
+        fontFamily: "Inter, sans-serif",
+        fontWeight: 700,
+        fontSize: "12px",
+        letterSpacing: "0.5px",
+        pointerEvents: "none",
+        zIndex: 999999,
+        boxShadow: "0 8px 24px rgba(25, 11, 0, 0.25)",
+        border: "1px solid rgba(255, 253, 250, 0.15)",
+        whiteSpace: "nowrap",
+        willChange: "transform",
+      }}
+    >
+      <span ref={textRef}>Read Story</span>
+    </div>
+  );
+}
+
 export default function App() {
   const lenis = useLenis();
   useDynamicFavicon();
@@ -1410,53 +1528,7 @@ export default function App() {
   };
   
   useSEOManager(currentPath);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const [showCursor, setShowCursor] = useState(false);
-  const [cursorText, setCursorText] = useState("Read Story");
   const [fullScreenVideoSrc, setFullScreenVideoSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (vw < DESKTOP_BREAKPOINT) return;
-    if (fullScreenVideoSrc) {
-      setShowCursor(false);
-      return;
-    }
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-
-      // Never show story custom cursor when hovering inside the interactive skills section
-      if (target?.closest?.(".interactive-skills-section")) {
-        setShowCursor(false);
-        return;
-      }
-
-      const closestFullScreen = target?.closest?.('[data-custom-cursor="full-screen"]');
-      const closestHeroStory = target?.closest?.('[data-custom-cursor="hero-story"]');
-      const closestStoryCard = target?.closest?.('[data-custom-cursor="read-story"]');
-
-      if (closestFullScreen) {
-        setShowCursor(true);
-        setCursorText("Full Screen");
-        setCursorPos({ x: e.clientX, y: e.clientY });
-      } else if (closestHeroStory && currentPath === "/") {
-        setShowCursor(true);
-        setCursorText("Go To Story");
-        setCursorPos({ x: e.clientX, y: e.clientY });
-      } else if (closestStoryCard && currentPath === "/") {
-        setShowCursor(true);
-        setCursorText("Read Story");
-        setCursorPos({ x: e.clientX, y: e.clientY });
-      } else {
-        setShowCursor(false);
-      }
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [vw, currentPath, fullScreenVideoSrc]);
 
   useEffect(() => {
     const handleOpenFullScreen = (e: CustomEvent<{ src: string }>) => {
@@ -1473,19 +1545,25 @@ export default function App() {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 10);
       setShowScrollTop(window.scrollY > 300);
-      setShowCursor(false);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     const handleScrollRotation = () => {
-      const rotation = window.scrollY * 0.15;
-      const elements = document.querySelectorAll(".rotating-vector");
-      elements.forEach((el) => {
-        (el as HTMLElement).style.transform = `rotate(${rotation}deg)`;
-      });
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const rotation = window.scrollY * 0.15;
+          const elements = document.querySelectorAll(".rotating-vector");
+          elements.forEach((el) => {
+            (el as HTMLElement).style.transform = `rotate(${rotation}deg)`;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", handleScrollRotation, { passive: true });
     handleScrollRotation();
@@ -1624,7 +1702,43 @@ export default function App() {
         scale={isMobile ? 1 : scale} 
         left={isMobile ? 0 : left} 
         onBack={() => navigateTo("/")} 
-        onNextStory={() => navigateTo("/tulah-story")}
+        onNextStory={() => navigateTo("/allyra-outcomes")}
+      />
+    );
+  } else if (currentPath.startsWith("/allyra-outcomes") || currentPath.startsWith("/allyra-outcome") || currentPath.startsWith("/allyra-beyond")) {
+    content = (
+      <AllyraOutcomeStoryPage 
+        onNavigate={(path) => navigateTo(path)} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
+        isMobile={isMobile} 
+      />
+    );
+  } else if (currentPath.startsWith("/allyra-workspace")) {
+    content = (
+      <AllyraWorkspaceStoryPage 
+        onNavigate={(path) => navigateTo(path)} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
+        isMobile={isMobile} 
+      />
+    );
+  } else if (currentPath.startsWith("/allyra-observability")) {
+    content = (
+      <AllyraObservabilityStoryPage 
+        onNavigate={(path) => navigateTo(path)} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
+        isMobile={isMobile} 
+      />
+    );
+  } else if (currentPath.startsWith("/allyra-autonomy")) {
+    content = (
+      <AllyraAutonomyStoryPage 
+        onNavigate={(path) => navigateTo(path)} 
+        scale={isMobile ? 1 : scale} 
+        left={isMobile ? 0 : left} 
+        isMobile={isMobile} 
       />
     );
   } else if (currentPath.startsWith("/tulah-story")) {
@@ -1749,32 +1863,7 @@ export default function App() {
         />
       )}
 
-      {showCursor && (
-        <div
-          style={{
-            position: "fixed",
-            left: cursorPos.x,
-            top: cursorPos.y,
-            transform: "translate(-50%, -50%)",
-            backgroundColor: "#190b00",
-            color: "#FFFDFA",
-            padding: "8px 16px",
-            borderRadius: "30px",
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 700,
-            fontSize: "12px",
-            letterSpacing: "0.5px",
-            pointerEvents: "none",
-            zIndex: 999999,
-            boxShadow: "0 8px 24px rgba(25, 11, 0, 0.25)",
-            border: "1px solid rgba(255, 253, 250, 0.15)",
-            whiteSpace: "nowrap",
-            transition: "transform 0.08s ease-out",
-          }}
-        >
-          {cursorText}
-        </div>
-      )}
+      <FloatingCursorPill currentPath={currentPath} fullScreenVideoSrc={fullScreenVideoSrc} />
 
       {fullScreenVideoSrc && (
         <div 

@@ -311,20 +311,27 @@ export default function CampaignOSStoryPage({ scale = 1, left = 0, onBack, onNex
   useEffect(() => {
     if (!isMobile) return;
 
+    let ticking = false;
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-cos-challenge");
-      const oppEl = document.getElementById("mobile-cos-opportunity");
-      const oneThingEl = document.getElementById("mobile-cos-onething");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const challengeEl = document.getElementById("mobile-cos-challenge");
+          const oppEl = document.getElementById("mobile-cos-opportunity");
+          const oneThingEl = document.getElementById("mobile-cos-onething");
 
-      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
 
-      // Dark in Challenge (before Opportunity), or from One Thing onwards
-      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inOneThing = isPastOneThingStart;
-      const shouldBeDark = inChallenge || inOneThing;
-      setIsDarkMobile(shouldBeDark);
+          // Dark in Challenge (before Opportunity), or from One Thing onwards
+          const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+          const inOneThing = isPastOneThingStart;
+          const shouldBeDark = inChallenge || inOneThing;
+          setIsDarkMobile(shouldBeDark);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });

@@ -275,25 +275,32 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
   useEffect(() => {
     if (!isMobile) return;
 
+    let ticking = false;
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-allyra-challenge");
-      const oppEl = document.getElementById("mobile-allyra-opportunity");
-      const decisionsEl = document.getElementById("mobile-allyra-decisions");
-      const evidenceEl = document.getElementById("mobile-allyra-evidence");
-      const oneThingEl = document.getElementById("mobile-allyra-onething");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const challengeEl = document.getElementById("mobile-allyra-challenge");
+          const oppEl = document.getElementById("mobile-allyra-opportunity");
+          const decisionsEl = document.getElementById("mobile-allyra-decisions");
+          const evidenceEl = document.getElementById("mobile-allyra-evidence");
+          const oneThingEl = document.getElementById("mobile-allyra-onething");
 
-      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastEvidenceStart = evidenceEl ? evidenceEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastEvidenceStart = evidenceEl ? evidenceEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOneThingStart = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
 
-      // Dark in Challenge (before Opportunity), or in Decisions (before Evidence), or from One Thing onwards
-      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inDecisions = isPastDecisionsStart && !isPastEvidenceStart;
-      const inOneThing = isPastOneThingStart;
-      const shouldBeDark = inChallenge || inDecisions || inOneThing;
-      setIsDarkMobile(shouldBeDark);
+          // Dark in Challenge (before Opportunity), or in Decisions (before Evidence), or from One Thing onwards
+          const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+          const inDecisions = isPastDecisionsStart && !isPastEvidenceStart;
+          const inOneThing = isPastOneThingStart;
+          const shouldBeDark = inChallenge || inDecisions || inOneThing;
+          setIsDarkMobile(shouldBeDark);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });
@@ -313,7 +320,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
         <MobileAllyraEvidence />
         <MobileAllyraOneThing />
         <MobileFinale isDark={true} />
-        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" isDark={true} />
+        <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/allyra-outcomes" isDark={true} />
 
         {/* Floating Scroll to Top Button */}
         <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />
@@ -1208,7 +1215,7 @@ export default function AllyraStoryPage({ scale = 1, left = 0, onBack, onNextSto
       </div>
 
       {/* ─── NEXT STORY BOTTOM STRIP ─── */}
-      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/campaign-os-story" />
+      <NextStoryBottomStrip onNextStory={onNextStory} defaultNextPath="/allyra-outcomes" />
 
       {/* ─── SCROLL TO TOP FLOATING BUTTON ─── */}
       <ScrollToTopButton show={showScrollTop} onClick={scrollToTop} />

@@ -699,6 +699,7 @@ const ElectricBorder: React.FC<ElectricBorderProps> = ({
     };
 
     const onPointerMove = event => {
+      if (!visible) return;
       locate(event);
       if (pointer.near) wake();
     };

@@ -135,18 +135,25 @@ export default function JoonifyStoryPage({
   useEffect(() => {
     if (!isMobile) return;
 
+    let ticking = false;
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-joonify-challenge");
-      const oppEl = document.getElementById("mobile-joonify-opportunity");
-      const oneThingEl = document.getElementById("mobile-joonify-onething");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const challengeEl = document.getElementById("mobile-joonify-challenge");
+          const oppEl = document.getElementById("mobile-joonify-opportunity");
+          const oneThingEl = document.getElementById("mobile-joonify-onething");
 
-      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOneThing = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOneThing = oneThingEl ? oneThingEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
 
-      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inOneThingAndBelow = isPastOneThing;
-      setIsDarkMobile(inChallenge || inOneThingAndBelow);
+          const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+          const inOneThingAndBelow = isPastOneThing;
+          setIsDarkMobile(inChallenge || inOneThingAndBelow);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });

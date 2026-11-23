@@ -244,7 +244,7 @@ export function MobileHomepage({ onNavigatePath }: MobileHomepageProps) {
 
         <AllyraEvolutionBanner 
           isMobile 
-          onNavigate={() => handleNavigatePath("/allyra-evolution")} 
+          onNavigate={(path) => handleNavigatePath(path || "/allyra-outcomes")} 
         />
 
         <MobileAbout />

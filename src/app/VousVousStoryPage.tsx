@@ -316,6 +316,18 @@ export default function VousVousStoryPage({
   const [isDarkMobile, setIsDarkMobile] = useState(false);
 
   useEffect(() => {
+    // Lazily load Alegreya SC only when viewing VousVous case study
+    const id = "google-font-alegreya-sc";
+    if (typeof document !== "undefined" && !document.getElementById(id)) {
+      const link = document.createElement("link");
+      link.id = id;
+      link.rel = "stylesheet";
+      link.href = "https://fonts.googleapis.com/css2?family=Alegreya+SC:ital,wght@0,400;0,700;1,400&display=swap";
+      document.head.appendChild(link);
+    }
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1024);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -324,24 +336,31 @@ export default function VousVousStoryPage({
   useEffect(() => {
     if (!isMobile) return;
 
+    let ticking = false;
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-vousvous-challenge");
-      const oppEl = document.getElementById("mobile-vousvous-opportunity");
-      const expEl = document.getElementById("mobile-vousvous-experience");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const challengeEl = document.getElementById("mobile-vousvous-challenge");
+          const oppEl = document.getElementById("mobile-vousvous-opportunity");
+          const expEl = document.getElementById("mobile-vousvous-experience");
 
-      const isPastChallengeStart = challengeEl
-        ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5
-        : false;
-      const isPastOpportunityStart = oppEl
-        ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5
-        : false;
-      const isPastExperienceStart = expEl
-        ? expEl.getBoundingClientRect().top <= window.innerHeight * 0.5
-        : false;
+          const isPastChallengeStart = challengeEl
+            ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5
+            : false;
+          const isPastOpportunityStart = oppEl
+            ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5
+            : false;
+          const isPastExperienceStart = expEl
+            ? expEl.getBoundingClientRect().top <= window.innerHeight * 0.5
+            : false;
 
-      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inExperienceAndBelow = isPastExperienceStart;
-      setIsDarkMobile(inChallenge || inExperienceAndBelow);
+          const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+          const inExperienceAndBelow = isPastExperienceStart;
+          setIsDarkMobile(inChallenge || inExperienceAndBelow);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });

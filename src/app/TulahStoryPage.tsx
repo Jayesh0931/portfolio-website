@@ -218,20 +218,27 @@ export default function TulahStoryPage({ scale = 1, left = 0, onBack, onNextStor
   useEffect(() => {
     if (!isMobile) return;
 
+    let ticking = false;
     const handleScrollMobileBg = () => {
-      const challengeEl = document.getElementById("mobile-tulah-challenge");
-      const oppEl = document.getElementById("mobile-tulah-opportunity");
-      const decisionsEl = document.getElementById("mobile-tulah-decisions");
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const challengeEl = document.getElementById("mobile-tulah-challenge");
+          const oppEl = document.getElementById("mobile-tulah-opportunity");
+          const decisionsEl = document.getElementById("mobile-tulah-decisions");
 
-      const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
-      const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastChallengeStart = challengeEl ? challengeEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastOpportunityStart = oppEl ? oppEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
+          const isPastDecisionsStart = decisionsEl ? decisionsEl.getBoundingClientRect().top <= window.innerHeight * 0.5 : false;
 
-      // Dark in Challenge (before Opportunity), or from Key Decisions onwards
-      const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
-      const inDecisionsAndBeyond = isPastDecisionsStart;
-      const shouldBeDark = inChallenge || inDecisionsAndBeyond;
-      setIsDarkMobile(shouldBeDark);
+          // Dark in Challenge (before Opportunity), or from Key Decisions onwards
+          const inChallenge = isPastChallengeStart && !isPastOpportunityStart;
+          const inDecisionsAndBeyond = isPastDecisionsStart;
+          const shouldBeDark = inChallenge || inDecisionsAndBeyond;
+          setIsDarkMobile(shouldBeDark);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScrollMobileBg, { passive: true });

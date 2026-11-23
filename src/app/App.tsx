@@ -274,15 +274,22 @@ function StoriesScrollOverlay() {
   const [prog, setProg] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      const { scale } = getScaleAndLeft(window.innerWidth);
-      const secTop = 2547 * scale;                     // design y → screen y
-      const vh     = window.innerHeight;
-      const start  = secTop - vh * 0.8;                // begins animating before section arrives
-      const end    = secTop + vh * 0.6;                // finishes well inside the section
-      const scrollYAdjusted = window.scrollY - 25 * scale;
-      const raw    = (scrollYAdjusted - start) / (end - start);
-      setProg(Math.max(0, Math.min(1, raw)));
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const { scale } = getScaleAndLeft(window.innerWidth);
+          const secTop = 2547 * scale;                     // design y → screen y
+          const vh     = window.innerHeight;
+          const start  = secTop - vh * 0.8;                // begins animating before section arrives
+          const end    = secTop + vh * 0.6;                // finishes well inside the section
+          const scrollYAdjusted = window.scrollY - 25 * scale;
+          const raw    = (scrollYAdjusted - start) / (end - start);
+          setProg(Math.max(0, Math.min(1, raw)));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -375,7 +382,16 @@ function CraftExpandOverlay() {
   const scale = Math.max(0.001, rawScale);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY - 25 * scale);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY - 25 * scale);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     const onResize = () => { setVh(window.innerHeight); setVw(window.innerWidth); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
@@ -1840,6 +1856,7 @@ export default function App() {
           strength={2.5}
           layers={8}
           curve="bezier"
+          hoverIntensity={1}
           zIndex={40}
         />
       )}
@@ -1932,7 +1949,16 @@ function RecommendationsScrollOverlay() {
   const scale = Math.max(0.001, rawScale);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY - 25 * scale);
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrollY(window.scrollY - 25 * scale);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
     const onResize = () => { setVh(window.innerHeight); setVw(window.innerWidth); };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);

@@ -38,6 +38,102 @@ const PERSON_SCHEMA = {
 
 const STORIES = [
   {
+    path: "allyra-outcomes",
+    title: "Allyra: Outcome-First Experiences (~40% Fewer Steps) — Jayesh Soni",
+    description: "Deep dive: Evolving enterprise AI from agent selection to natural outcome initiation with hierarchical context scoping.",
+    headline: "Outcome-First Experiences — Bypassing the Agent Taxonomy",
+    company: "Pansophic Technologies",
+    year: "Post-2026 Horizon",
+    role: "Product Lead • AI Product Designer",
+    team: "3 designers and 2 business analysts",
+    scope: "Intent Formulation / Scoped Context Tiers / DAG Decomposition",
+    keywords: "Outcome-First AI, Agentic Workflows, Enterprise AI Workforce, Jayesh Soni",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "Bypassing the agent picker catalog by translating natural business objectives into inspectable multi-agent DAGs with automatic context inheritance.",
+    challenge: "Users were forced to navigate directories of 15+ specialized bots and repeatedly supply company policies, schemas, and brand constraints, creating severe prompt fatigue.",
+    opportunity: "Instituting an Outcome Initiation Canvas where people articulate the desired deliverable, and the system dynamically formulates execution dependencies automatically.",
+    whatIDrove: "Natural Intent Formulation Parser, 3-Tier Scoped Context Boundaries (Workspace/Project/Session), Automated Execution DAG.",
+    impact: "Reduced upfront initiation steps by ~40%, eliminated prompt amnesia, and bypassed bot taxonomy guesswork.",
+    keyDecisions: [
+      "Natural Intent Ingestion Over Agent Directory Browsing",
+      "3-Tier Context Boundaries Over Repetitive Prompt Ingestion",
+      "Dynamic DAG Decomposition Over Hardcoded Single-Bot Slices"
+    ],
+    oneThing: "The best AI interaction architecture makes the AI itself invisible: users state the outcome, and the system orchestrates tools behind the glass."
+  },
+  {
+    path: "allyra-workspace",
+    title: "Allyra: The Unified AI Workspace (4 ➔ 1 Workflows) — Jayesh Soni",
+    description: "Deep dive: Replacing chatwall speech bubbles with a synchronized dual-state canvas for live exportable deliverables.",
+    headline: "The Unified AI Workspace — Dual-State Deliverable Canvas",
+    company: "Pansophic Technologies",
+    year: "Post-2026 Horizon",
+    role: "Product Lead • AI Product Designer",
+    team: "3 designers and 2 business analysts",
+    scope: "Dual-State Workspace / Multi-Agent State Bus / Native Deliverable Canvas",
+    keywords: "Unified AI Workspace, Living Deliverable Canvas, Multi-Agent Systems, Jayesh Soni",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "Bringing capabilities into a cohesive dual-state canvas: live multi-agent execution telemetry coordinates on the left while synchronizing directly with living deliverables on the right.",
+    challenge: "Speech bubbles trap structured enterprise outputs, forcing users to manually copy fragmented pieces between 4+ tools and coordinate disconnected bots by hand.",
+    opportunity: "Designing a synchronized Dual-State Canvas powered by a supervisory multi-agent bus that generates native DOCX, XLSX, and presentation deliverables.",
+    whatIDrove: "Dual-State Split-View Workspace, Multi-Agent State Bus, Living Deliverable Artifacts with 1-Click Native Export.",
+    impact: "Consolidated 4 fragmented workflows into 1 unified surface, expanded complex capability reach by 3x, and eliminated manual data re-formatting.",
+    keyDecisions: [
+      "Dual-State Canvas Over Chronological Chat Streams",
+      "Supervisory Multi-Agent State Bus Over Isolated Point Solutions",
+      "Living Deliverables with 1-Click Native Export Over Ephemeral Markdown"
+    ],
+    oneThing: "Chat is a conversational channel, not an enterprise workplace. Deliverables must live in exportable canvases where business value is captured."
+  },
+  {
+    path: "allyra-observability",
+    title: "Allyra: Making AI Understandable (5 Stages of Visible Execution) — Jayesh Soni",
+    description: "Deep dive: Calibrated milestone telemetry and citation receipts over black-box spinners and raw terminal dumps.",
+    headline: "Making AI Understandable — Calibrated Telemetry over Raw Terminal Logs",
+    company: "Pansophic Technologies",
+    year: "Post-2026 Horizon",
+    role: "Product Lead • AI Product Designer",
+    team: "3 designers and 2 business analysts",
+    scope: "AI Observability / Milestone Telemetry / Provenance Auditing",
+    keywords: "AI Observability, Transparent AI, Provenance Receipts, Jayesh Soni",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "Calibrated milestone telemetry over raw console logs. Exposing intermediate findings, active tool states, and source provenance receipts without burying non-technical domain users in JSON dumps.",
+    challenge: "LLM latency is non-linear. Blind spinners create anxiety and premature page reloads, while raw terminal logs dump meaningless JSON tokens onto business users.",
+    opportunity: "Designing a 5-stage milestone telemetry architecture with real-time confidence scores and 1-click citation drilldowns to give stakeholders auditability.",
+    whatIDrove: "5-Stage Execution Lifecycle, Milestone Telemetry Receipts, 1-Click Source Citation Drilldowns.",
+    impact: "Reduced task abandonment during long-running execution from 28% to under 4%, establishing deterministic trust across enterprise pilots.",
+    keyDecisions: [
+      "5-Stage Milestone Telemetry Over Blind Indeterminate Spinners",
+      "1-Click Provenance Drilldown Over Raw Token Streaming",
+      "Calibrated Progress Feedback Over Fake Linear Progress Bars"
+    ],
+    oneThing: "Trust in enterprise AI is built on calibrated observability, not blind faith. People need auditable receipts before adopting AI outputs."
+  },
+  {
+    path: "allyra-autonomy",
+    title: "Allyra: Calibrated Autonomy & Oversight (~50% Fewer Interruptions) — Jayesh Soni",
+    description: "Deep dive: Dual-threshold steering gates and pre-flight side-by-side editable diff previews for high-impact mutations.",
+    headline: "Calibrated Autonomy — Dual-Threshold Steering & Pre-Flight Diffs",
+    company: "Pansophic Technologies",
+    year: "Post-2026 Horizon",
+    role: "Product Lead • AI Product Designer",
+    team: "3 designers and 2 business analysts",
+    scope: "Human-in-the-Loop Governance / Pre-Flight Diff Previews / Calibrated Autonomy",
+    keywords: "Calibrated Autonomy, Human-in-the-Loop, AI Governance, Pre-Flight Diffs, Jayesh Soni",
+    ogImage: `${BASE_URL}/assets/allyra_story_hero-C4SPDcuF.webp`,
+    overview: "Calibrated intervention protocols: routine read operations proceed autonomously, while high-impact external mutations pause for human sign-off with side-by-side diff previews.",
+    challenge: "Unchecked autonomy risks catastrophic enterprise mistakes, while prompting confirmation on every minor query causes debilitating alert fatigue.",
+    opportunity: "Implementing Dual-Threshold Confidence Gates (>=0.90 autonomous vs <0.90 escalation) with interactive pre-flight editable diff previews.",
+    whatIDrove: "Dual-Threshold Confidence Architecture, Side-by-Side Editable Diff Previews, Immutable Audit Compliance Logging.",
+    impact: "Reduced unnecessary user interruptions by ~50% without compromising governance, ensuring decisive human oversight on high-stakes operations.",
+    keyDecisions: [
+      "Dual-Threshold Confidence Gates Over Unconditional Autonomy",
+      "Contextual Editable Diff Previews Over Binary Approve/Deny Modals",
+      "Immutable Cryptographic Audit Logging for Enterprise Compliance"
+    ],
+    oneThing: "The goal of AI governance is not to stop automation, but to make human steering effortless where critical legal or financial risk exists."
+  },
+  {
     path: "allyra-evolution",
     title: "Beyond the Search Box: Designing Allyra's Agentic Search Experience — Jayesh Soni",
     description: "Deep dive into Agentic Search: Designing the next generation of intent formulation, multi-agent task decomposition, source provenance, and human-in-the-loop oversight.",

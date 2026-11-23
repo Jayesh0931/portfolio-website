@@ -2372,7 +2372,7 @@ export default function Desktop() {
     <div className="bg-transparent relative size-full" data-name="Desktop - 6">
       <Group />
       <Group7 />
-      <AllyraEvolutionBanner style={{ position: "absolute", left: 80, top: 1127 }} />
+      <AllyraEvolutionBanner style={{ position: "absolute", left: 80, top: 1000 }} />
       <Frame43 />
       <Group11 />
       <Frame99 />

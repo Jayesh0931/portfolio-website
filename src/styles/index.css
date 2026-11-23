@@ -1,6 +1,7 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+@import './portfolio.css';
 @import '../app/styles/mobileTheme.css';
 
 /* Global Premium Hover Card styles (for single box cards like BentoCards) */

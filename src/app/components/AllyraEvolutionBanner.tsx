@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { playClickSound, playHoverTick } from "@/utils/soundEffects";
-import imgEvolutionComposite from "@/imports/allyra_evolution_composite.webp";
-import imgNxt01 from "@/imports/nxt01.webp";
 
 interface AllyraEvolutionBannerProps {
-  onNavigate?: () => void;
+  onNavigate?: (path: string) => void;
   style?: React.CSSProperties;
   className?: string;
   isMobile?: boolean;
+}
+
+interface MetricStoryCell {
+  metric: string;
+  isTextMetric?: boolean;
+  label: string;
+  actionText: string;
+  targetPath: string;
 }
 
 export default function AllyraEvolutionBanner({
@@ -16,238 +22,271 @@ export default function AllyraEvolutionBanner({
   className = "",
   isMobile = false,
 }: AllyraEvolutionBannerProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredCell, setHoveredCell] = useState<number | null>(null);
 
-  const handleClick = () => {
+  const handleNavigate = (path: string) => {
     playClickSound();
     if (onNavigate) {
-      onNavigate();
+      onNavigate(path);
     } else {
       window.dispatchEvent(
-        new CustomEvent("navigate-to-path", { detail: "/allyra-evolution" })
+        new CustomEvent("navigate-to-path", { detail: path })
       );
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // If navigating with a hash to an already active page or new page, handle smooth scroll
+      if (path.includes("#")) {
+        const hash = path.substring(path.indexOf("#"));
+        setTimeout(() => {
+          const el = document.querySelector(hash);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 300);
+      }
     }
   };
 
-  // ─── MOBILE VIEW (Stacked: Headline & CTA first, Visual below) ───
+  const metricCells: MetricStoryCell[] = [
+    {
+      metric: "~40%",
+      label: "Fewer steps to initiate work",
+      actionText: "Outcome-first experiences",
+      targetPath: "/allyra-outcomes",
+    },
+    {
+      metric: "4 → 1",
+      label: "Fragmented workflows, unified",
+      actionText: "Unified AI workspace",
+      targetPath: "/allyra-workspace",
+    },
+    {
+      metric: "5 stages",
+      label: "Visible AI execution",
+      actionText: "Making AI understandable",
+      targetPath: "/allyra-observability",
+    },
+    {
+      metric: "Human-in-loop",
+      isTextMetric: true,
+      label: "Oversight at critical decisions",
+      actionText: "Calibrated autonomy",
+      targetPath: "/allyra-autonomy",
+    },
+  ];
+
+  // ─── MOBILE VIEW (Editorial Stack: Title top, 2x2 Metric Grid below) ───
   if (isMobile) {
     return (
       <section
         className="mobile-section"
         id="mobile-allyra-evolution"
         style={{
-          padding: "20px 20px 28px 20px",
+          padding: "20px",
           borderBottom: "1px solid #7B7A77",
           ...style,
         }}
       >
         <div
-          onClick={handleClick}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              handleClick();
-            }
-          }}
-          className="relative overflow-hidden rounded-none border border-[#7b7a77]/60 p-[22px] text-left cursor-pointer transition-all duration-300 active:scale-[0.99]"
+          className="relative overflow-hidden rounded-none border border-[#7b7a77]/50 text-left"
           style={{
             background:
-              "radial-gradient(110% 120% at 85% 15%, rgba(238, 108, 19, 0.28) 0%, rgba(30, 11, 2, 0.95) 45%, #0e0400 100%)",
-            boxShadow:
-              "0 12px 30px rgba(25, 11, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+              "radial-gradient(110% 140% at 85% 15%, rgba(238, 108, 19, 0.22) 0%, rgba(24, 9, 2, 0.96) 45%, #0e0400 100%)",
+            boxShadow: "0 10px 28px rgba(25, 11, 0, 0.35)",
           }}
         >
-          {/* Subtle warm ambient glow */}
-          <div
-            className="absolute -right-[30px] -top-[30px] w-[160px] h-[160px] rounded-full pointer-events-none opacity-40 blur-[45px]"
-            style={{ background: "#EE6C13" }}
-            aria-hidden="true"
-          />
-
-          {/* Eyebrow */}
-          <div className="flex items-center gap-[8px] mb-[10px] relative z-10">
-            <span className="font-['Inter:Bold',sans-serif] font-bold text-[10.5px] tracking-[0.8px] uppercase text-[#EE6C13]">
-              RECENT WORK · AGENTIC SEARCH & WORKFLOWS
-            </span>
-          </div>
-
-          {/* Headline */}
-          <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[24px] leading-[1.18] tracking-[-0.015em] mb-[10px] relative z-10">
-            Beyond the launch.
-            <br />
-            <span className="text-[#FFFDFA]">Into Agentic Search.</span>
-          </h2>
-
-          {/* Concise Description */}
-          <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[13.5px] leading-[1.45] mb-[18px] relative z-10">
-            The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.
-          </p>
-
-          {/* CTA Row */}
-          <div className="relative z-10 flex flex-wrap items-center gap-3 mb-[18px]">
-            <div className="inline-flex items-center gap-[8px] h-[36px] px-[18px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[12.5px] uppercase tracking-[0.3px] shadow-sm">
-              <span>Know More</span>
-              <svg className="size-[12px]" fill="none" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
-                <path d="M5 2.5L10.5 7.5L5 12.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+          {/* Top Left Section: Title & Framing */}
+          <div className="p-5 border-b border-white/10">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="size-1.5 rounded-none bg-[#EE6C13]" />
+              <span className="font-['Inter:Bold',sans-serif] font-bold text-[10px] tracking-[0.8px] uppercase text-[#EE6C13]">
+                CURRENTLY SHAPING
+              </span>
             </div>
+            <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[22px] leading-[1.2] tracking-[-0.015em] mb-1.5">
+              Beyond Agent-Centric AI
+            </h2>
+            <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[13px] leading-[1.45] mb-3.5">
+              Evolving enterprise AI from managing agents to accomplishing outcomes.
+            </p>
+            <button
+              type="button"
+              onClick={() => handleNavigate("/allyra-outcomes")}
+              className="inline-flex items-center gap-1.5 font-['Outfit:Bold',sans-serif] font-bold text-[11.5px] uppercase tracking-[0.5px] text-[#EE6C13] hover:underline cursor-pointer"
+            >
+              <span>Explore the work</span>
+              <svg className="size-3" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
           </div>
 
-          {/* Product Visual */}
-          <div className="relative w-full h-[170px] rounded-none overflow-hidden border border-white/15 bg-[#0a0300] shadow-md relative z-10">
-            <img
-              src={imgEvolutionComposite}
-              alt="Allyra Agentic Experience Preview"
-              loading="lazy"
-              decoding="async"
-              className="w-full h-full object-cover object-left-top opacity-95"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+          {/* Bottom 2x2 Metric Grid */}
+          <div className="grid grid-cols-2 divide-x divide-y divide-white/10">
+            {metricCells.map((cell, idx) => (
+              <div
+                key={idx}
+                role="button"
+                tabIndex={0}
+                onClick={() => handleNavigate(cell.targetPath)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleNavigate(cell.targetPath);
+                  }
+                }}
+                className={`p-4 flex flex-col justify-between active:bg-white/5 transition-colors cursor-pointer ${
+                  idx === 0 ? "border-t-0" : ""
+                } ${idx === 1 ? "border-t-0" : ""}`}
+              >
+                <div>
+                  <div
+                    className={`font-['Outfit:Black',sans-serif] font-black text-[#FFFDFA] leading-none mb-1.5 ${
+                      cell.isTextMetric ? "text-[18px] leading-tight" : "text-[26px]"
+                    }`}
+                  >
+                    {cell.metric}
+                  </div>
+                  <p className="font-['Outfit:Regular',sans-serif] text-[11.5px] text-[#aaa] leading-[1.3] m-0 mb-3">
+                    {cell.label}
+                  </p>
+                </div>
+                <div className="flex items-center gap-1 font-['Inter:Bold',sans-serif] font-bold text-[9.5px] uppercase tracking-[0.4px] text-[#EE6C13]">
+                  <span>{cell.actionText}</span>
+                  <svg className="size-2.5 shrink-0" viewBox="0 0 12 12" fill="none">
+                    <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
     );
   }
 
-  // ─── DESKTOP VIEW (Refined Two-Column Composition) ───
+  // ─── DESKTOP VIEW (~200px Horizontal Editorial Featured Strip) ───
   return (
     <div
       style={{
         width: 1280,
-        height: 270,
+        height: 200,
         boxSizing: "border-box",
         ...style,
       }}
       className={`relative select-none ${className}`}
     >
       <div
-        onClick={handleClick}
-        onMouseEnter={() => {
-          setIsHovered(true);
-          playHoverTick();
-        }}
-        onMouseLeave={() => setIsHovered(false)}
-        role="button"
-        tabIndex={0}
-        aria-label="Beyond the launch. Into the agentic era."
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleClick();
-          }
-        }}
-        className="group relative size-full overflow-hidden rounded-none border border-[#7b7a77]/50 p-[30px] text-left cursor-pointer transition-all duration-300"
+        className="relative size-full overflow-hidden rounded-none border border-[#7b7a77]/50 flex items-stretch text-left shadow-lg"
         style={{
           background:
-            "radial-gradient(110% 140% at 85% 30%, rgba(238, 108, 19, 0.28) 0%, rgba(24, 9, 2, 0.94) 45%, #0e0400 95%)",
-          borderColor: isHovered ? "#EE6C13" : "rgba(123, 122, 119, 0.5)",
-          boxShadow: isHovered
-            ? "0 20px 48px rgba(25, 11, 0, 0.45), 0 0 32px rgba(238, 108, 19, 0.2)"
-            : "0 10px 30px rgba(25, 11, 0, 0.24)",
-          transform: isHovered ? "translateY(-2px)" : "translateY(0)",
+            "radial-gradient(110% 160% at 85% 25%, rgba(238, 108, 19, 0.18) 0%, rgba(24, 9, 2, 0.97) 48%, #0e0400 100%)",
         }}
       >
-        {/* Subtle warm amber ambient glow behind product visual */}
+        {/* Subtle warm amber ambient glow behind metric area */}
         <div
-          className="absolute right-[40px] top-[10px] w-[420px] h-[240px] rounded-full pointer-events-none opacity-40 blur-[75px] transition-opacity duration-500"
+          className="absolute right-[20px] top-[0px] w-[500px] h-[200px] rounded-full pointer-events-none opacity-30 blur-[80px]"
           style={{ background: "#EE6C13" }}
           aria-hidden="true"
         />
 
-        {/* ─── TWO-COLUMN BALANCED COMPOSITION ─── */}
-        <div className="relative z-10 flex items-center justify-between size-full gap-8">
-          
-          {/* ── LEFT COLUMN (52–54%): Typography, Description, CTA & Metadata ── */}
-          <div className="flex flex-col justify-between h-full max-w-[620px] shrink-0 py-0.5">
-            <div>
-              {/* Eyebrow Label */}
-              <div className="flex items-center gap-[8px] mb-[12px]">
-                <span className="font-['Inter:Bold',sans-serif] font-bold text-[11px] tracking-[0.8px] uppercase text-[#EE6C13]">
-                  RECENT WORK · AGENTIC SEARCH & WORKFLOWS
-                </span>
-              </div>
-
-              {/* Expressive Headline */}
-              <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[33px] leading-[1.12] tracking-[-0.02em] mb-[10px]">
-                Beyond the launch.
-                <br />
-                <span className="text-[#FFFDFA]">Into Agentic Search.</span>
-              </h2>
-
-              {/* Concise Supporting Sentence */}
-              <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[15px] leading-[1.45] max-w-[530px] m-0">
-                The next evolution of Allyra — transforming enterprise search into an agentic engine that decomposes goals, verifies provenance, and executes work.
-              </p>
+        {/* ── LEFT SECTION (~30%): Title, Context & Subtle Link ── */}
+        <div className="w-[30%] shrink-0 p-6 md:p-7 flex flex-col justify-between relative z-10 border-r border-white/10">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="size-1.5 rounded-none bg-[#EE6C13]" />
+              <span className="font-['Inter:Bold',sans-serif] font-bold text-[10.5px] tracking-[0.8px] uppercase text-[#EE6C13]">
+                CURRENTLY SHAPING
+              </span>
             </div>
-
-            {/* Compact CTA & Supporting Metadata Row */}
-            <div className="flex items-center gap-[22px] pt-[10px]">
-              {/* Compact CTA Button */}
-              <div
-                className="inline-flex items-center gap-[9px] h-[38px] px-[20px] rounded-[110px] bg-[#EE6C13] text-[#FFFDFA] font-['Outfit:Bold',sans-serif] font-bold text-[13px] tracking-[0.3px] uppercase transition-all duration-200 group-hover:bg-[#FFFDFA] group-hover:text-[#190b00] group-hover:shadow-md shrink-0"
-              >
-                <span>Know More</span>
-                <svg
-                  className="size-[13px] transition-transform duration-200 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 15 15"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5 2.5L10.5 7.5L5 12.5"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
+            <h2 className="font-['Outfit:Bold',sans-serif] font-extrabold text-[#FFFDFA] text-[22px] md:text-[23px] leading-[1.18] tracking-[-0.015em] mb-1.5">
+              Beyond Agent-Centric AI
+            </h2>
+            <p className="font-['Outfit:Regular',sans-serif] font-normal text-[#cfc5bb] text-[12.5px] leading-[1.4] max-w-[290px] m-0">
+              Evolving enterprise AI from managing agents to accomplishing outcomes.
+            </p>
           </div>
 
-          {/* ── RIGHT COLUMN (46–48%): High-Impact Layered Product Showcase ── */}
-          <div className="relative flex-1 h-[215px] flex items-center justify-end">
-            
-            {/* Primary Product Screenshot Window */}
-            <div className="relative w-[520px] h-[210px] rounded-none overflow-hidden border border-white/15 bg-[#0a0300] shadow-[0_16px_40px_rgba(0,0,0,0.6)] group-hover:border-[#EE6C13]/50 transition-all duration-400">
-              <img
-                src={imgEvolutionComposite}
-                alt="Allyra Agentic Platform Interface"
-                loading="eager"
-                decoding="async"
-                className="w-full h-full object-cover object-left-top opacity-95 transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-              />
-              {/* Subtle bottom gradient vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
-            </div>
-
-            {/* Subtle Layered Floating UI Preview (Connector Governance Card) */}
-            <div 
-              className="absolute -bottom-[8px] left-[15px] w-[185px] h-[105px] rounded-none overflow-hidden border border-white/20 bg-[#0d0400] shadow-[0_18px_36px_rgba(0,0,0,0.7)] z-20 transition-transform duration-400 group-hover:-translate-y-1 group-hover:border-[#EE6C13]/60"
+          <div className="pt-2">
+            <button
+              type="button"
+              onClick={() => handleNavigate("/allyra-outcomes")}
+              onMouseEnter={() => playHoverTick()}
+              className="group/link inline-flex items-center gap-1.5 font-['Inter:Bold',sans-serif] font-bold text-[11px] uppercase tracking-[0.6px] text-[#EE6C13] cursor-pointer bg-transparent border-0 p-0 text-left"
             >
-              <img
-                src={imgNxt01}
-                alt="Agent Builder & Orchestration Preview"
-                loading="eager"
-                decoding="async"
-                className="w-full h-full object-cover object-center opacity-90"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
-              
-              {/* Floating micro-badge */}
-              <div className="absolute bottom-[6px] left-[8px] flex items-center gap-1.5">
-                <span className="size-1.5 rounded-full bg-[#EE6C13] animate-pulse" />
-                <span className="font-['Inter:Bold',sans-serif] font-bold text-[9px] uppercase tracking-[0.5px] text-[#FFFDFA]">
-                  Live Orchestration
+              <span className="group-hover/link:underline">Explore the work</span>
+              <svg
+                className="size-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                viewBox="0 0 12 12"
+                fill="none"
+              >
+                <path
+                  d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* ── RIGHT SECTION (~70%): Four Horizontally Arranged Story Cells ── */}
+        <div className="w-[70%] grid grid-cols-4 relative z-10 divide-x divide-white/10">
+          {metricCells.map((cell, idx) => (
+            <div
+              key={idx}
+              role="button"
+              tabIndex={0}
+              onClick={() => handleNavigate(cell.targetPath)}
+              onMouseEnter={() => {
+                setHoveredCell(idx);
+                playHoverTick();
+              }}
+              onMouseLeave={() => setHoveredCell(null)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleNavigate(cell.targetPath);
+                }
+              }}
+              aria-label={`${cell.metric}: ${cell.label}`}
+              className="p-5 md:p-6 flex flex-col justify-between transition-all duration-200 hover:bg-white/[0.035] cursor-pointer group select-none text-left"
+            >
+              {/* Primary Metric Anchor */}
+              <div>
+                <div
+                  className={`font-['Outfit:Black',sans-serif] font-black text-[#FFFDFA] leading-none mb-2 transition-transform duration-300 group-hover:-translate-y-0.5 ${
+                    cell.isTextMetric
+                      ? "text-[21px] md:text-[22px] leading-tight group-hover:text-[#EE6C13]"
+                      : "text-[32px] md:text-[34px] group-hover:text-[#EE6C13]"
+                  }`}
+                >
+                  {cell.metric}
+                </div>
+                <p className="font-['Outfit:Regular',sans-serif] text-[12px] md:text-[12.5px] text-[#cfc5bb] leading-[1.35] m-0">
+                  {cell.label}
+                </p>
+              </div>
+
+              {/* Interaction Affordance */}
+              <div className="pt-2">
+                <span className="font-['Inter:Bold',sans-serif] font-bold text-[10.5px] uppercase tracking-[0.5px] text-[#8e857c] group-hover:text-[#EE6C13] transition-colors duration-200 inline-flex items-center gap-1">
+                  <span>{cell.actionText}</span>
+                  <svg
+                    className="size-2.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                  >
+                    <path
+                      d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </span>
               </div>
             </div>
-
-          </div>
-
+          ))}
         </div>
       </div>
     </div>

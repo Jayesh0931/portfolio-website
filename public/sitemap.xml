@@ -98,4 +98,36 @@
     </image:image>
   </url>
 
+  <!-- Allyra Outcome-First Deep Dive -->
+  <url>
+    <loc>https://jayeshsoni.com/allyra-outcomes</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Allyra Unified AI Workspace Deep Dive -->
+  <url>
+    <loc>https://jayeshsoni.com/allyra-workspace</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Allyra AI Observability Deep Dive -->
+  <url>
+    <loc>https://jayeshsoni.com/allyra-observability</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Allyra Calibrated Autonomy Deep Dive -->
+  <url>
+    <loc>https://jayeshsoni.com/allyra-autonomy</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
 </urlset>

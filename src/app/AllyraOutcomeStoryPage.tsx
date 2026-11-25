@@ -199,7 +199,7 @@ export default function AllyraOutcomeStoryPage({
             >
               <div
                 className="relative w-full cursor-pointer overflow-hidden"
-                style={{ aspectRatio: "2880 / 1788" }}
+                style={{ aspectRatio: "3456 / 1924" }}
                 onClick={handleOpenFullscreen}
               >
                 <video
@@ -209,7 +209,7 @@ export default function AllyraOutcomeStoryPage({
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover block"
+                  className="w-full h-full object-contain block"
                 />
 
                 {/* Video Play/Pause & Full-Screen Action Overlay */}

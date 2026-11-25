@@ -5,8 +5,8 @@ import Footer from "@/components/Footer";
 import NextStoryBottomStrip from "@/components/NextStoryBottomStrip";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { playClickSound, playHoverTick } from "@/utils/soundEffects";
-import vidNxt02 from "@/imports/nxt02.mp4";
-import imgNxt02 from "@/imports/nxt02.webp";
+import vidNxt04 from "@/imports/nxt04.mp4";
+import imgNxt04 from "@/imports/nxt04.webp";
 
 interface StoryPageProps {
   onNavigate: (path: string) => void;
@@ -94,7 +94,7 @@ export default function AllyraObservabilityStoryPage({
   };
 
   const handleOpenFullscreen = () => {
-    window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src: vidNxt02 } }));
+    window.dispatchEvent(new CustomEvent("open-full-screen-video", { detail: { src: vidNxt04 } }));
   };
 
   return (
@@ -199,17 +199,17 @@ export default function AllyraObservabilityStoryPage({
             >
               <div
                 className="relative w-full cursor-pointer overflow-hidden"
-                style={{ aspectRatio: "2880 / 1788" }}
+                style={{ aspectRatio: "3456 / 1924" }}
                 onClick={handleOpenFullscreen}
               >
                 <video
                   ref={videoRef}
-                  src={vidNxt02}
-                  poster={imgNxt02}
+                  src={vidNxt04}
+                  poster={imgNxt04}
                   loop
                   muted
                   playsInline
-                  className="w-full h-full object-cover block"
+                  className="w-full h-full object-contain block"
                 />
 
                 {/* Video Play/Pause & Full-Screen Action Overlay */}
